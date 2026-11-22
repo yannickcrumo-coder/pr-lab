@@ -1,0 +1,229 @@
+[
+  {
+    "slug": "for_time",
+    "name_es": "For Time",
+    "description_es": "Completar el trabajo prescrito lo más rápido posible.",
+    "score_type": "time",
+    "lower_is_better": true,
+    "fields": [
+      "rounds",
+      "time_cap_s",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "time",
+      "reps_completed",
+      "rpe"
+    ],
+    "example_scheme": "21-15-9"
+  },
+  {
+    "slug": "amrap",
+    "name_es": "AMRAP",
+    "description_es": "Máximo de rondas y repeticiones en un tiempo fijo.",
+    "score_type": "rounds_reps",
+    "lower_is_better": false,
+    "fields": [
+      "duration_s",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "rounds",
+      "reps",
+      "rpe"
+    ],
+    "example_scheme": "AMRAP 20 min"
+  },
+  {
+    "slug": "emom",
+    "name_es": "EMOM",
+    "description_es": "Un bloque de trabajo al inicio de cada minuto.",
+    "score_type": "completion",
+    "lower_is_better": false,
+    "fields": [
+      "duration_s",
+      "interval_s",
+      "slots",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "completed_minutes",
+      "reps",
+      "rpe"
+    ],
+    "example_scheme": "EMOM 12 min, alternando 2 movimientos"
+  },
+  {
+    "slug": "tabata",
+    "name_es": "Tabata",
+    "description_es": "Ocho intervalos de 20 s de trabajo por 10 s de descanso.",
+    "score_type": "reps",
+    "lower_is_better": false,
+    "fields": [
+      "work_s",
+      "rest_s",
+      "intervals",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "reps_per_interval",
+      "lowest_round",
+      "rpe"
+    ],
+    "example_scheme": "8 x 20/10"
+  },
+  {
+    "slug": "rft",
+    "name_es": "Rondas por tiempo",
+    "description_es": "Un número fijo de rondas lo más rápido posible.",
+    "score_type": "time",
+    "lower_is_better": true,
+    "fields": [
+      "rounds",
+      "time_cap_s",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "time",
+      "split_per_round",
+      "rpe"
+    ],
+    "example_scheme": "5 rondas por tiempo"
+  },
+  {
+    "slug": "chipper",
+    "name_es": "Chipper",
+    "description_es": "Una lista larga de movimientos que se hace una sola vez.",
+    "score_type": "time",
+    "lower_is_better": true,
+    "fields": [
+      "time_cap_s",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "time",
+      "reps_completed",
+      "rpe"
+    ],
+    "example_scheme": "50 reps de cada movimiento"
+  },
+  {
+    "slug": "ladder",
+    "name_es": "Escalera",
+    "description_es": "Las repeticiones suben o bajan en cada ronda.",
+    "score_type": "time",
+    "lower_is_better": true,
+    "fields": [
+      "scheme",
+      "time_cap_s",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "time",
+      "round_reached",
+      "rpe"
+    ],
+    "example_scheme": "1-2-3-4-5-6-7-8-9-10"
+  },
+  {
+    "slug": "death_by",
+    "name_es": "Death by",
+    "description_es": "Una repetición más cada minuto hasta fallar.",
+    "score_type": "rounds",
+    "lower_is_better": false,
+    "fields": [
+      "interval_s",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "rounds",
+      "rpe"
+    ],
+    "example_scheme": "Death by burpees"
+  },
+  {
+    "slug": "intervalos",
+    "name_es": "Intervalos",
+    "description_es": "Series de trabajo y descanso definidos por el coach.",
+    "score_type": "splits",
+    "lower_is_better": true,
+    "fields": [
+      "sets",
+      "work",
+      "rest_s",
+      "target",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "splits",
+      "pace",
+      "heart_rate",
+      "rpe"
+    ],
+    "example_scheme": "6 x 800 m con 2 min de descanso"
+  },
+  {
+    "slug": "carga_maxima",
+    "name_es": "Carga máxima",
+    "description_es": "Encontrar la carga máxima en un número de repeticiones.",
+    "score_type": "load",
+    "lower_is_better": false,
+    "fields": [
+      "rep_target",
+      "attempts",
+      "movements",
+      "notes"
+    ],
+    "athlete_logs": [
+      "load",
+      "reps",
+      "rpe"
+    ],
+    "example_scheme": "Encontrar 1RM de sentadilla trasera"
+  },
+  {
+    "slug": "simulacion_hyrox",
+    "name_es": "Simulación Hyrox",
+    "description_es": "Carreras y estaciones encadenadas con parciales por tramo.",
+    "score_type": "time",
+    "lower_is_better": true,
+    "fields": [
+      "division",
+      "stations",
+      "partial_race",
+      "notes"
+    ],
+    "athlete_logs": [
+      "total_time",
+      "split_per_station",
+      "roxzone_time",
+      "rpe"
+    ],
+    "example_scheme": "Media simulación: 4 carreras y 4 estaciones"
+  },
+  {
+    "slug": "libre",
+    "name_es": "Formato libre",
+    "description_es": "Texto libre para lo que no entre en los formatos anteriores.",
+    "score_type": "free",
+    "lower_is_better": false,
+    "fields": [
+      "body",
+      "notes"
+    ],
+    "athlete_logs": [
+      "notes",
+      "rpe"
+    ],
+    "example_scheme": null
+  }
+]

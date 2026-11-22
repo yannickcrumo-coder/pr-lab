@@ -1,0 +1,312 @@
+[
+  {
+    "slug": "carrera-facil",
+    "name_es": "Rodaje fácil",
+    "discipline": "correr",
+    "intensity": "zona 2",
+    "fields": [
+      "distance_m",
+      "duration_s",
+      "target_pace",
+      "target_hr"
+    ],
+    "description_es": "Ritmo conversacional; base aeróbica."
+  },
+  {
+    "slug": "carrera-larga",
+    "name_es": "Rodaje largo",
+    "discipline": "correr",
+    "intensity": "zona 2",
+    "fields": [
+      "distance_m",
+      "duration_s",
+      "target_pace"
+    ],
+    "description_es": "La sesión más larga de la semana."
+  },
+  {
+    "slug": "carrera-recuperacion",
+    "name_es": "Trote de recuperación",
+    "discipline": "correr",
+    "intensity": "zona 1",
+    "fields": [
+      "duration_s",
+      "target_hr"
+    ],
+    "description_es": "Muy suave, para el día después de una sesión dura."
+  },
+  {
+    "slug": "tempo",
+    "name_es": "Tempo",
+    "discipline": "correr",
+    "intensity": "zona 3-4",
+    "fields": [
+      "warmup",
+      "duration_s",
+      "target_pace",
+      "cooldown"
+    ],
+    "description_es": "Esfuerzo sostenido cómodo-duro de 20 a 40 minutos."
+  },
+  {
+    "slug": "umbral",
+    "name_es": "Intervalos de umbral",
+    "discipline": "correr",
+    "intensity": "zona 4",
+    "fields": [
+      "sets",
+      "work",
+      "rest_s",
+      "target_pace"
+    ],
+    "description_es": "Series largas al ritmo que podrías sostener una hora."
+  },
+  {
+    "slug": "vo2max",
+    "name_es": "Intervalos de VO2máx",
+    "discipline": "correr",
+    "intensity": "zona 5",
+    "fields": [
+      "sets",
+      "work",
+      "rest_s",
+      "target_pace"
+    ],
+    "description_es": "Series de 3 a 5 minutos muy exigentes."
+  },
+  {
+    "slug": "cuestas",
+    "name_es": "Repeticiones en cuesta",
+    "discipline": "correr",
+    "intensity": "zona 4-5",
+    "fields": [
+      "sets",
+      "duration_s",
+      "grade_pct",
+      "rest_s"
+    ],
+    "description_es": "Fuerza específica de carrera."
+  },
+  {
+    "slug": "fartlek",
+    "name_es": "Fartlek",
+    "discipline": "correr",
+    "intensity": "variable",
+    "fields": [
+      "duration_s",
+      "pattern",
+      "notes"
+    ],
+    "description_es": "Cambios de ritmo libres dentro de un rodaje."
+  },
+  {
+    "slug": "progresivo",
+    "name_es": "Rodaje progresivo",
+    "discipline": "correr",
+    "intensity": "zona 2-4",
+    "fields": [
+      "distance_m",
+      "segments",
+      "target_pace"
+    ],
+    "description_es": "Empieza suave y termina fuerte."
+  },
+  {
+    "slug": "rectas",
+    "name_es": "Rectas",
+    "discipline": "correr",
+    "intensity": "zona 5",
+    "fields": [
+      "sets",
+      "distance_m",
+      "rest_s"
+    ],
+    "description_es": "Aceleraciones cortas de 80 a 150 m para técnica."
+  },
+  {
+    "slug": "pista-400",
+    "name_es": "Series de 400 m",
+    "discipline": "correr",
+    "intensity": "zona 5",
+    "fields": [
+      "sets",
+      "target_pace",
+      "rest_s"
+    ],
+    "description_es": "Clásico de pista para velocidad sostenida."
+  },
+  {
+    "slug": "pista-800",
+    "name_es": "Series de 800 m",
+    "discipline": "correr",
+    "intensity": "zona 4-5",
+    "fields": [
+      "sets",
+      "target_pace",
+      "rest_s"
+    ]
+  },
+  {
+    "slug": "pista-1000",
+    "name_es": "Series de 1000 m",
+    "discipline": "correr",
+    "intensity": "zona 4",
+    "fields": [
+      "sets",
+      "target_pace",
+      "rest_s"
+    ]
+  },
+  {
+    "slug": "test-5k",
+    "name_es": "Test de 5 km",
+    "discipline": "correr",
+    "intensity": "máximo",
+    "fields": [
+      "distance_m",
+      "target_time_s"
+    ],
+    "description_es": "Sirve para recalcular zonas y ritmos."
+  },
+  {
+    "slug": "hyrox-run-station",
+    "name_es": "Carrera + estación",
+    "discipline": "hyrox",
+    "intensity": "zona 4",
+    "fields": [
+      "sets",
+      "run_m",
+      "station",
+      "target_time_s"
+    ],
+    "description_es": "El bloque base del entrenamiento de Hyrox."
+  },
+  {
+    "slug": "ciclismo-fondo",
+    "name_es": "Rodada de fondo",
+    "discipline": "ciclismo",
+    "intensity": "zona 2",
+    "fields": [
+      "duration_s",
+      "distance_m",
+      "target_power",
+      "target_hr"
+    ]
+  },
+  {
+    "slug": "ciclismo-sweet-spot",
+    "name_es": "Sweet spot",
+    "discipline": "ciclismo",
+    "intensity": "88-94 % FTP",
+    "fields": [
+      "sets",
+      "duration_s",
+      "rest_s",
+      "target_power"
+    ]
+  },
+  {
+    "slug": "ciclismo-ftp",
+    "name_es": "Intervalos de FTP",
+    "discipline": "ciclismo",
+    "intensity": "95-105 % FTP",
+    "fields": [
+      "sets",
+      "duration_s",
+      "rest_s",
+      "target_power"
+    ]
+  },
+  {
+    "slug": "ciclismo-vo2",
+    "name_es": "Intervalos de VO2máx",
+    "discipline": "ciclismo",
+    "intensity": "110-120 % FTP",
+    "fields": [
+      "sets",
+      "duration_s",
+      "rest_s",
+      "target_power"
+    ]
+  },
+  {
+    "slug": "ciclismo-sprints",
+    "name_es": "Sprints",
+    "discipline": "ciclismo",
+    "intensity": "máximo",
+    "fields": [
+      "sets",
+      "duration_s",
+      "rest_s"
+    ]
+  },
+  {
+    "slug": "ciclismo-cadencia",
+    "name_es": "Trabajo de cadencia",
+    "discipline": "ciclismo",
+    "intensity": "zona 2",
+    "fields": [
+      "sets",
+      "duration_s",
+      "target_cadence"
+    ]
+  },
+  {
+    "slug": "test-ftp-20",
+    "name_es": "Test de FTP de 20 minutos",
+    "discipline": "ciclismo",
+    "intensity": "máximo",
+    "fields": [
+      "duration_s",
+      "target_power"
+    ],
+    "description_es": "El FTP se estima como el 95 % de la potencia media."
+  },
+  {
+    "slug": "natacion-tecnica",
+    "name_es": "Técnica de natación",
+    "discipline": "triatlon",
+    "intensity": "zona 1-2",
+    "fields": [
+      "sets",
+      "distance_m",
+      "drill",
+      "rest_s"
+    ]
+  },
+  {
+    "slug": "natacion-umbral",
+    "name_es": "Series de umbral",
+    "discipline": "triatlon",
+    "intensity": "zona 4",
+    "fields": [
+      "sets",
+      "distance_m",
+      "target_pace",
+      "rest_s"
+    ]
+  },
+  {
+    "slug": "natacion-aguas-abiertas",
+    "name_es": "Aguas abiertas",
+    "discipline": "triatlon",
+    "intensity": "zona 2-3",
+    "fields": [
+      "distance_m",
+      "duration_s",
+      "notes"
+    ]
+  },
+  {
+    "slug": "brick",
+    "name_es": "Sesión combinada (brick)",
+    "discipline": "triatlon",
+    "intensity": "zona 3-4",
+    "fields": [
+      "bike_duration_s",
+      "run_duration_s",
+      "transition_s"
+    ],
+    "description_es": "Bici seguida de carrera, sin pausa."
+  }
+]

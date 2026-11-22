@@ -1,0 +1,96 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  base-de-datos:
+    name: Migraciones, catálogo y pruebas de esquema
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: prlab
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      PGPASSWORD: postgres
+      PSQL: psql -h localhost -U postgres -d prlab -v ON_ERROR_STOP=1
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Instalar el cliente de PostgreSQL
+        run: sudo apt-get update && sudo apt-get install -y postgresql-client
+
+      - name: Aplicar las migraciones
+        run: $PSQL -f db/migrations/0001_init.sql
+
+      - name: Cargar el catálogo
+        run: $PSQL -f db/migrations/0002_seed_reference.sql
+
+      - name: Correr las pruebas del esquema
+        run: $PSQL -f db/tests/smoke.sql
+
+      - name: Confirmar que el catálogo quedó completo
+        run: |
+          n=$(psql -h localhost -U postgres -d prlab -tAc \
+            "select count(*) from exercises where is_public")
+          echo "ejercicios en el catálogo: $n"
+          test "$n" -ge 191
+
+  catalogo:
+    name: El catálogo se reconstruye igual
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+
+      - name: Regenerar el catálogo desde las fuentes
+        run: cd db/build && python3 build.py
+
+      - name: Regenerar el SQL del catálogo
+        run: cd db/build && python3 make_seed_sql.py
+
+      - name: Fallar si lo generado no coincide con lo versionado
+        run: |
+          if ! git diff --quiet; then
+            echo "El catálogo versionado no coincide con el generado."
+            echo "Corre db/build/build.py y make_seed_sql.py y haz commit."
+            git diff --stat
+            exit 1
+          fi
+
+  contrato:
+    name: Contrato de API
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install pyyaml
+      - name: Validar el OpenAPI
+        run: python3 api/validate.py
+
+  secretos:
+    name: Sin credenciales en el repositorio
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Buscar archivos que nunca deben subirse
+        run: |
+          encontrados=$(git ls-files | grep -E '(^|/)\.env$|\.pem$|\.p8$|\.p12$|\.keystore$|google-services\.json$|GoogleService-Info\.plist$' || true)
+          if [ -n "$encontrados" ]; then
+            echo "Hay archivos con credenciales versionados:"
+            echo "$encontrados"
+            exit 1
+          fi
+          echo "Sin archivos de credenciales."

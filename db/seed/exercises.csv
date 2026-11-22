@@ -1,0 +1,192 @@
+slug,nombre_es,nombre_en,patron,disciplinas,musculos_principales,equipo,metricas,nivel,unilateral,1rm,cue_es
+sentadilla-trasera,Sentadilla trasera,Back Squat,sentadilla,fuerza|crossfit|hyrox,cuadriceps|gluteos,barra|rack,reps|load|rpe,intermedio,no,sí,"Pecho arriba, rodillas en línea con los pies, cadera por debajo de la rodilla."
+sentadilla-frontal,Sentadilla frontal,Front Squat,sentadilla,fuerza|crossfit,cuadriceps|gluteos,barra|rack,reps|load|rpe,intermedio,no,sí,Codos altos y torso vertical durante todo el recorrido.
+sentadilla-overhead,Sentadilla overhead,Overhead Squat,sentadilla,fuerza|crossfit,cuadriceps|gluteos,barra,reps|load|rpe,avanzado,no,sí,"Barra sobre la mitad del pie, hombros activos, mirada al frente."
+sentadilla-goblet,Sentadilla goblet,Goblet Squat,sentadilla,fuerza,cuadriceps|gluteos,kettlebell|mancuernas,reps|load|rpe,principiante,no,no,Sostén la pesa pegada al pecho y baja entre las rodillas.
+sentadilla-cajon,Sentadilla al cajón,Box Squat,sentadilla,fuerza,cuadriceps|gluteos,barra|rack|cajon,reps|load|rpe,intermedio,no,no,Siéntate controlado en el cajón sin rebotar.
+sentadilla-pausa,Sentadilla con pausa,Pause Squat,sentadilla,fuerza,cuadriceps|gluteos,barra|rack,reps|load|rpe|tempo,intermedio,no,no,Dos a tres segundos abajo sin perder tensión.
+sentadilla-aire,Sentadilla sin peso,Air Squat,sentadilla,fuerza|crossfit|hyrox,cuadriceps|gluteos,ninguno,reps|time,principiante,no,no,Cadera por debajo de la rodilla y extensión completa arriba.
+sentadilla-bulgara,Sentadilla búlgara,Bulgarian Split Squat,zancada,fuerza,cuadriceps|gluteos,mancuernas|banco,reps|load|rpe,intermedio,sí,no,"Pie trasero elevado, peso en el talón delantero."
+sentadilla-pistol,Pistol,Pistol Squat,sentadilla,fuerza|crossfit,cuadriceps|gluteos,ninguno,reps|load|rpe,avanzado,sí,no,Baja en una pierna manteniendo el talón apoyado.
+sentadilla-pistol-asistida,Pistol asistido,Assisted Pistol Squat,sentadilla,fuerza|crossfit,cuadriceps|gluteos,banda|anillas,reps|load|rpe,principiante,sí,no,Usa banda o anillas para controlar la bajada.
+sentadilla-hack,Sentadilla hack,Hack Squat,sentadilla,fuerza,cuadriceps,maquina,reps|load|rpe,intermedio,no,no,Espalda pegada al respaldo.
+prensa-piernas,Prensa de piernas,Leg Press,sentadilla,fuerza,cuadriceps|gluteos,maquina,reps|load|rpe,principiante,no,no,No despegues la cadera del asiento.
+sentadilla-zercher,Sentadilla Zercher,Zercher Squat,sentadilla,fuerza,cuadriceps|gluteos,barra,reps|load|rpe,avanzado,no,no,"Barra en el pliegue de los codos, torso firme."
+sentadilla-isometrica,Sentadilla isométrica en pared,Wall Sit,sentadilla,fuerza,cuadriceps,ninguno,time,principiante,no,no,Rodillas a noventa grados y espalda pegada a la pared.
+salto-sentadilla,Salto en sentadilla,Jump Squat,pliometrico,fuerza|crossfit,cuadriceps|gluteos,ninguno,reps|time,intermedio,no,no,Aterriza suave con rodillas flexionadas.
+peso-muerto,Peso muerto,Deadlift,bisagra,fuerza|crossfit|hyrox,gluteos|isquiotibiales,barra|discos,reps|load|rpe,intermedio,no,sí,"Barra pegada a la pierna, espalda neutra, empuja el piso."
+peso-muerto-sumo,Peso muerto sumo,Sumo Deadlift,bisagra,fuerza,gluteos|cuadriceps,barra|discos,reps|load|rpe,intermedio,no,sí,"Pies anchos, rodillas hacia afuera, torso más vertical."
+peso-muerto-rumano,Peso muerto rumano,Romanian Deadlift,bisagra,fuerza,isquiotibiales|gluteos,barra|discos,reps|load|rpe,intermedio,no,no,Lleva la cadera atrás con rodillas casi fijas.
+peso-muerto-piernas-rigidas,Peso muerto piernas rígidas,Stiff-Leg Deadlift,bisagra,fuerza,isquiotibiales,barra|discos,reps|load|rpe,intermedio,no,no,"Rodillas casi extendidas, espalda neutra."
+peso-muerto-hexagonal,Peso muerto con barra hexagonal,Trap Bar Deadlift,bisagra,fuerza,gluteos|cuadriceps,barra_hexagonal,reps|load|rpe,principiante,no,sí,Torso más vertical y menos carga lumbar.
+peso-muerto-deficit,Peso muerto con déficit,Deficit Deadlift,bisagra,fuerza,gluteos|isquiotibiales,barra|discos,reps|load|rpe,avanzado,no,no,Parado sobre un disco para aumentar el recorrido.
+rack-pull,Rack pull,Rack Pull,bisagra,fuerza,gluteos|erectores,barra|rack,reps|load|rpe,intermedio,no,no,Tirón parcial desde la rodilla o por encima.
+buenos-dias,Buenos días,Good Morning,bisagra,fuerza,isquiotibiales|erectores,barra|rack,reps|load|rpe,intermedio,no,no,"Bisagra con la barra en la espalda, rodillas suaves."
+hip-thrust,Hip thrust,Hip Thrust,bisagra,fuerza,gluteos,barra|banco|discos,reps|load|rpe,intermedio,no,no,Extiende la cadera hasta alinear tronco y muslo; mentón metido.
+puente-gluteo,Puente de glúteo,Glute Bridge,bisagra,fuerza,gluteos,ninguno,reps|time,principiante,no,no,Aprieta el glúteo arriba un segundo.
+peso-muerto-unilateral,Peso muerto a una pierna,Single-Leg RDL,bisagra,fuerza,isquiotibiales|gluteos,mancuernas|kettlebell,reps|load|rpe,intermedio,sí,no,"Cadera cerrada, pierna libre en línea con el tronco."
+swing-ruso,Swing ruso,Russian Kettlebell Swing,bisagra,fuerza|crossfit|hyrox,gluteos|isquiotibiales,kettlebell,reps|load|time,intermedio,no,no,La pesa llega a la altura del pecho por empuje de cadera.
+swing-americano,Swing americano,American Kettlebell Swing,bisagra,fuerza|crossfit,gluteos|isquiotibiales,kettlebell,reps|load|time,intermedio,no,no,La pesa termina arriba de la cabeza con brazos extendidos.
+extension-espalda,Extensión de espalda,Back Extension,bisagra,fuerza|crossfit,erectores|gluteos,ghd,reps|time,intermedio,no,no,Sube hasta la línea del cuerpo sin hiperextender.
+nordico,Curl nórdico,Nordic Hamstring Curl,bisagra,fuerza,isquiotibiales,ninguno,reps|tempo,avanzado,no,no,Baja lo más lento posible resistiendo con el isquiotibial.
+pull-through,Pull through en polea,Cable Pull-Through,bisagra,fuerza,gluteos|isquiotibiales,polea,reps|load|rpe,principiante,no,no,Cadera atrás y extensión completa arriba.
+zancada-caminando,Zancada caminando,Walking Lunge,zancada,fuerza|crossfit|hyrox,cuadriceps|gluteos,mancuernas|barra,reps|load|distance,intermedio,sí,no,"Rodilla trasera toca el piso suave, torso erguido."
+zancada-atras,Zancada hacia atrás,Reverse Lunge,zancada,fuerza,cuadriceps|gluteos,mancuernas|barra,reps|load|rpe,principiante,sí,no,"Paso atrás controlado, peso en el pie delantero."
+zancada-frontal,Zancada hacia adelante,Forward Lunge,zancada,fuerza,cuadriceps|gluteos,mancuernas,reps|load|rpe,intermedio,sí,no,Frena la bajada con el cuádriceps.
+zancada-lateral,Zancada lateral,Lateral Lunge,zancada,fuerza,aductores|cuadriceps,mancuernas,reps|load|rpe,intermedio,sí,no,Cadera atrás sobre la pierna que trabaja.
+zancada-frontal-rack,Zancada con barra al frente,Front Rack Lunge,zancada,fuerza|crossfit,cuadriceps|gluteos,barra,reps|load|rpe,intermedio,sí,no,Codos altos; el torso no se inclina.
+step-up,Step up al cajón,Box Step-Up,zancada,fuerza|crossfit|hyrox,cuadriceps|gluteos,cajon|mancuernas,reps|load|rpe,intermedio,sí,no,Empuja con el talón del pie que está arriba.
+step-over,Step over al cajón,Box Step-Over,zancada,crossfit|hyrox,cuadriceps|gluteos,cajon|mancuernas,reps|load|time,intermedio,no,no,Sube y pasa al otro lado sin pausa.
+zancada-salto,Zancada con salto,Jumping Lunge,pliometrico,fuerza|crossfit,cuadriceps|gluteos,ninguno,reps|time,intermedio,no,no,Cambia de pierna en el aire y aterriza suave.
+press-banca,Press de banca,Bench Press,empuje_horizontal,fuerza|crossfit,pectorales,barra|banco|rack,reps|load|rpe,intermedio,no,sí,"Escápulas retraídas, barra a la línea del pezón."
+press-banca-inclinado,Press inclinado,Incline Bench Press,empuje_horizontal,fuerza,pectorales|deltoide_anterior,barra|banco|rack,reps|load|rpe,intermedio,no,no,"Banco a treinta grados, barra a la clavícula."
+press-banca-declinado,Press declinado,Decline Bench Press,empuje_horizontal,fuerza,pectorales,barra|banco,reps|load|rpe,intermedio,no,no,
+press-banca-mancuernas,Press de banca con mancuernas,Dumbbell Bench Press,empuje_horizontal,fuerza,pectorales,mancuernas|banco,reps|load|rpe,principiante,no,no,Baja hasta sentir estiramiento sin forzar el hombro.
+press-inclinado-mancuernas,Press inclinado con mancuernas,Incline Dumbbell Press,empuje_horizontal,fuerza,pectorales|deltoide_anterior,mancuernas|banco,reps|load|rpe,intermedio,no,no,
+press-banca-agarre-cerrado,Press de banca agarre cerrado,Close-Grip Bench Press,empuje_horizontal,fuerza,triceps|pectorales,barra|banco|rack,reps|load|rpe,intermedio,no,no,"Manos al ancho de hombros, codos pegados."
+press-banca-pausa,Press de banca con pausa,Pause Bench Press,empuje_horizontal,fuerza,pectorales,barra|banco|rack,reps|load|rpe|tempo,intermedio,no,no,Un segundo de pausa en el pecho sin perder tensión.
+press-piso,Press en el piso,Floor Press,empuje_horizontal,fuerza,pectorales|triceps,barra|discos,reps|load|rpe,intermedio,no,no,Codos tocan el piso y vuelves a subir.
+flexiones,Flexiones,Push-Up,empuje_horizontal,fuerza|crossfit|hyrox,pectorales|triceps,ninguno,reps|time,principiante,no,no,"Cuerpo en línea recta, pecho al piso."
+flexiones-rodillas,Flexiones con rodillas,Knee Push-Up,empuje_horizontal,fuerza,pectorales|triceps,ninguno,reps,principiante,no,no,
+flexiones-deficit,Flexiones con déficit,Deficit Push-Up,empuje_horizontal,fuerza,pectorales|triceps,discos,reps,avanzado,no,no,
+flexiones-anillas,Flexiones en anillas,Ring Push-Up,empuje_horizontal,fuerza|crossfit,pectorales|triceps,anillas,reps,avanzado,no,no,Gira las anillas hacia afuera arriba.
+fondos-pecho,Fondos en paralelas,Chest Dip,empuje_horizontal,fuerza|crossfit,pectorales|triceps,paralelas,reps|load,intermedio,no,no,Inclina el torso al frente para cargar el pecho.
+aperturas-mancuerna,Aperturas con mancuernas,Dumbbell Fly,accesorio,fuerza,pectorales,mancuernas|banco,reps|load|rpe,intermedio,no,no,Codos semiflexionados y recorrido amplio.
+aperturas-polea,Aperturas en polea,Cable Fly,accesorio,fuerza,pectorales,polea,reps|load|rpe,intermedio,no,no,Junta las manos al centro y aprieta un segundo.
+press-pecho-maquina,Press de pecho en máquina,Machine Chest Press,empuje_horizontal,fuerza,pectorales,maquina,reps|load|rpe,principiante,no,no,
+press-militar,Press militar,Strict Press,empuje_vertical,fuerza|crossfit|hyrox,deltoide_anterior,barra|rack,reps|load|rpe,intermedio,no,sí,Glúteo y abdomen firmes; la barra pasa junto a la cara.
+push-press,Push press,Push Press,empuje_vertical,fuerza|crossfit,deltoide_anterior,barra|rack,reps|load|rpe,intermedio,no,no,Un impulso corto de piernas y luego empuja.
+push-jerk,Push jerk,Push Jerk,empuje_vertical,fuerza|crossfit,deltoide_anterior,barra|rack,reps|load|rpe,avanzado,no,no,Recibe la barra arriba con rodillas flexionadas.
+split-jerk,Split jerk,Split Jerk,halterofilia,fuerza|crossfit,deltoide_anterior|cuadriceps,barra|rack,reps|load|rpe,avanzado,no,sí,"Pies en tijera, barra sobre la mitad del cuerpo."
+press-mancuernas,Press de hombros con mancuernas,Dumbbell Shoulder Press,empuje_vertical,fuerza|crossfit|hyrox,deltoide_anterior,mancuernas,reps|load|rpe,principiante,no,no,
+press-arnold,Press Arnold,Arnold Press,empuje_vertical,fuerza,deltoide_anterior|deltoide_lateral,mancuernas,reps|load|rpe,intermedio,no,no,Gira las palmas conforme subes.
+press-landmine,Press landmine,Landmine Press,empuje_vertical,fuerza,deltoide_anterior,landmine|barra,reps|load|rpe,intermedio,sí,no,Buena opción si el hombro molesta en el press vertical.
+press-z,Press Z sentado,Z Press,empuje_vertical,fuerza,deltoide_anterior,barra,reps|load|rpe,avanzado,no,no,Sentado en el piso con piernas extendidas.
+handstand-push-up,Handstand push-up,Handstand Push-Up,gimnasticos,crossfit,deltoide_anterior|triceps,ninguno,reps|time,avanzado,no,no,Cabeza y manos forman un triángulo.
+handstand-push-up-estricto,Handstand push-up estricto,Strict HSPU,gimnasticos,crossfit,deltoide_anterior|triceps,ninguno,reps,avanzado,no,no,
+handstand-push-up-deficit,Handstand push-up con déficit,Deficit HSPU,gimnasticos,crossfit,deltoide_anterior|triceps,discos,reps,avanzado,no,no,
+pike-push-up,Flexión pike,Pike Push-Up,empuje_vertical,fuerza|crossfit,deltoide_anterior|triceps,ninguno,reps,principiante,no,no,
+remo-barra,Remo con barra,Barbell Row,jalon_horizontal,fuerza,dorsales|romboides,barra|discos,reps|load|rpe,intermedio,no,no,"Torso a cuarenta y cinco grados, barra al ombligo."
+remo-pendlay,Remo Pendlay,Pendlay Row,jalon_horizontal,fuerza,dorsales|romboides,barra|discos,reps|load|rpe,avanzado,no,no,Torso paralelo al piso; la barra vuelve al suelo cada repetición.
+remo-mancuerna,Remo con mancuerna,Dumbbell Row,jalon_horizontal,fuerza,dorsales,mancuernas|banco,reps|load|rpe,principiante,sí,no,Lleva el codo hacia la cadera.
+remo-apoyado-pecho,Remo con pecho apoyado,Chest-Supported Row,jalon_horizontal,fuerza,dorsales|romboides,mancuernas|banco,reps|load|rpe,principiante,no,no,Sin impulso de cadera: solo espalda.
+remo-polea-sentado,Remo sentado en polea,Seated Cable Row,jalon_horizontal,fuerza,dorsales|romboides,polea,reps|load|rpe,principiante,no,no,
+remo-invertido,Remo invertido,Inverted Row,jalon_horizontal,fuerza|crossfit,dorsales|romboides,barra_dominadas,reps,principiante,no,no,"Cuerpo rígido, pecho a la barra."
+remo-anillas,Remo en anillas,Ring Row,jalon_horizontal,fuerza|crossfit,dorsales|romboides,anillas,reps,principiante,no,no,"Entre más horizontal el cuerpo, más difícil."
+remo-t,Remo en T,T-Bar Row,jalon_horizontal,fuerza,dorsales|romboides,landmine|barra,reps|load|rpe,intermedio,no,no,
+face-pull,Face pull,Face Pull,accesorio,fuerza,deltoide_posterior|romboides,polea|banda,reps|load|rpe,principiante,no,no,Jala a la altura de la cara separando las manos.
+dominada,Dominada,Pull-Up,jalon_vertical,fuerza|crossfit|hyrox,dorsales,barra_dominadas,reps|load|time,intermedio,no,no,"Barbilla por encima de la barra, brazos extendidos abajo."
+dominada-estricta,Dominada estricta,Strict Pull-Up,jalon_vertical,fuerza|crossfit,dorsales,barra_dominadas,reps|load,intermedio,no,no,Sin impulso de cadera.
+dominada-kipping,Dominada kipping,Kipping Pull-Up,gimnasticos,crossfit,dorsales,barra_dominadas,reps|time,intermedio,no,no,Arco y hueco coordinados con el jalón.
+dominada-butterfly,Dominada butterfly,Butterfly Pull-Up,gimnasticos,crossfit,dorsales,barra_dominadas,reps|time,avanzado,no,no,Movimiento circular continuo.
+dominada-pecho-barra,Dominada pecho a barra,Chest-to-Bar Pull-Up,gimnasticos,crossfit,dorsales,barra_dominadas,reps|time,avanzado,no,no,
+dominada-supina,Dominada supina,Chin-Up,jalon_vertical,fuerza,dorsales|biceps,barra_dominadas,reps|load,intermedio,no,no,Palmas hacia ti; más bíceps que la dominada pronada.
+dominada-asistida,Dominada asistida con banda,Banded Pull-Up,jalon_vertical,fuerza|crossfit,dorsales,barra_dominadas|banda,reps,principiante,no,no,
+jalon-polea,Jalón al pecho,Lat Pulldown,jalon_vertical,fuerza,dorsales,polea|maquina,reps|load|rpe,principiante,no,no,
+muscle-up-barra,Muscle-up en barra,Bar Muscle-Up,gimnasticos,crossfit,dorsales|triceps,barra_dominadas,reps|time,avanzado,no,no,Jala fuerte y pasa el pecho por encima de la barra.
+muscle-up-anillas,Muscle-up en anillas,Ring Muscle-Up,gimnasticos,crossfit,dorsales|triceps,anillas,reps|time,avanzado,no,no,Transición rápida del jalón al fondo.
+trepar-cuerda,Trepar la cuerda,Rope Climb,gimnasticos,crossfit,dorsales|antebrazos,cuerda_trepar,reps|time,intermedio,no,no,Usa los pies para ahorrar brazos.
+trepar-cuerda-sin-piernas,Trepar la cuerda sin piernas,Legless Rope Climb,gimnasticos,crossfit,dorsales|antebrazos,cuerda_trepar,reps|time,avanzado,no,no,
+arranque,Arranque,Snatch,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,avanzado,no,sí,Barra pegada al cuerpo; recibe en sentadilla overhead.
+arranque-potencia,Arranque de potencia,Power Snatch,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,avanzado,no,sí,Recibe por encima del paralelo.
+arranque-colgado,Arranque colgado,Hang Snatch,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,avanzado,no,no,
+jalon-arranque,Jalón de arranque,Snatch Pull,halterofilia,fuerza,trapecios|gluteos,barra|discos,reps|load|rpe,avanzado,no,no,
+snatch-balance,Snatch balance,Snatch Balance,halterofilia,fuerza|crossfit,cuadriceps|deltoide_anterior,barra|rack,reps|load|rpe,avanzado,no,no,
+cargada,Cargada,Clean,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,avanzado,no,sí,Extensión completa de cadera antes de meterte debajo.
+cargada-potencia,Cargada de potencia,Power Clean,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,intermedio,no,sí,Recibe en rack frontal por encima del paralelo.
+cargada-colgada,Cargada colgada,Hang Clean,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,intermedio,no,no,
+cargada-envion,Cargada y envión,Clean and Jerk,halterofilia,fuerza|crossfit,cuerpo_completo,barra|discos,reps|load|rpe,avanzado,no,sí,
+jalon-cargada,Jalón de cargada,Clean Pull,halterofilia,fuerza,trapecios|gluteos,barra|discos,reps|load|rpe,intermedio,no,no,
+thruster,Thruster,Thruster,halterofilia,fuerza|crossfit|hyrox,cuadriceps|deltoide_anterior,barra|mancuernas,reps|load|time,intermedio,no,no,Sentadilla frontal y press en un solo movimiento.
+wall-ball,Wall ball,Wall Ball Shot,pliometrico,crossfit|hyrox,cuadriceps|deltoide_anterior,wall_ball,reps|load|time|height,intermedio,no,no,Cadera por debajo de la rodilla y el balón pega en el blanco.
+farmers-carry,Acarreo del granjero,Farmer's Carry,acarreo,fuerza|crossfit|hyrox,antebrazos|trapecios,kettlebell|mancuernas|agarres_granjero,load|distance|time,intermedio,no,no,Hombros atrás y pasos cortos.
+suitcase-carry,Acarreo maleta,Suitcase Carry,acarreo,fuerza,oblicuos|antebrazos,kettlebell|mancuernas,load|distance|time,intermedio,sí,no,Una sola pesa; no te inclines al lado.
+front-rack-carry,Acarreo en rack frontal,Front Rack Carry,acarreo,fuerza,abdominales|trapecios,kettlebell|mancuernas,load|distance|time,intermedio,no,no,
+overhead-carry,Acarreo por encima de la cabeza,Overhead Carry,acarreo,fuerza,deltoide_anterior|abdominales,kettlebell|mancuernas,load|distance|time,avanzado,no,no,
+sandbag-carry,Acarreo de sandbag,Sandbag Carry,acarreo,fuerza|hyrox,cuerpo_completo,sandbag,load|distance|time,intermedio,no,no,
+yoke-carry,Acarreo con yugo,Yoke Carry,acarreo,fuerza,cuerpo_completo,yoke,load|distance|time,avanzado,no,no,
+empuje-trineo,Empuje de trineo,Sled Push,acarreo,fuerza|crossfit|hyrox,cuadriceps|gluteos,trineo,load|distance|time,intermedio,no,no,"Brazos extendidos, pasos cortos y potentes."
+jalon-trineo,Jalón de trineo,Sled Pull,acarreo,fuerza|crossfit|hyrox,dorsales|gluteos,trineo,load|distance|time,intermedio,no,no,Siéntate atrás y jala con todo el cuerpo.
+arrastre-trineo,Arrastre de trineo,Sled Drag,acarreo,fuerza|hyrox,gluteos|isquiotibiales,trineo,load|distance|time,intermedio,no,no,
+plancha,Plancha,Plank,core,fuerza|crossfit|hyrox,abdominales,ninguno,time,principiante,no,no,Línea recta de cabeza a talones; glúteo apretado.
+plancha-lateral,Plancha lateral,Side Plank,core,fuerza,oblicuos,ninguno,time,principiante,sí,no,
+hollow-hold,Hollow hold,Hollow Hold,core,crossfit,abdominales|flexores_cadera,ninguno,time,intermedio,no,no,"Lumbar pegada al piso, hombros y pies despegados."
+hollow-rock,Hollow rock,Hollow Rock,core,crossfit,abdominales,ninguno,reps|time,intermedio,no,no,
+v-up,V-up,V-Up,core,fuerza,abdominales|flexores_cadera,ninguno,reps|time,intermedio,no,no,
+abdominal,Abdominal,Sit-Up,core,fuerza|crossfit,abdominales,ninguno,reps|time,principiante,no,no,
+ghd-sit-up,GHD sit-up,GHD Sit-Up,core,crossfit,abdominales|flexores_cadera,ghd,reps|time,avanzado,no,no,Introduce volumen poco a poco: cansa mucho el abdomen.
+toes-to-bar,Toes to bar,Toes-to-Bar,gimnasticos,crossfit,abdominales|dorsales,barra_dominadas,reps|time,intermedio,no,no,Usa el arco y hueco para encadenar repeticiones.
+knees-to-elbow,Knees to elbow,Knees-to-Elbow,gimnasticos,crossfit,abdominales,barra_dominadas,reps|time,principiante,no,no,
+elevacion-piernas-colgado,Elevación de piernas colgado,Hanging Leg Raise,core,fuerza,abdominales|flexores_cadera,barra_dominadas,reps,intermedio,no,no,
+giro-ruso,Giro ruso,Russian Twist,core,fuerza,oblicuos,balon_medicinal|discos,reps|time,principiante,no,no,
+rueda-abdominal,Rueda abdominal,Ab Wheel Rollout,core,fuerza,abdominales,rueda_abdominal,reps,avanzado,no,no,
+dead-bug,Dead bug,Dead Bug,core,fuerza,abdominales,ninguno,reps|time,principiante,no,no,Lumbar siempre pegada al piso.
+bird-dog,Bird dog,Bird Dog,core,fuerza,erectores|abdominales,ninguno,reps|time,principiante,no,no,
+pallof-press,Pallof press,Pallof Press,core,fuerza,oblicuos|abdominales,polea|banda,reps|time,intermedio,no,no,Resiste la rotación; no gires el tronco.
+l-sit,L-sit,L-Sit,gimnasticos,crossfit,abdominales|flexores_cadera,paralelas|anillas,time,avanzado,no,no,
+crunch-polea,Crunch en polea,Cable Crunch,core,fuerza,abdominales,polea,reps|load|rpe,principiante,no,no,
+curl-barra,Curl con barra,Barbell Curl,accesorio,fuerza,biceps,barra|barra_z,reps|load|rpe,principiante,no,no,
+curl-mancuerna,Curl con mancuernas,Dumbbell Curl,accesorio,fuerza,biceps,mancuernas,reps|load|rpe,principiante,no,no,
+curl-martillo,Curl martillo,Hammer Curl,accesorio,fuerza,biceps|antebrazos,mancuernas,reps|load|rpe,principiante,no,no,
+curl-predicador,Curl predicador,Preacher Curl,accesorio,fuerza,biceps,barra_z|banco,reps|load|rpe,intermedio,no,no,
+curl-polea,Curl en polea,Cable Curl,accesorio,fuerza,biceps,polea,reps|load|rpe,intermedio,no,no,
+extension-triceps-polea,Extensión de tríceps en polea,Triceps Pushdown,accesorio,fuerza,triceps,polea,reps|load|rpe,principiante,no,no,
+press-frances,Press francés,Skull Crusher,accesorio,fuerza,triceps,barra_z|banco,reps|load|rpe,intermedio,no,no,
+extension-triceps-cabeza,Extensión de tríceps sobre la cabeza,Overhead Triceps Extension,accesorio,fuerza,triceps,mancuernas|polea,reps|load|rpe,intermedio,no,no,
+fondos-triceps,Fondos de tríceps,Triceps Dip,accesorio,fuerza|crossfit,triceps,paralelas|banco,reps|load,intermedio,no,no,
+elevacion-lateral,Elevación lateral,Lateral Raise,accesorio,fuerza,deltoide_lateral,mancuernas|polea,reps|load|rpe,principiante,no,no,
+elevacion-frontal,Elevación frontal,Front Raise,accesorio,fuerza,deltoide_anterior,mancuernas|discos,reps|load|rpe,intermedio,no,no,
+pajaro,Pájaro,Rear Delt Fly,accesorio,fuerza,deltoide_posterior,mancuernas|polea,reps|load|rpe,principiante,no,no,
+encogimiento,Encogimiento de hombros,Shrug,accesorio,fuerza,trapecios,barra|mancuernas,reps|load|rpe,intermedio,no,no,
+remo-al-menton,Remo al mentón,Upright Row,accesorio,fuerza,deltoide_lateral|trapecios,barra|mancuernas,reps|load|rpe,intermedio,no,no,
+elevacion-talones-pie,Elevación de talones de pie,Standing Calf Raise,accesorio,fuerza,gemelos,maquina|mancuernas,reps|load|rpe,principiante,no,no,
+elevacion-talones-sentado,Elevación de talones sentado,Seated Calf Raise,accesorio,fuerza,gemelos,maquina,reps|load|rpe,principiante,no,no,
+curl-femoral,Curl femoral,Leg Curl,accesorio,fuerza,isquiotibiales,maquina,reps|load|rpe,principiante,no,no,
+extension-cuadriceps,Extensión de cuádriceps,Leg Extension,accesorio,fuerza,cuadriceps,maquina,reps|load|rpe,principiante,no,no,
+abduccion-cadera,Abducción de cadera,Hip Abduction,accesorio,fuerza,abductores|gluteos,maquina|banda,reps|load|rpe,principiante,no,no,
+aduccion-cadera,Aducción de cadera,Hip Adduction,accesorio,fuerza,aductores,maquina,reps|load|rpe,principiante,no,no,
+paseo-lateral-banda,Paseo lateral con banda,Banded Lateral Walk,accesorio,fuerza,abductores|gluteos,banda,reps|distance|time,principiante,no,no,
+burpee,Burpee,Burpee,pliometrico,fuerza|crossfit|hyrox,cuerpo_completo,ninguno,reps|time,intermedio,no,no,Pecho al piso abajo y salto con palmada arriba.
+burpee-step-back,Burpee con paso atrás,Step-Back Burpee,pliometrico,crossfit|hyrox,cuerpo_completo,ninguno,reps|time,principiante,no,no,
+burpee-box-jump-over,Burpee box jump over,Burpee Box Jump Over,pliometrico,crossfit,cuerpo_completo,cajon,reps|time,avanzado,no,no,
+burpee-broad-jump,Burpee broad jump,Burpee Broad Jump,pliometrico,crossfit|hyrox,cuerpo_completo,ninguno,reps|distance|time,intermedio,no,no,Salta lo más lejos posible desde la posición de pie.
+salto-cajon,Salto al cajón,Box Jump,pliometrico,fuerza|crossfit|hyrox,cuadriceps|gluteos,cajon,reps|height|time,intermedio,no,no,Extiende la cadera arriba del cajón.
+salto-cajon-over,Box jump over,Box Jump Over,pliometrico,crossfit,cuadriceps|gluteos,cajon,reps|time,intermedio,no,no,
+salto-largo,Salto largo,Broad Jump,pliometrico,fuerza|hyrox,cuadriceps|gluteos,ninguno,reps|distance,intermedio,no,no,
+salto-profundidad,Salto en profundidad,Depth Jump,pliometrico,fuerza,cuadriceps|gluteos,cajon,reps|height,avanzado,no,no,
+salto-patinador,Salto de patinador,Skater Jump,pliometrico,fuerza,gluteos|abductores,ninguno,reps|time,principiante,no,no,
+double-under,Double under,Double Under,monoestructural,crossfit|hyrox,gemelos|antebrazos,cuerda_saltar,reps|time,intermedio,no,no,Muñecas rápidas y salto bajo.
+single-under,Salto simple de cuerda,Single Under,monoestructural,crossfit|hyrox,gemelos,cuerda_saltar,reps|time,principiante,no,no,
+slam-ball,Slam ball,Ball Slam,pliometrico,crossfit,cuerpo_completo,slam_ball,reps|load|time,intermedio,no,no,
+rodillas-altas,Rodillas altas,High Knees,monoestructural,correr|hyrox,flexores_cadera|gemelos,ninguno,time|distance,principiante,no,no,
+wall-walk,Wall walk,Wall Walk,gimnasticos,crossfit,deltoide_anterior|abdominales,ninguno,reps|time,avanzado,no,no,
+parada-de-manos,Parada de manos,Handstand Hold,gimnasticos,crossfit,deltoide_anterior|abdominales,ninguno,time,avanzado,no,no,
+caminata-manos,Caminata en manos,Handstand Walk,gimnasticos,crossfit,deltoide_anterior|abdominales,ninguno,distance|time,avanzado,no,no,
+fondos-anillas,Fondos en anillas,Ring Dip,gimnasticos,crossfit,triceps|pectorales,anillas,reps|time,avanzado,no,no,
+soporte-anillas,Soporte en anillas,Ring Support Hold,gimnasticos,crossfit,deltoide_anterior|abdominales,anillas,time,intermedio,no,no,
+gato-camello,Gato y camello,Cat-Cow,movilidad,fuerza,erectores,ninguno,reps|time,principiante,no,no,
+movilidad-cadera-90-90,Movilidad de cadera 90/90,90/90 Hip Mobility,movilidad,fuerza,flexores_cadera|gluteos,ninguno,reps|time,principiante,no,no,
+dislocaciones-hombro,Dislocaciones de hombro con palo,Shoulder Pass-Through,movilidad,fuerza,deltoide_anterior,banda,reps,principiante,no,no,
+sentadilla-profunda-sostenida,Sentadilla profunda sostenida,Deep Squat Hold,movilidad,fuerza,aductores|gluteos,ninguno,time,principiante,no,no,
+estiramiento-isquio-activo,Estiramiento activo de isquiotibiales,Active Hamstring Stretch,movilidad,fuerza,isquiotibiales,ninguno,reps|time,principiante,no,no,
+correr,Correr,Run,monoestructural,correr|crossfit|hyrox|triatlon,cardiovascular|cuadriceps,ninguno,distance|time|pace|heart_rate,principiante,no,no,Cadencia alta y pisada debajo de la cadera.
+correr-cuesta,Correr en cuesta,Hill Run,monoestructural,correr|hyrox,cardiovascular|gluteos,ninguno,distance|time|pace|heart_rate,intermedio,no,no,"Zancada corta, brazos activos."
+correr-caminadora,Correr en caminadora,Treadmill Run,monoestructural,correr|hyrox,cardiovascular,caminadora,distance|time|pace|heart_rate,principiante,no,no,
+shuttle-run,Shuttle run,Shuttle Run,monoestructural,crossfit|hyrox,cardiovascular,ninguno,distance|time|reps,intermedio,no,no,Frena y cambia de dirección con el pie completo.
+remo-ergometro,Remo en ergómetro,Row,monoestructural,crossfit|hyrox,cardiovascular|dorsales,remo_erg,distance|time|calories|pace|power,intermedio,no,no,"Piernas, tronco y brazos en ese orden; regresa al revés."
+ski-erg,SkiErg,SkiErg,monoestructural,crossfit|hyrox,cardiovascular|dorsales,ski_erg,distance|time|calories|pace|power,intermedio,no,no,"Jala con el tronco, no solo con los brazos."
+bike-erg,Bicicleta ergómetro,Bike Erg,monoestructural,crossfit|ciclismo,cardiovascular|cuadriceps,bike_erg,distance|time|calories|power,principiante,no,no,
+assault-bike,Assault bike,Assault Bike,monoestructural,crossfit|hyrox,cardiovascular|cuerpo_completo,assault_bike,distance|time|calories|power,intermedio,no,no,Empuja y jala con los brazos para repartir el esfuerzo.
+nadar,Nadar,Swim,monoestructural,triatlon,cardiovascular|dorsales,alberca,distance|time|pace|heart_rate,principiante,no,no,
+rodar-bicicleta,Rodar en bicicleta,Ride,monoestructural,ciclismo|triatlon,cardiovascular|cuadriceps,bicicleta,distance|time|power|heart_rate,principiante,no,no,
+hyrox-run-1k,Hyrox: 1 km de carrera,Hyrox 1 km Run,estacion_hyrox,hyrox,cardiovascular,ninguno,distance|time|pace|heart_rate,intermedio,no,no,"Ocho tramos de 1 km, uno antes de cada estación."
+hyrox-ski-1000,Hyrox: SkiErg 1000 m,Hyrox SkiErg 1000 m,estacion_hyrox,hyrox,cardiovascular|dorsales,ski_erg,distance|time|pace,intermedio,no,no,"Primera estación: sal controlado, falta toda la carrera."
+hyrox-sled-push,Hyrox: empuje de trineo 50 m,Hyrox Sled Push,estacion_hyrox,hyrox,cuadriceps|gluteos,trineo,load|distance|time,intermedio,no,no,Cuatro tramos de 12.5 m; brazos extendidos y pasos cortos.
+hyrox-sled-pull,Hyrox: jalón de trineo 50 m,Hyrox Sled Pull,estacion_hyrox,hyrox,dorsales|gluteos,trineo,load|distance|time,intermedio,no,no,"Cuatro tramos de 12.5 m; jala con el cuerpo, no solo con los brazos."
+hyrox-burpee-broad-jump,Hyrox: burpee broad jump 80 m,Hyrox Burpee Broad Jump,estacion_hyrox,hyrox,cuerpo_completo,ninguno,distance|time|reps,intermedio,no,no,Ritmo constante: es la estación que más sube pulsaciones.
+hyrox-row-1000,Hyrox: remo 1000 m,Hyrox Row 1000 m,estacion_hyrox,hyrox,cardiovascular|dorsales,remo_erg,distance|time|pace,intermedio,no,no,Parece descanso y no lo es: cuida el ritmo.
+hyrox-farmers-carry,Hyrox: farmers carry 200 m,Hyrox Farmers Carry,estacion_hyrox,hyrox,antebrazos|trapecios,kettlebell,load|distance|time,intermedio,no,no,Planea cuántas veces vas a bajar las pesas.
+hyrox-sandbag-lunges,Hyrox: zancadas con sandbag 100 m,Hyrox Sandbag Lunges,estacion_hyrox,hyrox,cuadriceps|gluteos,sandbag,load|distance|time,intermedio,no,no,Rodilla trasera toca el piso en cada zancada.
+hyrox-wall-balls,Hyrox: 100 wall balls,Hyrox Wall Balls,estacion_hyrox,hyrox,cuadriceps|deltoide_anterior,wall_ball,load|reps|time|height,intermedio,no,no,Última estación: divide en series y respira arriba.
+hyrox-roxzone,Hyrox: Roxzone,Hyrox Roxzone,estacion_hyrox,hyrox,cardiovascular,ninguno,time,intermedio,no,no,Tiempo de transición entre carrera y estación; se entrena igual que lo demás.
+hyrox-carrera-fatigada,Carrera con fatiga previa,Compromised Running,estacion_hyrox,hyrox,cardiovascular|cuadriceps,ninguno,distance|time|pace,intermedio,no,no,Correr inmediatamente después de una estación: el eje del entrenamiento de Hyrox.

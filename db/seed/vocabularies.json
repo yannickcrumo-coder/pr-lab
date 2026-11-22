@@ -1,0 +1,40 @@
+{
+  "patterns": [
+    "sentadilla",
+    "bisagra",
+    "zancada",
+    "empuje_horizontal",
+    "empuje_vertical",
+    "jalon_horizontal",
+    "jalon_vertical",
+    "halterofilia",
+    "acarreo",
+    "core",
+    "accesorio",
+    "pliometrico",
+    "gimnasticos",
+    "monoestructural",
+    "estacion_hyrox",
+    "movilidad"
+  ],
+  "metrics": [
+    "reps",
+    "load",
+    "rpe",
+    "tempo",
+    "time",
+    "distance",
+    "calories",
+    "height",
+    "rounds",
+    "pace",
+    "power",
+    "heart_rate",
+    "rest"
+  ],
+  "levels": [
+    "principiante",
+    "intermedio",
+    "avanzado"
+  ]
+}

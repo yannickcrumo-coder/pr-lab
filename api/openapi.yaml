@@ -1,0 +1,1327 @@
+openapi: 3.1.0
+info:
+  title: PR-LAB API
+  version: "1.0.0-draft"
+  description: |
+    Contrato de la API de PR-LAB. Una sola API sirve a la app del atleta y a
+    la web del coach.
+
+    Reglas que atraviesan todo:
+
+    - **Autorización por relación.** El servidor nunca confía en un id que
+      venga del cliente. Un coach solo alcanza a sus atletas con relación
+      activa, y solo lo que él programó. Un atleta solo alcanza lo suyo.
+    - **Idempotencia.** Toda escritura que el cliente puede reenviar acepta
+      `Idempotency-Key`, y los registros del atleta llevan además su
+      `client_uuid`. Reenviar nunca duplica.
+    - **Sincronización por cursor.** `GET /sync/pull?since=N` devuelve lo que
+      cambió desde el cursor N. No hay descargas completas salvo la primera.
+    - **Errores.** Formato RFC 9457. El cliente muestra su propio texto según
+      `code`; nunca el `detail`, que es para quien depura.
+    - **Unidades.** El servidor guarda y devuelve kilogramos, metros y
+      segundos. La conversión a libras o millas es del cliente.
+    - **Fechas.** `scheduled_date` es la fecha local del atleta. Los instantes
+      van en UTC con zona.
+servers:
+  - url: https://api.prlab.app/v1
+    description: Producción
+  - url: https://staging-api.prlab.app/v1
+    description: Pruebas
+
+security:
+  - bearerAuth: []
+
+tags:
+  - name: Autenticación
+  - name: Cuenta
+  - name: Coach
+  - name: Ejercicios
+  - name: Plantillas
+  - name: Programación
+  - name: Atleta
+  - name: Sincronización
+  - name: Registro
+  - name: Progreso
+  - name: Mensajes
+  - name: Dispositivos
+  - name: Medios
+
+paths:
+
+  # ================= AUTENTICACIÓN =================
+  /auth/register:
+    post:
+      tags: [Autenticación]
+      security: []
+      summary: Crear cuenta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password, full_name]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string, minLength: 10 }
+                full_name: { type: string }
+                timezone: { type: string, example: America/Mexico_City }
+                invitation_code:
+                  type: string
+                  description: Si viene, crea la relación con ese coach.
+      responses:
+        "201":
+          description: Cuenta creada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SesionIniciada" }
+        "409": { $ref: "#/components/responses/Conflicto" }
+        "422": { $ref: "#/components/responses/NoProcesable" }
+
+  /auth/login:
+    post:
+      tags: [Autenticación]
+      security: []
+      summary: Iniciar sesión
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [email, password]
+              properties:
+                email: { type: string, format: email }
+                password: { type: string }
+      responses:
+        "200":
+          description: Sesión iniciada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SesionIniciada" }
+        "401": { $ref: "#/components/responses/NoAutorizado" }
+
+  /auth/refresh:
+    post:
+      tags: [Autenticación]
+      security: []
+      summary: Renovar el token de acceso
+      description: El token de refresco rota en cada uso.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [refresh_token]
+              properties:
+                refresh_token: { type: string }
+      responses:
+        "200":
+          description: Tokens renovados
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/SesionIniciada" }
+        "401": { $ref: "#/components/responses/NoAutorizado" }
+
+  # ================= CUENTA =================
+  /me:
+    get:
+      tags: [Cuenta]
+      summary: Mi perfil
+      responses:
+        "200":
+          description: Perfil
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Usuario" }
+    patch:
+      tags: [Cuenta]
+      summary: Cambiar mis preferencias
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                full_name: { type: string }
+                locale: { type: string }
+                timezone: { type: string }
+                units_weight: { type: string, enum: [kg, lb] }
+                units_distance: { type: string, enum: [km, mi] }
+      responses:
+        "200":
+          description: Perfil actualizado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Usuario" }
+
+  /me/export:
+    post:
+      tags: [Cuenta]
+      summary: Pedir la exportación de mis datos
+      description: Obligatorio por privacidad. Se entrega por correo cuando está listo.
+      responses:
+        "202": { description: Solicitud registrada }
+
+  /me:delete:
+    post:
+      tags: [Cuenta]
+      summary: Eliminar mi cuenta
+      description: |
+        Obligatorio en App Store y Google Play. Borra o anonimiza los datos
+        personales; conserva lo agregado y anónimo.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [password_or_otp]
+              properties:
+                password_or_otp: { type: string }
+      responses:
+        "202": { description: Eliminación programada }
+
+  # ================= COACH =================
+  /athletes:
+    get:
+      tags: [Coach]
+      summary: Mis atletas
+      parameters:
+        - { name: status, in: query, schema: { type: string, enum: [invitada, activa, pausada, archivada] } }
+        - { $ref: "#/components/parameters/Cursor" }
+        - { $ref: "#/components/parameters/Limite" }
+      responses:
+        "200":
+          description: Lista de atletas
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: "#/components/schemas/AtletaResumen" }
+                  counts:
+                    type: object
+                    description: Base del modelo de cobro.
+                    properties:
+                      activos: { type: integer }
+                      invitados: { type: integer }
+                      incluidos: { type: integer, example: 20 }
+                  next_cursor: { type: string, nullable: true }
+
+  /invitations:
+    post:
+      tags: [Coach]
+      summary: Invitar a un atleta
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email: { type: string, format: email, nullable: true }
+                athlete_name: { type: string, nullable: true }
+      responses:
+        "201":
+          description: Invitación creada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id: { type: string, format: uuid }
+                  code: { type: string, example: 7KQ2PM, description: Para dictar en persona }
+                  link: { type: string, format: uri }
+                  expires_at: { type: string, format: date-time }
+
+  /attention:
+    get:
+      tags: [Coach]
+      summary: Qué necesita mi atención
+      description: Lo que abre el coach al entrar. Orden por urgencia, no por fecha.
+      responses:
+        "200":
+          description: Lista priorizada
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    kind:
+                      type: string
+                      enum: [molestia, sin_entrenar, cumplimiento_bajo, rpe_alto, record, mensaje]
+                    severity: { type: string, enum: [alta, media, informativa] }
+                    athlete: { $ref: "#/components/schemas/AtletaResumen" }
+                    summary: { type: string }
+                    occurred_at: { type: string, format: date-time }
+                    link: { type: string }
+
+  /athletes/{athleteId}/calendar:
+    get:
+      tags: [Programación]
+      summary: Calendario de un atleta
+      parameters:
+        - { name: athleteId, in: path, required: true, schema: { type: string, format: uuid } }
+        - { name: from, in: query, required: true, schema: { type: string, format: date } }
+        - { name: to, in: query, required: true, schema: { type: string, format: date } }
+      responses:
+        "200":
+          description: Sesiones del rango
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Asignacion" }
+        "403": { $ref: "#/components/responses/Prohibido" }
+
+  /athletes/{athleteId}/compliance:
+    get:
+      tags: [Progreso]
+      summary: Cumplimiento de un atleta
+      parameters:
+        - { name: athleteId, in: path, required: true, schema: { type: string, format: uuid } }
+        - { name: cycle_id, in: query, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          description: Cumplimiento por semana
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Cumplimiento" }
+
+  # ================= EJERCICIOS =================
+  /exercises:
+    get:
+      tags: [Ejercicios]
+      summary: Buscar ejercicios
+      description: Devuelve el catálogo público más los propios de quien consulta.
+      parameters:
+        - { name: q, in: query, schema: { type: string } }
+        - { name: discipline, in: query, schema: { type: string } }
+        - { name: equipment, in: query, schema: { type: string } }
+        - { name: pattern, in: query, schema: { type: string } }
+        - { name: mine, in: query, schema: { type: boolean } }
+        - { $ref: "#/components/parameters/Cursor" }
+        - { $ref: "#/components/parameters/Limite" }
+      responses:
+        "200":
+          description: Ejercicios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items: { $ref: "#/components/schemas/Ejercicio" }
+                  next_cursor: { type: string, nullable: true }
+    post:
+      tags: [Ejercicios]
+      summary: Crear un ejercicio propio
+      description: |
+        Solo exige nombre y métricas. Queda privado del coach que lo crea y
+        sus atletas lo usan igual que uno del catálogo.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [name_es, metrics]
+              properties:
+                name_es: { type: string }
+                metrics:
+                  type: array
+                  items: { $ref: "#/components/schemas/Metrica" }
+                disciplines: { type: array, items: { type: string } }
+                pattern: { type: string }
+                primary_muscles: { type: array, items: { type: string } }
+                equipment: { type: array, items: { type: string } }
+                level: { type: string, enum: [principiante, intermedio, avanzado] }
+                cue_es: { type: string }
+                video_media_id: { type: string, format: uuid }
+                duplicate_of: { type: string, format: uuid, description: Partir de uno del catálogo }
+      responses:
+        "201":
+          description: Ejercicio creado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Ejercicio" }
+
+  /exercises/{exerciseId}:
+    patch:
+      tags: [Ejercicios]
+      summary: Editar un ejercicio propio
+      parameters: [{ $ref: "#/components/parameters/ExerciseId" }]
+      responses:
+        "200":
+          description: Actualizado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Ejercicio" }
+        "403": { $ref: "#/components/responses/Prohibido" }
+    delete:
+      tags: [Ejercicios]
+      summary: Archivar un ejercicio propio
+      description: Nunca se borra si ya se usó. Pasa a archivado y el histórico sigue.
+      parameters: [{ $ref: "#/components/parameters/ExerciseId" }]
+      responses:
+        "204": { description: Archivado }
+
+  # ================= PLANTILLAS =================
+  /templates:
+    get:
+      tags: [Plantillas]
+      summary: Mis plantillas
+      parameters:
+        - { name: discipline, in: query, schema: { type: string } }
+        - { name: scope, in: query, schema: { type: string, enum: [dia, semana, ciclo] } }
+      responses:
+        "200":
+          description: Plantillas
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Plantilla" }
+    post:
+      tags: [Plantillas]
+      summary: Crear plantilla
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PlantillaEntrada" }
+      responses:
+        "201":
+          description: Creada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Plantilla" }
+
+  /templates/{templateId}:
+    put:
+      tags: [Plantillas]
+      summary: Reemplazar una plantilla
+      description: |
+        Cambiar la plantilla **no** altera las sesiones ya asignadas: al
+        asignar se guardó una copia congelada.
+      parameters:
+        - { name: templateId, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/PlantillaEntrada" }
+      responses:
+        "200":
+          description: Actualizada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Plantilla" }
+
+  # ================= PROGRAMACIÓN =================
+  /assignments:
+    post:
+      tags: [Programación]
+      summary: Crear una sesión en un día
+      description: |
+        Nace en `borrador`: el atleta no la ve. Si viene `template_id`, el
+        servidor copia sus bloques e ítems; no los referencia.
+      parameters: [{ $ref: "#/components/parameters/IdempotencyKey" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [athlete_id, scheduled_date, title]
+              properties:
+                athlete_id: { type: string, format: uuid }
+                scheduled_date: { type: string, format: date }
+                title: { type: string }
+                discipline: { type: string }
+                cycle_id: { type: string, format: uuid, nullable: true }
+                template_id: { type: string, format: uuid, nullable: true }
+                blocks:
+                  type: array
+                  items: { $ref: "#/components/schemas/BloqueEntrada" }
+      responses:
+        "201":
+          description: Creada en borrador
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Asignacion" }
+
+  /assignments/{assignmentId}:
+    patch:
+      tags: [Programación]
+      summary: Editar una sesión
+      description: |
+        Si ya estaba publicada y el atleta la empezó, el cambio crea una
+        versión nueva y lo registrado por el atleta se conserva.
+      parameters: [{ $ref: "#/components/parameters/AssignmentId" }]
+      responses:
+        "200":
+          description: Actualizada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Asignacion" }
+    delete:
+      tags: [Programación]
+      summary: Quitar una sesión
+      parameters: [{ $ref: "#/components/parameters/AssignmentId" }]
+      responses:
+        "204": { description: Archivada }
+
+  /assignments/{assignmentId}/publish:
+    post:
+      tags: [Programación]
+      summary: Publicar
+      description: |
+        El paso que hace visible la sesión. Congela la prescripción, marca
+        `published_at` y dispara la notificación al atleta.
+      parameters: [{ $ref: "#/components/parameters/AssignmentId" }]
+      responses:
+        "200":
+          description: Publicada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Asignacion" }
+
+  /assignments:publish-batch:
+    post:
+      tags: [Programación]
+      summary: Publicar varias de una vez
+      description: El botón "Publicar cambios" de la web del coach.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [assignment_ids]
+              properties:
+                assignment_ids:
+                  type: array
+                  items: { type: string, format: uuid }
+      responses:
+        "200":
+          description: Resultado por sesión
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  published: { type: integer }
+                  failed:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id: { type: string, format: uuid }
+                        code: { type: string }
+
+  /assignments:copy-week:
+    post:
+      tags: [Programación]
+      summary: Copiar una semana
+      description: |
+        Copia hacia otro atleta o hacia otras fechas. Todo llega en
+        `borrador`, nunca publicado, para que un pegado accidental no cambie
+        el plan de nadie.
+      parameters: [{ $ref: "#/components/parameters/IdempotencyKey" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [source_athlete_id, source_week_start, target_athlete_id, target_week_start]
+              properties:
+                source_athlete_id: { type: string, format: uuid }
+                source_week_start: { type: string, format: date }
+                target_athlete_id: { type: string, format: uuid }
+                target_week_start: { type: string, format: date }
+      responses:
+        "201":
+          description: Sesiones creadas en borrador
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  created: { type: integer }
+                  assignments:
+                    type: array
+                    items: { $ref: "#/components/schemas/Asignacion" }
+
+  # ================= ATLETA =================
+  /today:
+    get:
+      tags: [Atleta]
+      summary: Mis sesiones de hoy
+      description: |
+        Junta las sesiones de todos mis coaches. `overlap` avisa cuando hay
+        más de una el mismo día.
+      parameters:
+        - { name: date, in: query, schema: { type: string, format: date } }
+      responses:
+        "200":
+          description: Sesiones del día
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  date: { type: string, format: date }
+                  overlap: { type: boolean }
+                  sessions:
+                    type: array
+                    items: { $ref: "#/components/schemas/Asignacion" }
+
+  # ================= SINCRONIZACIÓN =================
+  /sync/pull:
+    get:
+      tags: [Sincronización]
+      summary: Bajar lo que cambió
+      description: |
+        Devuelve todo lo que cambió desde `since`. La primera vez se llama
+        sin cursor y trae la ventana inicial.
+      parameters:
+        - name: since
+          in: query
+          schema: { type: integer, format: int64 }
+          description: Cursor de la última sincronización.
+        - name: window_days
+          in: query
+          schema: { type: integer, default: 28 }
+      responses:
+        "200":
+          description: Cambios
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cursor: { type: integer, format: int64 }
+                  complete: { type: boolean, description: false si falta otra página }
+                  assignments: { type: array, items: { $ref: "#/components/schemas/Asignacion" } }
+                  exercises: { type: array, items: { $ref: "#/components/schemas/Ejercicio" } }
+                  messages: { type: array, items: { $ref: "#/components/schemas/Mensaje" } }
+                  deleted:
+                    type: array
+                    description: Lo que dejó de existir, para borrarlo en el dispositivo.
+                    items:
+                      type: object
+                      properties:
+                        entity: { type: string }
+                        id: { type: string, format: uuid }
+
+  /sync/push:
+    post:
+      tags: [Sincronización]
+      summary: Subir lo registrado sin conexión
+      description: |
+        Recibe la cola del dispositivo por lotes y responde el resultado de
+        cada operación. Es idempotente por `client_uuid`: reenviar la misma
+        operación devuelve `ya_aplicada`, no un error.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [operations]
+              properties:
+                operations:
+                  type: array
+                  maxItems: 200
+                  items:
+                    type: object
+                    required: [client_uuid, entity, op, payload]
+                    properties:
+                      client_uuid: { type: string, format: uuid }
+                      entity:
+                        type: string
+                        enum: [workout_log, set_log, block_log, pain_report, message]
+                      op: { type: string, enum: [upsert, delete] }
+                      occurred_at: { type: string, format: date-time }
+                      payload: { type: object, additionalProperties: true }
+      responses:
+        "200":
+          description: Resultado por operación
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  cursor: { type: integer, format: int64 }
+                  results:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        client_uuid: { type: string, format: uuid }
+                        status: { type: string, enum: [aplicada, ya_aplicada, rechazada] }
+                        server_id: { type: string, format: uuid, nullable: true }
+                        code: { type: string, nullable: true }
+
+  # ================= REGISTRO =================
+  /workouts:
+    post:
+      tags: [Registro]
+      summary: Empezar un entrenamiento
+      parameters: [{ $ref: "#/components/parameters/IdempotencyKey" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [client_uuid, started_at]
+              properties:
+                client_uuid: { type: string, format: uuid }
+                assignment_id: { type: string, format: uuid, nullable: true }
+                started_at: { type: string, format: date-time }
+      responses:
+        "201":
+          description: Entrenamiento abierto
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Entrenamiento" }
+
+  /workouts/{workoutId}/sets:
+    post:
+      tags: [Registro]
+      summary: Registrar una serie o un tramo
+      description: Sirve igual para una serie de fuerza, un tramo de Hyrox o un intervalo.
+      parameters: [{ $ref: "#/components/parameters/WorkoutId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: "#/components/schemas/SerieEntrada" }
+      responses:
+        "201":
+          description: Registrada
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Serie" }
+
+  /workouts/{workoutId}/blocks:
+    post:
+      tags: [Registro]
+      summary: Registrar el resultado de un bloque
+      description: Para un White Board, un AMRAP o una simulación completa.
+      parameters: [{ $ref: "#/components/parameters/WorkoutId" }]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [client_uuid]
+              properties:
+                client_uuid: { type: string, format: uuid }
+                assignment_block_id: { type: string, format: uuid, nullable: true }
+                result_text: { type: string, nullable: true }
+                duration_s: { type: integer, nullable: true }
+                rounds: { type: integer, nullable: true }
+                reps: { type: integer, nullable: true }
+                rpe: { type: number, nullable: true }
+                splits:
+                  type: array
+                  description: Parciales por tramo, en una simulación de Hyrox.
+                  items:
+                    type: object
+                    properties:
+                      order: { type: integer }
+                      label: { type: string }
+                      duration_s: { type: integer }
+      responses:
+        "201": { description: Registrado }
+
+  /workouts/{workoutId}/finish:
+    post:
+      tags: [Registro]
+      summary: Terminar el entrenamiento
+      description: Dispara el cálculo de récords y de cumplimiento.
+      parameters: [{ $ref: "#/components/parameters/WorkoutId" }]
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                finished_at: { type: string, format: date-time }
+                session_rpe: { type: number, minimum: 0, maximum: 10 }
+                notes: { type: string }
+      responses:
+        "200":
+          description: Resumen
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workout: { $ref: "#/components/schemas/Entrenamiento" }
+                  new_records:
+                    type: array
+                    items: { $ref: "#/components/schemas/Record" }
+                  total_volume_kg: { type: number }
+
+  /pain-reports:
+    post:
+      tags: [Registro]
+      summary: Reportar una molestia
+      description: Llega de inmediato al panel de atención del coach.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [client_uuid, body_area, intensity]
+              properties:
+                client_uuid: { type: string, format: uuid }
+                workout_log_id: { type: string, format: uuid, nullable: true }
+                exercise_id: { type: string, format: uuid, nullable: true }
+                body_area: { type: string }
+                intensity: { type: integer, minimum: 1, maximum: 10 }
+                note: { type: string }
+      responses:
+        "201": { description: Registrada }
+
+  # ================= PROGRESO =================
+  /progress/exercises/{exerciseId}:
+    get:
+      tags: [Progreso]
+      summary: Progreso en un ejercicio
+      parameters:
+        - { $ref: "#/components/parameters/ExerciseId" }
+        - { name: athlete_id, in: query, schema: { type: string, format: uuid } }
+        - { name: from, in: query, schema: { type: string, format: date } }
+        - { name: metric, in: query, schema: { type: string, example: volumen } }
+      responses:
+        "200":
+          description: Serie temporal
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  exercise: { $ref: "#/components/schemas/Ejercicio" }
+                  metric: { type: string }
+                  unit: { type: string }
+                  points:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        date: { type: string, format: date }
+                        value: { type: number }
+                        is_record: { type: boolean }
+
+  /records:
+    get:
+      tags: [Progreso]
+      summary: Récords personales
+      parameters:
+        - { name: athlete_id, in: query, schema: { type: string, format: uuid } }
+      responses:
+        "200":
+          description: Récords
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Record" }
+
+  # ================= MENSAJES =================
+  /threads:
+    get:
+      tags: [Mensajes]
+      summary: Mis conversaciones
+      responses:
+        "200":
+          description: Conversaciones
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id: { type: string, format: uuid }
+                    counterpart: { $ref: "#/components/schemas/UsuarioResumen" }
+                    last_message: { $ref: "#/components/schemas/Mensaje" }
+                    unread: { type: integer }
+
+  /threads/{threadId}/messages:
+    get:
+      tags: [Mensajes]
+      summary: Mensajes de una conversación
+      parameters:
+        - { name: threadId, in: path, required: true, schema: { type: string, format: uuid } }
+        - { $ref: "#/components/parameters/Cursor" }
+      responses:
+        "200":
+          description: Mensajes
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: { type: array, items: { $ref: "#/components/schemas/Mensaje" } }
+                  next_cursor: { type: string, nullable: true }
+    post:
+      tags: [Mensajes]
+      summary: Enviar un mensaje
+      parameters:
+        - { name: threadId, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [client_uuid]
+              properties:
+                client_uuid: { type: string, format: uuid }
+                body: { type: string }
+                media_id: { type: string, format: uuid, nullable: true }
+                assignment_id:
+                  type: string
+                  format: uuid
+                  nullable: true
+                  description: Cita una sesión, para que el mensaje tenga contexto.
+      responses:
+        "201":
+          description: Enviado
+          content:
+            application/json:
+              schema: { $ref: "#/components/schemas/Mensaje" }
+
+  # ================= DISPOSITIVOS =================
+  /providers:
+    get:
+      tags: [Dispositivos]
+      summary: Mis conexiones de reloj
+      responses:
+        "200":
+          description: Conexiones
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: "#/components/schemas/Conexion" }
+
+  /providers/{provider}/authorize:
+    post:
+      tags: [Dispositivos]
+      summary: Iniciar la conexión
+      parameters:
+        - name: provider
+          in: path
+          required: true
+          schema: { type: string, enum: [suunto, coros, strava, garmin, health_kit, health_connect] }
+      responses:
+        "200":
+          description: URL de autorización
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authorize_url: { type: string, format: uri }
+                  state: { type: string }
+
+  /providers/{connectionId}/sharing:
+    patch:
+      tags: [Dispositivos]
+      summary: Elegir qué comparto con cada coach
+      description: |
+        El atleta decide fuente por fuente y coach por coach, y puede
+        revocarlo cuando quiera. Strava solo admite `false`: sus términos no
+        permiten mostrar esos datos a terceros.
+      parameters:
+        - { name: connectionId, in: path, required: true, schema: { type: string, format: uuid } }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                sharing:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      coach_id: { type: string, format: uuid }
+                      shared: { type: boolean }
+      responses:
+        "200": { description: Preferencias guardadas }
+
+  /webhooks/{provider}:
+    post:
+      tags: [Dispositivos]
+      security: []
+      summary: Webhook de un proveedor
+      description: |
+        Verifica la firma y encola. Nunca procesa dentro de la petición: los
+        avisos llegan en ráfagas cuando mucha gente sincroniza a la vez.
+      parameters:
+        - { name: provider, in: path, required: true, schema: { type: string } }
+      responses:
+        "202": { description: Aceptado y encolado }
+        "401": { description: Firma inválida }
+
+  # ================= MEDIOS =================
+  /media/upload-url:
+    post:
+      tags: [Medios]
+      summary: Pedir una URL para subir
+      description: |
+        El archivo va directo del dispositivo al almacén; nunca pasa por el
+        servidor de aplicación.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [kind, mime_type, bytes]
+              properties:
+                kind: { type: string, enum: [video, imagen] }
+                mime_type: { type: string }
+                bytes: { type: integer }
+                duration_s: { type: integer, nullable: true }
+      responses:
+        "201":
+          description: URL prefirmada
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  media_id: { type: string, format: uuid }
+                  upload_url: { type: string, format: uri }
+                  expires_at: { type: string, format: date-time }
+        "413": { description: Archivo demasiado grande }
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    Cursor:
+      name: cursor
+      in: query
+      schema: { type: string }
+      description: Paginación por cursor; nunca por número de página.
+    Limite:
+      name: limit
+      in: query
+      schema: { type: integer, default: 50, maximum: 200 }
+    IdempotencyKey:
+      name: Idempotency-Key
+      in: header
+      schema: { type: string, format: uuid }
+      description: Reenviar con la misma llave devuelve el mismo resultado.
+    ExerciseId:
+      name: exerciseId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    AssignmentId:
+      name: assignmentId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+    WorkoutId:
+      name: workoutId
+      in: path
+      required: true
+      schema: { type: string, format: uuid }
+
+  responses:
+    NoAutorizado:
+      description: Falta autenticación o el token venció
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/Error" }
+    Prohibido:
+      description: No hay relación activa que te dé acceso a eso
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/Error" }
+    Conflicto:
+      description: Choca con algo que ya existe
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/Error" }
+    NoProcesable:
+      description: Datos inválidos
+      content:
+        application/problem+json:
+          schema: { $ref: "#/components/schemas/Error" }
+
+  schemas:
+    Error:
+      type: object
+      description: RFC 9457. El cliente muestra su propio texto según `code`.
+      required: [type, title, status, code]
+      properties:
+        type: { type: string, format: uri }
+        title: { type: string }
+        status: { type: integer }
+        detail: { type: string, description: Para quien depura; no se muestra al usuario. }
+        code: { type: string, example: relacion_inactiva }
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              field: { type: string }
+              code: { type: string }
+
+    Metrica:
+      type: string
+      enum: [reps, load, rpe, tempo, time, distance, calories, height, rounds, pace, power, heart_rate, rest]
+
+    SesionIniciada:
+      type: object
+      properties:
+        access_token: { type: string }
+        refresh_token: { type: string }
+        expires_in: { type: integer, example: 900 }
+        user: { $ref: "#/components/schemas/Usuario" }
+
+    UsuarioResumen:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        full_name: { type: string }
+        avatar_url: { type: string, nullable: true }
+
+    Usuario:
+      allOf:
+        - { $ref: "#/components/schemas/UsuarioResumen" }
+        - type: object
+          properties:
+            email: { type: string, format: email }
+            locale: { type: string }
+            timezone: { type: string }
+            units_weight: { type: string, enum: [kg, lb] }
+            units_distance: { type: string, enum: [km, mi] }
+            is_coach: { type: boolean }
+            is_athlete: { type: boolean }
+
+    AtletaResumen:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        full_name: { type: string }
+        avatar_url: { type: string, nullable: true }
+        relationship_id: { type: string, format: uuid }
+        status: { type: string, enum: [invitada, activa, pausada, archivada] }
+        disciplines: { type: array, items: { type: string } }
+        current_cycle: { type: string, nullable: true }
+        compliance_pct: { type: number, nullable: true }
+        last_session_at: { type: string, format: date-time, nullable: true }
+
+    Ejercicio:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        slug: { type: string }
+        name_es: { type: string }
+        name_en: { type: string, nullable: true }
+        disciplines: { type: array, items: { type: string } }
+        pattern: { type: string, nullable: true }
+        primary_muscles: { type: array, items: { type: string } }
+        equipment: { type: array, items: { type: string } }
+        metrics: { type: array, items: { $ref: "#/components/schemas/Metrica" } }
+        level: { type: string, nullable: true }
+        cue_es: { type: string, nullable: true }
+        video_url: { type: string, nullable: true }
+        is_mine: { type: boolean, description: true si lo creó quien consulta }
+        tracks_one_rep_max: { type: boolean }
+        status: { type: string, enum: [activo, archivado] }
+
+    BloqueEntrada:
+      type: object
+      required: [block_type, position]
+      properties:
+        position: { type: integer }
+        block_type:
+          type: string
+          enum: [calentamiento, fuerza, wod, cardio, hyrox, tecnica, accesorio, enfriamiento, white_board]
+        title: { type: string, nullable: true }
+        body_text:
+          type: string
+          nullable: true
+          description: Solo para `white_board`. El atleta lo ve tal cual.
+        wod_format: { type: string, nullable: true }
+        config: { type: object, additionalProperties: true }
+        items:
+          type: array
+          items:
+            type: object
+            required: [position, exercise_id]
+            properties:
+              position: { type: integer }
+              exercise_id: { type: string, format: uuid }
+              prescription:
+                type: object
+                additionalProperties: true
+                description: Campos según el tipo de bloque; se validan en el servidor.
+                example: { series: 5, reps: 5, carga_kg: 100, rpe: 8, descanso_s: 120 }
+              notes: { type: string, nullable: true }
+              superset_key: { type: string, nullable: true }
+
+    Bloque:
+      allOf:
+        - { $ref: "#/components/schemas/BloqueEntrada" }
+        - type: object
+          properties:
+            id: { type: string, format: uuid }
+
+    PlantillaEntrada:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        discipline: { type: string, nullable: true }
+        scope: { type: string, enum: [dia, semana, ciclo], default: dia }
+        description: { type: string, nullable: true }
+        blocks:
+          type: array
+          items: { $ref: "#/components/schemas/BloqueEntrada" }
+
+    Plantilla:
+      allOf:
+        - { $ref: "#/components/schemas/PlantillaEntrada" }
+        - type: object
+          properties:
+            id: { type: string, format: uuid }
+            created_at: { type: string, format: date-time }
+
+    Asignacion:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        athlete_id: { type: string, format: uuid }
+        coach: { $ref: "#/components/schemas/UsuarioResumen" }
+        title: { type: string }
+        discipline: { type: string, nullable: true }
+        scheduled_date: { type: string, format: date, description: Fecha local del atleta. }
+        status: { type: string, enum: [borrador, publicada, completada, parcial, omitida] }
+        version: { type: integer }
+        coach_note: { type: string, nullable: true }
+        published_at: { type: string, format: date-time, nullable: true }
+        blocks: { type: array, items: { $ref: "#/components/schemas/Bloque" } }
+        sync_seq: { type: integer, format: int64 }
+
+    SerieEntrada:
+      type: object
+      required: [client_uuid, exercise_id, set_number]
+      properties:
+        client_uuid: { type: string, format: uuid }
+        assignment_item_id: { type: string, format: uuid, nullable: true }
+        exercise_id: { type: string, format: uuid }
+        set_number: { type: integer }
+        reps: { type: integer, nullable: true }
+        load_kg: { type: number, nullable: true, description: Siempre kg. }
+        rpe: { type: number, nullable: true, minimum: 0, maximum: 10 }
+        duration_s: { type: integer, nullable: true }
+        distance_m: { type: number, nullable: true }
+        calories: { type: integer, nullable: true }
+        is_warmup: { type: boolean, default: false }
+        completed_at: { type: string, format: date-time }
+
+    Serie:
+      allOf:
+        - { $ref: "#/components/schemas/SerieEntrada" }
+        - type: object
+          properties:
+            id: { type: string, format: uuid }
+
+    Entrenamiento:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        assignment_id: { type: string, format: uuid, nullable: true }
+        started_at: { type: string, format: date-time }
+        finished_at: { type: string, format: date-time, nullable: true }
+        session_rpe: { type: number, nullable: true }
+        status: { type: string, enum: [en_curso, completada, parcial, abandonada] }
+        notes: { type: string, nullable: true }
+
+    Record:
+      type: object
+      properties:
+        exercise: { $ref: "#/components/schemas/Ejercicio" }
+        metric: { type: string, example: 1rm_estimado }
+        value: { type: number }
+        unit: { type: string }
+        achieved_at: { type: string, format: date-time }
+        previous_value: { type: number, nullable: true }
+
+    Cumplimiento:
+      type: object
+      properties:
+        cycle: { type: string, nullable: true }
+        overall_pct: { type: number }
+        weeks:
+          type: array
+          items:
+            type: object
+            properties:
+              week_start: { type: string, format: date }
+              planned: { type: integer }
+              completed: { type: integer }
+              partial: { type: integer }
+              skipped: { type: integer }
+              pct: { type: number }
+
+    Mensaje:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        thread_id: { type: string, format: uuid }
+        sender: { $ref: "#/components/schemas/UsuarioResumen" }
+        body: { type: string, nullable: true }
+        media_url: { type: string, nullable: true }
+        assignment_id: { type: string, format: uuid, nullable: true }
+        created_at: { type: string, format: date-time }
+        read_at: { type: string, format: date-time, nullable: true }
+
+    Conexion:
+      type: object
+      properties:
+        id: { type: string, format: uuid }
+        provider: { type: string }
+        status: { type: string, enum: [activa, expirada, revocada, error] }
+        last_sync_at: { type: string, format: date-time, nullable: true }
+        athlete_only:
+          type: boolean
+          description: true en Strava; esos datos no los ve el coach ni la IA.
+        sharing:
+          type: array
+          items:
+            type: object
+            properties:
+              coach: { $ref: "#/components/schemas/UsuarioResumen" }
+              shared: { type: boolean }

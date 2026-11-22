@@ -1,0 +1,142 @@
+[
+  {
+    "slug": "ninguno",
+    "name_es": "Sin equipo"
+  },
+  {
+    "slug": "barra",
+    "name_es": "Barra"
+  },
+  {
+    "slug": "discos",
+    "name_es": "Discos"
+  },
+  {
+    "slug": "mancuernas",
+    "name_es": "Mancuernas"
+  },
+  {
+    "slug": "kettlebell",
+    "name_es": "Kettlebell"
+  },
+  {
+    "slug": "rack",
+    "name_es": "Rack"
+  },
+  {
+    "slug": "banco",
+    "name_es": "Banco"
+  },
+  {
+    "slug": "barra_dominadas",
+    "name_es": "Barra de dominadas"
+  },
+  {
+    "slug": "anillas",
+    "name_es": "Anillas"
+  },
+  {
+    "slug": "cajon",
+    "name_es": "Cajón"
+  },
+  {
+    "slug": "balon_medicinal",
+    "name_es": "Balón medicinal"
+  },
+  {
+    "slug": "wall_ball",
+    "name_es": "Wall ball"
+  },
+  {
+    "slug": "sandbag",
+    "name_es": "Sandbag"
+  },
+  {
+    "slug": "trineo",
+    "name_es": "Trineo"
+  },
+  {
+    "slug": "cuerda_trepar",
+    "name_es": "Cuerda para trepar"
+  },
+  {
+    "slug": "cuerda_saltar",
+    "name_es": "Cuerda para saltar"
+  },
+  {
+    "slug": "maquina",
+    "name_es": "Máquina"
+  },
+  {
+    "slug": "polea",
+    "name_es": "Polea"
+  },
+  {
+    "slug": "banda",
+    "name_es": "Banda elástica"
+  },
+  {
+    "slug": "ghd",
+    "name_es": "GHD"
+  },
+  {
+    "slug": "barra_hexagonal",
+    "name_es": "Barra hexagonal"
+  },
+  {
+    "slug": "landmine",
+    "name_es": "Landmine"
+  },
+  {
+    "slug": "ski_erg",
+    "name_es": "SkiErg"
+  },
+  {
+    "slug": "remo_erg",
+    "name_es": "Remo ergómetro"
+  },
+  {
+    "slug": "bike_erg",
+    "name_es": "Bicicleta ergómetro"
+  },
+  {
+    "slug": "assault_bike",
+    "name_es": "Assault bike"
+  },
+  {
+    "slug": "caminadora",
+    "name_es": "Caminadora"
+  },
+  {
+    "slug": "rueda_abdominal",
+    "name_es": "Rueda abdominal"
+  },
+  {
+    "slug": "paralelas",
+    "name_es": "Paralelas"
+  },
+  {
+    "slug": "barra_z",
+    "name_es": "Barra Z"
+  },
+  {
+    "slug": "agarres_granjero",
+    "name_es": "Agarres de granjero"
+  },
+  {
+    "slug": "alberca",
+    "name_es": "Alberca"
+  },
+  {
+    "slug": "bicicleta",
+    "name_es": "Bicicleta"
+  },
+  {
+    "slug": "slam_ball",
+    "name_es": "Slam ball"
+  },
+  {
+    "slug": "yoke",
+    "name_es": "Yugo"
+  }
+]

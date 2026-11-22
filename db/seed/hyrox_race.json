@@ -1,0 +1,107 @@
+{
+  "total_run_km": 8,
+  "stations": 8,
+  "sequence": [
+    {
+      "order": 1,
+      "run_m": 1000,
+      "station": "hyrox-ski-1000",
+      "work": "1000 m de SkiErg"
+    },
+    {
+      "order": 2,
+      "run_m": 1000,
+      "station": "hyrox-sled-push",
+      "work": "4 x 12.5 m de empuje de trineo"
+    },
+    {
+      "order": 3,
+      "run_m": 1000,
+      "station": "hyrox-sled-pull",
+      "work": "4 x 12.5 m de jalón de trineo"
+    },
+    {
+      "order": 4,
+      "run_m": 1000,
+      "station": "hyrox-burpee-broad-jump",
+      "work": "80 m de burpee broad jump"
+    },
+    {
+      "order": 5,
+      "run_m": 1000,
+      "station": "hyrox-row-1000",
+      "work": "1000 m de remo"
+    },
+    {
+      "order": 6,
+      "run_m": 1000,
+      "station": "hyrox-farmers-carry",
+      "work": "200 m de farmers carry"
+    },
+    {
+      "order": 7,
+      "run_m": 1000,
+      "station": "hyrox-sandbag-lunges",
+      "work": "100 m de zancadas con sandbag"
+    },
+    {
+      "order": 8,
+      "run_m": 1000,
+      "station": "hyrox-wall-balls",
+      "work": "100 wall balls"
+    }
+  ],
+  "divisions": [
+    {
+      "slug": "open_mujer",
+      "name_es": "Open mujer",
+      "sled_push_kg": 102,
+      "sled_pull_kg": 78,
+      "farmers_kg_each": 16,
+      "sandbag_kg": 10,
+      "wall_ball_kg": 4,
+      "wall_ball_target_m": 2.7
+    },
+    {
+      "slug": "open_hombre",
+      "name_es": "Open hombre",
+      "sled_push_kg": 152,
+      "sled_pull_kg": 103,
+      "farmers_kg_each": 24,
+      "sandbag_kg": 20,
+      "wall_ball_kg": 6,
+      "wall_ball_target_m": 3.0
+    },
+    {
+      "slug": "pro_mujer",
+      "name_es": "Pro mujer",
+      "sled_push_kg": 152,
+      "sled_pull_kg": 103,
+      "farmers_kg_each": 24,
+      "sandbag_kg": 20,
+      "wall_ball_kg": 6,
+      "wall_ball_target_m": 2.7
+    },
+    {
+      "slug": "pro_hombre",
+      "name_es": "Pro hombre",
+      "sled_push_kg": 202,
+      "sled_pull_kg": 153,
+      "farmers_kg_each": 32,
+      "sandbag_kg": 30,
+      "wall_ball_kg": 9,
+      "wall_ball_target_m": 3.0
+    },
+    {
+      "slug": "dobles",
+      "name_es": "Dobles",
+      "notes_es": "Las dos personas corren los 8 km y se reparten el trabajo de cada estación."
+    },
+    {
+      "slug": "relevos",
+      "name_es": "Relevos",
+      "notes_es": "Cuatro personas; cada una hace dos carreras y dos estaciones."
+    }
+  ],
+  "source_note": "Pesos de trineo incluyen el trineo. Confirmar contra el reglamento vigente."
+}

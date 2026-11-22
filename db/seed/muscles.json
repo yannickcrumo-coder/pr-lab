@@ -1,0 +1,117 @@
+[
+  {
+    "slug": "cuadriceps",
+    "name_es": "Cuádriceps",
+    "group": "pierna"
+  },
+  {
+    "slug": "isquiotibiales",
+    "name_es": "Isquiotibiales",
+    "group": "pierna"
+  },
+  {
+    "slug": "gluteos",
+    "name_es": "Glúteos",
+    "group": "pierna"
+  },
+  {
+    "slug": "aductores",
+    "name_es": "Aductores",
+    "group": "pierna"
+  },
+  {
+    "slug": "abductores",
+    "name_es": "Abductores",
+    "group": "pierna"
+  },
+  {
+    "slug": "gemelos",
+    "name_es": "Gemelos",
+    "group": "pierna"
+  },
+  {
+    "slug": "erectores",
+    "name_es": "Erectores espinales",
+    "group": "espalda"
+  },
+  {
+    "slug": "dorsales",
+    "name_es": "Dorsales",
+    "group": "espalda"
+  },
+  {
+    "slug": "trapecios",
+    "name_es": "Trapecios",
+    "group": "espalda"
+  },
+  {
+    "slug": "romboides",
+    "name_es": "Romboides",
+    "group": "espalda"
+  },
+  {
+    "slug": "deltoide_anterior",
+    "name_es": "Deltoide anterior",
+    "group": "hombro"
+  },
+  {
+    "slug": "deltoide_lateral",
+    "name_es": "Deltoide lateral",
+    "group": "hombro"
+  },
+  {
+    "slug": "deltoide_posterior",
+    "name_es": "Deltoide posterior",
+    "group": "hombro"
+  },
+  {
+    "slug": "pectorales",
+    "name_es": "Pectorales",
+    "group": "pecho"
+  },
+  {
+    "slug": "biceps",
+    "name_es": "Bíceps",
+    "group": "brazo"
+  },
+  {
+    "slug": "triceps",
+    "name_es": "Tríceps",
+    "group": "brazo"
+  },
+  {
+    "slug": "antebrazos",
+    "name_es": "Antebrazos",
+    "group": "brazo"
+  },
+  {
+    "slug": "abdominales",
+    "name_es": "Abdominales",
+    "group": "core"
+  },
+  {
+    "slug": "oblicuos",
+    "name_es": "Oblicuos",
+    "group": "core"
+  },
+  {
+    "slug": "flexores_cadera",
+    "name_es": "Flexores de cadera",
+    "group": "core"
+  },
+  {
+    "slug": "serrato",
+    "name_es": "Serrato",
+    "group": "core"
+  },
+  {
+    "slug": "cuerpo_completo",
+    "name_es": "Cuerpo completo",
+    "group": "general"
+  },
+  {
+    "slug": "cardiovascular",
+    "name_es": "Sistema cardiovascular",
+    "group": "general"
+  }
+]

@@ -1,0 +1,6719 @@
+[
+  {
+    "slug": "sentadilla-trasera",
+    "name_es": "Sentadilla trasera",
+    "name_en": "Back Squat",
+    "aliases_es": [
+      "sentadilla con barra",
+      "back squat"
+    ],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "erectores",
+      "aductores"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "sentadilla-goblet",
+      "sentadilla-cajon"
+    ],
+    "scaling_harder": [
+      "sentadilla-frontal",
+      "sentadilla-pausa"
+    ],
+    "cue_es": "Pecho arriba, rodillas en línea con los pies, cadera por debajo de la rodilla.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-frontal",
+    "name_es": "Sentadilla frontal",
+    "name_en": "Front Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "abdominales",
+      "erectores"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "sentadilla-goblet"
+    ],
+    "scaling_harder": [
+      "sentadilla-overhead"
+    ],
+    "cue_es": "Codos altos y torso vertical durante todo el recorrido.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-overhead",
+    "name_es": "Sentadilla overhead",
+    "name_en": "Overhead Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "deltoide_anterior",
+      "abdominales"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "sentadilla-frontal"
+    ],
+    "scaling_harder": [],
+    "cue_es": "Barra sobre la mitad del pie, hombros activos, mirada al frente.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-goblet",
+    "name_es": "Sentadilla goblet",
+    "name_en": "Goblet Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "abdominales"
+    ],
+    "equipment": [
+      "kettlebell",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sostén la pesa pegada al pecho y baja entre las rodillas.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-cajon",
+    "name_es": "Sentadilla al cajón",
+    "name_en": "Box Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "isquiotibiales"
+    ],
+    "equipment": [
+      "barra",
+      "rack",
+      "cajon"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Siéntate controlado en el cajón sin rebotar.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-pausa",
+    "name_es": "Sentadilla con pausa",
+    "name_en": "Pause Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe",
+      "tempo"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Dos a tres segundos abajo sin perder tensión.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-aire",
+    "name_es": "Sentadilla sin peso",
+    "name_en": "Air Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cadera por debajo de la rodilla y extensión completa arriba.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-bulgara",
+    "name_es": "Sentadilla búlgara",
+    "name_en": "Bulgarian Split Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "aductores"
+    ],
+    "equipment": [
+      "mancuernas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Pie trasero elevado, peso en el talón delantero.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-pistol",
+    "name_es": "Pistol",
+    "name_en": "Pistol Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "sentadilla-pistol-asistida"
+    ],
+    "scaling_harder": [],
+    "cue_es": "Baja en una pierna manteniendo el talón apoyado.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-pistol-asistida",
+    "name_es": "Pistol asistido",
+    "name_en": "Assisted Pistol Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "banda",
+      "anillas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Usa banda o anillas para controlar la bajada.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-hack",
+    "name_es": "Sentadilla hack",
+    "name_en": "Hack Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps"
+    ],
+    "secondary_muscles": [
+      "gluteos"
+    ],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Espalda pegada al respaldo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "prensa-piernas",
+    "name_es": "Prensa de piernas",
+    "name_en": "Leg Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "isquiotibiales"
+    ],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "No despegues la cadera del asiento.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-zercher",
+    "name_es": "Sentadilla Zercher",
+    "name_en": "Zercher Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "abdominales",
+      "biceps"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Barra en el pliegue de los codos, torso firme.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-isometrica",
+    "name_es": "Sentadilla isométrica en pared",
+    "name_en": "Wall Sit",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "sentadilla",
+    "primary_muscles": [
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Rodillas a noventa grados y espalda pegada a la pared.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "salto-sentadilla",
+    "name_es": "Salto en sentadilla",
+    "name_en": "Jump Squat",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Aterriza suave con rodillas flexionadas.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto",
+    "name_es": "Peso muerto",
+    "name_en": "Deadlift",
+    "aliases_es": [
+      "deadlift"
+    ],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [
+      "erectores",
+      "dorsales",
+      "trapecios"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "peso-muerto-hexagonal",
+      "peso-muerto-rumano"
+    ],
+    "scaling_harder": [
+      "peso-muerto-deficit"
+    ],
+    "cue_es": "Barra pegada a la pierna, espalda neutra, empuja el piso.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto-sumo",
+    "name_es": "Peso muerto sumo",
+    "name_en": "Sumo Deadlift",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [
+      "aductores",
+      "erectores"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Pies anchos, rodillas hacia afuera, torso más vertical.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto-rumano",
+    "name_es": "Peso muerto rumano",
+    "name_en": "Romanian Deadlift",
+    "aliases_es": [
+      "RDL"
+    ],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "isquiotibiales",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "erectores"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Lleva la cadera atrás con rodillas casi fijas.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto-piernas-rigidas",
+    "name_es": "Peso muerto piernas rígidas",
+    "name_en": "Stiff-Leg Deadlift",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [
+      "gluteos",
+      "erectores"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Rodillas casi extendidas, espalda neutra.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto-hexagonal",
+    "name_es": "Peso muerto con barra hexagonal",
+    "name_en": "Trap Bar Deadlift",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [
+      "erectores",
+      "trapecios"
+    ],
+    "equipment": [
+      "barra_hexagonal"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Torso más vertical y menos carga lumbar.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto-deficit",
+    "name_es": "Peso muerto con déficit",
+    "name_en": "Deficit Deadlift",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [
+      "erectores"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Parado sobre un disco para aumentar el recorrido.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "rack-pull",
+    "name_es": "Rack pull",
+    "name_en": "Rack Pull",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "erectores"
+    ],
+    "secondary_muscles": [
+      "trapecios",
+      "dorsales"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Tirón parcial desde la rodilla o por encima.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "buenos-dias",
+    "name_es": "Buenos días",
+    "name_en": "Good Morning",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "isquiotibiales",
+      "erectores"
+    ],
+    "secondary_muscles": [
+      "gluteos"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Bisagra con la barra en la espalda, rodillas suaves.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hip-thrust",
+    "name_es": "Hip thrust",
+    "name_en": "Hip Thrust",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "isquiotibiales"
+    ],
+    "equipment": [
+      "barra",
+      "banco",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Extiende la cadera hasta alinear tronco y muslo; mentón metido.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "puente-gluteo",
+    "name_es": "Puente de glúteo",
+    "name_en": "Glute Bridge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Aprieta el glúteo arriba un segundo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "peso-muerto-unilateral",
+    "name_es": "Peso muerto a una pierna",
+    "name_en": "Single-Leg RDL",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "isquiotibiales",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "erectores"
+    ],
+    "equipment": [
+      "mancuernas",
+      "kettlebell"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cadera cerrada, pierna libre en línea con el tronco.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "swing-ruso",
+    "name_es": "Swing ruso",
+    "name_en": "Russian Kettlebell Swing",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "kettlebell"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "La pesa llega a la altura del pecho por empuje de cadera.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "swing-americano",
+    "name_es": "Swing americano",
+    "name_en": "American Kettlebell Swing",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [
+      "deltoide_anterior"
+    ],
+    "equipment": [
+      "kettlebell"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "La pesa termina arriba de la cabeza con brazos extendidos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "extension-espalda",
+    "name_es": "Extensión de espalda",
+    "name_en": "Back Extension",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "erectores",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ghd"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sube hasta la línea del cuerpo sin hiperextender.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "nordico",
+    "name_es": "Curl nórdico",
+    "name_en": "Nordic Hamstring Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "tempo"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Baja lo más lento posible resistiendo con el isquiotibial.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "pull-through",
+    "name_es": "Pull through en polea",
+    "name_en": "Cable Pull-Through",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "bisagra",
+    "primary_muscles": [
+      "gluteos",
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cadera atrás y extensión completa arriba.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "zancada-caminando",
+    "name_es": "Zancada caminando",
+    "name_en": "Walking Lunge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "distance"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Rodilla trasera toca el piso suave, torso erguido.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "zancada-atras",
+    "name_es": "Zancada hacia atrás",
+    "name_en": "Reverse Lunge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Paso atrás controlado, peso en el pie delantero.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "zancada-frontal",
+    "name_es": "Zancada hacia adelante",
+    "name_en": "Forward Lunge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Frena la bajada con el cuádriceps.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "zancada-lateral",
+    "name_es": "Zancada lateral",
+    "name_en": "Lateral Lunge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "aductores",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cadera atrás sobre la pierna que trabaja.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "zancada-frontal-rack",
+    "name_es": "Zancada con barra al frente",
+    "name_en": "Front Rack Lunge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "abdominales"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Codos altos; el torso no se inclina.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "step-up",
+    "name_es": "Step up al cajón",
+    "name_en": "Box Step-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cajon",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Empuja con el talón del pie que está arriba.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "step-over",
+    "name_es": "Step over al cajón",
+    "name_en": "Box Step-Over",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "zancada",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cajon",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sube y pasa al otro lado sin pausa.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "zancada-salto",
+    "name_es": "Zancada con salto",
+    "name_en": "Jumping Lunge",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cambia de pierna en el aire y aterriza suave.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-banca",
+    "name_es": "Press de banca",
+    "name_en": "Bench Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "deltoide_anterior"
+    ],
+    "equipment": [
+      "barra",
+      "banco",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "press-banca-mancuernas",
+      "flexiones"
+    ],
+    "scaling_harder": [
+      "press-banca-pausa"
+    ],
+    "cue_es": "Escápulas retraídas, barra a la línea del pezón.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-banca-inclinado",
+    "name_es": "Press inclinado",
+    "name_en": "Incline Bench Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": [
+      "barra",
+      "banco",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Banco a treinta grados, barra a la clavícula.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-banca-declinado",
+    "name_es": "Press declinado",
+    "name_en": "Decline Bench Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": [
+      "barra",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-banca-mancuernas",
+    "name_es": "Press de banca con mancuernas",
+    "name_en": "Dumbbell Bench Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "deltoide_anterior"
+    ],
+    "equipment": [
+      "mancuernas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Baja hasta sentir estiramiento sin forzar el hombro.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-inclinado-mancuernas",
+    "name_es": "Press inclinado con mancuernas",
+    "name_en": "Incline Dumbbell Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": [
+      "mancuernas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-banca-agarre-cerrado",
+    "name_es": "Press de banca agarre cerrado",
+    "name_en": "Close-Grip Bench Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "triceps",
+      "pectorales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "banco",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Manos al ancho de hombros, codos pegados.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-banca-pausa",
+    "name_es": "Press de banca con pausa",
+    "name_en": "Pause Bench Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "banco",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe",
+      "tempo"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Un segundo de pausa en el pecho sin perder tensión.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-piso",
+    "name_es": "Press en el piso",
+    "name_en": "Floor Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Codos tocan el piso y vuelves a subir.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "flexiones",
+    "name_es": "Flexiones",
+    "name_en": "Push-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "flexiones-rodillas"
+    ],
+    "scaling_harder": [
+      "flexiones-anillas",
+      "flexiones-deficit"
+    ],
+    "cue_es": "Cuerpo en línea recta, pecho al piso.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "flexiones-rodillas",
+    "name_es": "Flexiones con rodillas",
+    "name_en": "Knee Push-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "flexiones-deficit",
+    "name_es": "Flexiones con déficit",
+    "name_en": "Deficit Push-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "discos"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "flexiones-anillas",
+    "name_es": "Flexiones en anillas",
+    "name_en": "Ring Push-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "anillas"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Gira las anillas hacia afuera arriba.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "fondos-pecho",
+    "name_es": "Fondos en paralelas",
+    "name_en": "Chest Dip",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "paralelas"
+    ],
+    "metrics": [
+      "reps",
+      "load"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Inclina el torso al frente para cargar el pecho.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "aperturas-mancuerna",
+    "name_es": "Aperturas con mancuernas",
+    "name_en": "Dumbbell Fly",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Codos semiflexionados y recorrido amplio.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "aperturas-polea",
+    "name_es": "Aperturas en polea",
+    "name_en": "Cable Fly",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Junta las manos al centro y aprieta un segundo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-pecho-maquina",
+    "name_es": "Press de pecho en máquina",
+    "name_en": "Machine Chest Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_horizontal",
+    "primary_muscles": [
+      "pectorales"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-militar",
+    "name_es": "Press militar",
+    "name_en": "Strict Press",
+    "aliases_es": [
+      "press estricto",
+      "press de hombros"
+    ],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "abdominales"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "press-mancuernas"
+    ],
+    "scaling_harder": [
+      "push-press",
+      "handstand-push-up"
+    ],
+    "cue_es": "Glúteo y abdomen firmes; la barra pasa junto a la cara.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "push-press",
+    "name_es": "Push press",
+    "name_en": "Push Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "cuadriceps",
+      "triceps"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Un impulso corto de piernas y luego empuja.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "push-jerk",
+    "name_es": "Push jerk",
+    "name_en": "Push Jerk",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "cuadriceps",
+      "triceps"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Recibe la barra arriba con rodillas flexionadas.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "split-jerk",
+    "name_es": "Split jerk",
+    "name_en": "Split Jerk",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [
+      "triceps",
+      "gluteos"
+    ],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Pies en tijera, barra sobre la mitad del cuerpo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-mancuernas",
+    "name_es": "Press de hombros con mancuernas",
+    "name_en": "Dumbbell Shoulder Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": [
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-arnold",
+    "name_es": "Press Arnold",
+    "name_en": "Arnold Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "deltoide_lateral"
+    ],
+    "secondary_muscles": [
+      "triceps"
+    ],
+    "equipment": [
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Gira las palmas conforme subes.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-landmine",
+    "name_es": "Press landmine",
+    "name_en": "Landmine Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "serrato"
+    ],
+    "equipment": [
+      "landmine",
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Buena opción si el hombro molesta en el press vertical.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-z",
+    "name_es": "Press Z sentado",
+    "name_en": "Z Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "abdominales"
+    ],
+    "equipment": [
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sentado en el piso con piernas extendidas.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "handstand-push-up",
+    "name_es": "Handstand push-up",
+    "name_en": "Handstand Push-Up",
+    "aliases_es": [
+      "HSPU"
+    ],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "pike-push-up"
+    ],
+    "scaling_harder": [
+      "handstand-push-up-deficit"
+    ],
+    "cue_es": "Cabeza y manos forman un triángulo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "handstand-push-up-estricto",
+    "name_es": "Handstand push-up estricto",
+    "name_en": "Strict HSPU",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "handstand-push-up-deficit",
+    "name_es": "Handstand push-up con déficit",
+    "name_en": "Deficit HSPU",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "discos"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "pike-push-up",
+    "name_es": "Flexión pike",
+    "name_en": "Pike Push-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "empuje_vertical",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-barra",
+    "name_es": "Remo con barra",
+    "name_en": "Barbell Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "erectores"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Torso a cuarenta y cinco grados, barra al ombligo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-pendlay",
+    "name_es": "Remo Pendlay",
+    "name_en": "Pendlay Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Torso paralelo al piso; la barra vuelve al suelo cada repetición.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-mancuerna",
+    "name_es": "Remo con mancuerna",
+    "name_en": "Dumbbell Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "biceps",
+      "romboides"
+    ],
+    "equipment": [
+      "mancuernas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": true,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Lleva el codo hacia la cadera.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-apoyado-pecho",
+    "name_es": "Remo con pecho apoyado",
+    "name_en": "Chest-Supported Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "mancuernas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sin impulso de cadera: solo espalda.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-polea-sentado",
+    "name_es": "Remo sentado en polea",
+    "name_en": "Seated Cable Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-invertido",
+    "name_es": "Remo invertido",
+    "name_en": "Inverted Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cuerpo rígido, pecho a la barra.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-anillas",
+    "name_es": "Remo en anillas",
+    "name_en": "Ring Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "anillas"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Entre más horizontal el cuerpo, más difícil.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-t",
+    "name_es": "Remo en T",
+    "name_en": "T-Bar Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_horizontal",
+    "primary_muscles": [
+      "dorsales",
+      "romboides"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "landmine",
+      "barra"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "face-pull",
+    "name_es": "Face pull",
+    "name_en": "Face Pull",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "deltoide_posterior",
+      "romboides"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea",
+      "banda"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Jala a la altura de la cara separando las manos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada",
+    "name_es": "Dominada",
+    "name_en": "Pull-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "jalon_vertical",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "dominada-asistida",
+      "remo-anillas"
+    ],
+    "scaling_harder": [
+      "dominada-pecho-barra",
+      "muscle-up-barra"
+    ],
+    "cue_es": "Barbilla por encima de la barra, brazos extendidos abajo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada-estricta",
+    "name_es": "Dominada estricta",
+    "name_en": "Strict Pull-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "jalon_vertical",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "load"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sin impulso de cadera.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada-kipping",
+    "name_es": "Dominada kipping",
+    "name_en": "Kipping Pull-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "abdominales"
+    ],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Arco y hueco coordinados con el jalón.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada-butterfly",
+    "name_es": "Dominada butterfly",
+    "name_en": "Butterfly Pull-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Movimiento circular continuo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada-pecho-barra",
+    "name_es": "Dominada pecho a barra",
+    "name_en": "Chest-to-Bar Pull-Up",
+    "aliases_es": [
+      "C2B"
+    ],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada-supina",
+    "name_es": "Dominada supina",
+    "name_en": "Chin-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_vertical",
+    "primary_muscles": [
+      "dorsales",
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "load"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Palmas hacia ti; más bíceps que la dominada pronada.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dominada-asistida",
+    "name_es": "Dominada asistida con banda",
+    "name_en": "Banded Pull-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "jalon_vertical",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas",
+      "banda"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "jalon-polea",
+    "name_es": "Jalón al pecho",
+    "name_en": "Lat Pulldown",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "jalon_vertical",
+    "primary_muscles": [
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "polea",
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "muscle-up-barra",
+    "name_es": "Muscle-up en barra",
+    "name_en": "Bar Muscle-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Jala fuerte y pasa el pecho por encima de la barra.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "muscle-up-anillas",
+    "name_es": "Muscle-up en anillas",
+    "name_en": "Ring Muscle-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales",
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "anillas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Transición rápida del jalón al fondo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "trepar-cuerda",
+    "name_es": "Trepar la cuerda",
+    "name_en": "Rope Climb",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales",
+      "antebrazos"
+    ],
+    "secondary_muscles": [
+      "biceps"
+    ],
+    "equipment": [
+      "cuerda_trepar"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [
+      "trepar-cuerda-sin-piernas"
+    ],
+    "cue_es": "Usa los pies para ahorrar brazos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "trepar-cuerda-sin-piernas",
+    "name_es": "Trepar la cuerda sin piernas",
+    "name_en": "Legless Rope Climb",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "dorsales",
+      "antebrazos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cuerda_trepar"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "arranque",
+    "name_es": "Arranque",
+    "name_en": "Snatch",
+    "aliases_es": [
+      "snatch"
+    ],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "arranque-potencia",
+      "arranque-colgado"
+    ],
+    "scaling_harder": [],
+    "cue_es": "Barra pegada al cuerpo; recibe en sentadilla overhead.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "arranque-potencia",
+    "name_es": "Arranque de potencia",
+    "name_en": "Power Snatch",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Recibe por encima del paralelo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "arranque-colgado",
+    "name_es": "Arranque colgado",
+    "name_en": "Hang Snatch",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "jalon-arranque",
+    "name_es": "Jalón de arranque",
+    "name_en": "Snatch Pull",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "trapecios",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "snatch-balance",
+    "name_es": "Snatch balance",
+    "name_en": "Snatch Balance",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuadriceps",
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "rack"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "cargada",
+    "name_es": "Cargada",
+    "name_en": "Clean",
+    "aliases_es": [
+      "clean"
+    ],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [
+      "cargada-potencia",
+      "cargada-colgada"
+    ],
+    "scaling_harder": [],
+    "cue_es": "Extensión completa de cadera antes de meterte debajo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "cargada-potencia",
+    "name_es": "Cargada de potencia",
+    "name_en": "Power Clean",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Recibe en rack frontal por encima del paralelo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "cargada-colgada",
+    "name_es": "Cargada colgada",
+    "name_en": "Hang Clean",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "cargada-envion",
+    "name_es": "Cargada y envión",
+    "name_en": "Clean and Jerk",
+    "aliases_es": [
+      "clean and jerk"
+    ],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": true,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "jalon-cargada",
+    "name_es": "Jalón de cargada",
+    "name_en": "Clean Pull",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "trapecios",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "thruster",
+    "name_es": "Thruster",
+    "name_en": "Thruster",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "halterofilia",
+    "primary_muscles": [
+      "cuadriceps",
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Sentadilla frontal y press en un solo movimiento.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "wall-ball",
+    "name_es": "Wall ball",
+    "name_en": "Wall Ball Shot",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [
+      "gluteos"
+    ],
+    "equipment": [
+      "wall_ball"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time",
+      "height"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cadera por debajo de la rodilla y el balón pega en el blanco.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "farmers-carry",
+    "name_es": "Acarreo del granjero",
+    "name_en": "Farmer's Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "antebrazos",
+      "trapecios"
+    ],
+    "secondary_muscles": [
+      "abdominales",
+      "oblicuos"
+    ],
+    "equipment": [
+      "kettlebell",
+      "mancuernas",
+      "agarres_granjero"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Hombros atrás y pasos cortos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "suitcase-carry",
+    "name_es": "Acarreo maleta",
+    "name_en": "Suitcase Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "oblicuos",
+      "antebrazos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "kettlebell",
+      "mancuernas"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": true,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Una sola pesa; no te inclines al lado.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "front-rack-carry",
+    "name_es": "Acarreo en rack frontal",
+    "name_en": "Front Rack Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "abdominales",
+      "trapecios"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "kettlebell",
+      "mancuernas"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "overhead-carry",
+    "name_es": "Acarreo por encima de la cabeza",
+    "name_en": "Overhead Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "kettlebell",
+      "mancuernas"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sandbag-carry",
+    "name_es": "Acarreo de sandbag",
+    "name_en": "Sandbag Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "hyrox"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "sandbag"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "yoke-carry",
+    "name_es": "Acarreo con yugo",
+    "name_en": "Yoke Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "yoke"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "empuje-trineo",
+    "name_es": "Empuje de trineo",
+    "name_en": "Sled Push",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [
+      "gemelos"
+    ],
+    "equipment": [
+      "trineo"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Brazos extendidos, pasos cortos y potentes.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "jalon-trineo",
+    "name_es": "Jalón de trineo",
+    "name_en": "Sled Pull",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "dorsales",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "trineo"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Siéntate atrás y jala con todo el cuerpo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "arrastre-trineo",
+    "name_es": "Arrastre de trineo",
+    "name_en": "Sled Drag",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "hyrox"
+    ],
+    "pattern": "acarreo",
+    "primary_muscles": [
+      "gluteos",
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "trineo"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "plancha",
+    "name_es": "Plancha",
+    "name_en": "Plank",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Línea recta de cabeza a talones; glúteo apretado.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "plancha-lateral",
+    "name_es": "Plancha lateral",
+    "name_en": "Side Plank",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "oblicuos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": true,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hollow-hold",
+    "name_es": "Hollow hold",
+    "name_en": "Hollow Hold",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales",
+      "flexores_cadera"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Lumbar pegada al piso, hombros y pies despegados.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hollow-rock",
+    "name_es": "Hollow rock",
+    "name_en": "Hollow Rock",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "v-up",
+    "name_es": "V-up",
+    "name_en": "V-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales",
+      "flexores_cadera"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "abdominal",
+    "name_es": "Abdominal",
+    "name_en": "Sit-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "ghd-sit-up",
+    "name_es": "GHD sit-up",
+    "name_en": "GHD Sit-Up",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales",
+      "flexores_cadera"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ghd"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Introduce volumen poco a poco: cansa mucho el abdomen.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "toes-to-bar",
+    "name_es": "Toes to bar",
+    "name_en": "Toes-to-Bar",
+    "aliases_es": [
+      "T2B"
+    ],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "abdominales",
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "knees-to-elbow",
+      "elevacion-piernas-colgado"
+    ],
+    "scaling_harder": [],
+    "cue_es": "Usa el arco y hueco para encadenar repeticiones.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "knees-to-elbow",
+    "name_es": "Knees to elbow",
+    "name_en": "Knees-to-Elbow",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "elevacion-piernas-colgado",
+    "name_es": "Elevación de piernas colgado",
+    "name_en": "Hanging Leg Raise",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales",
+      "flexores_cadera"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_dominadas"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "giro-ruso",
+    "name_es": "Giro ruso",
+    "name_en": "Russian Twist",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "oblicuos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "balon_medicinal",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "rueda-abdominal",
+    "name_es": "Rueda abdominal",
+    "name_en": "Ab Wheel Rollout",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "rueda_abdominal"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dead-bug",
+    "name_es": "Dead bug",
+    "name_en": "Dead Bug",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Lumbar siempre pegada al piso.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "bird-dog",
+    "name_es": "Bird dog",
+    "name_en": "Bird Dog",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "erectores",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "pallof-press",
+    "name_es": "Pallof press",
+    "name_en": "Pallof Press",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "oblicuos",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea",
+      "banda"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Resiste la rotación; no gires el tronco.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "l-sit",
+    "name_es": "L-sit",
+    "name_en": "L-Sit",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "abdominales",
+      "flexores_cadera"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "paralelas",
+      "anillas"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "crunch-polea",
+    "name_es": "Crunch en polea",
+    "name_en": "Cable Crunch",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "core",
+    "primary_muscles": [
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "curl-barra",
+    "name_es": "Curl con barra",
+    "name_en": "Barbell Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "barra_z"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "curl-mancuerna",
+    "name_es": "Curl con mancuernas",
+    "name_en": "Dumbbell Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "curl-martillo",
+    "name_es": "Curl martillo",
+    "name_en": "Hammer Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "biceps",
+      "antebrazos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "curl-predicador",
+    "name_es": "Curl predicador",
+    "name_en": "Preacher Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_z",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "curl-polea",
+    "name_es": "Curl en polea",
+    "name_en": "Cable Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "biceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "extension-triceps-polea",
+    "name_es": "Extensión de tríceps en polea",
+    "name_en": "Triceps Pushdown",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "press-frances",
+    "name_es": "Press francés",
+    "name_en": "Skull Crusher",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra_z",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "extension-triceps-cabeza",
+    "name_es": "Extensión de tríceps sobre la cabeza",
+    "name_en": "Overhead Triceps Extension",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "fondos-triceps",
+    "name_es": "Fondos de tríceps",
+    "name_en": "Triceps Dip",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "triceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "paralelas",
+      "banco"
+    ],
+    "metrics": [
+      "reps",
+      "load"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "elevacion-lateral",
+    "name_es": "Elevación lateral",
+    "name_en": "Lateral Raise",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "deltoide_lateral"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "elevacion-frontal",
+    "name_es": "Elevación frontal",
+    "name_en": "Front Raise",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "discos"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "pajaro",
+    "name_es": "Pájaro",
+    "name_en": "Rear Delt Fly",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "deltoide_posterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "mancuernas",
+      "polea"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "encogimiento",
+    "name_es": "Encogimiento de hombros",
+    "name_en": "Shrug",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "trapecios"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-al-menton",
+    "name_es": "Remo al mentón",
+    "name_en": "Upright Row",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "deltoide_lateral",
+      "trapecios"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "barra",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "elevacion-talones-pie",
+    "name_es": "Elevación de talones de pie",
+    "name_en": "Standing Calf Raise",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "gemelos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "maquina",
+      "mancuernas"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "elevacion-talones-sentado",
+    "name_es": "Elevación de talones sentado",
+    "name_en": "Seated Calf Raise",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "gemelos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "curl-femoral",
+    "name_es": "Curl femoral",
+    "name_en": "Leg Curl",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "extension-cuadriceps",
+    "name_es": "Extensión de cuádriceps",
+    "name_en": "Leg Extension",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "abduccion-cadera",
+    "name_es": "Abducción de cadera",
+    "name_en": "Hip Abduction",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "abductores",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "maquina",
+      "banda"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "aduccion-cadera",
+    "name_es": "Aducción de cadera",
+    "name_en": "Hip Adduction",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "aductores"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "maquina"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "paseo-lateral-banda",
+    "name_es": "Paseo lateral con banda",
+    "name_en": "Banded Lateral Walk",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "accesorio",
+    "primary_muscles": [
+      "abductores",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "banda"
+    ],
+    "metrics": [
+      "reps",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "burpee",
+    "name_es": "Burpee",
+    "name_en": "Burpee",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "burpee-step-back"
+    ],
+    "scaling_harder": [
+      "burpee-box-jump-over"
+    ],
+    "cue_es": "Pecho al piso abajo y salto con palmada arriba.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "burpee-step-back",
+    "name_es": "Burpee con paso atrás",
+    "name_en": "Step-Back Burpee",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "burpee-box-jump-over",
+    "name_es": "Burpee box jump over",
+    "name_en": "Burpee Box Jump Over",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cajon"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "burpee-broad-jump",
+    "name_es": "Burpee broad jump",
+    "name_en": "Burpee Broad Jump",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Salta lo más lejos posible desde la posición de pie.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "salto-cajon",
+    "name_es": "Salto al cajón",
+    "name_en": "Box Jump",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cajon"
+    ],
+    "metrics": [
+      "reps",
+      "height",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Extiende la cadera arriba del cajón.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "salto-cajon-over",
+    "name_es": "Box jump over",
+    "name_en": "Box Jump Over",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cajon"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "salto-largo",
+    "name_es": "Salto largo",
+    "name_en": "Broad Jump",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza",
+      "hyrox"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "distance"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "salto-profundidad",
+    "name_es": "Salto en profundidad",
+    "name_en": "Depth Jump",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cajon"
+    ],
+    "metrics": [
+      "reps",
+      "height"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "salto-patinador",
+    "name_es": "Salto de patinador",
+    "name_en": "Skater Jump",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "gluteos",
+      "abductores"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "double-under",
+    "name_es": "Double under",
+    "name_en": "Double Under",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "gemelos",
+      "antebrazos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cuerda_saltar"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [
+      "single-under"
+    ],
+    "scaling_harder": [],
+    "cue_es": "Muñecas rápidas y salto bajo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "single-under",
+    "name_es": "Salto simple de cuerda",
+    "name_en": "Single Under",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "gemelos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "cuerda_saltar"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "slam-ball",
+    "name_es": "Slam ball",
+    "name_en": "Ball Slam",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "pliometrico",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "slam_ball"
+    ],
+    "metrics": [
+      "reps",
+      "load",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "rodillas-altas",
+    "name_es": "Rodillas altas",
+    "name_en": "High Knees",
+    "aliases_es": [],
+    "disciplines": [
+      "correr",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "flexores_cadera",
+      "gemelos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time",
+      "distance"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "wall-walk",
+    "name_es": "Wall walk",
+    "name_en": "Wall Walk",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "parada-de-manos",
+    "name_es": "Parada de manos",
+    "name_en": "Handstand Hold",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "caminata-manos",
+    "name_es": "Caminata en manos",
+    "name_en": "Handstand Walk",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "fondos-anillas",
+    "name_es": "Fondos en anillas",
+    "name_en": "Ring Dip",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "triceps",
+      "pectorales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "anillas"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "avanzado",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "soporte-anillas",
+    "name_es": "Soporte en anillas",
+    "name_en": "Ring Support Hold",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit"
+    ],
+    "pattern": "gimnasticos",
+    "primary_muscles": [
+      "deltoide_anterior",
+      "abdominales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "anillas"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "gato-camello",
+    "name_es": "Gato y camello",
+    "name_en": "Cat-Cow",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "movilidad",
+    "primary_muscles": [
+      "erectores"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "movilidad-cadera-90-90",
+    "name_es": "Movilidad de cadera 90/90",
+    "name_en": "90/90 Hip Mobility",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "movilidad",
+    "primary_muscles": [
+      "flexores_cadera",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "dislocaciones-hombro",
+    "name_es": "Dislocaciones de hombro con palo",
+    "name_en": "Shoulder Pass-Through",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "movilidad",
+    "primary_muscles": [
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "banda"
+    ],
+    "metrics": [
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "sentadilla-profunda-sostenida",
+    "name_es": "Sentadilla profunda sostenida",
+    "name_en": "Deep Squat Hold",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "movilidad",
+    "primary_muscles": [
+      "aductores",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "estiramiento-isquio-activo",
+    "name_es": "Estiramiento activo de isquiotibiales",
+    "name_en": "Active Hamstring Stretch",
+    "aliases_es": [],
+    "disciplines": [
+      "fuerza"
+    ],
+    "pattern": "movilidad",
+    "primary_muscles": [
+      "isquiotibiales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "reps",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "correr",
+    "name_es": "Correr",
+    "name_en": "Run",
+    "aliases_es": [],
+    "disciplines": [
+      "correr",
+      "crossfit",
+      "hyrox",
+      "triatlon"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace",
+      "heart_rate"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cadencia alta y pisada debajo de la cadera.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "correr-cuesta",
+    "name_es": "Correr en cuesta",
+    "name_en": "Hill Run",
+    "aliases_es": [],
+    "disciplines": [
+      "correr",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace",
+      "heart_rate"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Zancada corta, brazos activos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "correr-caminadora",
+    "name_es": "Correr en caminadora",
+    "name_en": "Treadmill Run",
+    "aliases_es": [],
+    "disciplines": [
+      "correr",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "caminadora"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace",
+      "heart_rate"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "shuttle-run",
+    "name_es": "Shuttle run",
+    "name_en": "Shuttle Run",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Frena y cambia de dirección con el pie completo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "remo-ergometro",
+    "name_es": "Remo en ergómetro",
+    "name_en": "Row",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "equipment": [
+      "remo_erg"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "calories",
+      "pace",
+      "power"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Piernas, tronco y brazos en ese orden; regresa al revés.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "ski-erg",
+    "name_es": "SkiErg",
+    "name_en": "SkiErg",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "dorsales"
+    ],
+    "secondary_muscles": [
+      "abdominales",
+      "triceps"
+    ],
+    "equipment": [
+      "ski_erg"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "calories",
+      "pace",
+      "power"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Jala con el tronco, no solo con los brazos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "bike-erg",
+    "name_es": "Bicicleta ergómetro",
+    "name_en": "Bike Erg",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "ciclismo"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "bike_erg"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "calories",
+      "power"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "assault-bike",
+    "name_es": "Assault bike",
+    "name_en": "Assault Bike",
+    "aliases_es": [],
+    "disciplines": [
+      "crossfit",
+      "hyrox"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "assault_bike"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "calories",
+      "power"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Empuja y jala con los brazos para repartir el esfuerzo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "nadar",
+    "name_es": "Nadar",
+    "name_en": "Swim",
+    "aliases_es": [],
+    "disciplines": [
+      "triatlon"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "alberca"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace",
+      "heart_rate"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "rodar-bicicleta",
+    "name_es": "Rodar en bicicleta",
+    "name_en": "Ride",
+    "aliases_es": [],
+    "disciplines": [
+      "ciclismo",
+      "triatlon"
+    ],
+    "pattern": "monoestructural",
+    "primary_muscles": [
+      "cardiovascular",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "bicicleta"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "power",
+      "heart_rate"
+    ],
+    "unilateral": false,
+    "level": "principiante",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-run-1k",
+    "name_es": "Hyrox: 1 km de carrera",
+    "name_en": "Hyrox 1 km Run",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cardiovascular"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace",
+      "heart_rate"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Ocho tramos de 1 km, uno antes de cada estación.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-ski-1000",
+    "name_es": "Hyrox: SkiErg 1000 m",
+    "name_en": "Hyrox SkiErg 1000 m",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cardiovascular",
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ski_erg"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Primera estación: sal controlado, falta toda la carrera.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-sled-push",
+    "name_es": "Hyrox: empuje de trineo 50 m",
+    "name_en": "Hyrox Sled Push",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "trineo"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cuatro tramos de 12.5 m; brazos extendidos y pasos cortos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-sled-pull",
+    "name_es": "Hyrox: jalón de trineo 50 m",
+    "name_en": "Hyrox Sled Pull",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "dorsales",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "trineo"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Cuatro tramos de 12.5 m; jala con el cuerpo, no solo con los brazos.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-burpee-broad-jump",
+    "name_es": "Hyrox: burpee broad jump 80 m",
+    "name_en": "Hyrox Burpee Broad Jump",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cuerpo_completo"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "reps"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Ritmo constante: es la estación que más sube pulsaciones.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-row-1000",
+    "name_es": "Hyrox: remo 1000 m",
+    "name_en": "Hyrox Row 1000 m",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cardiovascular",
+      "dorsales"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "remo_erg"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Parece descanso y no lo es: cuida el ritmo.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-farmers-carry",
+    "name_es": "Hyrox: farmers carry 200 m",
+    "name_en": "Hyrox Farmers Carry",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "antebrazos",
+      "trapecios"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "kettlebell"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Planea cuántas veces vas a bajar las pesas.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-sandbag-lunges",
+    "name_es": "Hyrox: zancadas con sandbag 100 m",
+    "name_en": "Hyrox Sandbag Lunges",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cuadriceps",
+      "gluteos"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "sandbag"
+    ],
+    "metrics": [
+      "load",
+      "distance",
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Rodilla trasera toca el piso en cada zancada.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-wall-balls",
+    "name_es": "Hyrox: 100 wall balls",
+    "name_en": "Hyrox Wall Balls",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cuadriceps",
+      "deltoide_anterior"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "wall_ball"
+    ],
+    "metrics": [
+      "load",
+      "reps",
+      "time",
+      "height"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Última estación: divide en series y respira arriba.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-roxzone",
+    "name_es": "Hyrox: Roxzone",
+    "name_en": "Hyrox Roxzone",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cardiovascular"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "time"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Tiempo de transición entre carrera y estación; se entrena igual que lo demás.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  },
+  {
+    "slug": "hyrox-carrera-fatigada",
+    "name_es": "Carrera con fatiga previa",
+    "name_en": "Compromised Running",
+    "aliases_es": [],
+    "disciplines": [
+      "hyrox"
+    ],
+    "pattern": "estacion_hyrox",
+    "primary_muscles": [
+      "cardiovascular",
+      "cuadriceps"
+    ],
+    "secondary_muscles": [],
+    "equipment": [
+      "ninguno"
+    ],
+    "metrics": [
+      "distance",
+      "time",
+      "pace"
+    ],
+    "unilateral": false,
+    "level": "intermedio",
+    "tracks_one_rep_max": false,
+    "scaling_easier": [],
+    "scaling_harder": [],
+    "cue_es": "Correr inmediatamente después de una estación: el eje del entrenamiento de Hyrox.",
+    "video_url": null,
+    "is_public": true,
+    "owner_coach_id": null,
+    "status": "activo",
+    "source": "seed"
+  }
+]

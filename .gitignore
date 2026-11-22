@@ -1,0 +1,36 @@
+# dependencias
+node_modules/
+.pnpm-store/
+
+# builds
+dist/
+build/
+.next/
+.expo/
+*.tsbuildinfo
+
+# secretos — nunca subir
+.env
+.env.*
+!.env.example
+*.pem
+*.p8
+*.p12
+*.keystore
+google-services.json
+GoogleService-Info.plist
+
+# sistema
+.DS_Store
+Thumbs.db
+*.log
+
+# python
+__pycache__/
+*.pyc
+.venv/
+
+# datos locales
+pgdata/
+*.sqlite
+*.db

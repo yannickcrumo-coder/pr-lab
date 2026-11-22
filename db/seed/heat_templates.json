@@ -1,0 +1,52 @@
+[
+  {
+    "slug": "heat_simple",
+    "name_es": "Heat simple",
+    "description_es": "Un grupo de atletas que empieza al mismo tiempo.",
+    "fields": [
+      "heat_number",
+      "start_time",
+      "duration_s",
+      "athletes",
+      "notes"
+    ]
+  },
+  {
+    "slug": "heat_estaciones",
+    "name_es": "Heat por estaciones",
+    "description_es": "Los atletas rotan entre estaciones con trabajo y descanso fijos.",
+    "fields": [
+      "heat_number",
+      "stations",
+      "work_s",
+      "rest_s",
+      "rotations",
+      "athletes_per_station",
+      "notes"
+    ]
+  },
+  {
+    "slug": "heat_olas",
+    "name_es": "Heats en olas",
+    "description_es": "Varias salidas separadas por minutos, como en una carrera.",
+    "fields": [
+      "waves",
+      "interval_between_waves_s",
+      "athletes_per_wave",
+      "start_time",
+      "notes"
+    ]
+  },
+  {
+    "slug": "heat_parejas",
+    "name_es": "Heat en parejas",
+    "description_es": "Dos atletas se reparten el trabajo, uno trabaja y otro descansa.",
+    "fields": [
+      "heat_number",
+      "pairs",
+      "split_mode",
+      "duration_s",
+      "notes"
+    ]
+  }
+]

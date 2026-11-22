@@ -1,0 +1,428 @@
+[
+  {
+    "slug": "fran",
+    "name": "Fran",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "21-15-9",
+    "time_cap_s": 900,
+    "movements": [
+      {
+        "exercise": "thruster",
+        "load_m_kg": 43,
+        "load_f_kg": 30
+      },
+      {
+        "exercise": "dominada"
+      }
+    ]
+  },
+  {
+    "slug": "grace",
+    "name": "Grace",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "30 reps",
+    "time_cap_s": 900,
+    "movements": [
+      {
+        "exercise": "cargada-envion",
+        "reps": 30,
+        "load_m_kg": 61,
+        "load_f_kg": 43
+      }
+    ]
+  },
+  {
+    "slug": "isabel",
+    "name": "Isabel",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "30 reps",
+    "time_cap_s": 900,
+    "movements": [
+      {
+        "exercise": "arranque-potencia",
+        "reps": 30,
+        "load_m_kg": 61,
+        "load_f_kg": 43
+      }
+    ]
+  },
+  {
+    "slug": "diane",
+    "name": "Diane",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "21-15-9",
+    "time_cap_s": 900,
+    "movements": [
+      {
+        "exercise": "peso-muerto",
+        "load_m_kg": 102,
+        "load_f_kg": 70
+      },
+      {
+        "exercise": "handstand-push-up"
+      }
+    ]
+  },
+  {
+    "slug": "elizabeth",
+    "name": "Elizabeth",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "21-15-9",
+    "time_cap_s": 900,
+    "movements": [
+      {
+        "exercise": "cargada-potencia",
+        "load_m_kg": 61,
+        "load_f_kg": 43
+      },
+      {
+        "exercise": "fondos-anillas"
+      }
+    ]
+  },
+  {
+    "slug": "karen",
+    "name": "Karen",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "150 reps",
+    "time_cap_s": 1200,
+    "movements": [
+      {
+        "exercise": "wall-ball",
+        "reps": 150,
+        "load_m_kg": 9,
+        "load_f_kg": 6
+      }
+    ]
+  },
+  {
+    "slug": "annie",
+    "name": "Annie",
+    "family": "benchmark",
+    "format": "for_time",
+    "scheme": "50-40-30-20-10",
+    "time_cap_s": 900,
+    "movements": [
+      {
+        "exercise": "double-under"
+      },
+      {
+        "exercise": "abdominal"
+      }
+    ]
+  },
+  {
+    "slug": "cindy",
+    "name": "Cindy",
+    "family": "benchmark",
+    "format": "amrap",
+    "duration_s": 1200,
+    "movements": [
+      {
+        "exercise": "dominada",
+        "reps": 5
+      },
+      {
+        "exercise": "flexiones",
+        "reps": 10
+      },
+      {
+        "exercise": "sentadilla-aire",
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "slug": "mary",
+    "name": "Mary",
+    "family": "benchmark",
+    "format": "amrap",
+    "duration_s": 1200,
+    "movements": [
+      {
+        "exercise": "handstand-push-up",
+        "reps": 5
+      },
+      {
+        "exercise": "sentadilla-pistol",
+        "reps": 10
+      },
+      {
+        "exercise": "dominada",
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "slug": "angie",
+    "name": "Angie",
+    "family": "benchmark",
+    "format": "chipper",
+    "time_cap_s": 1800,
+    "movements": [
+      {
+        "exercise": "dominada",
+        "reps": 100
+      },
+      {
+        "exercise": "flexiones",
+        "reps": 100
+      },
+      {
+        "exercise": "abdominal",
+        "reps": 100
+      },
+      {
+        "exercise": "sentadilla-aire",
+        "reps": 100
+      }
+    ]
+  },
+  {
+    "slug": "barbara",
+    "name": "Barbara",
+    "family": "benchmark",
+    "format": "rft",
+    "rounds": 5,
+    "rest_between_rounds_s": 180,
+    "movements": [
+      {
+        "exercise": "dominada",
+        "reps": 20
+      },
+      {
+        "exercise": "flexiones",
+        "reps": 30
+      },
+      {
+        "exercise": "abdominal",
+        "reps": 40
+      },
+      {
+        "exercise": "sentadilla-aire",
+        "reps": 50
+      }
+    ]
+  },
+  {
+    "slug": "chelsea",
+    "name": "Chelsea",
+    "family": "benchmark",
+    "format": "emom",
+    "duration_s": 1800,
+    "interval_s": 60,
+    "movements": [
+      {
+        "exercise": "dominada",
+        "reps": 5
+      },
+      {
+        "exercise": "flexiones",
+        "reps": 10
+      },
+      {
+        "exercise": "sentadilla-aire",
+        "reps": 15
+      }
+    ]
+  },
+  {
+    "slug": "helen",
+    "name": "Helen",
+    "family": "benchmark",
+    "format": "rft",
+    "rounds": 3,
+    "movements": [
+      {
+        "exercise": "correr",
+        "distance_m": 400
+      },
+      {
+        "exercise": "swing-ruso",
+        "reps": 21,
+        "load_m_kg": 24,
+        "load_f_kg": 16
+      },
+      {
+        "exercise": "dominada",
+        "reps": 12
+      }
+    ]
+  },
+  {
+    "slug": "jackie",
+    "name": "Jackie",
+    "family": "benchmark",
+    "format": "for_time",
+    "time_cap_s": 1200,
+    "movements": [
+      {
+        "exercise": "remo-ergometro",
+        "distance_m": 1000
+      },
+      {
+        "exercise": "thruster",
+        "reps": 50,
+        "load_m_kg": 20,
+        "load_f_kg": 20
+      },
+      {
+        "exercise": "dominada",
+        "reps": 30
+      }
+    ]
+  },
+  {
+    "slug": "nancy",
+    "name": "Nancy",
+    "family": "benchmark",
+    "format": "rft",
+    "rounds": 5,
+    "movements": [
+      {
+        "exercise": "correr",
+        "distance_m": 400
+      },
+      {
+        "exercise": "sentadilla-overhead",
+        "reps": 15,
+        "load_m_kg": 43,
+        "load_f_kg": 30
+      }
+    ]
+  },
+  {
+    "slug": "nicole",
+    "name": "Nicole",
+    "family": "benchmark",
+    "format": "amrap",
+    "duration_s": 1200,
+    "movements": [
+      {
+        "exercise": "correr",
+        "distance_m": 400
+      },
+      {
+        "exercise": "dominada",
+        "reps": "máximas"
+      }
+    ]
+  },
+  {
+    "slug": "dt",
+    "name": "DT",
+    "family": "hero",
+    "format": "rft",
+    "rounds": 5,
+    "movements": [
+      {
+        "exercise": "peso-muerto",
+        "reps": 12,
+        "load_m_kg": 70,
+        "load_f_kg": 47.5
+      },
+      {
+        "exercise": "cargada-colgada",
+        "reps": 9,
+        "load_m_kg": 70,
+        "load_f_kg": 47.5
+      },
+      {
+        "exercise": "push-jerk",
+        "reps": 6,
+        "load_m_kg": 70,
+        "load_f_kg": 47.5
+      }
+    ]
+  },
+  {
+    "slug": "murph",
+    "name": "Murph",
+    "family": "hero",
+    "format": "chipper",
+    "time_cap_s": 4200,
+    "notes_es": "Tradicionalmente con chaleco de 9 kg.",
+    "movements": [
+      {
+        "exercise": "correr",
+        "distance_m": 1600
+      },
+      {
+        "exercise": "dominada",
+        "reps": 100
+      },
+      {
+        "exercise": "flexiones",
+        "reps": 200
+      },
+      {
+        "exercise": "sentadilla-aire",
+        "reps": 300
+      },
+      {
+        "exercise": "correr",
+        "distance_m": 1600
+      }
+    ]
+  },
+  {
+    "slug": "kalsu",
+    "name": "Kalsu",
+    "family": "hero",
+    "format": "for_time",
+    "time_cap_s": 2400,
+    "notes_es": "100 thrusters; 5 burpees al inicio de cada minuto.",
+    "movements": [
+      {
+        "exercise": "thruster",
+        "reps": 100,
+        "load_m_kg": 61,
+        "load_f_kg": 43
+      },
+      {
+        "exercise": "burpee",
+        "reps": 5
+      }
+    ]
+  },
+  {
+    "slug": "fight-gone-bad",
+    "name": "Fight Gone Bad",
+    "family": "benchmark",
+    "format": "intervalos",
+    "rounds": 3,
+    "work_s": 60,
+    "rest_s": 60,
+    "notes_es": "Cinco estaciones de 1 minuto, 1 minuto de descanso entre rondas.",
+    "movements": [
+      {
+        "exercise": "wall-ball",
+        "load_m_kg": 9,
+        "load_f_kg": 6
+      },
+      {
+        "exercise": "remo-al-menton",
+        "load_m_kg": 34,
+        "load_f_kg": 25
+      },
+      {
+        "exercise": "salto-cajon",
+        "height_cm": 50
+      },
+      {
+        "exercise": "push-press",
+        "load_m_kg": 34,
+        "load_f_kg": 25
+      },
+      {
+        "exercise": "remo-ergometro"
+      }
+    ]
+  }
+]

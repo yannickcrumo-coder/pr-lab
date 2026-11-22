@@ -1,0 +1,67 @@
+[
+  {
+    "slug": "fuerza",
+    "name_es": "Fuerza",
+    "name_en": "Strength",
+    "default_metrics": [
+      "reps",
+      "load",
+      "rpe"
+    ]
+  },
+  {
+    "slug": "crossfit",
+    "name_es": "CrossFit / fitness funcional",
+    "name_en": "CrossFit",
+    "default_metrics": [
+      "time",
+      "rounds",
+      "reps",
+      "load"
+    ]
+  },
+  {
+    "slug": "hyrox",
+    "name_es": "Hyrox",
+    "name_en": "Hyrox",
+    "default_metrics": [
+      "time",
+      "distance",
+      "reps"
+    ]
+  },
+  {
+    "slug": "correr",
+    "name_es": "Correr",
+    "name_en": "Running",
+    "default_metrics": [
+      "distance",
+      "time",
+      "pace",
+      "heart_rate"
+    ]
+  },
+  {
+    "slug": "ciclismo",
+    "name_es": "Ciclismo",
+    "name_en": "Cycling",
+    "default_metrics": [
+      "distance",
+      "time",
+      "power",
+      "heart_rate"
+    ]
+  },
+  {
+    "slug": "triatlon",
+    "name_es": "Triatlón",
+    "name_en": "Triathlon",
+    "default_metrics": [
+      "distance",
+      "time",
+      "pace",
+      "power",
+      "heart_rate"
+    ]
+  }
+]

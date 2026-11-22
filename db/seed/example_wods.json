@@ -1,0 +1,109 @@
+[
+  {
+    "slug": "test-hyrox-50",
+    "name_es": "Test de Hyrox al 50 %",
+    "format": "simulacion_hyrox",
+    "discipline": "hyrox",
+    "score_type": "time",
+    "description_es": "Media simulación: la secuencia completa con la mitad del volumen en cada tramo. Sirve de referencia para repetir cada cuatro a seis semanas.",
+    "athlete_logs": [
+      "split_per_station",
+      "roxzone_time",
+      "total_time",
+      "rpe"
+    ],
+    "segments": [
+      {
+        "order": 1,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 2,
+        "type": "station",
+        "exercise": "hyrox-ski-1000",
+        "distance_m": 500
+      },
+      {
+        "order": 3,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 4,
+        "type": "station",
+        "exercise": "hyrox-sled-push",
+        "distance_m": 25,
+        "note_es": "2 x 12.5 m"
+      },
+      {
+        "order": 5,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 6,
+        "type": "station",
+        "exercise": "hyrox-sled-pull",
+        "distance_m": 25,
+        "note_es": "2 x 12.5 m"
+      },
+      {
+        "order": 7,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 8,
+        "type": "station",
+        "exercise": "hyrox-burpee-broad-jump",
+        "distance_m": 40
+      },
+      {
+        "order": 9,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 10,
+        "type": "station",
+        "exercise": "hyrox-row-1000",
+        "distance_m": 500
+      },
+      {
+        "order": 11,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 12,
+        "type": "station",
+        "exercise": "hyrox-farmers-carry",
+        "distance_m": 100
+      },
+      {
+        "order": 13,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 14,
+        "type": "station",
+        "exercise": "hyrox-sandbag-lunges",
+        "distance_m": 50
+      },
+      {
+        "order": 15,
+        "type": "run",
+        "distance_m": 500
+      },
+      {
+        "order": 16,
+        "type": "station",
+        "exercise": "hyrox-wall-balls",
+        "reps": 50
+      }
+    ],
+    "notes_es": "Los pesos los elige el coach: pueden ser los de la división objetivo o más ligeros. El atleta registra el parcial de cada tramo y el tiempo de transición."
+  }
+]
