@@ -3,8 +3,11 @@ node_modules/
 .pnpm-store/
 
 # builds
+# Ojo: nada de patrones sueltos como "build/", porque también ignorarían
+# db/build/, que sí va versionado.
 dist/
-build/
+apps/*/build/
+packages/*/build/
 .next/
 .expo/
 *.tsbuildinfo
