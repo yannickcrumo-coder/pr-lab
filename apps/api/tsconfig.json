@@ -7,10 +7,10 @@
     "emitDecoratorMetadata": true,
     "target": "ES2022",
     "outDir": "./dist",
-    "rootDir": "./src",
     "baseUrl": "./",
     "exactOptionalPropertyTypes": false,
     "strictPropertyInitialization": false,
+    "noEmit": true,
     "types": ["node", "jest"]
   },
   "include": ["src/**/*", "test/**/*"],
