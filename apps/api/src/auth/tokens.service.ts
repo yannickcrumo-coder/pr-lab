@@ -44,7 +44,7 @@ export class TokensService {
   async emitir(
     usuarioId: string,
     dispositivo: DatosDispositivo = {},
-    familiaId = randomUUID(),
+    familiaId: string = randomUUID(),
   ): Promise<ParTokens> {
     const access = await this.jwt.signAsync(
       { sub: usuarioId, typ: 'acceso' },

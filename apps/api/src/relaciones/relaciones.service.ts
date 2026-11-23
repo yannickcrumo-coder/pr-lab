@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { and, count, desc, eq, inArray } from 'drizzle-orm';
 import { DB, Db } from '../db/db.module';
 import { AccesoService } from '../acceso/acceso.service';
-import { coachAtleta, perfilesCoach, usuarios } from '../db/esquema';
+import { coachAtleta, type EstadoRelacion, perfilesCoach, usuarios } from '../db/esquema';
 
 export interface AtletaResumen {
   id: string;
@@ -23,7 +23,9 @@ export class RelacionesService {
   async misAtletas(coachId: string, estado?: string) {
     await this.acceso.exigirCoach(coachId);
 
-    const estados = estado ? [estado] : ['invitada', 'activa', 'pausada'];
+    const estados: EstadoRelacion[] = estado
+      ? [estado as EstadoRelacion]
+      : ['invitada', 'activa', 'pausada'];
 
     const filas = await this.db
       .select({
@@ -96,7 +98,7 @@ export class RelacionesService {
       })
       .from(coachAtleta)
       .innerJoin(usuarios, eq(usuarios.id, coachAtleta.coachId))
-      .where(and(eq(coachAtleta.atletaId, atletaId), inArray(coachAtleta.estado, ['activa', 'pausada'])));
+      .where(and(eq(coachAtleta.atletaId, atletaId), inArray(coachAtleta.estado, ['activa', 'pausada'] as EstadoRelacion[])));
     return { data: filas };
   }
 

@@ -4,6 +4,7 @@ import { and, count, eq, gte, sql } from 'drizzle-orm';
 import { DB, Db } from '../db/db.module';
 import { ENTORNO, Entorno } from '../config/entorno';
 import { Errores } from '../comun/errores';
+import { primeraFila } from '../comun/uno';
 import {
   coachAtleta,
   intentosAcceso,
@@ -66,15 +67,18 @@ export class AuthService {
     const passwordHash = await argonHash(datos.password);
 
     const usuario = await this.db.transaction(async (tx) => {
-      const [u] = await tx
-        .insert(usuarios)
-        .values({
-          email,
-          nombre: datos.full_name.trim(),
-          passwordHash,
-          ...(datos.timezone ? { zonaHoraria: datos.timezone } : {}),
-        })
-        .returning();
+      const u = primeraFila(
+        await tx
+          .insert(usuarios)
+          .values({
+            email,
+            nombre: datos.full_name.trim(),
+            passwordHash,
+            ...(datos.timezone ? { zonaHoraria: datos.timezone } : {}),
+          })
+          .returning(),
+        'el alta del usuario',
+      );
 
       if (invitacion) {
         // Quien llega con código es atleta de quien lo invitó.
@@ -194,7 +198,8 @@ export class AuthService {
       units_distance: 'km' | 'mi';
     }>,
   ): Promise<UsuarioPublico> {
-    const [u] = await this.db
+    const u = primeraFila(
+      await this.db
       .update(usuarios)
       .set({
         ...(cambios.full_name ? { nombre: cambios.full_name } : {}),
@@ -205,7 +210,9 @@ export class AuthService {
         actualizadoEn: new Date(),
       })
       .where(eq(usuarios.id, usuarioId))
-      .returning();
+      .returning(),
+      'la actualización del perfil',
+    );
     return this.aPublico(u);
   }
 

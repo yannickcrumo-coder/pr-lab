@@ -13,13 +13,14 @@ import { DB, Db } from '../db/db.module';
 import { Errores } from '../comun/errores';
 import {
   coachAtleta,
+  type EstadoRelacion,
   perfilesAtleta,
   perfilesCoach,
   type RelacionCoachAtleta,
 } from '../db/esquema';
 
 /** Estados en los que la relación todavía existe para efectos de lectura. */
-const ESTADOS_VIVOS = ['activa', 'pausada'] as const;
+const ESTADOS_VIVOS: EstadoRelacion[] = ['activa', 'pausada'];
 
 @Injectable()
 export class AccesoService {
@@ -34,7 +35,7 @@ export class AccesoService {
     atletaId: string,
     opciones: { soloActiva?: boolean } = {},
   ): Promise<RelacionCoachAtleta> {
-    const estados = opciones.soloActiva ? ['activa'] : [...ESTADOS_VIVOS];
+    const estados: EstadoRelacion[] = opciones.soloActiva ? ['activa'] : ESTADOS_VIVOS;
 
     const [relacion] = await this.db
       .select()
@@ -101,7 +102,7 @@ export class AccesoService {
     const filas = await this.db
       .select({ id: coachAtleta.id })
       .from(coachAtleta)
-      .where(and(eq(coachAtleta.coachId, coachId), inArray(coachAtleta.estado, [...ESTADOS_VIVOS])));
+      .where(and(eq(coachAtleta.coachId, coachId), inArray(coachAtleta.estado, ESTADOS_VIVOS)));
     return filas.map((f) => f.id);
   }
 }

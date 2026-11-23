@@ -4,6 +4,7 @@ import { eq, sql } from 'drizzle-orm';
 import { DB, Db } from '../db/db.module';
 import { ENTORNO, Entorno } from '../config/entorno';
 import { Errores } from '../comun/errores';
+import { primeraFila } from '../comun/uno';
 import { AccesoService } from '../acceso/acceso.service';
 import { coachAtleta, invitaciones } from '../db/esquema';
 
@@ -34,16 +35,19 @@ export class InvitacionesService {
     for (let intento = 0; intento < 5; intento++) {
       const codigo = this.generarCodigo();
       try {
-        const [inv] = await this.db
-          .insert(invitaciones)
-          .values({
-            coachId,
-            codigo,
-            email: datos.email ?? null,
-            nombreAtleta: datos.athlete_name ?? null,
-            expiraEn,
-          })
-          .returning();
+        const inv = primeraFila(
+          await this.db
+            .insert(invitaciones)
+            .values({
+              coachId,
+              codigo,
+              email: datos.email ?? null,
+              nombreAtleta: datos.athlete_name ?? null,
+              expiraEn,
+            })
+            .returning(),
+          'el alta de la invitación',
+        );
         return {
           id: inv.id,
           code: inv.codigo,
@@ -78,15 +82,18 @@ export class InvitacionesService {
     if (yaExiste) throw Errores.conflicto('ya_son_coach_y_atleta');
 
     return this.db.transaction(async (tx) => {
-      const [relacion] = await tx
-        .insert(coachAtleta)
-        .values({
-          coachId: inv.coachId,
-          atletaId: usuarioId,
-          estado: 'activa',
-          iniciadaEn: new Date(),
-        })
-        .returning();
+      const relacion = primeraFila(
+        await tx
+          .insert(coachAtleta)
+          .values({
+            coachId: inv.coachId,
+            atletaId: usuarioId,
+            estado: 'activa',
+            iniciadaEn: new Date(),
+          })
+          .returning(),
+        'el alta de la relación',
+      );
       await tx
         .update(invitaciones)
         .set({ estado: 'aceptada', aceptadaPor: usuarioId })
