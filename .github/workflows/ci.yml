@@ -94,3 +94,44 @@ jobs:
             exit 1
           fi
           echo "Sin archivos de credenciales."
+
+  api:
+    name: API — compila y pasa sus pruebas
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_PASSWORD: postgres
+          POSTGRES_DB: prlab_test
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    env:
+      DATABASE_URL: postgresql://postgres:postgres@localhost:5432/prlab_test
+      JWT_SECRET: secreto-de-integracion-continua-con-mas-de-32
+      NODE_ENV: test
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Instalar dependencias
+        working-directory: apps/api
+        run: npm install --no-audit --no-fund
+
+      - name: Revisar tipos
+        working-directory: apps/api
+        run: npm run typecheck
+
+      - name: Compilar
+        working-directory: apps/api
+        run: npm run build
+
+      - name: Pruebas
+        working-directory: apps/api
+        run: npm test
