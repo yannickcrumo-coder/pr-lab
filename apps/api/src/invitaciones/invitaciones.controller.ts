@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, Post, UsePipes } from '@nestjs/common';
+import { Body, Controller, HttpCode, Post } from '@nestjs/common';
 import { Actor, UsuarioActual } from '../comun/decoradores';
 import { ValidacionZod } from '../comun/validacion.pipe';
 import {
@@ -14,15 +14,13 @@ export class InvitacionesController {
   constructor(private readonly invitaciones: InvitacionesService) {}
 
   @Post()
-  @UsePipes(new ValidacionZod(invitacionDto))
-  crear(@UsuarioActual() actor: Actor, @Body() dto: InvitacionDto) {
+  crear(@UsuarioActual() actor: Actor, @Body(new ValidacionZod(invitacionDto)) dto: InvitacionDto) {
     return this.invitaciones.crear(actor.usuarioId, dto);
   }
 
   @Post('accept')
   @HttpCode(200)
-  @UsePipes(new ValidacionZod(aceptarInvitacionDto))
-  aceptar(@UsuarioActual() actor: Actor, @Body() dto: AceptarInvitacionDto) {
+  aceptar(@UsuarioActual() actor: Actor, @Body(new ValidacionZod(aceptarInvitacionDto)) dto: AceptarInvitacionDto) {
     return this.invitaciones.aceptar(actor.usuarioId, dto.code);
   }
 }

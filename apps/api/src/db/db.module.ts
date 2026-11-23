@@ -1,4 +1,4 @@
-import { Global, Module, OnModuleDestroy } from '@nestjs/common';
+import { Global, Inject, Module, OnModuleDestroy } from '@nestjs/common';
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import { cargarEntorno, ENTORNO, Entorno } from '../config/entorno';
@@ -31,6 +31,10 @@ export const POOL = Symbol('POOL');
   exports: [DB, POOL, ENTORNO],
 })
 export class DbModule implements OnModuleDestroy {
-  constructor() {}
-  async onModuleDestroy(): Promise<void> {}
+  constructor(@Inject(POOL) private readonly pool: Pool) {}
+
+  /** Cierra el pool al apagar: sin esto las pruebas dejan conexiones abiertas. */
+  async onModuleDestroy(): Promise<void> {
+    await this.pool.end();
+  }
 }
