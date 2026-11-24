@@ -22,6 +22,8 @@ técnicos quedan en inglés.
 | Reservas de clases | Versión 3, junto con gimnasios |
 | Arquitectura | Monolito modular, un repositorio, tres procesos: `api`, `worker`, `chat` |
 | Base de datos | PostgreSQL gestionado, **siempre separada** del servidor de aplicación |
+| Hospedaje | Plataforma administrada, no infraestructura cruda. Nadie está de guardia y son datos de salud: el parchado del sistema no puede depender de que alguien se acuerde |
+| Prueba de 15 días | Una sola instancia con los tres procesos dentro, más la base gestionada. Nada de Valkey ni almacén de objetos todavía |
 | Multi-inquilino | Por fila, filtrando por la relación coach-atleta. Nunca una base por cliente |
 
 ## Las cinco reglas que no se rompen

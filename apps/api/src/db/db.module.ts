@@ -2,10 +2,10 @@ import { Global, Inject, Module, OnModuleDestroy } from '@nestjs/common';
 import { drizzle, NodePgDatabase } from 'drizzle-orm/node-postgres';
 import { Pool } from 'pg';
 import { cargarEntorno, ENTORNO, Entorno } from '../config/entorno';
-import { esquema } from './esquema';
+import { esquemaCompleto } from './completo';
 
 export const DB = Symbol('DB');
-export type Db = NodePgDatabase<typeof esquema>;
+export type Db = NodePgDatabase<typeof esquemaCompleto>;
 export const POOL = Symbol('POOL');
 
 @Global()
@@ -25,7 +25,7 @@ export const POOL = Symbol('POOL');
     {
       provide: DB,
       inject: [POOL],
-      useFactory: (pool: Pool): Db => drizzle(pool, { schema: esquema }),
+      useFactory: (pool: Pool): Db => drizzle(pool, { schema: esquemaCompleto }),
     },
   ],
   exports: [DB, POOL, ENTORNO],

@@ -81,6 +81,15 @@ export class AccesoService {
     return { comoAtleta: false, relacion };
   }
 
+  /** Sin lanzar: para ramas que cambian según el papel, no para autorizar. */
+  async esCoach(usuarioId: string): Promise<boolean> {
+    const [perfil] = await this.db
+      .select({ id: perfilesCoach.usuarioId })
+      .from(perfilesCoach)
+      .where(eq(perfilesCoach.usuarioId, usuarioId));
+    return perfil !== undefined;
+  }
+
   async exigirCoach(usuarioId: string): Promise<void> {
     const [perfil] = await this.db
       .select({ id: perfilesCoach.usuarioId })
@@ -103,6 +112,30 @@ export class AccesoService {
       .select({ id: coachAtleta.id })
       .from(coachAtleta)
       .where(and(eq(coachAtleta.coachId, coachId), inArray(coachAtleta.estado, ESTADOS_VIVOS)));
+    return filas.map((f) => f.id);
+  }
+
+  /**
+   * Los coaches de un atleta. Lo necesita la biblioteca: el atleta tiene que
+   * poder leer los ejercicios que inventó su coach, porque si no abriría su
+   * sesión y encontraría un ejercicio que no puede abrir.
+   *
+   * Entre coaches no se filtra nada: el atleta ve el ejercicio, no de quién es.
+   */
+  async coachesDelAtleta(atletaId: string): Promise<string[]> {
+    const filas = await this.db
+      .select({ id: coachAtleta.coachId })
+      .from(coachAtleta)
+      .where(and(eq(coachAtleta.atletaId, atletaId), inArray(coachAtleta.estado, ESTADOS_VIVOS)));
+    return filas.map((f) => f.id);
+  }
+
+  /** La relación de un atleta con un coach, buscada al revés. */
+  async relacionesDelAtleta(atletaId: string): Promise<string[]> {
+    const filas = await this.db
+      .select({ id: coachAtleta.id })
+      .from(coachAtleta)
+      .where(and(eq(coachAtleta.atletaId, atletaId), inArray(coachAtleta.estado, ESTADOS_VIVOS)));
     return filas.map((f) => f.id);
   }
 }

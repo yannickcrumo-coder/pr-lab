@@ -345,7 +345,15 @@ paths:
                 equipment: { type: array, items: { type: string } }
                 level: { type: string, enum: [principiante, intermedio, avanzado] }
                 cue_es: { type: string }
-                video_media_id: { type: string, format: uuid }
+                video_media_id: { type: string, format: uuid, description: Video nuestro; sirve sin conexión }
+                video_url:
+                  type: string
+                  format: uri
+                  description: |
+                    Enlace externo a la demostración (YouTube, Vimeo). Se abre
+                    FUERA de la app y necesita conexión. Nunca se incrusta un
+                    reproductor externo dentro de la app ni se descarga su
+                    video: ver docs/proveedores-verificado.md.
                 duplicate_of: { type: string, format: uuid, description: Partir de uno del catálogo }
       responses:
         "201":
