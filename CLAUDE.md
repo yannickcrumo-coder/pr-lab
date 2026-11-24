@@ -38,6 +38,13 @@ técnicos quedan en inglés.
    los usa; lo exigen sus términos. Está en el modelo: `activities.visibility`
    y `ai_excluded`.
 
+El video de demostración tiene dos formas y las dos se quedan: alojado por
+nosotros (`exercises.video_media_id`, se guarda en el teléfono y sirve sin
+señal) o enlace externo (`exercises.video_url`, se abre **fuera** de la app y
+necesita conexión). Nunca se incrusta un reproductor externo dentro de una
+pantalla de paga ni se descarga su video; el porqué está en
+`docs/proveedores-verificado.md`.
+
 ## Estructura
 
 ```
@@ -55,6 +62,12 @@ docs/           dónde viven los documentos vivos
 
 - **Un módulo nunca consulta las tablas de otro.** Se hablan por su interfaz
   pública. Es lo que permite extraer uno a su propio servicio más adelante.
+- **Los tres procesos se hablan solo por la base.** `api`, `worker` y `chat`
+  nunca se llaman en memoria, aunque estén corriendo en el mismo servidor.
+  El `api` encola, el `worker` toma de la cola. Si el `api` llama directo a una
+  función del `worker`, separarlos después deja de ser configuración y se
+  vuelve reescritura. Es lo que permite correrlos juntos en una instancia para
+  probar y repartirlos en cuatro para producción sin tocar código.
 - **La API no guarda estado en memoria.** La sesión vive en el token y en
   Redis, para poder sumar instancias sin pensarlo.
 - **Migraciones con expandir y contraer:** agregar, migrar datos, cambiar el

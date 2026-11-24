@@ -18,6 +18,8 @@ decisión cambia, se actualiza ahí además de en el documento.
 - `db/README.md` — las diez decisiones del esquema y lo que falta.
 - `api/openapi.yaml` — el contrato, fuente de los tipos del cliente.
 - `design/` — tokens y prototipos navegables, que se abren en cualquier navegador.
+- `docs/proveedores-verificado.md` — qué dicen hoy los términos de cada proveedor
+  externo, con la fecha en que se revisó.
 
 ## Pendiente de verificar
 
