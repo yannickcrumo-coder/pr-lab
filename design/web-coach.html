@@ -84,6 +84,7 @@ textarea{resize:vertical}
 .chip.hyrox{color:var(--d-hyrox);border-color:var(--d-hyrox);background:rgb(255 209 102/.12)}
 .chip.correr{color:var(--d-correr);border-color:var(--d-correr);background:rgb(77 163 255/.12)}
 .chip.triatlon{color:var(--d-triatlon);border-color:var(--d-triatlon);background:rgb(167 139 250/.12)}
+.chip.ciclismo{color:var(--d-ciclismo);border-color:var(--d-ciclismo);background:rgb(53 208 186/.12)}
 .chip.plain{color:var(--text-muted);border-color:var(--border);background:var(--surface-2);
   text-transform:none;letter-spacing:0;font-weight:600;font-size:11.5px}
 .chip.acc{color:var(--accent);border-color:var(--accent);background:var(--accent-tint)}
@@ -291,6 +292,80 @@ h3.sec:first-child{margin-top:0}
   #builder{width:100%;border-left:none}
   .ilist{width:100%}.inbox{flex-direction:column}
 }
+
+/* ---------- gráficas del inicio ---------- */
+.charts{display:grid;gap:12px;grid-template-columns:1fr 1fr;margin-bottom:22px}
+@media(max-width:900px){.charts{grid-template-columns:1fr}}
+.bars{display:flex;flex-direction:column;gap:9px;margin-top:12px}
+.bar{display:grid;grid-template-columns:86px 1fr 34px;align-items:center;gap:10px}
+.bar>span:first-child{font-size:12px;color:var(--text-muted);text-transform:capitalize}
+.bar .track{height:9px;background:var(--surface-2);border-radius:var(--r-pill);overflow:hidden}
+.bar .track i{display:block;height:100%;border-radius:var(--r-pill)}
+.bar>b{font-size:12.5px;font-weight:650;text-align:right;font-variant-numeric:tabular-nums}
+.cols{display:flex;align-items:flex-end;gap:7px;height:104px;margin-top:14px}
+.cols>div{flex:1;display:flex;flex-direction:column;justify-content:flex-end;
+  align-items:center;gap:5px;height:100%}
+.cols .cb{width:100%;background:var(--accent);border-radius:4px 4px 0 0;min-height:3px}
+.cols .cb.low{background:var(--danger)}
+.cols .cb.mid{background:var(--warning)}
+.cols small{font-size:10px;color:var(--text-faint)}
+.chartfoot{font-size:11.5px;color:var(--text-faint);margin-top:10px}
+
+/* ---------- acciones al final de una fila ---------- */
+.rowacts{display:flex;gap:6px;justify-content:flex-end}
+.iconbtn{width:30px;height:30px;display:inline-flex;align-items:center;justify-content:center;
+  border-radius:var(--r-sm);border:1px solid var(--border);background:var(--surface-2);
+  color:var(--text-muted);cursor:pointer;font-size:13px;line-height:1}
+.iconbtn:hover{border-color:var(--border-strong);color:var(--text)}
+.iconbtn.dang:hover{border-color:var(--danger);color:var(--danger)}
+
+/* ---------- filtros y vista previa de plantillas ---------- */
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.fchip{font-size:11px;font-weight:700;padding:5px 9px;border-radius:var(--r-pill);
+  border:1px solid var(--border);background:var(--surface-2);color:var(--text-muted);cursor:pointer}
+.fchip.on{border-color:var(--accent);color:var(--accent);background:var(--accent-tint)}
+.tpl{position:relative}
+.tpl .peek{position:absolute;top:6px;right:6px;opacity:0;transition:opacity .12s}
+.tpl:hover .peek{opacity:1}
+.tpv{position:fixed;z-index:60;width:272px;background:var(--surface-3);
+  border:1px solid var(--border-strong);border-radius:var(--r-md);padding:13px;
+  box-shadow:0 14px 40px rgb(0 0 0/.45);font-size:12.5px;pointer-events:none}
+.tpv b{display:block;font-size:13.5px;margin-bottom:7px}
+.tpv .pb{padding:6px 0;border-top:1px solid var(--border)}
+.tpv .pb i{font-style:normal;color:var(--text-faint)}
+.recent{display:flex;flex-direction:column;gap:5px;margin-top:6px}
+.recent div{display:flex;align-items:center;gap:8px;padding:7px 9px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:var(--r-sm);font-size:12.5px;cursor:pointer}
+.recent div:hover{border-color:var(--border-strong)}
+.recent span.c{margin-left:auto;font-size:10.5px;color:var(--text-faint)}
+
+/* ---------- la equis sobre una sesión del calendario ---------- */
+.sess{position:relative}
+.sess .sx{position:absolute;top:3px;right:3px;width:19px;height:19px;border-radius:5px;
+  display:none;align-items:center;justify-content:center;font-size:11px;
+  background:var(--surface-3);border:1px solid var(--border-strong);color:var(--text-muted)}
+.sess:hover .sx{display:flex}
+.sess .sx:hover{color:var(--danger);border-color:var(--danger)}
+
+/* ---------- formularios dentro de un modal ---------- */
+.mbox.wide{max-width:620px}
+.fgrid{display:grid;gap:12px;grid-template-columns:1fr 1fr;padding:16px}
+.fgrid .full{grid-column:1/-1}
+@media(max-width:640px){.fgrid{grid-template-columns:1fr}}
+.fgrid label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--text-faint);margin-bottom:5px;font-weight:700}
+.fgrid label .req{color:var(--danger)}
+.fgrid input,.fgrid select,.fgrid textarea{width:100%}
+.help{font-size:11.5px;color:var(--text-faint);margin-top:5px;line-height:1.45}
+.pickers{display:flex;gap:6px;flex-wrap:wrap}
+.mf{display:flex;gap:9px;padding:14px 16px;border-top:1px solid var(--border)}
+.note{padding:11px 13px;background:var(--surface-2);border:1px solid var(--border);
+  border-left:3px solid var(--info);border-radius:var(--r-sm);font-size:12.5px;
+  color:var(--text-muted);line-height:1.5}
+.note.acc{border-left-color:var(--accent)}
+.codebox{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:21px;
+  letter-spacing:.14em;font-weight:700;color:var(--accent);background:var(--accent-tint);
+  border:1px dashed var(--accent);border-radius:var(--r-sm);padding:13px;text-align:center}
 </style>
 </head>
 <body>
@@ -324,7 +399,23 @@ h3.sec:first-child{margin-top:0}
         <div class="card"><div class="num" style="color:var(--danger)">4</div><div class="faint">Necesitan atención</div></div>
       </div>
 
+      <div class="charts">
+        <div class="card">
+          <div class="spread"><b style="font-size:14px">Atletas por disciplina</b>
+            <span class="chip plain">24 atletas</span></div>
+          <div class="bars" id="disBars"></div>
+          <div class="chartfoot">Un atleta puede contar en más de una: Diego hace fuerza y Hyrox.</div>
+        </div>
+        <div class="card">
+          <div class="spread"><b style="font-size:14px">Cumplimiento por semana</b>
+            <span class="chip ok">+6 pts</span></div>
+          <div class="cols" id="cmpCols"></div>
+          <div class="chartfoot">Promedio de tu cartera. Toca una semana para ver quién bajó.</div>
+        </div>
+      </div>
+
       <h3 class="sec">Necesita tu atención</h3>
+      <div id="msgAlerts"></div>
       <div class="alert urgent">
         <span class="av">PR</span>
         <div class="at"><b>Pablo Reyes reportó una molestia</b>
@@ -377,10 +468,18 @@ h3.sec:first-child{margin-top:0}
           <div class="faint" style="color:var(--accent)">20 incluidos en tu plan · 4 adicionales</div></div>
           <span class="chip acc">Sin cobro en la Versión 1</span></div>
       </div>
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+        <input type="search" id="athq" placeholder="Buscar atleta por nombre…"
+          style="flex:1;min-width:220px" oninput="renderAth()">
+        <button class="btn" onclick="openAltaAtleta()">+ Dar de alta un atleta</button>
+      </div>
       <table class="tbl">
-        <thead><tr><th>Atleta</th><th>Disciplinas</th><th>Ciclo</th><th>Cumplimiento</th><th>Última sesión</th></tr></thead>
+        <thead><tr><th>Atleta</th><th>Disciplinas</th><th>Ciclo</th><th>Cumplimiento</th>
+          <th>Última sesión</th><th style="text-align:right">Acciones</th></tr></thead>
         <tbody id="athBody"></tbody>
       </table>
+      <p class="faint" id="athEmpty" style="display:none;margin-top:12px">
+        Ningún atleta coincide con la búsqueda.</p>
     </section>
 
     <!-- ===== PROGRAMACIÓN ===== -->
@@ -405,15 +504,28 @@ h3.sec:first-child{margin-top:0}
         </div>
         <aside class="panel">
           <h3 class="sec">Plantillas</h3>
+          <input type="search" id="tplq" placeholder="Buscar plantilla…"
+            style="width:100%;margin-bottom:9px" oninput="renderTpl()">
+          <div class="filters" id="tplFilters"></div>
           <div class="hint" id="hint">Toca una plantilla para seleccionarla</div>
           <div id="tplList"></div>
-          <button class="btn ghost sm" style="width:100%;margin-top:6px" onclick="go('plantillas')">Ver todas</button>
+
+          <h3 class="sec" style="margin-top:18px">Asignadas recientemente</h3>
+          <div class="recent" id="recentList"></div>
+
+          <button class="btn ghost sm" style="width:100%;margin-top:12px" onclick="go('plantillas')">Ver todas</button>
         </aside>
       </div>
     </section>
 
     <!-- ===== PLANTILLAS ===== -->
     <section class="view" id="v-plantillas">
+      <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
+        <input type="search" id="tgq" placeholder="Buscar entre tus plantillas…"
+          style="flex:1;min-width:220px" oninput="renderTpl()">
+        <button class="btn" onclick="openAltaPlantilla()">+ Nueva plantilla</button>
+      </div>
+      <div class="filters" id="tgFilters"></div>
       <div class="grid" id="tplGrid"></div>
     </section>
 
@@ -421,7 +533,7 @@ h3.sec:first-child{margin-top:0}
     <section class="view" id="v-ejercicios">
       <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
         <input type="search" id="exq" placeholder="Buscar en 191 ejercicios…" style="flex:1;min-width:200px" oninput="renderLib()">
-        <button class="btn" onclick="newExercise()">+ Nuevo ejercicio</button>
+        <button class="btn" onclick="openAltaEjercicio()">+ Nuevo ejercicio</button>
       </div>
       <div class="grid" id="libGrid"></div>
     </section>
@@ -452,7 +564,9 @@ h3.sec:first-child{margin-top:0}
   <div class="bh">
     <div class="t"><b id="bTitle">Nueva sesión</b><span id="bSub">Diego Salas · miércoles 19</span></div>
     <span class="chip plain" id="bState">Borrador</span>
-    <button class="btn ghost sm" onclick="closeBuilder()">✕</button>
+    <button class="iconbtn dang" id="bDel" title="Eliminar esta sesión"
+      onclick="borrarDesdeConstructor()">🗑</button>
+    <button class="btn ghost sm" onclick="closeBuilder()" title="Cerrar">✕</button>
   </div>
   <div class="bb">
     <div style="margin-bottom:14px">
@@ -466,10 +580,7 @@ h3.sec:first-child{margin-top:0}
       <textarea id="bNote" rows="2" style="width:100%" placeholder="Opcional"></textarea>
     </div>
   </div>
-  <div class="bf">
-    <button class="btn ghost" style="flex:1" onclick="saveDraft()">Guardar borrador</button>
-    <button class="btn" style="flex:1" onclick="publish()">Publicar</button>
-  </div>
+  <div class="bf" id="bFoot"></div>
 </div>
 
 <!-- ===== MODAL TIPO DE BLOQUE ===== -->
@@ -491,6 +602,198 @@ h3.sec:first-child{margin-top:0}
   </div>
 </div>
 
+
+<!-- ===== MODAL · ALTA DE ATLETA ===== -->
+<div class="modal" id="athModal">
+  <div class="mbox wide">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px">Dar de alta un atleta</b>
+      <button class="btn ghost sm" onclick="cerrar('athModal')">✕</button>
+    </div>
+    <div style="padding:16px 16px 0">
+      <div class="note">No se crea la cuenta desde aquí: se genera un código y el atleta
+        se registra con él desde su teléfono. Así la contraseña nunca pasa por tus manos.</div>
+    </div>
+    <div class="fgrid">
+      <div>
+        <label>Nombre del atleta <span class="req">*</span></label>
+        <input type="text" id="naNombre" placeholder="Diego Salas">
+        <div class="help">Es lo único obligatorio. Te sirve para reconocer la invitación
+          mientras el atleta no la acepta.</div>
+      </div>
+      <div>
+        <label>Correo</label>
+        <input type="email" id="naMail" placeholder="diego@ejemplo.com">
+        <div class="help">Opcional. Si lo pones, le llega la invitación por correo;
+          si no, tú le compartes el código.</div>
+      </div>
+      <div class="full">
+        <label>Disciplinas que va a entrenar</label>
+        <div class="pickers" id="naDis"></div>
+        <div class="help">Solo para ordenar tu lista y filtrar. Puedes cambiarlas después.</div>
+      </div>
+      <div class="full">
+        <label>Nota para ti</label>
+        <textarea id="naNota" rows="2" placeholder="Viene de lesión de rodilla, entrena martes y jueves"></textarea>
+        <div class="help">Privada. El atleta no la ve.</div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btn ghost" style="flex:1" onclick="cerrar('athModal')">Cancelar</button>
+      <button class="btn" style="flex:1" onclick="crearInvitacion()">Generar invitación</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL · CÓDIGO GENERADO ===== -->
+<div class="modal" id="codeModal">
+  <div class="mbox" style="max-width:420px">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px">Invitación lista</b>
+      <button class="btn ghost sm" onclick="cerrar('codeModal')">✕</button>
+    </div>
+    <div style="padding:16px;display:flex;flex-direction:column;gap:13px">
+      <p class="muted" style="font-size:13px;margin:0" id="codeWho"></p>
+      <div class="codebox" id="codeVal">K7M2QX94</div>
+      <div class="note acc">El código vence en 7 días. Si no lo usa, lo vuelves a generar
+        sin perder nada.</div>
+      <div style="display:flex;gap:8px">
+        <button class="btn ghost" style="flex:1" onclick="toast('Código copiado')">Copiar código</button>
+        <button class="btn" style="flex:1" onclick="toast('Enlace de invitación copiado')">Copiar enlace</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL · NUEVA PLANTILLA ===== -->
+<div class="modal" id="tplModal">
+  <div class="mbox wide">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px">Nueva plantilla</b>
+      <button class="btn ghost sm" onclick="cerrar('tplModal')">✕</button>
+    </div>
+    <div style="padding:16px 16px 0">
+      <div class="note">Una plantilla es lo que armas una vez y reutilizas. Al asignarla a un
+        día, la sesión guarda su propia copia: cambiar la plantilla después no toca lo ya asignado.</div>
+    </div>
+    <div class="fgrid">
+      <div>
+        <label>Nombre <span class="req">*</span></label>
+        <input type="text" id="ntNombre" placeholder="Fuerza · Día A — tren inferior">
+        <div class="help">Es lo que verás en el calendario y en el panel al asignar.</div>
+      </div>
+      <div>
+        <label>Alcance <span class="req">*</span></label>
+        <select id="ntAlcance">
+          <option value="dia">Un día</option>
+          <option value="semana">Una semana completa</option>
+          <option value="ciclo">Un ciclo de varias semanas</option>
+        </select>
+        <div class="help">Una de semana o de ciclo se suelta en el calendario y llena
+          varios días de un golpe.</div>
+      </div>
+      <div class="full">
+        <label>Disciplina <span class="req">*</span></label>
+        <div class="pickers" id="ntDis"></div>
+        <div class="help">Define el color con el que aparece en el calendario y el filtro
+          con el que la encuentras.</div>
+      </div>
+      <div class="full">
+        <label>Descripción</label>
+        <textarea id="ntDesc" rows="2" placeholder="Bloque de fuerza máxima. Sentadilla pesada y accesorios de cadena posterior."></textarea>
+        <div class="help">Opcional, para ti. Es lo que se ve al pasar el cursor en el panel.</div>
+      </div>
+      <div class="full">
+        <div class="note acc">Al guardar se abre el constructor para agregar los bloques:
+          calentamiento, fuerza, WOD, cardio, estaciones de Hyrox, técnica, accesorio,
+          enfriamiento o White Board.</div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btn ghost" style="flex:1" onclick="cerrar('tplModal')">Cancelar</button>
+      <button class="btn" style="flex:1" onclick="crearPlantilla()">Guardar y agregar bloques</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== MODAL · NUEVO EJERCICIO ===== -->
+<div class="modal" id="newExModal">
+  <div class="mbox wide">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px" id="neTitle">Nuevo ejercicio</b>
+      <button class="btn ghost sm" onclick="cerrar('newExModal')">✕</button>
+    </div>
+    <div style="padding:16px 16px 0">
+      <div class="note" id="neNota">Queda privado de tu cuenta. Tus atletas lo ven y lo
+        registran igual que uno del catálogo, pero ningún otro coach lo encuentra.</div>
+    </div>
+    <div class="fgrid">
+      <div>
+        <label>Nombre <span class="req">*</span></label>
+        <input type="text" id="neNombre" placeholder="Sentadilla con cadena">
+      </div>
+      <div>
+        <label>Patrón de movimiento</label>
+        <select id="nePatron">
+          <option value="">— sin especificar —</option>
+          <option>Sentadilla</option><option>Bisagra de cadera</option>
+          <option>Empuje horizontal</option><option>Empuje vertical</option>
+          <option>Jalón horizontal</option><option>Jalón vertical</option>
+          <option>Zancada</option><option>Acarreo</option>
+          <option>Levantamiento olímpico</option><option>Monoestructural</option>
+        </select>
+      </div>
+      <div class="full">
+        <label>Qué registra el atleta <span class="req">*</span></label>
+        <div class="pickers" id="neMetricas"></div>
+        <div class="help">Lo más importante del formulario: decide la forma de la fila que el
+          atleta llena en el gimnasio. Si marcas repeticiones y carga, verá dos casillas.</div>
+      </div>
+      <div class="full">
+        <label>Disciplinas</label>
+        <div class="pickers" id="neDis"></div>
+      </div>
+      <div>
+        <label>Equipo</label>
+        <div class="pickers" id="neEquipo"></div>
+      </div>
+      <div>
+        <label>Nivel</label>
+        <select id="neNivel">
+          <option value="">— sin especificar —</option>
+          <option>Principiante</option><option>Intermedio</option><option>Avanzado</option>
+        </select>
+        <div style="margin-top:10px">
+          <label style="display:flex;align-items:center;gap:8px;text-transform:none;
+            letter-spacing:0;font-size:13px;color:var(--text)">
+            <input type="checkbox" id="neUni" style="width:auto">Es unilateral (un lado a la vez)</label>
+          <label style="display:flex;align-items:center;gap:8px;text-transform:none;
+            letter-spacing:0;font-size:13px;color:var(--text);margin-top:7px">
+            <input type="checkbox" id="neRM" style="width:auto">Sigue récord de una repetición máxima</label>
+        </div>
+      </div>
+      <div class="full">
+        <label>Indicaciones para el atleta</label>
+        <textarea id="neCue" rows="2" placeholder="Barra en la espalda alta. Baja hasta que el pliegue de la cadera pase la rodilla y sube sin dejar caer el pecho."></textarea>
+      </div>
+      <div class="full">
+        <label>Demostración en video</label>
+        <input type="url" id="neVideo" placeholder="https://www.youtube.com/watch?v=…">
+        <div class="help">Pega un enlace de YouTube o Vimeo mientras no tengas video propio.
+          <b style="color:var(--warning)">Un enlace se abre fuera de la app y necesita
+          conexión</b>, así que el atleta no lo podrá ver en un gimnasio sin señal. El video
+          que subas tú sí se guarda en su teléfono.</div>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="btn ghost" style="flex:1" onclick="cerrar('newExModal')">Cancelar</button>
+      <button class="btn" style="flex:1" onclick="crearEjercicio()">Guardar ejercicio</button>
+    </div>
+  </div>
+</div>
+
+<div class="tpv" id="tpv" style="display:none"></div>
+
 <div class="toast" id="toast"></div>
 
 <script>
@@ -504,13 +807,53 @@ const ATHLETES = [
   {n:'Carla Núñez', i:'CN', d:['correr'], c:'10 K · sem 6 de 10', cmp:88, last:'Hace 2 días'},
 ];
 const TEMPLATES = [
-  {n:'Fuerza · Día A', d:'fuerza', m:'6 ejercicios · 55 min'},
-  {n:'Fuerza · Día B', d:'fuerza', m:'5 ejercicios · 50 min'},
-  {n:'Metcon · AMRAP 20', d:'crossfit', m:'3 movimientos · 20 min'},
-  {n:'Test de Hyrox al 50 %', d:'hyrox', m:'16 tramos · 45 min'},
-  {n:'Rodaje largo 14 km', d:'correr', m:'Zona 2 · 80 min'},
-  {n:'Intervalos 6 × 800 m', d:'correr', m:'Zona 5 · 45 min'},
+  {n:'Fuerza · Día A', d:'fuerza', m:'6 ejercicios · 55 min', mia:true,
+   pb:['Calentamiento · movilidad de cadera y activación',
+       'Fuerza · sentadilla trasera 5×5 al RPE 8',
+       'Fuerza · peso muerto rumano 3×8',
+       'Accesorio · zancada caminando y plancha',
+       'Enfriamiento · respiración y estiramiento']},
+  {n:'Fuerza · Día B', d:'fuerza', m:'5 ejercicios · 50 min', mia:true,
+   pb:['Calentamiento · hombro y escápula',
+       'Fuerza · press de banca 5×5',
+       'Fuerza · remo con barra 4×8',
+       'Accesorio · dominadas y curl',
+       'Enfriamiento · movilidad de pectoral']},
+  {n:'Metcon · AMRAP 20', d:'crossfit', m:'3 movimientos · 20 min', mia:false,
+   pb:['Calentamiento · 2 rondas ligeras del WOD',
+       'WOD · AMRAP 20: 10 thrusters, 15 wall balls, 20 double unders',
+       'Enfriamiento · caminata y movilidad']},
+  {n:'Test de Hyrox al 50 %', d:'hyrox', m:'16 tramos · 45 min', mia:false,
+   pb:['Calentamiento · 800 m progresivo',
+       'Estaciones Hyrox · 8 tramos de 500 m con las 8 estaciones al 50 % de carga',
+       'White Board · cómo anotar el parcial de cada estación',
+       'Enfriamiento · 400 m suave']},
+  {n:'Rodaje largo 14 km', d:'correr', m:'Zona 2 · 80 min', mia:true,
+   pb:['Calentamiento · 10 min caminata y movilidad',
+       'Cardio · 14 km en zona 2, ritmo conversado',
+       'Enfriamiento · 5 min caminata']},
+  {n:'Intervalos 6 × 800 m', d:'correr', m:'Zona 5 · 45 min', mia:true,
+   pb:['Calentamiento · 15 min y 3 progresiones',
+       'Cardio · 6 × 800 m en zona 5 con 2:30 de trote',
+       'Enfriamiento · 10 min suave']},
 ];
+/** Lo que el coach asignó últimamente: acceso rápido en el panel. */
+const RECENT = [
+  {t:'Fuerza · Día A', c:'12 veces este mes'},
+  {t:'Intervalos 6 × 800 m', c:'7 veces'},
+  {t:'Metcon · AMRAP 20', c:'ayer'},
+  {t:'Rodaje largo 14 km', c:'hace 3 días'},
+];
+const DISCIPLINAS = ['fuerza','crossfit','hyrox','correr','ciclismo','triatlon'];
+const METRICAS = [
+  ['reps','Repeticiones'],['carga','Carga en kg'],['tiempo','Tiempo'],
+  ['distancia','Distancia en metros'],['calorias','Calorías'],['rondas','Rondas'],
+  ['altura','Altura en cm'],['rpe','RPE'],
+];
+const EQUIPO = ['barra','disco','mancuerna','kettlebell','anillas','cajón','cuerda',
+  'trineo','remo','bici','ninguno'];
+/** Cumplimiento promedio de las últimas 8 semanas. */
+const CMP_SEMANAS = [68, 72, 70, 76, 74, 79, 77, 81];
 const CATALOG = ['Sentadilla trasera','Sentadilla frontal','Peso muerto','Peso muerto rumano',
   'Press de banca','Press militar','Push press','Dominada','Remo con barra','Thruster',
   'Wall ball','Burpee','Double under','Kettlebell swing ruso','Zancada caminando','Plancha',
@@ -530,6 +873,47 @@ let WEEK = [
 ];
 let clipboard = null, selTpl = null, dragging = null;
 
+// ---------- gráficas del inicio ----------
+function renderCharts(){
+  // Un atleta con dos disciplinas cuenta en las dos: la suma pasa de 24 a propósito.
+  const cuenta = {};
+  ATHLETES.forEach(a => a.d.forEach(d => cuenta[d] = (cuenta[d] || 0) + 1));
+  const tope = Math.max(...Object.values(cuenta), 1);
+  const nombres = {fuerza:'Fuerza', crossfit:'CrossFit', hyrox:'Hyrox',
+    correr:'Correr', ciclismo:'Ciclismo', triatlon:'Triatlón'};
+
+  document.getElementById('disBars').innerHTML = DISCIPLINAS.map(d => {
+    const v = cuenta[d] || 0;
+    return `<div class="bar" onclick="toast('Filtraría tu lista por ${nombres[d]}')"
+      style="cursor:pointer">
+      <span>${nombres[d]}</span>
+      <span class="track"><i style="width:${(v / tope) * 100}%;background:var(--d-${d})"></i></span>
+      <b>${v}</b></div>`;
+  }).join('');
+
+  const max = Math.max(...CMP_SEMANAS);
+  document.getElementById('cmpCols').innerHTML = CMP_SEMANAS.map((v, i) => {
+    const cls = v < 60 ? 'low' : v < 75 ? 'mid' : '';
+    return `<div onclick="toast('Semana ${i + 1}: ${v} % de cumplimiento promedio')"
+      style="cursor:pointer" title="Semana ${i + 1} · ${v} %">
+      <div class="cb ${cls}" style="height:${(v / max) * 100}%"></div>
+      <small>${i === CMP_SEMANAS.length - 1 ? 'hoy' : 's' + (i + 1)}</small></div>`;
+  }).join('');
+}
+
+// ---------- 1b: los chats sin responder, arriba, con lo demás ----------
+function renderMsgAlerts(){
+  const pend = THREADS.filter(t => t.u);
+  document.getElementById('msgAlerts').innerHTML = pend.map(t => `
+    <div class="alert" style="border-left-color:var(--info)">
+      <span class="av">${t.i}</span>
+      <div class="at"><b>${t.n} te escribió y no has respondido</b>
+        <span>«${t.p}» · ${t.h}</span></div>
+      <span class="chip plain" style="color:var(--info);border-color:var(--info)">Mensaje</span>
+      <button class="btn sm" onclick="go('mensajes')">Responder</button>
+    </div>`).join('');
+}
+
 // ---------- navegación ----------
 const T = {inicio:'Inicio', atletas:'Atletas', prog:'Programación',
   plantillas:'Plantillas', ejercicios:'Biblioteca de ejercicios', mensajes:'Mensajes'};
@@ -548,33 +932,145 @@ function toast(m){
 }
 
 // ---------- atletas ----------
-document.getElementById('athBody').innerHTML = ATHLETES.map(a => {
-  const cls = a.cmp < 60 ? 'low' : a.cmp < 80 ? 'mid' : '';
-  return `<tr onclick="toast('Abriría la ficha de ${a.n}')">
-    <td><div style="display:flex;align-items:center;gap:9px">
-      <span class="av">${a.i}</span><b style="font-weight:600">${a.n}</b></div></td>
-    <td>${a.d.map(d => `<span class="chip ${d}">${d}</span>`).join(' ')}</td>
-    <td class="muted">${a.c}</td>
-    <td><span class="meter"><i class="${cls}" style="width:${a.cmp}%"></i></span>${a.cmp}%</td>
-    <td class="muted">${a.last}</td></tr>`;
-}).join('');
-document.getElementById('athSel').innerHTML =
-  ATHLETES.map(a => `<option>${a.n}</option>`).join('');
+function renderAth(){
+  const q = (document.getElementById('athq').value || '').trim().toLowerCase();
+  const lista = ATHLETES.filter(a => a.n.toLowerCase().includes(q));
+  document.getElementById('athEmpty').style.display = lista.length ? 'none' : 'block';
+  document.getElementById('athBody').innerHTML = lista.map(a => {
+    const cls = a.cmp < 60 ? 'low' : a.cmp < 80 ? 'mid' : '';
+    const i = ATHLETES.indexOf(a);
+    return `<tr onclick="toast('Abriría la ficha de ${a.n}')">
+      <td><div style="display:flex;align-items:center;gap:9px">
+        <span class="av">${a.i}</span><b style="font-weight:600">${a.n}</b></div></td>
+      <td>${a.d.map(d => `<span class="chip ${d}">${d}</span>`).join(' ')}</td>
+      <td class="muted">${a.c}</td>
+      <td><span class="meter"><i class="${cls}" style="width:${a.cmp}%"></i></span>${a.cmp}%</td>
+      <td class="muted">${a.last}</td>
+      <td><div class="rowacts">
+        <button class="iconbtn" title="Editar sus datos"
+          onclick="event.stopPropagation();toast('Abriría sus datos: nombre, disciplinas y nota')">✎</button>
+        <button class="iconbtn dang" title="Quitar de mi lista"
+          onclick="event.stopPropagation();archivarAtleta(${i})">✕</button>
+      </div></td></tr>`;
+  }).join('');
+}
+
+/**
+ * Quitar a un atleta NO lo borra: archiva la relación. Su histórico cuelga de
+ * ahí y borrarlo dejaría huecos en el progreso que él mismo registró.
+ */
+function archivarAtleta(i){
+  const a = ATHLETES[i];
+  if (!confirm(`¿Quitar a ${a.n} de tu lista?\n\n`
+    + `Se archiva la relación: deja de verte y de recibir sesiones tuyas, pero su `
+    + `histórico y lo que registró se conservan. Si vuelve, lo reactivas sin perder nada.`)) return;
+  ATHLETES.splice(i, 1);
+  renderAth(); renderCharts(); llenarSelector();
+  toast(`${a.n} archivado · su histórico se conserva`);
+}
+
+function llenarSelector(){
+  document.getElementById('athSel').innerHTML =
+    ATHLETES.map(a => `<option>${a.n}</option>`).join('');
+}
 
 // ---------- plantillas ----------
+let filtroTpl = 'todas';
+const FILTROS = [['todas','Todas'],['fuerza','Fuerza'],['crossfit','CrossFit'],
+  ['hyrox','Hyrox'],['correr','Correr'],['mias','Mías']];
+
+function setFiltro(f){ filtroTpl = f; renderTpl(); }
+
+function plantillasFiltradas(q){
+  return TEMPLATES.filter(t => {
+    if (filtroTpl === 'mias' && !t.mia) return false;
+    if (filtroTpl !== 'todas' && filtroTpl !== 'mias' && t.d !== filtroTpl) return false;
+    return !q || t.n.toLowerCase().includes(q);
+  });
+}
+
 function renderTpl(){
-  document.getElementById('tplList').innerHTML = TEMPLATES.map((t, i) =>
-    `<div class="tpl ${t.d} ${selTpl === i ? 'sel' : ''}" draggable="true"
-       ondragstart="dragTpl(${i})" onclick="pickTpl(${i})">
-      <b>${t.n}</b><span class="faint">${t.m}</span></div>`).join('');
-  document.getElementById('tplGrid').innerHTML = TEMPLATES.map(t =>
-    `<div class="card"><div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
-      <span class="chip ${t.d}">${t.d}</span></div>
-      <b style="font-size:14.5px;font-weight:650;display:block;margin-bottom:4px">${t.n}</b>
-      <div class="faint" style="margin-bottom:11px">${t.m}</div>
-      <div style="display:flex;gap:6px">
-        <button class="btn ghost sm" onclick="openBuilder('${t.n}')">Editar</button>
-        <button class="btn sm" onclick="go('prog')">Asignar</button></div></div>`).join('');
+  const chips = FILTROS.map(([f, n]) =>
+    `<button class="fchip ${filtroTpl === f ? 'on' : ''}" onclick="setFiltro('${f}')">${n}</button>`).join('');
+  document.getElementById('tplFilters').innerHTML = chips;
+  document.getElementById('tgFilters').innerHTML = chips;
+
+  // --- panel de la vista de programación
+  const qp = (document.getElementById('tplq')?.value || '').trim().toLowerCase();
+  const panel = plantillasFiltradas(qp);
+  document.getElementById('tplList').innerHTML = panel.length
+    ? panel.map(t => {
+        const i = TEMPLATES.indexOf(t);
+        return `<div class="tpl ${t.d} ${selTpl === i ? 'sel' : ''}" draggable="true"
+          ondragstart="dragTpl(${i})" onclick="pickTpl(${i})"
+          onmouseenter="verPrevia(${i},this)" onmouseleave="ocultarPrevia()">
+          <b>${t.n}</b><span class="faint">${t.m}</span>
+          <button class="iconbtn peek" title="Ver la sesión completa"
+            onclick="event.stopPropagation();ocultarPrevia();openBuilder('${q1(t.n)}')">👁</button>
+        </div>`;
+      }).join('')
+    : '<p class="faint" style="padding:4px 0">Ninguna plantilla con ese filtro.</p>';
+
+  document.getElementById('recentList').innerHTML = RECENT.map(r =>
+    `<div onclick="asignarRapido('${q1(r.t)}')" title="Asignar ${r.t} al día seleccionado">
+      <span>${r.t}</span><span class="c">${r.c}</span></div>`).join('');
+
+  // --- cuadrícula de la vista de plantillas
+  const qg = (document.getElementById('tgq')?.value || '').trim().toLowerCase();
+  const grid = plantillasFiltradas(qg);
+  document.getElementById('tplGrid').innerHTML = grid.length
+    ? grid.map(t => {
+        const i = TEMPLATES.indexOf(t);
+        return `<div class="card" style="position:relative">
+          <button class="iconbtn dang" style="position:absolute;top:10px;right:10px"
+            title="Eliminar esta plantilla" onclick="borrarPlantilla(${i})">✕</button>
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px">
+            <span class="chip ${t.d}">${t.d}</span>
+            ${t.mia ? '<span class="chip acc">Mía</span>' : ''}</div>
+          <b style="font-size:14.5px;font-weight:650;display:block;margin-bottom:4px;
+            padding-right:34px">${t.n}</b>
+          <div class="faint" style="margin-bottom:11px">${t.m}</div>
+          <div style="display:flex;gap:6px">
+            <button class="btn ghost sm" onclick="openBuilder('${q1(t.n)}',undefined,true)">Editar</button>
+            <button class="btn sm" onclick="go('prog')">Asignar</button></div></div>`;
+      }).join('')
+    : '<p class="muted">Ninguna plantilla con ese filtro. Crea una nueva con el botón de arriba.</p>';
+}
+
+/** Vista previa al pasar el cursor: qué trae la plantilla, sin abrirla. */
+function verPrevia(i, el){
+  const t = TEMPLATES[i];
+  const v = document.getElementById('tpv');
+  v.innerHTML = `<b>${t.n}</b>
+    <span class="chip ${t.d}">${t.d}</span>
+    <span class="faint" style="margin-left:6px">${t.m}</span>
+    ${t.pb.map(b => {
+      const i = b.indexOf(' · ');
+      return i < 0 ? `<div class="pb">${b}</div>`
+        : `<div class="pb">${b.slice(0, i)} · <i>${b.slice(i + 3)}</i></div>`;
+    }).join('')}`;
+  const r = el.getBoundingClientRect();
+  v.style.display = 'block';
+  const alto = v.offsetHeight;
+  v.style.left = Math.max(12, r.left - 288) + 'px';
+  v.style.top = Math.min(Math.max(12, r.top), window.innerHeight - alto - 12) + 'px';
+}
+function ocultarPrevia(){ document.getElementById('tpv').style.display = 'none'; }
+
+function borrarPlantilla(i){
+  const t = TEMPLATES[i];
+  if (!confirm(`¿Eliminar la plantilla "${t.n}"?\n\n`
+    + `Las sesiones que ya asignaste con ella NO se tocan: cada una guardó su propia copia.`)) return;
+  TEMPLATES.splice(i, 1);
+  selTpl = null; renderTpl();
+  toast(`"${t.n}" eliminada · lo ya asignado sigue intacto`);
+}
+
+function asignarRapido(nombre){
+  const i = TEMPLATES.findIndex(t => t.n === nombre);
+  if (i < 0) return toast('Esa plantilla ya no existe');
+  pickTpl(i);
+  go('prog');
 }
 function pickTpl(i){
   selTpl = selTpl === i ? null : i;
@@ -595,14 +1091,44 @@ function renderWeek(){
       <div class="dhead"><b>${d.d}</b><span>${d.n}</span></div>
       ${d.s.map((s, si) => `<div class="sess ${s.dis}" draggable="true"
           ondragstart="event.stopPropagation();dragSess(${di},${si})"
-          onclick="event.stopPropagation();openBuilder('${s.t}',${di})">
+          onclick="event.stopPropagation();openBuilder('${q1(s.t)}',${di},false,${si})">
           <b>${s.t}</b>
           <span class="st ${s.st}">${s.st === 'hecha' ? '✓ Completada'
-            : s.st === 'pub' ? 'Publicada' : 'Borrador'}</span></div>`).join('')}
+            : s.st === 'pub' ? 'Publicada' : 'Borrador'}</span>
+          <button class="sx" title="Quitar esta sesión del día"
+            onclick="event.stopPropagation();borrarSesion(${di},${si})">✕</button></div>`).join('')}
       <button class="addday" onclick="event.stopPropagation();openBuilder('Nueva sesión',${di})">+</button>
     </div>`).join('');
 }
 function dragSess(di, si){ dragging = {kind:'sess', di, si}; }
+
+/**
+ * Quitar una sesión del día. Si el atleta ya registró algo en ella, se archiva
+ * en lugar de borrarse: lo que él anotó no se toca (regla 4).
+ */
+function borrarSesion(di, si, cerrarDespues){
+  const d = WEEK[di], ses = d.s[si];
+  if (!ses) return;
+  const hecha = ses.st === 'hecha';
+  const aviso = hecha
+    ? `"${ses.t}" del ${d.d} ${d.n} ya la entrenó el atleta.\n\n`
+      + `Se archiva en lugar de borrarse: sale de su calendario pero lo que registró se `
+      + `conserva en su histórico.`
+    : `¿Quitar "${ses.t}" del ${d.d} ${d.n}?`;
+  if (!confirm(aviso)) return;
+  d.s.splice(si, 1);
+  renderWeek();
+  if (cerrarDespues) closeBuilder();
+  toast(hecha ? `"${ses.t}" archivada · el registro del atleta se conserva`
+              : `"${ses.t}" quitada del ${d.d} ${d.n}`);
+}
+
+/** El mismo borrado, desde el botón del encabezado del constructor. */
+let enEdicion = null;
+function borrarDesdeConstructor(){
+  if (!enEdicion) return toast('Esta sesión todavía no está en ningún día');
+  borrarSesion(enEdicion.di, enEdicion.si, true);
+}
 function dropOn(di, el){
   event.preventDefault(); el.classList.remove('over');
   if (!dragging) return;
@@ -664,13 +1190,29 @@ const BLOCK_TYPES = [
 const WB_PH = 'AMRAP 20 min&#10;10 thrusters 43 kg&#10;15 wall balls 9 kg&#10;20 double unders&#10;&#10;Rx+: thrusters 52 kg&#10;Escalado: wall ball 6 kg, single unders';
 let BLOCKS = [];
 
-function openBuilder(name, di){
+function openBuilder(name, di, esPlantilla, si){
   const nueva = name === 'Nueva sesión';
-  document.getElementById('bTitle').textContent = nueva ? 'Nueva sesión' : 'Editar sesión';
+  enEdicion = (di !== undefined && si !== undefined) ? {di, si} : null;
+
+  document.getElementById('bTitle').textContent = esPlantilla
+    ? 'Editar plantilla' : nueva ? 'Nueva sesión' : 'Editar sesión';
   document.getElementById('bName').value = nueva ? '' : name;
+
+  // Una plantilla no tiene borrador ni publicación: se guarda y ya. El borrador
+  // y el publicar son de las SESIONES, donde sí deciden si el atleta la ve.
+  document.getElementById('bState').style.display = esPlantilla ? 'none' : '';
+  document.getElementById('bDel').style.display = (esPlantilla || enEdicion) ? '' : 'none';
+  document.getElementById('bDel').title = esPlantilla
+    ? 'Eliminar esta plantilla' : 'Quitar esta sesión del día';
+  document.getElementById('bFoot').innerHTML = esPlantilla
+    ? `<button class="btn" style="flex:1" onclick="guardarPlantilla()">Guardar plantilla</button>`
+    : `<button class="btn ghost" style="flex:1" onclick="saveDraft()">Guardar borrador</button>
+       <button class="btn" style="flex:1" onclick="publish()">Publicar</button>`;
+
   const d = di !== undefined ? WEEK[di] : WEEK[4];
-  document.getElementById('bSub').textContent =
-    document.getElementById('athSel').value + ' · ' + d.d.toLowerCase() + ' ' + d.n;
+  document.getElementById('bSub').textContent = esPlantilla
+    ? 'Plantilla · se reutiliza en cualquier día'
+    : document.getElementById('athSel').value + ' · ' + d.d.toLowerCase() + ' ' + d.n;
   BLOCKS = nueva ? [] : [
     {n:'Calentamiento', tag:'preparación', c:'plain', kind:'ejercicios',
      ex:[{n:'Movilidad de cadera 90/90', f:[['Series','2'],['Reps','8']]}]},
@@ -741,6 +1283,10 @@ document.getElementById('blkModal').onclick = e => {
   if (e.target.id === 'blkModal') e.target.classList.remove('on');
 };
 function saveDraft(){ closeBuilder(); toast('Guardada como borrador · el atleta no la ve'); }
+function guardarPlantilla(){
+  closeBuilder();
+  toast('Plantilla guardada · lo que ya asignaste con ella no cambió');
+}
 function publish(){
   closeBuilder();
   toast('Publicada · se congeló la prescripción y se notificó al atleta');
@@ -779,29 +1325,163 @@ document.getElementById('exModal').onclick = e => {
 };
 
 // ---------- biblioteca ----------
+/** Escapa un texto para meterlo entre comillas simples dentro de un atributo HTML. */
+const q1 = t => String(t).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
+
 function renderLib(){
   const q = (document.getElementById('exq').value || '').toLowerCase();
   const all = [...MINE, ...CATALOG].filter(x => x.toLowerCase().includes(q));
-  document.getElementById('libGrid').innerHTML = all.map(x => `<div class="card">
-    <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-      ${MINE.includes(x) ? '<span class="chip acc">Mío</span>' : '<span class="chip plain">Catálogo</span>'}
-    </div><b style="font-size:14px;font-weight:650;display:block;margin-bottom:4px">${x}</b>
-    <div class="faint">${MINE.includes(x) ? 'Solo tú y tus atletas lo ven' : 'Incluido en PR-LAB'}</div>
-    </div>`).join('') || '<p class="muted">Ningún ejercicio coincide.</p>';
+  document.getElementById('libGrid').innerHTML = all.map(x => {
+    const mio = MINE.includes(x);
+    // El catálogo que viene con PR-LAB no se edita ni se borra: es el mismo para
+    // todos los coaches. Para ajustarlo se duplica y se edita la copia.
+    const acciones = mio
+      ? `<button class="btn ghost sm" onclick="openAltaEjercicio('${q1(x)}')">Editar</button>
+         <button class="iconbtn dang" title="Eliminar este ejercicio"
+           onclick="borrarEjercicio('${q1(x)}')">✕</button>`
+      : `<button class="btn ghost sm" onclick="duplicar('${q1(x)}')">Duplicar para editar</button>`;
+    return `<div class="card">
+      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
+        ${mio ? '<span class="chip acc">Mío</span>'
+              : '<span class="chip plain">Catálogo · solo lectura</span>'}
+      </div>
+      <b style="font-size:14px;font-weight:650;display:block;margin-bottom:4px">${x}</b>
+      <div class="faint" style="margin-bottom:11px">${mio
+        ? 'Solo tú y tus atletas lo ven. Lo puedes editar y eliminar.'
+        : 'Viene con PR-LAB. No se edita ni se elimina; duplícalo y ajusta tu copia.'}</div>
+      <div style="display:flex;gap:6px;align-items:center">${acciones}</div></div>`;
+  }).join('') || '<p class="muted">Ningún ejercicio coincide.</p>';
 }
-function newExercise(){
-  const n = prompt('Nombre del ejercicio nuevo');
-  if (!n) return;
-  MINE.push(n + ' (mío)'); renderLib();
-  toast(`"${n}" creado · queda privado de tu cuenta`);
+
+function duplicar(nombre){
+  const copia = nombre + ' (mi versión)';
+  MINE.push(copia); renderLib();
+  toast(`Copia creada · edítala sin tocar el catálogo`);
+  openAltaEjercicio(copia);
+}
+
+function borrarEjercicio(nombre){
+  if (!confirm(`¿Eliminar "${nombre}"?\n\n`
+    + `Si ya lo usaste en alguna sesión, esa sesión lo sigue mostrando: se archiva en `
+    + `lugar de borrarse para no dejar huecos en el histórico del atleta.`)) return;
+  MINE.splice(MINE.indexOf(nombre), 1);
+  renderLib();
+  toast(`"${nombre}" eliminado de tu biblioteca`);
+}
+
+// ---------- formularios: alta de atleta, plantilla y ejercicio ----------
+function cerrar(id){ document.getElementById(id).classList.remove('on'); }
+['athModal','codeModal','tplModal','newExModal'].forEach(id => {
+  document.getElementById(id).onclick = e => { if (e.target.id === id) cerrar(id); };
+});
+
+/** Chips que se prenden y apagan. Devuelve los elegidos al leerlos. */
+function pickers(contenedor, opciones, multi = true){
+  const el = document.getElementById(contenedor);
+  el.innerHTML = opciones.map(o => {
+    const [v, n] = Array.isArray(o) ? o : [o, o];
+    return `<button class="fchip" data-v="${v}">${n}</button>`;
+  }).join('');
+  el.querySelectorAll('.fchip').forEach(b => b.onclick = () => {
+    if (!multi) el.querySelectorAll('.fchip').forEach(x => x.classList.remove('on'));
+    b.classList.toggle('on');
+  });
+}
+const elegidos = id => [...document.getElementById(id).querySelectorAll('.fchip.on')]
+  .map(b => b.dataset.v);
+
+// --- 2a: alta de atleta
+function openAltaAtleta(){
+  ['naNombre','naMail','naNota'].forEach(i => document.getElementById(i).value = '');
+  pickers('naDis', DISCIPLINAS.map(d => [d, d[0].toUpperCase() + d.slice(1)]));
+  document.getElementById('athModal').classList.add('on');
+  setTimeout(() => document.getElementById('naNombre').focus(), 60);
+}
+function crearInvitacion(){
+  const nombre = document.getElementById('naNombre').value.trim();
+  if (!nombre) return toast('Falta el nombre del atleta');
+  const mail = document.getElementById('naMail').value.trim();
+  const alfabeto = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const codigo = Array.from({length:8}, () =>
+    alfabeto[Math.floor(Math.random() * alfabeto.length)]).join('');
+
+  ATHLETES.push({n:nombre, i:nombre.split(' ').map(x => x[0]).slice(0,2).join('').toUpperCase(),
+    d:elegidos('naDis').length ? elegidos('naDis') : ['fuerza'],
+    c:'Sin ciclo', cmp:0, last:'Nunca'});
+
+  cerrar('athModal');
+  document.getElementById('codeVal').textContent = codigo;
+  document.getElementById('codeWho').textContent = mail
+    ? `Le enviamos la invitación a ${mail}. También le puedes pasar el código directo.`
+    : `Pásale este código a ${nombre} para que se registre desde su teléfono.`;
+  document.getElementById('codeModal').classList.add('on');
+  renderAth(); renderCharts(); llenarSelector();
+}
+
+// --- 4b: alta de plantilla
+function openAltaPlantilla(){
+  document.getElementById('ntNombre').value = '';
+  document.getElementById('ntDesc').value = '';
+  pickers('ntDis', DISCIPLINAS.map(d => [d, d[0].toUpperCase() + d.slice(1)]), false);
+  document.getElementById('tplModal').classList.add('on');
+  setTimeout(() => document.getElementById('ntNombre').focus(), 60);
+}
+function crearPlantilla(){
+  const nombre = document.getElementById('ntNombre').value.trim();
+  if (!nombre) return toast('Falta el nombre de la plantilla');
+  const dis = elegidos('ntDis')[0];
+  if (!dis) return toast('Elige una disciplina');
+  const alcance = document.getElementById('ntAlcance').value;
+  TEMPLATES.unshift({n:nombre, d:dis, mia:true,
+    m:alcance === 'dia' ? 'Sin bloques todavía'
+      : alcance === 'semana' ? 'Semana · sin bloques todavía' : 'Ciclo · sin bloques todavía',
+    pb:['Todavía no tiene bloques']});
+  cerrar('tplModal'); renderTpl();
+  openBuilder(nombre, undefined, true);
+  toast('Plantilla creada · agrégale sus bloques');
+}
+
+// --- 4d: alta y edición de ejercicio
+function openAltaEjercicio(nombreExistente){
+  const editando = typeof nombreExistente === 'string';
+  document.getElementById('neTitle').textContent = editando
+    ? 'Editar mi ejercicio' : 'Nuevo ejercicio';
+  document.getElementById('neNota').textContent = editando
+    ? 'Este ejercicio es tuyo, así que lo puedes cambiar o eliminar. Los del catálogo de PR-LAB no.'
+    : 'Queda privado de tu cuenta. Tus atletas lo ven y lo registran igual que uno del catálogo, pero ningún otro coach lo encuentra.';
+  document.getElementById('neNombre').value = editando ? nombreExistente : '';
+  ['neCue','neVideo'].forEach(i => document.getElementById(i).value = '');
+  document.getElementById('neUni').checked = false;
+  document.getElementById('neRM').checked = false;
+  pickers('neMetricas', METRICAS);
+  pickers('neDis', DISCIPLINAS.map(d => [d, d[0].toUpperCase() + d.slice(1)]));
+  pickers('neEquipo', EQUIPO);
+  document.getElementById('newExModal').classList.add('on');
+  setTimeout(() => document.getElementById('neNombre').focus(), 60);
+}
+function crearEjercicio(){
+  const nombre = document.getElementById('neNombre').value.trim();
+  if (!nombre) return toast('Falta el nombre del ejercicio');
+  const met = elegidos('neMetricas');
+  if (!met.length) return toast('Marca al menos una cosa que el atleta registre');
+
+  const url = document.getElementById('neVideo').value.trim();
+  if (url && !/^https:\/\/(www\.|m\.|player\.)?(youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com|instagram\.com)\//.test(url)) {
+    return toast('El enlace debe ser https de YouTube, Vimeo, Drive o Instagram');
+  }
+
+  if (!MINE.includes(nombre)) MINE.push(nombre);
+  cerrar('newExModal'); renderLib();
+  toast(url ? `"${nombre}" guardado · el video se abrirá fuera de la app`
+            : `"${nombre}" guardado en tu biblioteca`);
 }
 
 // ---------- mensajes ----------
 const THREADS = [
-  {n:'Pablo Reyes', i:'PR', p:'La rodilla me molestó en la serie 4…', u:true},
-  {n:'Mariana Ortiz', i:'MO', p:'Esta semana viajo, ¿puedo mover…', u:true},
-  {n:'Diego Salas', i:'DS', p:'Listo, quedo en 100 kg entonces', u:false},
-  {n:'Sofía Lara', i:'SL', p:'¿El test lo hago el sábado?', u:true},
+  {n:'Pablo Reyes', i:'PR', p:'La rodilla me molestó en la serie 4…', u:true, h:'ayer 20:14'},
+  {n:'Mariana Ortiz', i:'MO', p:'Esta semana viajo, ¿puedo mover el jueves?', u:true, h:'hoy 8:40'},
+  {n:'Diego Salas', i:'DS', p:'Listo, quedo en 100 kg entonces', u:false, h:'hace 2 días'},
+  {n:'Sofía Lara', i:'SL', p:'¿El test lo hago el sábado?', u:true, h:'hoy 7:55'},
 ];
 document.getElementById('ilist').innerHTML = THREADS.map((t, i) =>
   `<div class="ith ${i === 0 ? 'on' : ''}" onclick="openThread(${i},this)">
@@ -823,6 +1503,7 @@ function renderThread(){
 }
 
 // ---------- arranque ----------
+renderAth(); llenarSelector(); renderCharts(); renderMsgAlerts();
 renderTpl(); renderWeek(); renderLib(); renderThread();
 document.getElementById('hactions').innerHTML = '';
 </script>
