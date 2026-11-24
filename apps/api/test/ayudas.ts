@@ -12,32 +12,28 @@ export interface Contexto {
 }
 
 /** Tablas que cada prueba deja limpias. El catálogo no se toca. */
-const TABLAS = [
-  'sesiones',
-  'intentos_acceso',
-  'invitations',
-  // Las asignaciones y plantillas van antes que users: cuelgan de él.
-  'assignment_items',
-  'assignment_blocks',
-  'assignments',
-  'template_items',
-  'template_blocks',
-  'templates',
-  'cycles',
-  'coach_athlete',
-  'coach_profiles',
-  'athlete_profiles',
-  'audit_log',
-  'users',
-];
-
 /**
- * Los ejercicios del coach se borran aparte: la tabla también tiene los 191
- * del catálogo semilla, que NO se tocan. Si se truncara `exercises`, cada
- * prueba dejaría la base sin catálogo y las siguientes fallarían sin razón
- * aparente.
+ * Qué se limpia entre pruebas, y por qué NO con TRUNCATE.
+ *
+ * `TRUNCATE users CASCADE` parece lo obvio y es una trampa: TRUNCATE en
+ * cascada no borra las filas que apuntan al usuario, **vacía la tabla
+ * entera**. Y `exercises.owner_coach_id` referencia a `users`, así que
+ * truncar usuarios se llevaba los 191 ejercicios del catálogo semilla. Cada
+ * prueba quedaba sin catálogo y las que lo usaban fallaban con un 422 que no
+ * decía nada.
+ *
+ * Con DELETE las cascadas trabajan por fila: borrar al coach se lleva sus
+ * plantillas, sus asignaciones y SUS ejercicios, y el catálogo público
+ * (`owner_coach_id IS NULL`) se queda donde estaba.
  */
-const BORRA_EJERCICIOS_DE_COACH = `DELETE FROM exercises WHERE owner_coach_id IS NOT NULL`;
+const LIMPIEZA = [
+  // Cuelgan de users por cascada: perfiles, relación, invitaciones, sesiones,
+  // plantillas, asignaciones y los ejercicios propios del coach.
+  'DELETE FROM users',
+  // Estas dos no cuelgan de users: una guarda correos, la otra pone NULL.
+  'DELETE FROM intentos_acceso',
+  'DELETE FROM audit_log',
+];
 
 export async function levantar(): Promise<Contexto> {
   process.env.JWT_SECRET ??= 'secreto-de-pruebas-con-mas-de-32-caracteres';
@@ -60,8 +56,9 @@ export async function levantar(): Promise<Contexto> {
 }
 
 export async function limpiar(pool: Pool): Promise<void> {
-  await pool.query(`TRUNCATE ${TABLAS.join(', ')} RESTART IDENTITY CASCADE`);
-  await pool.query(BORRA_EJERCICIOS_DE_COACH);
+  for (const sentencia of LIMPIEZA) {
+    await pool.query(sentencia);
+  }
 }
 
 /** Un ejercicio del catálogo público, para usarlo en plantillas y sesiones. */
