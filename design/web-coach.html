@@ -366,6 +366,34 @@ h3.sec:first-child{margin-top:0}
 .codebox{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:21px;
   letter-spacing:.14em;font-weight:700;color:var(--accent);background:var(--accent-tint);
   border:1px dashed var(--accent);border-radius:var(--r-sm);padding:13px;text-align:center}
+
+/* ---------- detalle y ficha ---------- */
+.dlist{display:flex;flex-direction:column}
+.dlist .dr{display:grid;grid-template-columns:1fr 92px 54px;align-items:center;gap:10px;
+  padding:10px 0;border-bottom:1px solid var(--border);font-size:13px}
+.dlist .dr:last-child{border-bottom:none}
+.dlist .who{display:flex;align-items:center;gap:8px}
+.dlist b{font-variant-numeric:tabular-nums;text-align:right;font-size:13px}
+.delta{font-size:11.5px;font-weight:700;text-align:right}
+.delta.up{color:var(--success)} .delta.dn{color:var(--danger)} .delta.eq{color:var(--text-faint)}
+
+.fichahead{display:flex;align-items:center;gap:13px;padding:16px;
+  border-bottom:1px solid var(--border)}
+.fichahead .av{width:46px;height:46px;font-size:15px}
+.dl{display:grid;grid-template-columns:148px 1fr;gap:0}
+.dl>dt{padding:10px 0;font-size:11px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--text-faint);font-weight:700;border-top:1px solid var(--border)}
+.dl>dd{padding:10px 0;margin:0;font-size:13.5px;border-top:1px solid var(--border);
+  line-height:1.5}
+.dl>dt:first-of-type,.dl>dd:first-of-type{border-top:none}
+.src{font-size:10px;font-weight:700;padding:2px 6px;border-radius:var(--r-pill);
+  border:1px solid var(--border);color:var(--text-faint);margin-left:7px;white-space:nowrap}
+.src.ath{color:var(--info);border-color:var(--info)}
+.src.coach{color:var(--accent);border-color:var(--accent)}
+.vacio{color:var(--text-faint);font-style:italic}
+.linkrow{display:flex;align-items:center;gap:7px;font-size:12.5px;margin-top:9px}
+.linkrow a{color:var(--info);text-decoration:none;font-weight:600}
+.linkrow a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -473,6 +501,7 @@ h3.sec:first-child{margin-top:0}
           style="flex:1;min-width:220px" oninput="renderAth()">
         <button class="btn" onclick="openAltaAtleta()">+ Dar de alta un atleta</button>
       </div>
+      <div class="filters" id="athFilters"></div>
       <table class="tbl">
         <thead><tr><th>Atleta</th><th>Disciplinas</th><th>Ciclo</th><th>Cumplimiento</th>
           <th>Última sesión</th><th style="text-align:right">Acciones</th></tr></thead>
@@ -570,9 +599,38 @@ h3.sec:first-child{margin-top:0}
   </div>
   <div class="bb">
     <div style="margin-bottom:14px">
-      <label class="faint" style="display:block;margin-bottom:5px">NOMBRE DE LA SESIÓN</label>
+      <label class="faint" style="display:block;margin-bottom:5px"
+        id="bNameLbl">NOMBRE DE LA SESIÓN</label>
       <input type="text" id="bName" style="width:100%" value="Fuerza · Bloque 3 — Día A">
     </div>
+
+    <!-- Solo en modo plantilla: los datos y los bloques en la misma pantalla. -->
+    <div id="bMeta" style="display:none;margin-bottom:18px">
+      <div style="display:grid;gap:12px;grid-template-columns:1fr 1fr">
+        <div>
+          <label class="faint" style="display:block;margin-bottom:5px">DISCIPLINA</label>
+          <div class="pickers" id="bDis"></div>
+        </div>
+        <div>
+          <label class="faint" style="display:block;margin-bottom:5px">ALCANCE</label>
+          <select id="bAlcance" style="width:100%">
+            <option value="dia">Un día</option>
+            <option value="semana">Una semana completa</option>
+            <option value="ciclo">Un ciclo de varias semanas</option>
+          </select>
+        </div>
+      </div>
+      <div style="margin-top:12px">
+        <label class="faint" style="display:block;margin-bottom:5px">DESCRIPCIÓN</label>
+        <textarea id="bDesc" rows="2" style="width:100%"
+          placeholder="Bloque de fuerza máxima. Sentadilla pesada y accesorios de cadena posterior."></textarea>
+        <div class="help">Es lo que se ve al pasar el cursor en el panel de programación.</div>
+      </div>
+      <div class="note" style="margin-top:13px">Al asignarla a un día, la sesión guarda su
+        propia copia. Cambiar esta plantilla después no toca lo que ya asignaste.</div>
+      <h3 class="sec" style="margin-bottom:0">Bloques de la plantilla</h3>
+    </div>
+
     <div id="blocks"></div>
     <button class="addblk" onclick="openBlockMenu()">+ Agregar bloque</button>
     <div style="margin-top:16px">
@@ -637,6 +695,16 @@ h3.sec:first-child{margin-top:0}
         <textarea id="naNota" rows="2" placeholder="Viene de lesión de rodilla, entrena martes y jueves"></textarea>
         <div class="help">Privada. El atleta no la ve.</div>
       </div>
+      <div class="full">
+        <div class="note">
+          <b style="color:var(--text)">Lo que el atleta llena al registrarse, no tú:</b>
+          fecha de nacimiento, sexo, peso, altura, enfermedades, lesiones, medicamentos,
+          contacto de emergencia y el cuestionario de aptitud física.
+          <div style="margin-top:7px">Son datos de salud: bajo la LFPDPPP son sensibles y
+          necesitan su consentimiento. Él los conoce mejor que nadie y los puede corregir
+          cuando quiera. Tú los ves en su ficha y agregas tus notas privadas encima.</div>
+        </div>
+      </div>
     </div>
     <div class="mf">
       <button class="btn ghost" style="flex:1" onclick="cerrar('athModal')">Cancelar</button>
@@ -661,57 +729,6 @@ h3.sec:first-child{margin-top:0}
         <button class="btn ghost" style="flex:1" onclick="toast('Código copiado')">Copiar código</button>
         <button class="btn" style="flex:1" onclick="toast('Enlace de invitación copiado')">Copiar enlace</button>
       </div>
-    </div>
-  </div>
-</div>
-
-<!-- ===== MODAL · NUEVA PLANTILLA ===== -->
-<div class="modal" id="tplModal">
-  <div class="mbox wide">
-    <div class="mh" style="display:flex;align-items:center;gap:10px">
-      <b style="flex:1;font-size:14.5px">Nueva plantilla</b>
-      <button class="btn ghost sm" onclick="cerrar('tplModal')">✕</button>
-    </div>
-    <div style="padding:16px 16px 0">
-      <div class="note">Una plantilla es lo que armas una vez y reutilizas. Al asignarla a un
-        día, la sesión guarda su propia copia: cambiar la plantilla después no toca lo ya asignado.</div>
-    </div>
-    <div class="fgrid">
-      <div>
-        <label>Nombre <span class="req">*</span></label>
-        <input type="text" id="ntNombre" placeholder="Fuerza · Día A — tren inferior">
-        <div class="help">Es lo que verás en el calendario y en el panel al asignar.</div>
-      </div>
-      <div>
-        <label>Alcance <span class="req">*</span></label>
-        <select id="ntAlcance">
-          <option value="dia">Un día</option>
-          <option value="semana">Una semana completa</option>
-          <option value="ciclo">Un ciclo de varias semanas</option>
-        </select>
-        <div class="help">Una de semana o de ciclo se suelta en el calendario y llena
-          varios días de un golpe.</div>
-      </div>
-      <div class="full">
-        <label>Disciplina <span class="req">*</span></label>
-        <div class="pickers" id="ntDis"></div>
-        <div class="help">Define el color con el que aparece en el calendario y el filtro
-          con el que la encuentras.</div>
-      </div>
-      <div class="full">
-        <label>Descripción</label>
-        <textarea id="ntDesc" rows="2" placeholder="Bloque de fuerza máxima. Sentadilla pesada y accesorios de cadena posterior."></textarea>
-        <div class="help">Opcional, para ti. Es lo que se ve al pasar el cursor en el panel.</div>
-      </div>
-      <div class="full">
-        <div class="note acc">Al guardar se abre el constructor para agregar los bloques:
-          calentamiento, fuerza, WOD, cardio, estaciones de Hyrox, técnica, accesorio,
-          enfriamiento o White Board.</div>
-      </div>
-    </div>
-    <div class="mf">
-      <button class="btn ghost" style="flex:1" onclick="cerrar('tplModal')">Cancelar</button>
-      <button class="btn" style="flex:1" onclick="crearPlantilla()">Guardar y agregar bloques</button>
     </div>
   </div>
 </div>
@@ -792,19 +809,84 @@ h3.sec:first-child{margin-top:0}
   </div>
 </div>
 
+<!-- ===== MODAL · DETALLE DE UNA GRÁFICA ===== -->
+<div class="modal" id="detModal">
+  <div class="mbox wide">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px" id="detTitle"></b>
+      <button class="btn ghost sm" onclick="cerrar('detModal')">✕</button>
+    </div>
+    <div style="padding:16px" id="detBody"></div>
+  </div>
+</div>
+
+<!-- ===== MODAL · FICHA DEL ATLETA ===== -->
+<div class="modal" id="fichaModal">
+  <div class="mbox wide" style="max-height:88vh;display:flex;flex-direction:column">
+    <div class="fichahead">
+      <span class="av" id="fichaAv">DS</span>
+      <div style="flex:1;min-width:0">
+        <b id="fichaName" style="font-size:16px;display:block">Diego Salas</b>
+        <div id="fichaSub" style="margin-top:4px"></div>
+      </div>
+      <button class="btn ghost sm" onclick="cerrar('fichaModal')">✕</button>
+    </div>
+    <div id="fichaBody" style="overflow:auto;flex:1"></div>
+    <div class="mf" id="fichaFoot"></div>
+  </div>
+</div>
+
 <div class="tpv" id="tpv" style="display:none"></div>
 
 <div class="toast" id="toast"></div>
 
 <script>
 // ---------- datos ----------
+/**
+ * `f` es la ficha. Quién llena cada campo importa y está marcado:
+ *   'ath'   lo llenó el atleta al registrarse, desde su teléfono
+ *   'coach' lo escribió el coach
+ * Los datos de salud los pone el atleta a propósito: son suyos, él los conoce
+ * mejor, y bajo la LFPDPPP son datos sensibles que necesitan su consentimiento
+ * explícito. Que el coach teclee las enfermedades de alguien más es peor
+ * legalmente y peor en la práctica.
+ */
 const ATHLETES = [
-  {n:'Diego Salas', i:'DS', d:['fuerza','hyrox'], c:'Fuerza · sem 3 de 6', cmp:83, last:'Hoy'},
-  {n:'Mariana Ortiz', i:'MO', d:['crossfit'], c:'Metcon · sem 2 de 4', cmp:62, last:'Hace 5 días'},
-  {n:'Pablo Reyes', i:'PR', d:['triatlon','correr'], c:'Base · sem 5 de 8', cmp:91, last:'Ayer'},
-  {n:'Sofía Lara', i:'SL', d:['hyrox'], c:'Hyrox · sem 4 de 8', cmp:48, last:'Ayer'},
-  {n:'Iván Cruz', i:'IC', d:['fuerza'], c:'Fuerza · sem 1 de 6', cmp:95, last:'Hace 3 h'},
-  {n:'Carla Núñez', i:'CN', d:['correr'], c:'10 K · sem 6 de 10', cmp:88, last:'Hace 2 días'},
+  {n:'Diego Salas', i:'DS', d:['fuerza','hyrox'], c:'Fuerza · sem 3 de 6', cmp:83, last:'Hoy',
+   f:{nac:'1991-04-18', peso:84.2, pesoFecha:'hace 3 días', altura:178, sexo:'Masculino',
+      mail:'diego.salas@ejemplo.com', tel:'+52 81 1234 5678',
+      enf:'Hipertensión leve, controlada con medicamento desde 2023. Asma inducida por ejercicio en frío.',
+      les:'Rotura parcial del menisco medial derecho, operada en marzo de 2024. Alta médica en agosto de 2024, sin restricción. Molestia ocasional en sentadilla profunda con carga alta.',
+      meds:'Losartán 50 mg al día. Salbutamol de rescate antes de sesiones en exterior con frío.',
+      notasAth:'Entreno antes de las 7 de la mañana. Los jueves viajo y a veces no alcanzo la sesión.',
+      notasCoach:'Techo de sentadilla por la rodilla: no bajar de 90° con más de 120 kg. Responde bien a volumen alto y mal a intensidad alta dos días seguidos. Quiere competir Hyrox en abril.',
+      parq:'Aceptado el 2 de noviembre de 2026', contacto:'Laura Salas · +52 81 8765 4321'}},
+  {n:'Mariana Ortiz', i:'MO', d:['crossfit'], c:'Metcon · sem 2 de 4', cmp:62, last:'Hace 5 días',
+   f:{nac:'1996-09-02', peso:61.5, pesoFecha:'hace 2 semanas', altura:164, sexo:'Femenino',
+      mail:'mariana.ortiz@ejemplo.com', tel:'+52 55 2345 6789',
+      enf:'', les:'Tendinitis de hombro izquierdo en 2025, ya resuelta.',
+      meds:'', notasAth:'Viajo mucho por trabajo.',
+      notasCoach:'Pedir que avise los viajes con una semana para mover la semana completa.',
+      parq:'Aceptado el 5 de noviembre de 2026', contacto:''}},
+  {n:'Pablo Reyes', i:'PR', d:['triatlon','correr'], c:'Base · sem 5 de 8', cmp:91, last:'Ayer',
+   f:{nac:'1988-01-27', peso:72.0, pesoFecha:'ayer', altura:181, sexo:'Masculino',
+      mail:'pablo.reyes@ejemplo.com', tel:'',
+      enf:'', les:'Molestia activa en rodilla derecha, reportada ayer. Sin diagnóstico.',
+      meds:'', notasAth:'',
+      notasCoach:'Molestia de rodilla desde los 800 m del martes. Bajar a zona 2 y revalorar. Si sigue a la semana, mandarlo a valoración.',
+      parq:'Aceptado el 28 de octubre de 2026', contacto:''}},
+  {n:'Sofía Lara', i:'SL', d:['hyrox'], c:'Hyrox · sem 4 de 8', cmp:48, last:'Ayer',
+   f:{nac:'1999-06-11', peso:58.3, pesoFecha:'hace un mes', altura:160, sexo:'Femenino',
+      mail:'sofia.lara@ejemplo.com', tel:'', enf:'', les:'', meds:'', notasAth:'',
+      notasCoach:'', parq:'Aceptado el 1 de noviembre de 2026', contacto:''}},
+  {n:'Iván Cruz', i:'IC', d:['fuerza'], c:'Fuerza · sem 1 de 6', cmp:95, last:'Hace 3 h',
+   f:{nac:'1994-11-30', peso:91.0, pesoFecha:'hace 5 días', altura:186, sexo:'Masculino',
+      mail:'ivan.cruz@ejemplo.com', tel:'', enf:'', les:'', meds:'', notasAth:'',
+      notasCoach:'', parq:'Aceptado el 10 de noviembre de 2026', contacto:''}},
+  {n:'Carla Núñez', i:'CN', d:['correr'], c:'10 K · sem 6 de 10', cmp:88, last:'Hace 2 días',
+   f:{nac:'1990-03-05', peso:55.8, pesoFecha:'hace 10 días', altura:158, sexo:'Femenino',
+      mail:'carla.nunez@ejemplo.com', tel:'', enf:'Hipotiroidismo.', les:'', meds:'Levotiroxina.',
+      notasAth:'', notasCoach:'', parq:'Aceptado el 8 de noviembre de 2026', contacto:''}},
 ];
 const TEMPLATES = [
   {n:'Fuerza · Día A', d:'fuerza', m:'6 ejercicios · 55 min', mia:true,
@@ -861,6 +943,26 @@ const CATALOG = ['Sentadilla trasera','Sentadilla frontal','Peso muerto','Peso m
   'SkiErg','Assault bike','Farmers carry','Empuje de trineo','Jalón de trineo','Correr',
   'Handstand push-up','Muscle-up en barra','Trepar la cuerda','Hip thrust','Curl con barra'];
 const MINE = ['Sentadilla con cadena (mío)','Remo en banco inclinado 30° (mío)'];
+
+/**
+ * Enlaces de demostración que guarda ESTE coach, por nombre de ejercicio.
+ *
+ * Vive aparte del catálogo a propósito. El catálogo es el mismo para todos los
+ * coaches y nadie lo edita, pero el enlace no es del catálogo: es del coach.
+ * Así puede ponerle su video preferido a la sentadilla sin tocar lo que ven
+ * los demás. En la base es una tabla (coach, ejercicio) → enlace, no una
+ * columna del ejercicio.
+ *
+ * El enlace se abre FUERA de la app y no sirve sin conexión; eso se dice
+ * siempre, porque en un gimnasio sin señal el atleta no lo va a poder ver.
+ */
+const LINKS = {
+  'Sentadilla con cadena (mío)': 'https://www.youtube.com/watch?v=ejemplo-propio',
+};
+/** Sin inventar direcciones: lo que no tiene enlace manda a buscarlo. */
+const buscarEn = nombre =>
+  'https://www.youtube.com/results?search_query=' +
+  encodeURIComponent(nombre.replace(/\s*\((mío|mi versión)\)\s*/g, '') + ' técnica');
 let WEEK = [
   {d:'Lun', n:17, s:[{t:'Fuerza · Día A', dis:'fuerza', st:'hecha'}]},
   {d:'Mar', n:18, s:[{t:'Tempo 30 min', dis:'correr', st:'hecha'}]},
@@ -884,8 +986,8 @@ function renderCharts(){
 
   document.getElementById('disBars').innerHTML = DISCIPLINAS.map(d => {
     const v = cuenta[d] || 0;
-    return `<div class="bar" onclick="toast('Filtraría tu lista por ${nombres[d]}')"
-      style="cursor:pointer">
+    return `<div class="bar" onclick="verDisciplina('${d}')" style="cursor:pointer"
+      title="Ver los ${v} atletas de ${nombres[d]}">
       <span>${nombres[d]}</span>
       <span class="track"><i style="width:${(v / tope) * 100}%;background:var(--d-${d})"></i></span>
       <b>${v}</b></div>`;
@@ -894,11 +996,78 @@ function renderCharts(){
   const max = Math.max(...CMP_SEMANAS);
   document.getElementById('cmpCols').innerHTML = CMP_SEMANAS.map((v, i) => {
     const cls = v < 60 ? 'low' : v < 75 ? 'mid' : '';
-    return `<div onclick="toast('Semana ${i + 1}: ${v} % de cumplimiento promedio')"
-      style="cursor:pointer" title="Semana ${i + 1} · ${v} %">
+    return `<div onclick="verSemana(${i})" style="cursor:pointer"
+      title="Ver el detalle de la semana ${i + 1}">
       <div class="cb ${cls}" style="height:${(v / max) * 100}%"></div>
       <small>${i === CMP_SEMANAS.length - 1 ? 'hoy' : 's' + (i + 1)}</small></div>`;
   }).join('');
+}
+
+/** Quién está en esta disciplina. Tocar la barra abre la lista, no un aviso. */
+function verDisciplina(d){
+  const nombres = {fuerza:'Fuerza', crossfit:'CrossFit', hyrox:'Hyrox',
+    correr:'Correr', ciclismo:'Ciclismo', triatlon:'Triatlón'};
+  const dentro = ATHLETES.filter(a => a.d.includes(d));
+  abrirDetalle(`${nombres[d]} · ${dentro.length} atleta${dentro.length === 1 ? '' : 's'}`,
+    dentro.length
+      ? `<div class="dlist">${dentro.map(a => {
+          const i = ATHLETES.indexOf(a);
+          const cls = a.cmp < 60 ? 'low' : a.cmp < 80 ? 'mid' : '';
+          return `<div class="dr" style="cursor:pointer" onclick="cerrar('detModal');verFicha(${i})">
+            <div class="who"><span class="av">${a.i}</span>
+              <div><b style="font-weight:600;text-align:left;display:block">${a.n}</b>
+                <span class="faint">${a.c}</span></div></div>
+            <span class="meter"><i class="${cls}" style="width:${a.cmp}%"></i></span>
+            <b>${a.cmp}%</b></div>`;
+        }).join('')}</div>
+        <p class="faint" style="margin:13px 0 0">Toca a cualquiera para abrir su ficha.</p>`
+      : '<p class="muted">Todavía no tienes atletas en esta disciplina.</p>');
+}
+
+/**
+ * El detalle de una semana: quién la cumplió y cuánto se movió respecto a la
+ * anterior. Es la pregunta real detrás de la barra — el promedio no dice quién
+ * bajó, y es lo único sobre lo que el coach puede actuar.
+ */
+function verSemana(i){
+  const v = CMP_SEMANAS[i];
+  const previo = i > 0 ? CMP_SEMANAS[i - 1] : null;
+  const mov = previo === null ? null : v - previo;
+  // Reparto plausible alrededor del promedio, para que el prototipo se lea.
+  const filas = ATHLETES.map((a, k) => {
+    const sem = Math.max(8, Math.min(100, Math.round(a.cmp + ((k % 3) - 1) * 9 + (v - 81))));
+    const ant = Math.max(8, Math.min(100, sem - ((k % 4) - 1) * 7));
+    return {a, sem, dif: sem - ant, k};
+  }).sort((x, y) => x.sem - y.sem);
+
+  abrirDetalle(
+    `Semana ${i + 1}${i === CMP_SEMANAS.length - 1 ? ' · la actual' : ''} · ${v} % promedio`,
+    `<div class="note ${mov === null ? '' : mov >= 0 ? 'acc' : ''}"
+       ${mov !== null && mov < 0 ? 'style="border-left-color:var(--danger)"' : ''}>
+       ${mov === null ? 'Es la primera semana del rango, no hay con qué comparar.'
+         : mov >= 0 ? `Subió ${mov} puntos respecto a la semana anterior.`
+         : `Bajó ${Math.abs(mov)} puntos respecto a la semana anterior.`}
+     </div>
+     <div class="dlist" style="margin-top:6px">${filas.map(f => {
+       const cls = f.sem < 60 ? 'low' : f.sem < 80 ? 'mid' : '';
+       const dc = f.dif > 0 ? 'up' : f.dif < 0 ? 'dn' : 'eq';
+       return `<div class="dr" style="cursor:pointer" onclick="cerrar('detModal');verFicha(${f.k})">
+         <div class="who"><span class="av">${f.a.i}</span>
+           <div><b style="font-weight:600;text-align:left;display:block">${f.a.n}</b>
+             <span class="faint">${f.a.d.join(' · ')}</span></div></div>
+         <span class="meter"><i class="${cls}" style="width:${f.sem}%"></i></span>
+         <div><b>${f.sem}%</b>
+           <div class="delta ${dc}">${f.dif > 0 ? '▲' : f.dif < 0 ? '▼' : '='} ${Math.abs(f.dif)}</div>
+         </div></div>`;
+     }).join('')}</div>
+     <p class="faint" style="margin:13px 0 0">Ordenado de menor a mayor: arriba están
+       los que necesitan que les escribas.</p>`);
+}
+
+function abrirDetalle(titulo, html){
+  document.getElementById('detTitle').textContent = titulo;
+  document.getElementById('detBody').innerHTML = html;
+  document.getElementById('detModal').classList.add('on');
 }
 
 // ---------- 1b: los chats sin responder, arriba, con lo demás ----------
@@ -932,14 +1101,30 @@ function toast(m){
 }
 
 // ---------- atletas ----------
+let filtroAth = 'todos';
+function setFiltroAth(f){ filtroAth = f; renderAth(); }
+
 function renderAth(){
   const q = (document.getElementById('athq').value || '').trim().toLowerCase();
-  const lista = ATHLETES.filter(a => a.n.toLowerCase().includes(q));
+
+  const cuenta = {};
+  ATHLETES.forEach(a => a.d.forEach(d => cuenta[d] = (cuenta[d] || 0) + 1));
+  const nombres = {fuerza:'Fuerza', crossfit:'CrossFit', hyrox:'Hyrox',
+    correr:'Correr', ciclismo:'Ciclismo', triatlon:'Triatlón'};
+  document.getElementById('athFilters').innerHTML =
+    `<button class="fchip ${filtroAth === 'todos' ? 'on' : ''}"
+       onclick="setFiltroAth('todos')">Todos · ${ATHLETES.length}</button>` +
+    DISCIPLINAS.filter(d => cuenta[d]).map(d =>
+      `<button class="fchip ${filtroAth === d ? 'on' : ''}"
+        onclick="setFiltroAth('${d}')">${nombres[d]} · ${cuenta[d]}</button>`).join('');
+
+  const lista = ATHLETES.filter(a =>
+    a.n.toLowerCase().includes(q) && (filtroAth === 'todos' || a.d.includes(filtroAth)));
   document.getElementById('athEmpty').style.display = lista.length ? 'none' : 'block';
   document.getElementById('athBody').innerHTML = lista.map(a => {
     const cls = a.cmp < 60 ? 'low' : a.cmp < 80 ? 'mid' : '';
     const i = ATHLETES.indexOf(a);
-    return `<tr onclick="toast('Abriría la ficha de ${a.n}')">
+    return `<tr onclick="verFicha(${i})">
       <td><div style="display:flex;align-items:center;gap:9px">
         <span class="av">${a.i}</span><b style="font-weight:600">${a.n}</b></div></td>
       <td>${a.d.map(d => `<span class="chip ${d}">${d}</span>`).join(' ')}</td>
@@ -967,6 +1152,85 @@ function archivarAtleta(i){
   ATHLETES.splice(i, 1);
   renderAth(); renderCharts(); llenarSelector();
   toast(`${a.n} archivado · su histórico se conserva`);
+}
+
+/**
+ * La ficha del atleta. Cada dato dice quién lo puso, porque no es lo mismo que
+ * el atleta declare una lesión a que el coach la anote de oído.
+ */
+function verFicha(i){
+  const a = ATHLETES[i], f = a.f || {};
+  const edad = f.nac
+    ? Math.floor((Date.now() - new Date(f.nac)) / 31557600000) : null;
+  const fecha = f.nac ? new Date(f.nac + 'T12:00:00').toLocaleDateString('es-MX',
+    {day:'numeric', month:'long', year:'numeric'}) : null;
+  const imc = (f.peso && f.altura)
+    ? (f.peso / Math.pow(f.altura / 100, 2)).toFixed(1) : null;
+  const vacio = t => `<span class="vacio">${t}</span>`;
+
+  document.getElementById('fichaAv').textContent = a.i;
+  document.getElementById('fichaName').textContent = a.n;
+  document.getElementById('fichaSub').innerHTML =
+    `${a.d.map(d => `<span class="chip ${d}">${d}</span>`).join(' ')}
+     <span class="faint" style="margin-left:7px">${a.c} · cumplimiento ${a.cmp} %</span>`;
+
+  document.getElementById('fichaBody').innerHTML = `
+    <div class="note" style="margin:0 16px">Los datos de salud los llenó
+      ${a.n.split(' ')[0]} al registrarse, desde su teléfono, y los puede corregir cuando
+      quiera. Tú agregas tus propias notas, que él no ve.</div>
+
+    <dl class="dl" style="padding:16px">
+      <dt>Nombre</dt><dd>${a.n}<span class="src ath">lo puso él</span></dd>
+      <dt>Nacimiento</dt><dd>${fecha
+        ? `${fecha} · ${edad} años<span class="src ath">lo puso él</span>` : vacio('Sin dato')}</dd>
+      <dt>Sexo</dt><dd>${f.sexo
+        ? `${f.sexo}<span class="src ath">lo puso él</span>` : vacio('Sin dato')}</dd>
+      <dt>Peso</dt><dd>${f.peso
+        ? `${f.peso} kg <span class="faint">· medido ${f.pesoFecha}</span>
+           <span class="src ath">lo puso él</span>
+           <div class="help">Se guarda con fecha, no como un dato fijo: el peso se
+             mueve y la gráfica de progreso lo necesita así.</div>`
+        : vacio('Sin dato')}</dd>
+      <dt>Altura</dt><dd>${f.altura
+        ? `${f.altura} cm${imc ? ` <span class="faint">· IMC ${imc}</span>` : ''}
+           <span class="src ath">lo puso él</span>` : vacio('Sin dato')}</dd>
+      <dt>Correo</dt><dd>${f.mail || vacio('Sin dato')}</dd>
+      <dt>Teléfono</dt><dd>${f.tel || vacio('No lo compartió')}</dd>
+      <dt>Contacto de emergencia</dt><dd>${f.contacto || vacio('Sin dato')}</dd>
+    </dl>
+
+    <h3 class="sec" style="padding:0 16px">Salud</h3>
+    <dl class="dl" style="padding:0 16px 16px">
+      <dt>Enfermedades</dt><dd>${f.enf
+        ? `${f.enf}<span class="src ath">lo puso él</span>` : vacio('Declaró ninguna')}</dd>
+      <dt>Lesiones</dt><dd>${f.les
+        ? `${f.les}<span class="src ath">lo puso él</span>` : vacio('Declaró ninguna')}</dd>
+      <dt>Medicamentos</dt><dd>${f.meds
+        ? `${f.meds}<span class="src ath">lo puso él</span>` : vacio('Declaró ninguno')}</dd>
+      <dt>Cuestionario de aptitud</dt><dd>${f.parq
+        ? `<span class="chip ok">Firmado</span> <span class="faint">${f.parq}</span>`
+        : `<span class="chip warn">Pendiente</span>`}</dd>
+    </dl>
+
+    <h3 class="sec" style="padding:0 16px">Notas</h3>
+    <dl class="dl" style="padding:0 16px 16px">
+      <dt>Lo que él anotó</dt><dd>${f.notasAth
+        ? `${f.notasAth}<span class="src ath">lo puso él</span>` : vacio('Nada')}</dd>
+      <dt>Tus notas</dt><dd>${f.notasCoach
+        ? `${f.notasCoach}<span class="src coach">privada, él no la ve</span>`
+        : vacio('Todavía no escribes nada')}
+        <div style="margin-top:9px">
+          <textarea rows="2" placeholder="Agrega una nota privada sobre ${a.n.split(' ')[0]}…"
+            style="width:100%"></textarea></div></dd>
+    </dl>`;
+
+  document.getElementById('fichaFoot').innerHTML = `
+    <button class="btn ghost" style="flex:1" onclick="cerrar('fichaModal')">Cerrar</button>
+    <button class="btn ghost" onclick="go('prog');cerrar('fichaModal')">Ver su semana</button>
+    <button class="btn ghost" onclick="go('mensajes');cerrar('fichaModal')">Escribirle</button>
+    <button class="btn" onclick="toast('Guardaría tu nota privada')">Guardar nota</button>`;
+
+  document.getElementById('fichaModal').classList.add('on');
 }
 
 function llenarSelector(){
@@ -1005,8 +1269,12 @@ function renderTpl(){
           ondragstart="dragTpl(${i})" onclick="pickTpl(${i})"
           onmouseenter="verPrevia(${i},this)" onmouseleave="ocultarPrevia()">
           <b>${t.n}</b><span class="faint">${t.m}</span>
-          <button class="iconbtn peek" title="Ver la sesión completa"
-            onclick="event.stopPropagation();ocultarPrevia();openBuilder('${q1(t.n)}')">👁</button>
+          <span class="peek" style="display:flex;gap:4px">
+            <button class="iconbtn" title="Ver la sesión completa"
+              onclick="event.stopPropagation();ocultarPrevia();openBuilder('${q1(t.n)}',undefined,true)">👁</button>
+            <button class="iconbtn" title="Editar esta plantilla"
+              onclick="event.stopPropagation();ocultarPrevia();editarPlantilla(${i})">✎</button>
+          </span>
         </div>`;
       }).join('')
     : '<p class="faint" style="padding:4px 0">Ninguna plantilla con ese filtro.</p>';
@@ -1030,9 +1298,8 @@ function renderTpl(){
           <b style="font-size:14.5px;font-weight:650;display:block;margin-bottom:4px;
             padding-right:34px">${t.n}</b>
           <div class="faint" style="margin-bottom:11px">${t.m}</div>
-          <div style="display:flex;gap:6px">
-            <button class="btn ghost sm" onclick="openBuilder('${q1(t.n)}',undefined,true)">Editar</button>
-            <button class="btn sm" onclick="go('prog')">Asignar</button></div></div>`;
+          <button class="btn ghost sm" onclick="editarPlantilla(${i})">Editar</button>
+        </div>`;
       }).join('')
     : '<p class="muted">Ninguna plantilla con ese filtro. Crea una nueva con el botón de arriba.</p>';
 }
@@ -1064,6 +1331,18 @@ function borrarPlantilla(i){
   TEMPLATES.splice(i, 1);
   selTpl = null; renderTpl();
   toast(`"${t.n}" eliminada · lo ya asignado sigue intacto`);
+}
+
+/**
+ * Editar desde donde sea: cambia a la vista de plantillas y abre el
+ * constructor con esa plantilla. Desde el panel de programación el coach
+ * quería poder corregirla sin perder de vista dónde estaba.
+ */
+function editarPlantilla(i){
+  const t = TEMPLATES[i];
+  if (!t) return toast('Esa plantilla ya no existe');
+  go('plantillas');
+  openBuilder(t.n, undefined, true, undefined, i);
 }
 
 function asignarRapido(nombre){
@@ -1190,13 +1469,58 @@ const BLOCK_TYPES = [
 const WB_PH = 'AMRAP 20 min&#10;10 thrusters 43 kg&#10;15 wall balls 9 kg&#10;20 double unders&#10;&#10;Rx+: thrusters 52 kg&#10;Escalado: wall ball 6 kg, single unders';
 let BLOCKS = [];
 
-function openBuilder(name, di, esPlantilla, si){
-  const nueva = name === 'Nueva sesión';
+/** Convierte el resumen de una plantilla en bloques editables del constructor. */
+function bloquesDe(t){
+  const TIPO = {
+    'Calentamiento': ['Calentamiento','preparación','plain','ejercicios'],
+    'Fuerza': ['Fuerza','fuerza','fuerza','ejercicios'],
+    'WOD': ['WOD / Metcon','metcon','crossfit','ejercicios'],
+    'Cardio': ['Cardio','cardio','correr','ejercicios'],
+    'Estaciones Hyrox': ['Estaciones Hyrox','hyrox','hyrox','ejercicios'],
+    'Técnica': ['Técnica','técnica','plain','ejercicios'],
+    'Accesorio': ['Accesorio','accesorio','plain','ejercicios'],
+    'Enfriamiento': ['Enfriamiento','cierre','plain','ejercicios'],
+    'White Board': ['White Board','texto libre','acc','texto'],
+  };
+  return (t.bl || t.pb || []).map(linea => {
+    if (typeof linea === 'object') return JSON.parse(JSON.stringify(linea));
+    const corte = linea.indexOf(' · ');
+    const cabeza = corte < 0 ? linea : linea.slice(0, corte);
+    const detalle = corte < 0 ? '' : linea.slice(corte + 3);
+    const [nom, tag, color, kind] = TIPO[cabeza] || ['Bloque','bloque','plain','ejercicios'];
+    if (kind === 'texto') return {n:nom, tag, c:color, kind:'texto', body:detalle};
+    return {n:nom, tag, c:color, kind:'ejercicios',
+      ex: detalle ? [{n:detalle, f:[['Series','3'],['Reps','10'],['Carga','—'],['RPE','7']]}] : []};
+  });
+}
+
+let tplEnEdicion = null;
+
+function openBuilder(name, di, esPlantilla, si, tplIndex){
+  const nueva = name === 'Nueva sesión' || name === '';
   enEdicion = (di !== undefined && si !== undefined) ? {di, si} : null;
+  tplEnEdicion = esPlantilla ? (tplIndex ?? null) : null;
 
   document.getElementById('bTitle').textContent = esPlantilla
-    ? 'Editar plantilla' : nueva ? 'Nueva sesión' : 'Editar sesión';
+    ? (tplEnEdicion === null ? 'Nueva plantilla' : 'Editar plantilla')
+    : nueva ? 'Nueva sesión' : 'Editar sesión';
   document.getElementById('bName').value = nueva ? '' : name;
+  document.getElementById('bNameLbl').textContent = esPlantilla
+    ? 'NOMBRE DE LA PLANTILLA' : 'NOMBRE DE LA SESIÓN';
+
+  // Los datos de la plantilla viven aquí mismo, arriba de sus bloques: crear una
+  // plantilla es ponerle nombre, disciplina y bloques, todo en una pantalla.
+  document.getElementById('bMeta').style.display = esPlantilla ? 'block' : 'none';
+  if (esPlantilla){
+    const t = tplEnEdicion === null ? null : TEMPLATES[tplEnEdicion];
+    pickers('bDis', DISCIPLINAS.map(d => [d, d[0].toUpperCase() + d.slice(1)]), false);
+    if (t){
+      const chip = document.querySelector(`#bDis .fchip[data-v="${t.d}"]`);
+      if (chip) chip.classList.add('on');
+    }
+    document.getElementById('bDesc').value = t?.desc || '';
+    document.getElementById('bAlcance').value = t?.alcance || 'dia';
+  }
 
   // Una plantilla no tiene borrador ni publicación: se guarda y ya. El borrador
   // y el publicar son de las SESIONES, donde sí deciden si el atleta la ve.
@@ -1213,13 +1537,20 @@ function openBuilder(name, di, esPlantilla, si){
   document.getElementById('bSub').textContent = esPlantilla
     ? 'Plantilla · se reutiliza en cualquier día'
     : document.getElementById('athSel').value + ' · ' + d.d.toLowerCase() + ' ' + d.n;
-  BLOCKS = nueva ? [] : [
-    {n:'Calentamiento', tag:'preparación', c:'plain', kind:'ejercicios',
-     ex:[{n:'Movilidad de cadera 90/90', f:[['Series','2'],['Reps','8']]}]},
-    {n:'Fuerza', tag:'fuerza', c:'fuerza', kind:'ejercicios', ex:[
-      {n:'Sentadilla trasera', f:[['Series','5'],['Reps','5'],['Carga','100 kg'],['RPE','8'],['Descanso','2:00']]},
-      {n:'Peso muerto rumano', f:[['Series','3'],['Reps','8'],['Carga','70 kg'],['RPE','7']]}]},
-  ];
+  if (esPlantilla){
+    BLOCKS = tplEnEdicion === null ? [] : bloquesDe(TEMPLATES[tplEnEdicion]);
+  } else if (nueva){
+    BLOCKS = [];
+  } else {
+    const dePlantilla = TEMPLATES.find(t => t.n === name);
+    BLOCKS = dePlantilla ? bloquesDe(dePlantilla) : [
+      {n:'Calentamiento', tag:'preparación', c:'plain', kind:'ejercicios',
+       ex:[{n:'Movilidad de cadera 90/90', f:[['Series','2'],['Reps','8']]}]},
+      {n:'Fuerza', tag:'fuerza', c:'fuerza', kind:'ejercicios', ex:[
+        {n:'Sentadilla trasera', f:[['Series','5'],['Reps','5'],['Carga','100 kg'],['RPE','8'],['Descanso','2:00']]},
+        {n:'Peso muerto rumano', f:[['Series','3'],['Reps','8'],['Carga','70 kg'],['RPE','7']]}]},
+    ];
+  }
   renderBlocks();
   document.getElementById('builder').classList.add('on');
 }
@@ -1250,7 +1581,12 @@ function renderBlocks(){
     }
     return `<div class="blk">${head}
       ${b.ex.map((e, ei) => `<div class="exrow">
-        <div class="en">${e.n}<span class="x" onclick="BLOCKS[${bi}].ex.splice(${ei},1);renderBlocks()">✕</span></div>
+        <div class="en">${e.n}
+          <a href="${LINKS[e.n] || buscarEn(e.n)}" target="_blank" rel="noopener"
+             title="${LINKS[e.n] ? 'Ver la demostración' : 'Buscar una demostración'}"
+             style="font-size:11.5px;color:var(--info);text-decoration:none;margin-left:8px;
+                    font-weight:600">${LINKS[e.n] ? 'ver ↗' : 'buscar ↗'}</a>
+          <span class="x" onclick="BLOCKS[${bi}].ex.splice(${ei},1);renderBlocks()">✕</span></div>
         <div class="fields">${e.f.map(([k, v]) =>
           `<div class="fld"><label>${k}</label><input value="${v}"></div>`).join('')}</div></div>`).join('')}
       <div style="padding:9px 12px"><button class="addex" style="margin:0"
@@ -1284,8 +1620,34 @@ document.getElementById('blkModal').onclick = e => {
 };
 function saveDraft(){ closeBuilder(); toast('Guardada como borrador · el atleta no la ve'); }
 function guardarPlantilla(){
-  closeBuilder();
-  toast('Plantilla guardada · lo que ya asignaste con ella no cambió');
+  const nombre = document.getElementById('bName').value.trim();
+  if (!nombre) return toast('Ponle nombre a la plantilla');
+  const dis = elegidos('bDis')[0];
+  if (!dis) return toast('Elige la disciplina');
+
+  const alcance = document.getElementById('bAlcance').value;
+  const desc = document.getElementById('bDesc').value.trim();
+  const cuenta = BLOCKS.reduce((t, b) => t + (b.kind === 'texto' ? 0 : b.ex.length), 0);
+  const prefijo = alcance === 'semana' ? 'Semana · ' : alcance === 'ciclo' ? 'Ciclo · ' : '';
+  const resumen = BLOCKS.length === 0 ? prefijo + 'Sin bloques todavía'
+    : `${prefijo}${BLOCKS.length} bloque${BLOCKS.length === 1 ? '' : 's'}`
+      + (cuenta ? ` · ${cuenta} ejercicio${cuenta === 1 ? '' : 's'}` : '');
+
+  const datos = {n:nombre, d:dis, mia:true, m:resumen, desc, alcance,
+    bl: JSON.parse(JSON.stringify(BLOCKS)),
+    pb: BLOCKS.length
+      ? BLOCKS.map(b => b.kind === 'texto'
+          ? `White Board · ${(b.body || 'texto libre').split('\n')[0].slice(0, 46)}`
+          : `${b.n} · ${b.ex.map(e => e.n).join(', ').slice(0, 52) || 'sin ejercicios'}`)
+      : ['Todavía no tiene bloques']};
+
+  if (tplEnEdicion === null) TEMPLATES.unshift(datos);
+  else TEMPLATES[tplEnEdicion] = datos;
+
+  const creada = tplEnEdicion === null;
+  closeBuilder(); selTpl = null; renderTpl();
+  toast(creada ? `"${nombre}" creada con ${BLOCKS.length} bloque${BLOCKS.length === 1 ? '' : 's'}`
+               : 'Plantilla guardada · lo que ya asignaste con ella no cambió');
 }
 function publish(){
   closeBuilder();
@@ -1340,17 +1702,50 @@ function renderLib(){
          <button class="iconbtn dang" title="Eliminar este ejercicio"
            onclick="borrarEjercicio('${q1(x)}')">✕</button>`
       : `<button class="btn ghost sm" onclick="duplicar('${q1(x)}')">Duplicar para editar</button>`;
+    const link = LINKS[x];
+    const demo = link
+      ? `<div class="linkrow">
+           <a href="${link}" target="_blank" rel="noopener">Ver demostración ↗</a>
+           <button class="iconbtn" title="Cambiar el enlace"
+             onclick="ponerEnlace('${q1(x)}')">✎</button>
+         </div>`
+      : `<div class="linkrow">
+           <a href="${buscarEn(x)}" target="_blank" rel="noopener">Buscar demostración ↗</a>
+           <button class="btn ghost sm" onclick="ponerEnlace('${q1(x)}')">Pegar enlace</button>
+         </div>`;
     return `<div class="card">
       <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        ${mio ? '<span class="chip acc">Mío</span>'
-              : '<span class="chip plain">Catálogo · solo lectura</span>'}
+        ${mio ? '<span class="chip acc">Mío</span>' : '<span class="chip plain">Catálogo</span>'}
+        ${link ? '<span class="chip plain" style="color:var(--info);border-color:var(--info)">Con enlace</span>' : ''}
       </div>
       <b style="font-size:14px;font-weight:650;display:block;margin-bottom:4px">${x}</b>
-      <div class="faint" style="margin-bottom:11px">${mio
-        ? 'Solo tú y tus atletas lo ven. Lo puedes editar y eliminar.'
-        : 'Viene con PR-LAB. No se edita ni se elimina; duplícalo y ajusta tu copia.'}</div>
-      <div style="display:flex;gap:6px;align-items:center">${acciones}</div></div>`;
+      ${demo}
+      <div style="display:flex;gap:6px;align-items:center;margin-top:11px">${acciones}</div></div>`;
   }).join('') || '<p class="muted">Ningún ejercicio coincide.</p>';
+}
+
+/**
+ * Pegar el enlace de la demostración. Funciona igual en un ejercicio del
+ * catálogo y en uno propio, porque el enlace es del coach, no del ejercicio.
+ */
+function ponerEnlace(nombre){
+  const actual = LINKS[nombre] || '';
+  const url = prompt(
+    `Enlace de la demostración de "${nombre}"\n\n`
+    + `YouTube, Vimeo, Drive o Instagram. Se abre fuera de la app y necesita conexión: `
+    + `en un gimnasio sin señal el atleta no lo verá.\n\n`
+    + `Déjalo vacío para quitarlo.`, actual);
+  if (url === null) return;
+  const limpio = url.trim();
+  if (!limpio){
+    delete LINKS[nombre]; renderLib(); renderBlocks();
+    return toast('Enlace quitado');
+  }
+  if (!/^https:\/\/(www\.|m\.|player\.)?(youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com|instagram\.com)\//.test(limpio)){
+    return toast('Debe ser https de YouTube, Vimeo, Drive o Instagram');
+  }
+  LINKS[nombre] = limpio; renderLib(); renderBlocks();
+  toast(`Enlace guardado · se abrirá fuera de la app`);
 }
 
 function duplicar(nombre){
@@ -1371,7 +1766,7 @@ function borrarEjercicio(nombre){
 
 // ---------- formularios: alta de atleta, plantilla y ejercicio ----------
 function cerrar(id){ document.getElementById(id).classList.remove('on'); }
-['athModal','codeModal','tplModal','newExModal'].forEach(id => {
+['athModal','codeModal','newExModal','detModal','fichaModal'].forEach(id => {
   document.getElementById(id).onclick = e => { if (e.target.id === id) cerrar(id); };
 });
 
@@ -1419,26 +1814,15 @@ function crearInvitacion(){
 }
 
 // --- 4b: alta de plantilla
+/**
+ * Nueva plantilla: abre el constructor en blanco. Antes esto era un formulario
+ * en un modal y luego otra pantalla para los bloques, y el coach se quedaba
+ * buscando dónde agregarlos. Una plantilla es su nombre, su disciplina y sus
+ * bloques: va todo en una pantalla.
+ */
 function openAltaPlantilla(){
-  document.getElementById('ntNombre').value = '';
-  document.getElementById('ntDesc').value = '';
-  pickers('ntDis', DISCIPLINAS.map(d => [d, d[0].toUpperCase() + d.slice(1)]), false);
-  document.getElementById('tplModal').classList.add('on');
-  setTimeout(() => document.getElementById('ntNombre').focus(), 60);
-}
-function crearPlantilla(){
-  const nombre = document.getElementById('ntNombre').value.trim();
-  if (!nombre) return toast('Falta el nombre de la plantilla');
-  const dis = elegidos('ntDis')[0];
-  if (!dis) return toast('Elige una disciplina');
-  const alcance = document.getElementById('ntAlcance').value;
-  TEMPLATES.unshift({n:nombre, d:dis, mia:true,
-    m:alcance === 'dia' ? 'Sin bloques todavía'
-      : alcance === 'semana' ? 'Semana · sin bloques todavía' : 'Ciclo · sin bloques todavía',
-    pb:['Todavía no tiene bloques']});
-  cerrar('tplModal'); renderTpl();
-  openBuilder(nombre, undefined, true);
-  toast('Plantilla creada · agrégale sus bloques');
+  openBuilder('', undefined, true, undefined, null);
+  setTimeout(() => document.getElementById('bName').focus(), 80);
 }
 
 // --- 4d: alta y edición de ejercicio
@@ -1450,7 +1834,8 @@ function openAltaEjercicio(nombreExistente){
     ? 'Este ejercicio es tuyo, así que lo puedes cambiar o eliminar. Los del catálogo de PR-LAB no.'
     : 'Queda privado de tu cuenta. Tus atletas lo ven y lo registran igual que uno del catálogo, pero ningún otro coach lo encuentra.';
   document.getElementById('neNombre').value = editando ? nombreExistente : '';
-  ['neCue','neVideo'].forEach(i => document.getElementById(i).value = '');
+  document.getElementById('neCue').value = '';
+  document.getElementById('neVideo').value = editando ? (LINKS[nombreExistente] || '') : '';
   document.getElementById('neUni').checked = false;
   document.getElementById('neRM').checked = false;
   pickers('neMetricas', METRICAS);
@@ -1471,6 +1856,7 @@ function crearEjercicio(){
   }
 
   if (!MINE.includes(nombre)) MINE.push(nombre);
+  if (url) LINKS[nombre] = url;
   cerrar('newExModal'); renderLib();
   toast(url ? `"${nombre}" guardado · el video se abrirá fuera de la app`
             : `"${nombre}" guardado en tu biblioteca`);
