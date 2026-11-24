@@ -35,6 +35,21 @@ export interface FiltrosBusqueda {
   limit?: number;
 }
 
+/**
+ * Al editar, `null` significa "límpialo" y `undefined` significa "no lo
+ * toques". Son cosas distintas y el tipo tiene que distinguirlas, o no habría
+ * forma de quitarle el enlace de video a un ejercicio.
+ */
+export interface EjercicioParche
+  extends Partial<
+    Omit<EjercicioEntrada, 'pattern' | 'cue_es' | 'video_media_id' | 'video_url' | 'duplicate_of'>
+  > {
+  pattern?: string | null;
+  cue_es?: string | null;
+  video_media_id?: string | null;
+  video_url?: string | null;
+}
+
 export interface EjercicioEntrada {
   name_es: string;
   metrics: Metrica[];
@@ -236,7 +251,7 @@ export class EjerciciosService {
 
   // ------------------------------------------------------------------ editar
 
-  async editar(coachId: string, ejercicioId: string, cambios: Partial<EjercicioEntrada>) {
+  async editar(coachId: string, ejercicioId: string, cambios: EjercicioParche) {
     await this.exigirPropio(coachId, ejercicioId);
 
     const fila = primeraFila(
