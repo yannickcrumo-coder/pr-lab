@@ -16,12 +16,28 @@ const TABLAS = [
   'sesiones',
   'intentos_acceso',
   'invitations',
+  // Las asignaciones y plantillas van antes que users: cuelgan de él.
+  'assignment_items',
+  'assignment_blocks',
+  'assignments',
+  'template_items',
+  'template_blocks',
+  'templates',
+  'cycles',
   'coach_athlete',
   'coach_profiles',
   'athlete_profiles',
   'audit_log',
   'users',
 ];
+
+/**
+ * Los ejercicios del coach se borran aparte: la tabla también tiene los 191
+ * del catálogo semilla, que NO se tocan. Si se truncara `exercises`, cada
+ * prueba dejaría la base sin catálogo y las siguientes fallarían sin razón
+ * aparente.
+ */
+const BORRA_EJERCICIOS_DE_COACH = `DELETE FROM exercises WHERE owner_coach_id IS NOT NULL`;
 
 export async function levantar(): Promise<Contexto> {
   process.env.JWT_SECRET ??= 'secreto-de-pruebas-con-mas-de-32-caracteres';
@@ -45,6 +61,18 @@ export async function levantar(): Promise<Contexto> {
 
 export async function limpiar(pool: Pool): Promise<void> {
   await pool.query(`TRUNCATE ${TABLAS.join(', ')} RESTART IDENTITY CASCADE`);
+  await pool.query(BORRA_EJERCICIOS_DE_COACH);
+}
+
+/** Un ejercicio del catálogo público, para usarlo en plantillas y sesiones. */
+export async function ejercicioPublico(ctx: Contexto, slug = 'sentadilla-trasera'): Promise<string> {
+  const r = await ctx.pool.query<{ id: string }>(
+    `SELECT id FROM exercises WHERE slug = $1 AND is_public LIMIT 1`,
+    [slug],
+  );
+  const fila = r.rows[0];
+  if (!fila) throw new Error(`falta el ejercicio semilla ${slug}`);
+  return fila.id;
 }
 
 export async function apagar(ctx: Contexto): Promise<void> {
