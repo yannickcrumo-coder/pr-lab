@@ -27,8 +27,12 @@ export interface Contexto {
  * (`owner_coach_id IS NULL`) se queda donde estaba.
  */
 const LIMPIEZA = [
-  // Cuelgan de users por cascada: perfiles, relación, invitaciones, sesiones,
-  // plantillas, asignaciones y los ejercicios propios del coach.
+  // Dos columnas apuntan a users SIN cascada y bloquean el borrado:
+  // invitations.accepted_by y athlete_thresholds.set_by_user_id. Van primero.
+  'DELETE FROM invitations',
+  'DELETE FROM athlete_thresholds',
+  // Ahora sí: las cascadas se llevan perfiles, relación, sesiones, plantillas,
+  // asignaciones y los ejercicios propios del coach.
   'DELETE FROM users',
   // Estas dos no cuelgan de users: una guarda correos, la otra pone NULL.
   'DELETE FROM intentos_acceso',
