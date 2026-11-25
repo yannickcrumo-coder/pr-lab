@@ -31,10 +31,15 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y postgresql-client
 
       - name: Aplicar las migraciones
-        run: $PSQL -f db/migrations/0001_init.sql
-
-      - name: Cargar el catálogo
-        run: $PSQL -f db/migrations/0002_seed_reference.sql
+        # Todas, en orden, con un glob. Antes estaban listadas a mano y por eso
+        # 0003, 0004 y 0005 nunca corrían en este trabajo: una migración nueva
+        # se quedaba sin probar y nadie se enteraba hasta que fallaba su prueba
+        # de esquema por una razón que parecía otra.
+        run: |
+          for f in db/migrations/*.sql; do
+            echo "→ $(basename "$f")"
+            $PSQL -f "$f"
+          done
 
       - name: Correr las pruebas del esquema
         run: $PSQL -f db/tests/smoke.sql

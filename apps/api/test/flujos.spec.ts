@@ -48,8 +48,11 @@ describe('Flujos del coach', () => {
 
   const auth = (c: Cuenta) => ({ Authorization: `Bearer ${c.access}` });
 
-  const bloqueFuerza = (ejercicios: string[]) => ({
-    position: 0,
+  // La posición es parámetro: fijarla en 0 y usar el ayudante como segundo
+  // bloque deja dos bloques en la misma posición, que el servidor rechaza con
+  // razón. Me pasó al escribir esto.
+  const bloqueFuerza = (ejercicios: string[], position = 0) => ({
+    position,
     block_type: 'fuerza',
     title: 'Fuerza',
     items: ejercicios.map((id, i) => ({
@@ -80,7 +83,7 @@ describe('Flujos del coach', () => {
         blocks: [
           { position: 0, block_type: 'calentamiento', title: 'Calentamiento',
             items: [{ position: 0, exercise_id: sentadilla, prescription: { series: 2, reps: 8 } }] },
-          bloqueFuerza([sentadilla, pesoMuerto]),
+          bloqueFuerza([sentadilla, pesoMuerto], 1),
           { position: 2, block_type: 'white_board', title: 'Aviso',
             body_text: 'Llega 15 minutos antes.' },
         ],
