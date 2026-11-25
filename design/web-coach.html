@@ -442,6 +442,27 @@ h3.sec:first-child{margin-top:0}
 .bcfg .fld{min-width:110px}
 .bcfgnota{padding:9px 12px;font-size:11.5px;color:var(--text-faint);line-height:1.45;
   background:var(--surface-2);border-bottom:1px solid var(--border)}
+
+/* ---------- espacio del asistente ---------- */
+.ia{margin-top:16px;background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--r-md);overflow:hidden}
+.ia.off{opacity:.92}
+.iah{display:flex;align-items:center;gap:10px;padding:13px 15px;
+  border-bottom:1px solid var(--border)}
+.iah .sp{flex:1;min-width:0}
+.iab{padding:14px 15px}
+.iata{width:100%;resize:vertical;font-family:inherit;font-size:13.5px;line-height:1.55}
+.iachips{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.iafoot{display:flex;align-items:center;gap:10px;margin-top:12px;flex-wrap:wrap}
+.iafoot .faint{flex:1;min-width:200px;font-size:11.5px;line-height:1.45}
+.iaprev{margin:14px 15px 15px;border:1px dashed var(--accent);border-radius:var(--r-sm);
+  background:var(--accent-tint);padding:13px}
+.iaprev .pd{display:grid;grid-template-columns:62px 1fr;gap:9px;padding:7px 0;
+  border-top:1px solid var(--border);font-size:12.5px}
+.iaprev .pd:first-of-type{border-top:none}
+.iaprev .pd b{font-weight:650}
+.iamuestra{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:9px}
 </style>
 </head>
 <body>
@@ -581,6 +602,31 @@ h3.sec:first-child{margin-top:0}
           <div id="gBanner"></div>
           <div class="week" id="week"></div>
           <p class="faint" style="margin-top:10px">Arrastra una plantilla al día, o tócala y luego toca el día. Arrastra una sesión para moverla de día.</p>
+
+          <!-- Espacio del asistente. En la Versión 1 va APAGADO por bandera:
+               el cuadro existe para que el coach lo vea venir y nos diga si le
+               sirve, pero no llama a nada. -->
+          <div class="ia off" id="iaCaja">
+            <div class="iah">
+              <span class="chip plain" style="color:var(--accent);border-color:var(--accent)">✦</span>
+              <div class="sp">
+                <b style="font-size:14px">Asistente de programación</b>
+                <div class="faint" id="iaEstado"></div>
+              </div>
+              <button class="btn ghost sm" onclick="verComoSeVeria()"
+                id="iaDemoBtn">Ver cómo se vería</button>
+            </div>
+            <div class="iab">
+              <textarea class="iata" id="iaTexto" rows="3" disabled
+                placeholder="Arma la semana de Diego: fuerza lunes y jueves, Hyrox el sábado. Viene de molestia de rodilla, no quiero sentadilla profunda con carga alta."></textarea>
+              <div class="iachips" id="iaSugerencias"></div>
+              <div class="iafoot">
+                <span class="faint" id="iaNota"></span>
+                <button class="btn" id="iaBtn" disabled>Generar borrador</button>
+              </div>
+            </div>
+            <div id="iaPrev"></div>
+          </div>
         </div>
         <aside class="panel">
           <h3 class="sec">Plantillas</h3>
@@ -2658,6 +2704,118 @@ function crearEjercicio(){
             : `"${nombre}" guardado en tu biblioteca`);
 }
 
+// ---------- espacio del asistente ----------
+/**
+ * LA BANDERA. En la Versión 1 esto va en false y el cuadro no llama a nada.
+ * Es la decisión que ya está en CLAUDE.md: IA pública de proveedor externo en
+ * la Versión 2, y en la Versión 1 solo el espacio, apagado por bandera.
+ *
+ * Dos reglas del asistente, que no son de pantalla sino de producto:
+ *
+ *  1. ESCRIBE BORRADORES, NO PUBLICA. Encaja exacto con el flujo que ya existe:
+ *     el asistente llena el borrador y el coach revisa y publica. Nunca le
+ *     llega nada al atleta sin que una persona lo haya aprobado. No es
+ *     cautela de más: son recomendaciones de entrenamiento para gente real y
+ *     el profesional que responde por ellas es el coach.
+ *
+ *  2. NO VE TODO. Los datos de Strava quedan fuera por sus términos (regla 5,
+ *     `activities.ai_excluded`). Y las enfermedades y lesiones del atleta son
+ *     datos sensibles: mandarlos a un proveedor externo tiene que ser una
+ *     decisión consciente con el consentimiento del atleta, no el valor por
+ *     omisión. Eso se decide antes de encenderlo.
+ */
+const BANDERA_IA = false;
+
+const IA_SUGERENCIAS = [
+  'Arma la semana completa',
+  'Conviértelo en un ciclo de 6 semanas',
+  'Baja el volumen 20 % esta semana',
+  'Sustituye lo que necesita rack',
+  'Agrega trabajo de cadena posterior',
+  'Revisa si la carga va subiendo demasiado rápido',
+];
+
+function renderIA(){
+  const encendida = BANDERA_IA;
+  document.getElementById('iaCaja').classList.toggle('off', !encendida);
+  document.getElementById('iaEstado').innerHTML = encendida
+    ? 'Escribe lo que quieres y te deja un borrador en el calendario.'
+    : '<span class="chip warn">Versión 2</span> '
+      + '<span style="margin-left:6px">Apagado por bandera. El cuadro está aquí para que lo veas venir.</span>';
+  document.getElementById('iaTexto').disabled = !encendida;
+  document.getElementById('iaBtn').disabled = !encendida;
+  document.getElementById('iaSugerencias').innerHTML = IA_SUGERENCIAS.map(x =>
+    `<button class="fchip" ${encendida ? '' : 'disabled style="opacity:.5;cursor:not-allowed"'}
+      onclick="${encendida ? `document.getElementById('iaTexto').value='${x}'` : ''}">${x}</button>`
+  ).join('');
+  document.getElementById('iaNota').innerHTML =
+    'Deja <b style="color:var(--text)">borradores</b>, nunca publica: lo que ve el atleta '
+    + 'lo apruebas tú. No recibe los datos de Strava ni las enfermedades y lesiones del '
+    + 'atleta sin su consentimiento.';
+}
+
+/**
+ * La muestra. No llama a ningún proveedor: arma una semana con las plantillas
+ * que el coach ya tiene, para que en la prueba con coaches se pueda ver la
+ * forma de la cosa y decir si sirve. Va etiquetada como muestra a propósito.
+ */
+function verComoSeVeria(){
+  const prev = document.getElementById('iaPrev');
+  if (prev.innerHTML){ prev.innerHTML = ''; return; }
+
+  const quien = nombreDestino();
+  const dis = destino.tipo === 'atleta'
+    ? (ATHLETES[destino.i]?.d || ['fuerza'])
+    : DISCIPLINAS.filter(d => miembros().some(i => ATHLETES[i].d.includes(d)));
+
+  const candidatas = TEMPLATES.filter(t => dis.includes(t.d));
+  const elegir = k => candidatas.length ? candidatas[k % candidatas.length] : TEMPLATES[0];
+
+  const plan = [
+    ['Lun', elegir(0), 'fuerza al inicio de semana, con la pierna descansada'],
+    ['Mar', null, 'descanso activo'],
+    ['Mié', elegir(1), 'segundo estímulo, distinto patrón'],
+    ['Jue', null, 'descanso'],
+    ['Vie', elegir(2), 'tercera sesión, carga moderada'],
+    ['Sáb', elegir(3), 'la sesión larga del fin de semana'],
+    ['Dom', null, 'descanso completo'],
+  ];
+
+  prev.innerHTML = `<div class="iaprev">
+    <div class="iamuestra">✦ Muestra · así se vería la respuesta</div>
+    <p style="margin:0 0 10px;font-size:13px">Para <b>${quien}</b>, tres sesiones de
+      calidad y una larga, dejando 48 horas entre los estímulos fuertes:</p>
+    ${plan.map(([dia, t, razon]) => `<div class="pd">
+      <b>${dia}</b>
+      <div>${t ? `<b>${t.n}</b> <span class="chip ${t.d}">${t.d}</span>` : '<span class="faint">Sin sesión</span>'}
+        <div class="faint">${razon}</div></div></div>`).join('')}
+    <div class="iafoot" style="margin-top:13px">
+      <span class="faint">Entraría como <b style="color:var(--text)">borrador</b>.
+        Lo revisas, lo mueves y lo publicas tú.</span>
+      <button class="btn ghost sm" onclick="document.getElementById('iaPrev').innerHTML=''">Cerrar</button>
+      <button class="btn sm" onclick="aplicarMuestra()">Aplicar como borrador</button>
+    </div>
+  </div>`;
+}
+
+function aplicarMuestra(){
+  const dis = destino.tipo === 'atleta'
+    ? (ATHLETES[destino.i]?.d || ['fuerza'])
+    : DISCIPLINAS.filter(d => miembros().some(i => ATHLETES[i].d.includes(d)));
+  const candidatas = TEMPLATES.filter(t => dis.includes(t.d));
+  const elegir = k => candidatas.length ? candidatas[k % candidatas.length] : TEMPLATES[0];
+  const dias = [0, 2, 4, 5];
+
+  dias.forEach((di, k) => {
+    const t = elegir(k);
+    if (t && WEEK[di]) WEEK[di].s.push({t:t.n, dis:t.d, st:'bor'});
+  });
+
+  document.getElementById('iaPrev').innerHTML = '';
+  renderWeek();
+  toast('4 sesiones agregadas como borrador · revísalas y publica');
+}
+
 // ---------- mensajes ----------
 const THREADS = [
   {n:'Pablo Reyes', i:'PR', p:'La rodilla me molestó en la serie 4…', u:true, h:'ayer 20:14'},
@@ -2685,7 +2843,7 @@ function renderThread(){
 }
 
 // ---------- arranque ----------
-renderAth(); llenarSelector(); renderBanner(); renderCharts(); renderMsgAlerts();
+renderAth(); llenarSelector(); renderBanner(); renderCharts(); renderMsgAlerts(); renderIA();
 renderTpl(); renderWeek(); renderLib(); renderThread();
 document.getElementById('hactions').innerHTML = '';
 </script>
