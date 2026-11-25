@@ -477,6 +477,24 @@ h3.sec:first-child{margin-top:0}
   text-transform:uppercase;letter-spacing:.05em;color:var(--text-faint);margin-bottom:7px}
 .resbox textarea{width:100%;resize:vertical;font-family:inherit;font-size:13px;opacity:.65}
 .blk.wb .resbox{margin-top:12px}
+
+.sdet{margin-top:7px;padding-top:7px;border-top:1px solid rgb(255 255 255/.09)}
+.sdet>i{font-size:10.5px;color:var(--text-faint);font-style:italic}
+.sb{display:flex;align-items:center;gap:5px;font-size:10px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.04em;color:var(--text-muted);margin:5px 0 3px}
+.sb:first-child{margin-top:0}
+.sbl{display:inline-flex;align-items:center;justify-content:center;min-width:14px;height:14px;
+  padding:0 3px;border-radius:3px;background:var(--accent);color:var(--accent-contrast);
+  font-size:9px;font-weight:800;flex:none}
+.sx1{display:flex;align-items:baseline;gap:5px;font-size:11px;line-height:1.35;
+  padding:1px 0 1px 2px}
+.sx1>i{color:var(--text-faint);font-style:italic;font-size:10.5px}
+.sxl{min-width:17px;color:var(--text-faint);font-size:9.5px;font-weight:700;flex:none;
+  font-variant-numeric:tabular-nums}
+.sxn{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:var(--text)}
+.sxp{color:var(--text-faint);font-size:9.5px;flex:none;font-variant-numeric:tabular-nums}
+.sess{align-items:stretch}
 </style>
 </head>
 <body>
@@ -608,6 +626,7 @@ h3.sec:first-child{margin-top:0}
               <button class="btn ghost sm" onclick="toast('Semana siguiente')">→</button>
             </div>
             <div style="display:flex;gap:8px">
+              <button class="btn ghost sm" id="btnDetalle" onclick="alternarDetalle()">Vista compacta</button>
               <button class="btn ghost sm" onclick="copyWeek()">Copiar semana</button>
               <button class="btn ghost sm" onclick="pasteWeek()">Pegar</button>
               <button class="btn sm" onclick="publishAll()">Publicar cambios</button>
@@ -1065,41 +1084,66 @@ const TEMPLATES = [
   {n:'Fuerza · Día A', d:'fuerza', mia:true, alcance:'dia',
    desc:'Fuerza máxima de tren inferior. Sentadilla pesada y cadena posterior.',
    bl:[
-     ['Calentamiento', ['Movilidad de cadera 90/90','Sentadilla sin peso']],
-     ['Fuerza',        ['Sentadilla trasera','Peso muerto rumano']],
-     ['Accesorio',     ['Zancada caminando','Plancha']],
-     ['Enfriamiento',  ['Movilidad de cadera 90/90']],
+     ['Calentamiento', [
+       ['Movilidad de cadera 90/90', {Series:'2', Reps:'8 por lado'}],
+       ['Sentadilla sin peso',       {Series:'2', Reps:'15'}]]],
+     ['Fuerza', [
+       ['Sentadilla trasera', {Series:'5', Reps:'5', 'Carga (kg)':'100', 'RPE 1-10':'8', Descanso:'2:30'}],
+       ['Peso muerto rumano', {Series:'3', Reps:'8', 'Carga (kg)':'70',  'RPE 1-10':'7', Descanso:'1:30'}]]],
+     ['Accesorio', [
+       ['Zancada caminando', {Series:'3', Reps:'20 pasos', 'Carga (kg)':'2 × 16'}],
+       ['Plancha',           {Series:'3', Tiempo:'45 s'}]]],
+     ['Enfriamiento', [
+       ['Movilidad de cadera 90/90', {Series:'1', Reps:'10 por lado'}]]],
    ]},
   {n:'Fuerza · Día B', d:'fuerza', mia:true, alcance:'dia',
    desc:'Tren superior. Empuje y jalón horizontal con accesorios.',
    bl:[
-     ['Calentamiento', ['Flexiones']],
-     ['Fuerza',        ['Press de banca','Remo con barra']],
-     ['Accesorio',     ['Dominada','Curl con barra']],
+     ['Calentamiento', [['Flexiones', {Series:'2', Reps:'10'}]]],
+     ['Fuerza', [
+       ['Press de banca', {Series:'5', Reps:'5', 'Carga (kg)':'80', 'RPE 1-10':'8', Descanso:'2:30'}],
+       ['Remo con barra', {Series:'4', Reps:'8', 'Carga (kg)':'60', 'RPE 1-10':'7', Descanso:'1:30'}]]],
+     ['Accesorio', [
+       ['Dominada',       {Series:'4', Reps:'6', 'Carga (kg)':'corporal'}],
+       ['Curl con barra', {Series:'3', Reps:'12', 'Carga (kg)':'25'}]]],
    ]},
   {n:'Metcon · AMRAP 20', d:'crossfit', mia:false, alcance:'dia',
    desc:'AMRAP clásico de 20 minutos con tres movimientos.',
    bl:[
-     ['Calentamiento', ['Burpee']],
-     ['WOD / Metcon',  ['Thruster','Wall ball','Double under'], 'amrap'],
-     ['Enfriamiento',  ['Plancha']],
+     ['Calentamiento', [['Burpee', {Series:'2', Reps:'8'}]]],
+     ['WOD / Metcon', [
+       ['Thruster',      {Reps:'10', 'Carga (kg)':'43'}],
+       ['Wall ball',     {Reps:'15', 'Carga (kg)':'9', 'Altura (cm)':'300'}],
+       ['Double under',  {Reps:'20'}]], 'amrap'],
+     ['Enfriamiento', [['Plancha', {Series:'2', Tiempo:'60 s'}]]],
    ]},
   {n:'Test de Hyrox al 50 %', d:'hyrox', mia:false, alcance:'dia',
    desc:'Media carrera: las 8 estaciones con la mitad de la carga.',
    bl:[
-     ['Calentamiento',    ['Correr']],
-     ['Estaciones Hyrox', ['SkiErg','Empuje de trineo','Jalón de trineo','Burpee broad jump',
-                           'Remo en ergómetro','Acarreo del granjero','Acarreo de sandbag','Wall ball']],
+     ['Calentamiento', [['Correr', {'Distancia (m)':'800', 'Ritmo (min/km)':'6:00'}]]],
+     ['Estaciones Hyrox', [
+       ['SkiErg',               {'Distancia (m)':'500'}],
+       ['Empuje de trineo',     {'Carga (kg)':'76', 'Distancia (m)':'25'}],
+       ['Jalón de trineo',      {'Carga (kg)':'51', 'Distancia (m)':'25'}],
+       ['Burpee broad jump',    {'Distancia (m)':'40'}],
+       ['Remo en ergómetro',    {'Distancia (m)':'500'}],
+       ['Acarreo del granjero', {'Carga (kg)':'2 × 16', 'Distancia (m)':'100'}],
+       ['Acarreo de sandbag',   {'Carga (kg)':'10', 'Distancia (m)':'100'}],
+       ['Wall ball',            {Reps:'50', 'Carga (kg)':'6', 'Altura (cm)':'270'}]]],
      ['White Board',      'Anota el parcial de cada estación y el tiempo del tramo de carrera anterior. '
                           + 'Si una estación te pasa de 5 min, bájale la carga y avísame.'],
-     ['Enfriamiento',     ['Correr']],
+     ['Enfriamiento', [['Correr', {'Distancia (m)':'400', 'Ritmo (min/km)':'7:00'}]]],
    ]},
   {n:'Rodaje largo 14 km', d:'correr', mia:true, alcance:'dia',
    desc:'Base aeróbica. Zona 2, ritmo conversado.',
-   bl:[['Cardio', ['Rodaje largo'], null, 'resistencia']]},
+   bl:[['Cardio', [['Rodaje largo',
+     {'Distancia (m)':'14 000', Tiempo:'80 min', 'Ritmo objetivo':'5:40/km'}]],
+     null, 'resistencia']]},
   {n:'Intervalos 6 × 800 m', d:'correr', mia:true, alcance:'dia',
    desc:'Trabajo de VO2máx con trote de recuperación.',
-   bl:[['Cardio', ['Intervalos de VO2máx'], null, 'resistencia']]},
+   bl:[['Cardio', [['Intervalos de VO2máx',
+     {Repeticiones:'6', Trabajo:'800 m', Descanso:'2:30 trote', 'Ritmo objetivo':'3:55/km'}]],
+     null, 'resistencia']]},
 ];
 
 /**
@@ -1132,7 +1176,7 @@ function lineasDe(t){
   if (Array.isArray(bl[0])){
     return bl.map(([nombre, contenido]) => typeof contenido === 'string'
       ? `${nombre} · ${contenido.slice(0, 54)}`
-      : `${nombre} · ${contenido.join(', ')}`);
+      : `${nombre} · ${contenido.map(x => Array.isArray(x) ? x[0] : x).join(', ')}`);
   }
   return bl.map(b => b.kind === 'texto'
     ? `White Board · ${(b.body || 'texto libre').split('\n')[0].slice(0, 54)}`
@@ -1770,7 +1814,64 @@ function pickTpl(i){
 function dragTpl(i){ dragging = {kind:'tpl', i}; }
 
 // ---------- calendario ----------
+/**
+ * Detalle en el calendario: cada sesión del día muestra sus bloques con letra
+ * y sus ejercicios con etiqueta, A1, A2, B1.
+ *
+ * El interruptor existe por una razón de espacio, no de gusto: una semana con
+ * una sesión de cuatro bloques por día son unas cuarenta líneas por columna, y
+ * en siete columnas el calendario deja de caber en la pantalla. En modo
+ * detalle se revisa el programa completo; en compacto se arrastra y se mueve.
+ * Arranca en detalle, que es para lo que se pidió.
+ */
+let detalleEnCalendario = true;
+function alternarDetalle(){
+  detalleEnCalendario = !detalleEnCalendario;
+  renderWeek();
+}
+
+/**
+ * Los bloques de una sesión del calendario. Si la sesión salió de una
+ * plantilla, se leen de ella: así el calendario, el constructor y la vista
+ * previa dicen lo mismo en lugar de cada uno su versión.
+ */
+function bloquesDeSesion(s){
+  if (s.bl) return s.bl;
+  const t = TEMPLATES.find(x => x.n === s.t);
+  return t ? bloquesDe(t) : [];
+}
+
+/** El resumen corto de una prescripción, para que quepa en la columna. */
+function prescripcionCorta(campos){
+  return (campos || [])
+    .filter(([, v]) => v && v !== '—')
+    .slice(0, 2)
+    .map(([k, v]) => k === 'Series' ? `${v} ser.` : v)
+    .join(' · ');
+}
+
+function detalleDeSesion(s){
+  if (!detalleEnCalendario) return '';
+  const bloques = bloquesDeSesion(s);
+  if (!bloques.length) return '<div class="sdet"><i>Sin bloques todavía</i></div>';
+
+  return `<div class="sdet">${bloques.map((b, bi) => {
+    const letra = letraDeBloque(bi);
+    if (b.kind === 'texto'){
+      return `<div class="sb"><span class="sbl">${letra}</span>${b.n}</div>
+        <div class="sx1"><i>${(b.body || '').split('\n')[0].slice(0, 40)}…</i></div>`;
+    }
+    return `<div class="sb"><span class="sbl">${letra}</span>${b.n}</div>`
+      + b.ex.map((e, ei) => `<div class="sx1">
+          <span class="sxl">${letra}${ei + 1}</span>
+          <span class="sxn">${e.n}</span>
+          <span class="sxp">${prescripcionCorta(e.f)}</span></div>`).join('');
+  }).join('')}</div>`;
+}
+
 function renderWeek(){
+  const btn = document.getElementById('btnDetalle');
+  if (btn) btn.textContent = detalleEnCalendario ? 'Vista compacta' : 'Ver detalle';
   document.getElementById('week').innerHTML = WEEK.map((d, di) => `
     <div class="day ${d.today ? 'today' : ''}" data-d="${di}"
       ondragover="event.preventDefault();this.classList.add('over')"
@@ -1786,6 +1887,7 @@ function renderWeek(){
           <span class="st ${s.st}">${s.st === 'hecha' ? '✓ Completada'
             : s.st === 'pub' ? 'Publicada' : 'Borrador'}</span>
           ${s.lote ? `<div class="lote">⇶ ${s.lote} atletas</div>` : ''}
+          ${detalleDeSesion(s)}
           <button class="sx" title="Quitar esta sesión del día"
             onclick="event.stopPropagation();borrarSesion(${di},${si})">✕</button></div>`).join('')}
       <button class="addday" onclick="event.stopPropagation();openBuilder('Nueva sesión',${di})">+</button>
@@ -1845,7 +1947,9 @@ function dropOn(di, el){
   if (!dragging) return;
   if (dragging.kind === 'tpl') {
     const t = TEMPLATES[dragging.i];
-    WEEK[di].s.push({t:t.n, dis:t.d, st:'bor'});
+    // Copia, no referencia (regla 1): si el coach edita la plantilla después,
+    // esta sesión no cambia.
+    WEEK[di].s.push({t:t.n, dis:t.d, st:'bor', bl:bloquesDe(t)});
     toast(`"${t.n}" agregada al ${WEEK[di].d} ${WEEK[di].n} como borrador`);
   } else {
     const s = WEEK[dragging.di].s.splice(dragging.si, 1)[0];
@@ -1857,7 +1961,7 @@ function dropOn(di, el){
 function tapDay(di){
   if (selTpl === null) return;
   const t = TEMPLATES[selTpl];
-  WEEK[di].s.push({t:t.n, dis:t.d, st:'bor'});
+  WEEK[di].s.push({t:t.n, dis:t.d, st:'bor', bl:bloquesDe(t)});
   toast(`"${t.n}" agregada al ${WEEK[di].d} ${WEEK[di].n} como borrador`);
   selTpl = null; renderTpl(); renderWeek();
   document.getElementById('hint').textContent = 'Toca una plantilla para seleccionarla';
@@ -2053,10 +2157,19 @@ function bloquesDe(t){
 
     const bloque = {n:nombre, tag, c:color, kind:'ejercicios', ex:[]};
     if (formato) bloque.fmt = formato;
-    bloque.ex = (contenido || []).map(nom => ({
-      n: nom,
-      f: clase === 'resistencia' ? camposDeResistencia(nom) : camposDeEjercicio(nom, bloque),
-    }));
+    // Un ejercicio puede venir como 'Nombre' o como ['Nombre', {campo: valor}]
+    // para traer su prescripción de verdad. Sin eso, todo el calendario dice
+    // «3 ser. · 10» y a un coach eso le chirría a la primera mirada.
+    bloque.ex = (contenido || []).map((item) => {
+      const [nom, presc] = Array.isArray(item) ? item : [item, null];
+      const campos = clase === 'resistencia'
+        ? camposDeResistencia(nom)
+        : camposDeEjercicio(nom, bloque);
+      if (presc){
+        campos.forEach((c) => { if (presc[c[0]] !== undefined) c[1] = presc[c[0]]; });
+      }
+      return {n: nom, f: campos};
+    });
     return bloque;
   });
 }
@@ -2281,7 +2394,22 @@ function addBlock(i){
 document.getElementById('blkModal').onclick = e => {
   if (e.target.id === 'blkModal') e.target.classList.remove('on');
 };
-function saveDraft(){ closeBuilder(); toast('Guardada como borrador · el atleta no la ve'); }
+/** Deja en la sesión del día lo que el coach acaba de armar. */
+function volcarAlDia(estado){
+  if (!enEdicion) return;
+  const ses = WEEK[enEdicion.di]?.s[enEdicion.si];
+  if (!ses) return;
+  const nombre = document.getElementById('bName').value.trim();
+  if (nombre) ses.t = nombre;
+  ses.bl = JSON.parse(JSON.stringify(BLOCKS));
+  if (estado) ses.st = estado;
+}
+
+function saveDraft(){
+  volcarAlDia('bor');
+  closeBuilder(); renderWeek();
+  toast('Guardada como borrador · el atleta no la ve');
+}
 function guardarPlantilla(){
   const nombre = document.getElementById('bName').value.trim();
   if (!nombre) return toast('Ponle nombre a la plantilla');
@@ -2302,7 +2430,8 @@ function guardarPlantilla(){
                : 'Plantilla guardada · lo que ya asignaste con ella no cambió');
 }
 function publish(){
-  closeBuilder();
+  volcarAlDia('pub');
+  closeBuilder(); renderWeek();
   toast('Publicada · se congeló la prescripción y se notificó al atleta');
 }
 
