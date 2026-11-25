@@ -431,6 +431,11 @@ h3.sec:first-child{margin-top:0}
 .chk .nm{flex:1;min-width:0}
 .chk.off{opacity:.5}
 .cuenta{font-size:13px;font-weight:650;color:var(--accent)}
+
+.msec{font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;font-weight:700;
+  color:var(--text-faint);padding:12px 14px 6px;background:var(--surface);
+  position:sticky;top:0;border-bottom:1px solid var(--border)}
+.mitem .faint{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -601,9 +606,12 @@ h3.sec:first-child{margin-top:0}
     <!-- ===== EJERCICIOS ===== -->
     <section class="view" id="v-ejercicios">
       <div style="display:flex;gap:8px;margin-bottom:14px;flex-wrap:wrap">
-        <input type="search" id="exq" placeholder="Buscar en 191 ejercicios…" style="flex:1;min-width:200px" oninput="renderLib()">
+        <input type="search" id="exq"
+          placeholder="Buscar entre 191 ejercicios, 20 benchmarks, 8 estaciones y 26 sesiones…"
+          style="flex:1;min-width:240px" oninput="renderLib()">
         <button class="btn" onclick="openAltaEjercicio()">+ Nuevo ejercicio</button>
       </div>
+      <div class="filters" id="libFiltros"></div>
       <div class="grid" id="libGrid"></div>
     </section>
 
@@ -695,7 +703,11 @@ h3.sec:first-child{margin-top:0}
 <!-- ===== MODAL EJERCICIO ===== -->
 <div class="modal" id="exModal">
   <div class="mbox">
-    <div class="mh"><input type="search" id="mq" placeholder="Buscar ejercicio…" oninput="renderSearch()" autocomplete="off"></div>
+    <div class="mh">
+      <input type="search" id="mq" placeholder="Buscar en el catálogo…"
+        oninput="renderSearch()" autocomplete="off">
+      <div class="filters" id="mfiltros" style="margin:10px 0 0"></div>
+    </div>
     <div class="ml" id="mlist"></div>
   </div>
 </div>
@@ -926,6 +938,15 @@ h3.sec:first-child{margin-top:0}
 
 <script>
 // ---------- datos ----------
+// <<< CATALOGO GENERADO · no editar a mano
+// Sale de db/seed/, la misma fuente de la migración 0002.
+// Se regenera con: python3 db/build/make_proto_catalog.py
+const EJERCICIOS = [{"n":"Abdominal","d":["fuerza","crossfit"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Abducción de cadera","d":["fuerza"],"p":"accesorio","q":["maquina","banda"],"m":["reps","load","rpe"],"a":[]},{"n":"Acarreo con yugo","d":["fuerza"],"p":"acarreo","q":["yoke"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo de sandbag","d":["fuerza","hyrox"],"p":"acarreo","q":["sandbag"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo del granjero","d":["fuerza","crossfit","hyrox"],"p":"acarreo","q":["kettlebell","mancuernas","agarres_granjero"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo en rack frontal","d":["fuerza"],"p":"acarreo","q":["kettlebell","mancuernas"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo maleta","d":["fuerza"],"p":"acarreo","q":["kettlebell","mancuernas"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo por encima de la cabeza","d":["fuerza"],"p":"acarreo","q":["kettlebell","mancuernas"],"m":["load","distance","time"],"a":[]},{"n":"Aducción de cadera","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Aperturas con mancuernas","d":["fuerza"],"p":"accesorio","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Aperturas en polea","d":["fuerza"],"p":"accesorio","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Arranque","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":["snatch"]},{"n":"Arranque colgado","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Arranque de potencia","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Arrastre de trineo","d":["fuerza","hyrox"],"p":"acarreo","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Assault bike","d":["crossfit","hyrox"],"p":"monoestructural","q":["assault_bike"],"m":["distance","time","calories","power"],"a":[]},{"n":"Bicicleta ergómetro","d":["crossfit","ciclismo"],"p":"monoestructural","q":["bike_erg"],"m":["distance","time","calories","power"],"a":[]},{"n":"Bird dog","d":["fuerza"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Box jump over","d":["crossfit"],"p":"pliometrico","q":["cajon"],"m":["reps","time"],"a":[]},{"n":"Buenos días","d":["fuerza"],"p":"bisagra","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Burpee","d":["fuerza","crossfit","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Burpee box jump over","d":["crossfit"],"p":"pliometrico","q":["cajon"],"m":["reps","time"],"a":[]},{"n":"Burpee broad jump","d":["crossfit","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","distance","time"],"a":[]},{"n":"Burpee con paso atrás","d":["crossfit","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Caminata en manos","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["distance","time"],"a":[]},{"n":"Cargada","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":["clean"]},{"n":"Cargada colgada","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Cargada de potencia","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Cargada y envión","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":["clean and jerk"]},{"n":"Carrera con fatiga previa","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["distance","time","pace"],"a":[]},{"n":"Correr","d":["correr","crossfit","hyrox","triatlon"],"p":"monoestructural","q":["ninguno"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Correr en caminadora","d":["correr","hyrox"],"p":"monoestructural","q":["caminadora"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Correr en cuesta","d":["correr","hyrox"],"p":"monoestructural","q":["ninguno"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Crunch en polea","d":["fuerza"],"p":"core","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl con barra","d":["fuerza"],"p":"accesorio","q":["barra","barra_z"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl con mancuernas","d":["fuerza"],"p":"accesorio","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl en polea","d":["fuerza"],"p":"accesorio","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl femoral","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl martillo","d":["fuerza"],"p":"accesorio","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl nórdico","d":["fuerza"],"p":"bisagra","q":["ninguno"],"m":["reps","tempo"],"a":[]},{"n":"Curl predicador","d":["fuerza"],"p":"accesorio","q":["barra_z","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Dead bug","d":["fuerza"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Dislocaciones de hombro con palo","d":["fuerza"],"p":"movilidad","q":["banda"],"m":["reps"],"a":[]},{"n":"Dominada","d":["fuerza","crossfit","hyrox"],"p":"jalon_vertical","q":["barra_dominadas"],"m":["reps","load","time"],"a":[]},{"n":"Dominada asistida con banda","d":["fuerza","crossfit"],"p":"jalon_vertical","q":["barra_dominadas","banda"],"m":["reps"],"a":[]},{"n":"Dominada butterfly","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"Dominada estricta","d":["fuerza","crossfit"],"p":"jalon_vertical","q":["barra_dominadas"],"m":["reps","load"],"a":[]},{"n":"Dominada kipping","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"Dominada pecho a barra","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":["C2B"]},{"n":"Dominada supina","d":["fuerza"],"p":"jalon_vertical","q":["barra_dominadas"],"m":["reps","load"],"a":[]},{"n":"Double under","d":["crossfit","hyrox"],"p":"monoestructural","q":["cuerda_saltar"],"m":["reps","time"],"a":[]},{"n":"Elevación de piernas colgado","d":["fuerza"],"p":"core","q":["barra_dominadas"],"m":["reps"],"a":[]},{"n":"Elevación de talones de pie","d":["fuerza"],"p":"accesorio","q":["maquina","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Elevación de talones sentado","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Elevación frontal","d":["fuerza"],"p":"accesorio","q":["mancuernas","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Elevación lateral","d":["fuerza"],"p":"accesorio","q":["mancuernas","polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Empuje de trineo","d":["fuerza","crossfit","hyrox"],"p":"acarreo","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Encogimiento de hombros","d":["fuerza"],"p":"accesorio","q":["barra","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Estiramiento activo de isquiotibiales","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Extensión de cuádriceps","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Extensión de espalda","d":["fuerza","crossfit"],"p":"bisagra","q":["ghd"],"m":["reps","time"],"a":[]},{"n":"Extensión de tríceps en polea","d":["fuerza"],"p":"accesorio","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Extensión de tríceps sobre la cabeza","d":["fuerza"],"p":"accesorio","q":["mancuernas","polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Face pull","d":["fuerza"],"p":"accesorio","q":["polea","banda"],"m":["reps","load","rpe"],"a":[]},{"n":"Flexiones","d":["fuerza","crossfit","hyrox"],"p":"empuje_horizontal","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Flexiones con déficit","d":["fuerza"],"p":"empuje_horizontal","q":["discos"],"m":["reps"],"a":[]},{"n":"Flexiones con rodillas","d":["fuerza"],"p":"empuje_horizontal","q":["ninguno"],"m":["reps"],"a":[]},{"n":"Flexiones en anillas","d":["fuerza","crossfit"],"p":"empuje_horizontal","q":["anillas"],"m":["reps"],"a":[]},{"n":"Flexión pike","d":["fuerza","crossfit"],"p":"empuje_vertical","q":["ninguno"],"m":["reps"],"a":[]},{"n":"Fondos de tríceps","d":["fuerza","crossfit"],"p":"accesorio","q":["paralelas","banco"],"m":["reps","load"],"a":[]},{"n":"Fondos en anillas","d":["crossfit"],"p":"gimnasticos","q":["anillas"],"m":["reps","time"],"a":[]},{"n":"Fondos en paralelas","d":["fuerza","crossfit"],"p":"empuje_horizontal","q":["paralelas"],"m":["reps","load"],"a":[]},{"n":"GHD sit-up","d":["crossfit"],"p":"core","q":["ghd"],"m":["reps","time"],"a":[]},{"n":"Gato y camello","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Giro ruso","d":["fuerza"],"p":"core","q":["balon_medicinal","discos"],"m":["reps","time"],"a":[]},{"n":"Handstand push-up","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["reps","time"],"a":["HSPU"]},{"n":"Handstand push-up con déficit","d":["crossfit"],"p":"gimnasticos","q":["discos"],"m":["reps"],"a":[]},{"n":"Handstand push-up estricto","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["reps"],"a":[]},{"n":"Hip thrust","d":["fuerza"],"p":"bisagra","q":["barra","banco","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Hollow hold","d":["crossfit"],"p":"core","q":["ninguno"],"m":["time"],"a":[]},{"n":"Hollow rock","d":["crossfit"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Hyrox: 1 km de carrera","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Hyrox: 100 wall balls","d":["hyrox"],"p":"estacion_hyrox","q":["wall_ball"],"m":["load","reps","time","height"],"a":[]},{"n":"Hyrox: Roxzone","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["time"],"a":[]},{"n":"Hyrox: SkiErg 1000 m","d":["hyrox"],"p":"estacion_hyrox","q":["ski_erg"],"m":["distance","time","pace"],"a":[]},{"n":"Hyrox: burpee broad jump 80 m","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["distance","time","reps"],"a":[]},{"n":"Hyrox: empuje de trineo 50 m","d":["hyrox"],"p":"estacion_hyrox","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Hyrox: farmers carry 200 m","d":["hyrox"],"p":"estacion_hyrox","q":["kettlebell"],"m":["load","distance","time"],"a":[]},{"n":"Hyrox: jalón de trineo 50 m","d":["hyrox"],"p":"estacion_hyrox","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Hyrox: remo 1000 m","d":["hyrox"],"p":"estacion_hyrox","q":["remo_erg"],"m":["distance","time","pace"],"a":[]},{"n":"Hyrox: zancadas con sandbag 100 m","d":["hyrox"],"p":"estacion_hyrox","q":["sandbag"],"m":["load","distance","time"],"a":[]},{"n":"Jalón al pecho","d":["fuerza"],"p":"jalon_vertical","q":["polea","maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Jalón de arranque","d":["fuerza"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Jalón de cargada","d":["fuerza"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Jalón de trineo","d":["fuerza","crossfit","hyrox"],"p":"acarreo","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Knees to elbow","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"L-sit","d":["crossfit"],"p":"gimnasticos","q":["paralelas","anillas"],"m":["time"],"a":[]},{"n":"Movilidad de cadera 90/90","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Muscle-up en anillas","d":["crossfit"],"p":"gimnasticos","q":["anillas"],"m":["reps","time"],"a":[]},{"n":"Muscle-up en barra","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"Nadar","d":["triatlon"],"p":"monoestructural","q":["alberca"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Pallof press","d":["fuerza"],"p":"core","q":["polea","banda"],"m":["reps","time"],"a":[]},{"n":"Parada de manos","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["time"],"a":[]},{"n":"Paseo lateral con banda","d":["fuerza"],"p":"accesorio","q":["banda"],"m":["reps","distance","time"],"a":[]},{"n":"Peso muerto","d":["fuerza","crossfit","hyrox"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":["deadlift"]},{"n":"Peso muerto a una pierna","d":["fuerza"],"p":"bisagra","q":["mancuernas","kettlebell"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto con barra hexagonal","d":["fuerza"],"p":"bisagra","q":["barra_hexagonal"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto con déficit","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto piernas rígidas","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto rumano","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":["RDL"]},{"n":"Peso muerto sumo","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Pistol","d":["fuerza","crossfit"],"p":"sentadilla","q":["ninguno"],"m":["reps","load","rpe"],"a":[]},{"n":"Pistol asistido","d":["fuerza","crossfit"],"p":"sentadilla","q":["banda","anillas"],"m":["reps","load","rpe"],"a":[]},{"n":"Plancha","d":["fuerza","crossfit","hyrox"],"p":"core","q":["ninguno"],"m":["time"],"a":[]},{"n":"Plancha lateral","d":["fuerza"],"p":"core","q":["ninguno"],"m":["time"],"a":[]},{"n":"Prensa de piernas","d":["fuerza"],"p":"sentadilla","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Press Arnold","d":["fuerza"],"p":"empuje_vertical","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Press Z sentado","d":["fuerza"],"p":"empuje_vertical","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca","d":["fuerza","crossfit"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca agarre cerrado","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca con mancuernas","d":["fuerza"],"p":"empuje_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca con pausa","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe","tempo"],"a":[]},{"n":"Press de hombros con mancuernas","d":["fuerza","crossfit","hyrox"],"p":"empuje_vertical","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de pecho en máquina","d":["fuerza"],"p":"empuje_horizontal","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Press declinado","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press en el piso","d":["fuerza"],"p":"empuje_horizontal","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Press francés","d":["fuerza"],"p":"accesorio","q":["barra_z","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press inclinado","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Press inclinado con mancuernas","d":["fuerza"],"p":"empuje_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press landmine","d":["fuerza"],"p":"empuje_vertical","q":["landmine","barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Press militar","d":["fuerza","crossfit","hyrox"],"p":"empuje_vertical","q":["barra","rack"],"m":["reps","load","rpe"],"a":["press estricto","press de hombros"]},{"n":"Puente de glúteo","d":["fuerza"],"p":"bisagra","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Pull through en polea","d":["fuerza"],"p":"bisagra","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Push jerk","d":["fuerza","crossfit"],"p":"empuje_vertical","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Push press","d":["fuerza","crossfit"],"p":"empuje_vertical","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Pájaro","d":["fuerza"],"p":"accesorio","q":["mancuernas","polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Rack pull","d":["fuerza"],"p":"bisagra","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo Pendlay","d":["fuerza"],"p":"jalon_horizontal","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo al mentón","d":["fuerza"],"p":"accesorio","q":["barra","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo con barra","d":["fuerza"],"p":"jalon_horizontal","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo con mancuerna","d":["fuerza"],"p":"jalon_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo con pecho apoyado","d":["fuerza"],"p":"jalon_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo en T","d":["fuerza"],"p":"jalon_horizontal","q":["landmine","barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo en anillas","d":["fuerza","crossfit"],"p":"jalon_horizontal","q":["anillas"],"m":["reps"],"a":[]},{"n":"Remo en ergómetro","d":["crossfit","hyrox"],"p":"monoestructural","q":["remo_erg"],"m":["distance","time","calories","pace","power"],"a":[]},{"n":"Remo invertido","d":["fuerza","crossfit"],"p":"jalon_horizontal","q":["barra_dominadas"],"m":["reps"],"a":[]},{"n":"Remo sentado en polea","d":["fuerza"],"p":"jalon_horizontal","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Rodar en bicicleta","d":["ciclismo","triatlon"],"p":"monoestructural","q":["bicicleta"],"m":["distance","time","power","heart_rate"],"a":[]},{"n":"Rodillas altas","d":["correr","hyrox"],"p":"monoestructural","q":["ninguno"],"m":["time","distance"],"a":[]},{"n":"Rueda abdominal","d":["fuerza"],"p":"core","q":["rueda_abdominal"],"m":["reps"],"a":[]},{"n":"Salto al cajón","d":["fuerza","crossfit","hyrox"],"p":"pliometrico","q":["cajon"],"m":["reps","height","time"],"a":[]},{"n":"Salto de patinador","d":["fuerza"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Salto en profundidad","d":["fuerza"],"p":"pliometrico","q":["cajon"],"m":["reps","height"],"a":[]},{"n":"Salto en sentadilla","d":["fuerza","crossfit"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Salto largo","d":["fuerza","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","distance"],"a":[]},{"n":"Salto simple de cuerda","d":["crossfit","hyrox"],"p":"monoestructural","q":["cuerda_saltar"],"m":["reps","time"],"a":[]},{"n":"Sentadilla Zercher","d":["fuerza"],"p":"sentadilla","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla al cajón","d":["fuerza"],"p":"sentadilla","q":["barra","rack","cajon"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla búlgara","d":["fuerza"],"p":"zancada","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla con pausa","d":["fuerza"],"p":"sentadilla","q":["barra","rack"],"m":["reps","load","rpe","tempo"],"a":[]},{"n":"Sentadilla frontal","d":["fuerza","crossfit"],"p":"sentadilla","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla goblet","d":["fuerza"],"p":"sentadilla","q":["kettlebell","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla hack","d":["fuerza"],"p":"sentadilla","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla isométrica en pared","d":["fuerza"],"p":"sentadilla","q":["ninguno"],"m":["time"],"a":[]},{"n":"Sentadilla overhead","d":["fuerza","crossfit"],"p":"sentadilla","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla profunda sostenida","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["time"],"a":[]},{"n":"Sentadilla sin peso","d":["fuerza","crossfit","hyrox"],"p":"sentadilla","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Sentadilla trasera","d":["fuerza","crossfit","hyrox"],"p":"sentadilla","q":["barra","rack"],"m":["reps","load","rpe"],"a":["sentadilla con barra","back squat"]},{"n":"Shuttle run","d":["crossfit","hyrox"],"p":"monoestructural","q":["ninguno"],"m":["distance","time","reps"],"a":[]},{"n":"SkiErg","d":["crossfit","hyrox"],"p":"monoestructural","q":["ski_erg"],"m":["distance","time","calories","pace","power"],"a":[]},{"n":"Slam ball","d":["crossfit"],"p":"pliometrico","q":["slam_ball"],"m":["reps","load","time"],"a":[]},{"n":"Snatch balance","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Soporte en anillas","d":["crossfit"],"p":"gimnasticos","q":["anillas"],"m":["time"],"a":[]},{"n":"Split jerk","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Step over al cajón","d":["crossfit","hyrox"],"p":"zancada","q":["cajon","mancuernas"],"m":["reps","load","time"],"a":[]},{"n":"Step up al cajón","d":["fuerza","crossfit","hyrox"],"p":"zancada","q":["cajon","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Swing americano","d":["fuerza","crossfit"],"p":"bisagra","q":["kettlebell"],"m":["reps","load","time"],"a":[]},{"n":"Swing ruso","d":["fuerza","crossfit","hyrox"],"p":"bisagra","q":["kettlebell"],"m":["reps","load","time"],"a":[]},{"n":"Thruster","d":["fuerza","crossfit","hyrox"],"p":"halterofilia","q":["barra","mancuernas"],"m":["reps","load","time"],"a":[]},{"n":"Toes to bar","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":["T2B"]},{"n":"Trepar la cuerda","d":["crossfit"],"p":"gimnasticos","q":["cuerda_trepar"],"m":["reps","time"],"a":[]},{"n":"Trepar la cuerda sin piernas","d":["crossfit"],"p":"gimnasticos","q":["cuerda_trepar"],"m":["reps","time"],"a":[]},{"n":"V-up","d":["fuerza"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Wall ball","d":["crossfit","hyrox"],"p":"pliometrico","q":["wall_ball"],"m":["reps","load","time","height"],"a":[]},{"n":"Wall walk","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Zancada caminando","d":["fuerza","crossfit","hyrox"],"p":"zancada","q":["mancuernas","barra"],"m":["reps","load","distance"],"a":[]},{"n":"Zancada con barra al frente","d":["fuerza","crossfit"],"p":"zancada","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Zancada con salto","d":["fuerza","crossfit"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Zancada hacia adelante","d":["fuerza"],"p":"zancada","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Zancada hacia atrás","d":["fuerza"],"p":"zancada","q":["mancuernas","barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Zancada lateral","d":["fuerza"],"p":"zancada","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]}];
+const BENCHMARKS = [{"n":"Fran","f":"for_time","e":"21-15-9","t":900,"mv":["thruster","dominada"]},{"n":"Grace","f":"for_time","e":"30 reps","t":900,"mv":["cargada-envion"]},{"n":"Isabel","f":"for_time","e":"30 reps","t":900,"mv":["arranque-potencia"]},{"n":"Diane","f":"for_time","e":"21-15-9","t":900,"mv":["peso-muerto","handstand-push-up"]},{"n":"Elizabeth","f":"for_time","e":"21-15-9","t":900,"mv":["cargada-potencia","fondos-anillas"]},{"n":"Karen","f":"for_time","e":"150 reps","t":1200,"mv":["wall-ball"]},{"n":"Annie","f":"for_time","e":"50-40-30-20-10","t":900,"mv":["double-under","abdominal"]},{"n":"Cindy","f":"amrap","e":"","t":0,"mv":["dominada","flexiones","sentadilla-aire"]},{"n":"Mary","f":"amrap","e":"","t":0,"mv":["handstand-push-up","sentadilla-pistol","dominada"]},{"n":"Angie","f":"chipper","e":"","t":1800,"mv":["dominada","flexiones","abdominal","sentadilla-aire"]},{"n":"Barbara","f":"rft","e":"","t":0,"mv":["dominada","flexiones","abdominal","sentadilla-aire"]},{"n":"Chelsea","f":"emom","e":"","t":0,"mv":["dominada","flexiones","sentadilla-aire"]},{"n":"Helen","f":"rft","e":"","t":0,"mv":["correr","swing-ruso","dominada"]},{"n":"Jackie","f":"for_time","e":"","t":1200,"mv":["remo-ergometro","thruster","dominada"]},{"n":"Nancy","f":"rft","e":"","t":0,"mv":["correr","sentadilla-overhead"]},{"n":"Nicole","f":"amrap","e":"","t":0,"mv":["correr","dominada"]},{"n":"DT","f":"rft","e":"","t":0,"mv":["peso-muerto","cargada-colgada","push-jerk"]},{"n":"Murph","f":"chipper","e":"","t":4200,"mv":["correr","dominada","flexiones","sentadilla-aire","correr"]},{"n":"Kalsu","f":"for_time","e":"","t":2400,"mv":["thruster","burpee"]},{"n":"Fight Gone Bad","f":"intervalos","e":"","t":0,"mv":["wall-ball","remo-al-menton","salto-cajon","push-press","remo-ergometro"]}];
+const RESISTENCIA = [{"n":"Rodaje fácil","d":"correr","i":"zona 2","x":"Ritmo conversacional; base aeróbica."},{"n":"Rodaje largo","d":"correr","i":"zona 2","x":"La sesión más larga de la semana."},{"n":"Trote de recuperación","d":"correr","i":"zona 1","x":"Muy suave, para el día después de una sesión dura."},{"n":"Tempo","d":"correr","i":"zona 3-4","x":"Esfuerzo sostenido cómodo-duro de 20 a 40 minutos."},{"n":"Intervalos de umbral","d":"correr","i":"zona 4","x":"Series largas al ritmo que podrías sostener una hora."},{"n":"Intervalos de VO2máx","d":"correr","i":"zona 5","x":"Series de 3 a 5 minutos muy exigentes."},{"n":"Repeticiones en cuesta","d":"correr","i":"zona 4-5","x":"Fuerza específica de carrera."},{"n":"Fartlek","d":"correr","i":"variable","x":"Cambios de ritmo libres dentro de un rodaje."},{"n":"Rodaje progresivo","d":"correr","i":"zona 2-4","x":"Empieza suave y termina fuerte."},{"n":"Rectas","d":"correr","i":"zona 5","x":"Aceleraciones cortas de 80 a 150 m para técnica."},{"n":"Series de 400 m","d":"correr","i":"zona 5","x":"Clásico de pista para velocidad sostenida."},{"n":"Series de 800 m","d":"correr","i":"zona 4-5","x":""},{"n":"Series de 1000 m","d":"correr","i":"zona 4","x":""},{"n":"Test de 5 km","d":"correr","i":"máximo","x":"Sirve para recalcular zonas y ritmos."},{"n":"Carrera + estación","d":"hyrox","i":"zona 4","x":"El bloque base del entrenamiento de Hyrox."},{"n":"Rodada de fondo","d":"ciclismo","i":"zona 2","x":""},{"n":"Sweet spot","d":"ciclismo","i":"88-94 % FTP","x":""},{"n":"Intervalos de FTP","d":"ciclismo","i":"95-105 % FTP","x":""},{"n":"Intervalos de VO2máx","d":"ciclismo","i":"110-120 % FTP","x":""},{"n":"Sprints","d":"ciclismo","i":"máximo","x":""},{"n":"Trabajo de cadencia","d":"ciclismo","i":"zona 2","x":""},{"n":"Test de FTP de 20 minutos","d":"ciclismo","i":"máximo","x":"El FTP se estima como el 95 % de la potencia media."},{"n":"Técnica de natación","d":"triatlon","i":"zona 1-2","x":""},{"n":"Series de umbral","d":"triatlon","i":"zona 4","x":""},{"n":"Aguas abiertas","d":"triatlon","i":"zona 2-3","x":""},{"n":"Sesión combinada (brick)","d":"triatlon","i":"zona 3-4","x":"Bici seguida de carrera, sin pausa."}];
+const ESTACIONES = [{"o":1,"n":"1000 m de SkiErg","run":1000,"slug":"hyrox-ski-1000"},{"o":2,"n":"4 x 12.5 m de empuje de trineo","run":1000,"slug":"hyrox-sled-push"},{"o":3,"n":"4 x 12.5 m de jalón de trineo","run":1000,"slug":"hyrox-sled-pull"},{"o":4,"n":"80 m de burpee broad jump","run":1000,"slug":"hyrox-burpee-broad-jump"},{"o":5,"n":"1000 m de remo","run":1000,"slug":"hyrox-row-1000"},{"o":6,"n":"200 m de farmers carry","run":1000,"slug":"hyrox-farmers-carry"},{"o":7,"n":"100 m de zancadas con sandbag","run":1000,"slug":"hyrox-sandbag-lunges"},{"o":8,"n":"100 wall balls","run":1000,"slug":"hyrox-wall-balls"}];
+const HYROX_KM = 8;
+// CATALOGO GENERADO >>>
 /**
  * `f` es la ficha. Quién llena cada campo importa y está marcado:
  *   'ath'   lo llenó el atleta al registrarse, desde su teléfono
@@ -1021,12 +1042,6 @@ const EQUIPO = ['barra','disco','mancuerna','kettlebell','anillas','cajón','cue
   'trineo','remo','bici','ninguno'];
 /** Cumplimiento promedio de las últimas 8 semanas. */
 const CMP_SEMANAS = [68, 72, 70, 76, 74, 79, 77, 81];
-const CATALOG = ['Sentadilla trasera','Sentadilla frontal','Peso muerto','Peso muerto rumano',
-  'Press de banca','Press militar','Push press','Dominada','Remo con barra','Thruster',
-  'Wall ball','Burpee','Double under','Kettlebell swing ruso','Zancada caminando','Plancha',
-  'Cargada de potencia','Arranque de potencia','Salto al cajón','Toes to bar','Remo en ergómetro',
-  'SkiErg','Assault bike','Farmers carry','Empuje de trineo','Jalón de trineo','Correr',
-  'Handstand push-up','Muscle-up en barra','Trepar la cuerda','Hip thrust','Curl con barra'];
 const MINE = ['Sentadilla con cadena (mío)','Remo en banco inclinado 30° (mío)'];
 
 /**
@@ -2083,33 +2098,144 @@ function publish(){
   toast('Publicada · se congeló la prescripción y se notificó al atleta');
 }
 
-// ---------- búsqueda de ejercicio ----------
-let targetBlock = 0;
+// ---------- búsqueda en el catálogo ----------
+let targetBlock = 0, filtroBusq = 'sugeridos';
+
+/**
+ * Qué catálogo corresponde a cada tipo de bloque.
+ *
+ * Esto es lo que estaba mal: el buscador ofrecía siempre la misma lista corta,
+ * así que en un bloque de Hyrox no salían las estaciones y los benchmarks no
+ * salían nunca. Un bloque sabe qué va adentro, y el buscador debe abrirse ya
+ * filtrado por eso — no obligar al coach a escribir para encontrar lo que su
+ * propio bloque implica.
+ */
+const CATALOGO_DE = {
+  'Estaciones Hyrox': {dis:['hyrox'], estaciones:true,
+    titulo:'Estaciones de la carrera y trabajo de Hyrox'},
+  'WOD / Metcon': {dis:['crossfit'], benchmarks:true,
+    titulo:'Benchmarks y movimientos de CrossFit'},
+  'Cardio': {dis:['correr','ciclismo','triatlon'], resistencia:true,
+    titulo:'Sesiones de resistencia y monoestructurales'},
+  'Fuerza': {dis:['fuerza'], titulo:'Ejercicios de fuerza'},
+  'Accesorio': {dis:['fuerza'], titulo:'Accesorios y complementos'},
+  'Calentamiento': {dis:[], titulo:'Todo el catálogo'},
+  'Técnica': {dis:[], titulo:'Todo el catálogo'},
+  'Enfriamiento': {dis:[], titulo:'Todo el catálogo'},
+};
+
 function openSearch(bi){
   targetBlock = bi;
+  filtroBusq = 'sugeridos';
   document.getElementById('mq').value = '';
   renderSearch();
   document.getElementById('exModal').classList.add('on');
   setTimeout(() => document.getElementById('mq').focus(), 50);
 }
+function setFiltroBusq(f){ filtroBusq = f; renderSearch(); }
+
 function renderSearch(){
   const q = document.getElementById('mq').value.trim().toLowerCase();
-  const all = [...CATALOG, ...MINE];
-  const hits = all.filter(x => x.toLowerCase().includes(q)).slice(0, 14);
-  const list = hits.map(x => `<div class="mitem" onclick="addEx('${x.replace(/'/g, "")}')">
-    <b>${x}</b>${MINE.includes(x) ? '<span class="chip acc">Mío</span>' : ''}</div>`).join('');
-  const nuevo = q && !hits.some(h => h.toLowerCase() === q)
-    ? `<div class="mnew" onclick="addEx('${q.replace(/'/g, "")}', true)">
+  const bloque = BLOCKS[targetBlock];
+  const cfg = CATALOGO_DE[bloque?.n] || {dis:[], titulo:'Todo el catálogo'};
+  const sug = filtroBusq === 'sugeridos';
+  const coincide = t => !q || t.toLowerCase().includes(q);
+
+  const secciones = [];
+
+  // --- estaciones de Hyrox, en el orden de la carrera
+  if ((sug && cfg.estaciones) || filtroBusq === 'estaciones'){
+    const items = ESTACIONES.filter(e => coincide(e.n));
+    if (items.length) secciones.push([`Estaciones de la carrera · ${HYROX_KM} km en total`,
+      items.map(e => `<div class="mitem" onclick="addDelCatalogo('${q1(e.n)}','estacion')">
+        <b>${e.o}. ${e.n}</b>
+        <span class="chip hyrox">${e.run} m antes</span></div>`).join('')]);
+  }
+
+  // --- benchmarks
+  if ((sug && cfg.benchmarks) || filtroBusq === 'benchmarks'){
+    const items = BENCHMARKS.filter(b => coincide(b.n) || b.mv.some(coincide));
+    if (items.length) secciones.push([`Benchmarks · ${BENCHMARKS.length} en el catálogo`,
+      items.map(b => `<div class="mitem" onclick="addDelCatalogo('${q1(b.n)}','benchmark')">
+        <b>${b.n}</b>
+        <span class="faint">${b.e ? b.e + ' · ' : ''}${b.mv.join(', ')}</span>
+        <span class="chip crossfit">${b.f.replace('_', ' ')}</span></div>`).join('')]);
+  }
+
+  // --- sesiones de resistencia
+  if ((sug && cfg.resistencia) || filtroBusq === 'resistencia'){
+    const items = RESISTENCIA.filter(r => coincide(r.n) || coincide(r.x));
+    if (items.length) secciones.push([`Sesiones de resistencia · ${RESISTENCIA.length}`,
+      items.map(r => `<div class="mitem" onclick="addDelCatalogo('${q1(r.n)}','resistencia')">
+        <b>${r.n}</b><span class="faint">${r.x}</span>
+        <span class="chip ${r.d}">${r.i}</span></div>`).join('')]);
+  }
+
+  // --- ejercicios, filtrados por la disciplina del bloque
+  const porDisciplina = EJERCICIOS.filter(e =>
+    (!sug || !cfg.dis.length || cfg.dis.some(d => e.d.includes(d))) &&
+    (filtroBusq === 'sugeridos' || filtroBusq === 'todos' ||
+     ['estaciones','benchmarks','resistencia'].includes(filtroBusq) ||
+     e.d.includes(filtroBusq)));
+  const ejs = porDisciplina.filter(e => coincide(e.n) || e.a.some(coincide));
+  if (ejs.length && !['estaciones','benchmarks','resistencia'].includes(filtroBusq)){
+    secciones.push([`Ejercicios · ${ejs.length} de ${EJERCICIOS.length}`,
+      ejs.slice(0, 60).map(e => `<div class="mitem" onclick="addDelCatalogo('${q1(e.n)}','ejercicio')">
+        <b>${e.n}</b>
+        <span class="faint">${e.p || e.q.join(', ')}</span>
+        ${e.d.slice(0, 2).map(d => `<span class="chip ${d}">${d}</span>`).join('')}
+        ${LINKS[e.n] ? '' : ''}</div>`).join('')
+      + (ejs.length > 60 ? `<div class="mitem muted">y ${ejs.length - 60} más · afina la búsqueda</div>` : '')]);
+  }
+
+  // --- los míos
+  const mios = MINE.filter(coincide);
+  if (mios.length) secciones.push(['Míos',
+    mios.map(x => `<div class="mitem" onclick="addDelCatalogo('${q1(x)}','ejercicio')">
+      <b>${x}</b><span class="chip acc">Mío</span></div>`).join('')]);
+
+  const filtros = [
+    ['sugeridos', `Para ${bloque?.n || 'este bloque'}`],
+    ['todos', 'Todo el catálogo'],
+    ['estaciones', 'Estaciones'],
+    ['benchmarks', 'Benchmarks'],
+    ['resistencia', 'Resistencia'],
+    ...DISCIPLINAS.map(d => [d, NOMBRE_DIS[d]]),
+  ].map(([f, t]) =>
+    `<button class="fchip ${filtroBusq === f ? 'on' : ''}"
+      onclick="setFiltroBusq('${f}')">${t}</button>`).join('');
+
+  const nuevo = q && !secciones.length
+    ? `<div class="mnew" onclick="addDelCatalogo('${q1(document.getElementById('mq').value)}','ejercicio',true)">
         + Crear «${document.getElementById('mq').value}» como ejercicio mío</div>` : '';
-  document.getElementById('mlist').innerHTML = (list || '') + nuevo ||
-    '<div class="mitem muted">Escribe para buscar</div>';
+
+  document.getElementById('mfiltros').innerHTML = filtros;
+  document.getElementById('mlist').innerHTML =
+    (secciones.map(([t, html]) =>
+      `<div class="msec">${t}</div>${html}`).join('') || '') + nuevo ||
+    '<div class="mitem muted">Nada coincide. Escribe otra cosa o crea el tuyo.</div>';
 }
-function addEx(name, nuevo){
-  BLOCKS[targetBlock].ex.push({n: nuevo ? name + ' (mío)' : name,
-    f:[['Series','3'],['Reps','10'],['Carga','—'],['RPE','7']]});
+
+/** Lo que se agrega al bloque, con los campos que le tocan a cada tipo. */
+function addDelCatalogo(nombre, tipo, nuevo){
+  const CAMPOS = {
+    estacion:    [['Distancia','1000 m'],['Carga','—'],['Tiempo objetivo','—']],
+    benchmark:   [['Rondas','3'],['Tiempo límite','15:00'],['Escalado','Rx']],
+    resistencia: [['Distancia','10 km'],['Tiempo','50:00'],['Zona','2'],['Ritmo','5:00/km']],
+    ejercicio:   [['Series','3'],['Reps','10'],['Carga','—'],['RPE','7']],
+  };
+  // El bloque puede haber desaparecido con el buscador abierto, y un bloque de
+  // texto no lleva ejercicios: en los dos casos se cierra en lugar de reventar.
+  const bloque = BLOCKS[targetBlock];
+  if (!bloque || bloque.kind === 'texto'){
+    document.getElementById('exModal').classList.remove('on');
+    return toast('Ese bloque ya no está en la sesión');
+  }
+  bloque.ex.push({n: nuevo ? nombre + ' (mío)' : nombre,
+    f: JSON.parse(JSON.stringify(CAMPOS[tipo] || CAMPOS.ejercicio))});
   document.getElementById('exModal').classList.remove('on');
   renderBlocks();
-  if (nuevo) { MINE.push(name + ' (mío)'); toast(`"${name}" creado como ejercicio tuyo`); }
+  if (nuevo){ MINE.push(nombre + ' (mío)'); toast(`"${nombre}" creado como ejercicio tuyo`); }
 }
 document.getElementById('exModal').onclick = e => {
   if (e.target.id === 'exModal') e.target.classList.remove('on');
@@ -2119,38 +2245,87 @@ document.getElementById('exModal').onclick = e => {
 /** Escapa un texto para meterlo entre comillas simples dentro de un atributo HTML. */
 const q1 = t => String(t).replace(/\\/g, '\\\\').replace(/'/g, "\\'").replace(/"/g, '&quot;');
 
+let filtroLib = 'todos';
+function setFiltroLib(f){ filtroLib = f; renderLib(); }
+
+/**
+ * La biblioteca: 191 ejercicios, 20 benchmarks, las 8 estaciones de la carrera
+ * y 26 sesiones de resistencia. Antes mostraba 32 nombres escritos a mano y el
+ * resto del catálogo semilla no se veía por ningún lado de la plataforma.
+ */
 function renderLib(){
-  const q = (document.getElementById('exq').value || '').toLowerCase();
-  const all = [...MINE, ...CATALOG].filter(x => x.toLowerCase().includes(q));
-  document.getElementById('libGrid').innerHTML = all.map(x => {
-    const mio = MINE.includes(x);
-    // El catálogo que viene con PR-LAB no se edita ni se borra: es el mismo para
-    // todos los coaches. Para ajustarlo se duplica y se edita la copia.
-    const acciones = mio
-      ? `<button class="btn ghost sm" onclick="openAltaEjercicio('${q1(x)}')">Editar</button>
-         <button class="iconbtn dang" title="Eliminar este ejercicio"
-           onclick="borrarEjercicio('${q1(x)}')">✕</button>`
-      : `<button class="btn ghost sm" onclick="duplicar('${q1(x)}')">Duplicar para editar</button>`;
-    const link = LINKS[x];
+  const q = (document.getElementById('exq').value || '').trim().toLowerCase();
+  const coincide = t => !q || t.toLowerCase().includes(q);
+  const f = filtroLib;
+
+  const cuentaDis = {};
+  EJERCICIOS.forEach(e => e.d.forEach(d => cuentaDis[d] = (cuentaDis[d] || 0) + 1));
+  document.getElementById('libFiltros').innerHTML = [
+    ['todos', `Todos · ${EJERCICIOS.length}`],
+    ['mios', `Míos · ${MINE.length}`],
+    ...DISCIPLINAS.filter(d => cuentaDis[d]).map(d => [d, `${NOMBRE_DIS[d]} · ${cuentaDis[d]}`]),
+    ['benchmarks', `Benchmarks · ${BENCHMARKS.length}`],
+    ['estaciones', `Estaciones · ${ESTACIONES.length}`],
+    ['resistencia', `Resistencia · ${RESISTENCIA.length}`],
+  ].map(([k, t]) => `<button class="fchip ${f === k ? 'on' : ''}"
+    onclick="setFiltroLib('${k}')">${t}</button>`).join('');
+
+  const tarjeta = (nombre, chips, pie, mio) => {
+    const link = LINKS[nombre];
     const demo = link
-      ? `<div class="linkrow">
-           <a href="${link}" target="_blank" rel="noopener">Ver demostración ↗</a>
-           <button class="iconbtn" title="Cambiar el enlace"
-             onclick="ponerEnlace('${q1(x)}')">✎</button>
-         </div>`
-      : `<div class="linkrow">
-           <a href="${buscarEn(x)}" target="_blank" rel="noopener">Buscar demostración ↗</a>
-           <button class="btn ghost sm" onclick="ponerEnlace('${q1(x)}')">Pegar enlace</button>
-         </div>`;
+      ? `<div class="linkrow"><a href="${link}" target="_blank" rel="noopener">Ver demostración ↗</a>
+           <button class="iconbtn" title="Cambiar el enlace" onclick="ponerEnlace('${q1(nombre)}')">✎</button></div>`
+      : `<div class="linkrow"><a href="${buscarEn(nombre)}" target="_blank" rel="noopener">Buscar demostración ↗</a>
+           <button class="btn ghost sm" onclick="ponerEnlace('${q1(nombre)}')">Pegar enlace</button></div>`;
+    const acciones = mio
+      ? `<button class="btn ghost sm" onclick="openAltaEjercicio('${q1(nombre)}')">Editar</button>
+         <button class="iconbtn dang" title="Eliminar" onclick="borrarEjercicio('${q1(nombre)}')">✕</button>`
+      : `<button class="btn ghost sm" onclick="duplicar('${q1(nombre)}')">Duplicar para editar</button>`;
     return `<div class="card">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px">
-        ${mio ? '<span class="chip acc">Mío</span>' : '<span class="chip plain">Catálogo</span>'}
-        ${link ? '<span class="chip plain" style="color:var(--info);border-color:var(--info)">Con enlace</span>' : ''}
-      </div>
-      <b style="font-size:14px;font-weight:650;display:block;margin-bottom:4px">${x}</b>
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:6px;flex-wrap:wrap">${chips}</div>
+      <b style="font-size:14px;font-weight:650;display:block;margin-bottom:4px">${nombre}</b>
+      ${pie ? `<div class="faint">${pie}</div>` : ''}
       ${demo}
       <div style="display:flex;gap:6px;align-items:center;margin-top:11px">${acciones}</div></div>`;
-  }).join('') || '<p class="muted">Ningún ejercicio coincide.</p>';
+  };
+
+  let html = '';
+
+  if (f === 'benchmarks' || f === 'todos'){
+    const items = BENCHMARKS.filter(b => coincide(b.n) || b.mv.some(coincide));
+    html += items.map(b => tarjeta(b.n,
+      `<span class="chip crossfit">${b.f.replace('_', ' ')}</span>
+       <span class="chip plain">Benchmark</span>`,
+      `${b.e ? b.e + ' · ' : ''}${b.mv.join(', ')}${b.t ? ` · límite ${Math.round(b.t / 60)} min` : ''}`,
+      false)).join('');
+  }
+  if (f === 'estaciones' || f === 'todos'){
+    const items = ESTACIONES.filter(e => coincide(e.n));
+    html += items.map(e => tarjeta(e.n,
+      `<span class="chip hyrox">Estación ${e.o} de 8</span>`,
+      `${e.run} m de carrera antes de esta estación`, false)).join('');
+  }
+  if (f === 'resistencia' || f === 'todos'){
+    const items = RESISTENCIA.filter(r => coincide(r.n) || coincide(r.x));
+    html += items.map(r => tarjeta(r.n,
+      `<span class="chip ${r.d}">${NOMBRE_DIS[r.d] || r.d}</span>
+       <span class="chip plain">${r.i}</span>`, r.x, false)).join('');
+  }
+  if (f === 'mios' || f === 'todos' || DISCIPLINAS.includes(f)){
+    if (f !== 'mios'){
+      const items = EJERCICIOS.filter(e =>
+        (f === 'todos' || e.d.includes(f)) && (coincide(e.n) || e.a.some(coincide)));
+      html += items.map(e => tarjeta(e.n,
+        `<span class="chip plain">Catálogo</span>
+         ${e.d.slice(0, 3).map(d => `<span class="chip ${d}">${NOMBRE_DIS[d] || d}</span>`).join('')}`,
+        [e.p, e.q.join(', ')].filter(Boolean).join(' · '), false)).join('');
+    }
+    html += MINE.filter(coincide).map(x =>
+      tarjeta(x, '<span class="chip acc">Mío</span>', '', true)).join('');
+  }
+
+  document.getElementById('libGrid').innerHTML = html ||
+    '<p class="muted">Nada coincide con esa búsqueda ni con ese filtro.</p>';
 }
 
 /**
