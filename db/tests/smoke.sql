@@ -335,4 +335,58 @@ BEGIN
   RAISE NOTICE 'OK 13 · archivar no rompe el historico (5 series intactas)';
 END $$;
 
-DO $$ BEGIN RAISE NOTICE '--- 13 pruebas pasaron ---'; END $$;
+-- ---------------------------------------------------------------------
+-- 14 · Un solo resultado por bloque, y la correccion es un upsert
+-- ---------------------------------------------------------------------
+DO $$
+DECLARE
+  v_log  uuid;
+  v_bloq uuid;
+  n      int;
+  falla  boolean := false;
+BEGIN
+  SELECT id INTO v_log  FROM workout_logs      LIMIT 1;
+  SELECT id INTO v_bloq FROM assignment_blocks LIMIT 1;
+  IF v_log IS NULL OR v_bloq IS NULL THEN
+    RAISE NOTICE 'OMITIDA 14 · falta semilla de sesion registrada';
+    RETURN;
+  END IF;
+
+  DELETE FROM block_logs WHERE workout_log_id = v_log AND assignment_block_id = v_bloq;
+
+  INSERT INTO block_logs (workout_log_id, assignment_block_id, client_uuid, result_text, duration_s)
+  VALUES (v_log, v_bloq, '9f000000-0000-4000-8000-000000000001', 'Primer intento', 872);
+
+  -- Otro client_uuid para el MISMO bloque debe rebotar: no son dos
+  -- resultados, es una correccion.
+  BEGIN
+    INSERT INTO block_logs (workout_log_id, assignment_block_id, client_uuid, result_text)
+    VALUES (v_log, v_bloq, '9f000000-0000-4000-8000-000000000002', 'Duplicado');
+    falla := true;
+  EXCEPTION WHEN unique_violation THEN
+    NULL;
+  END;
+  IF falla THEN
+    RAISE EXCEPTION 'FALLO 14: dejo dos resultados para el mismo bloque';
+  END IF;
+
+  -- Asi se resuelve. El predicado del indice parcial es obligatorio en el
+  -- ON CONFLICT: sin el, PostgreSQL no reconoce el indice.
+  INSERT INTO block_logs (workout_log_id, assignment_block_id, client_uuid, result_text, duration_s)
+  VALUES (v_log, v_bloq, '9f000000-0000-4000-8000-000000000002', 'Corregido: 14:10', 850)
+  ON CONFLICT (workout_log_id, assignment_block_id) WHERE assignment_block_id IS NOT NULL
+    DO UPDATE SET result_text = EXCLUDED.result_text, duration_s = EXCLUDED.duration_s;
+
+  SELECT count(*) INTO n FROM block_logs
+   WHERE workout_log_id = v_log AND assignment_block_id = v_bloq;
+  IF n <> 1 THEN RAISE EXCEPTION 'FALLO 14: quedaron % resultados, debe ser 1', n; END IF;
+
+  SELECT count(*) INTO n FROM block_logs
+   WHERE workout_log_id = v_log AND assignment_block_id = v_bloq
+     AND result_text = 'Corregido: 14:10' AND duration_s = 850;
+  IF n <> 1 THEN RAISE EXCEPTION 'FALLO 14: el upsert no corrigio el registro'; END IF;
+
+  RAISE NOTICE 'OK 14 · un resultado por bloque y la correccion lo actualiza';
+END $$;
+
+DO $$ BEGIN RAISE NOTICE '--- 14 pruebas pasaron ---'; END $$;

@@ -13,6 +13,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { and, asc, eq, inArray } from 'drizzle-orm';
 import { AccesoService } from '../acceso/acceso.service';
 import { Errores } from '../comun/errores';
+import { etiquetaDeItem, letraDeBloque } from '../comun/etiquetas';
 import { primeraFila } from '../comun/uno';
 import { catalogo, type AlcancePlantilla } from '../db/catalogo';
 import { DB, type Db } from '../db/db.module';
@@ -104,7 +105,9 @@ export class PlantillasService {
       scope: plantilla.alcance,
       description: plantilla.descripcion,
       created_at: plantilla.creadoEn.toISOString(),
-      blocks: bloques.map((b) => ({
+      // `label` va calculado, no guardado: ver comun/etiquetas.ts.
+      blocks: bloques.map((b, bi) => ({
+        label: letraDeBloque(bi),
         position: b.posicion,
         block_type: b.tipoBloque,
         title: b.titulo,
@@ -112,7 +115,8 @@ export class PlantillasService {
         wod_format: b.formatoWod,
         config: b.config,
         day_offset: b.diaOffset,
-        items: (porBloque.get(b.id) ?? []).map((i) => ({
+        items: (porBloque.get(b.id) ?? []).map((i, ii) => ({
+          label: etiquetaDeItem(bi, ii),
           position: i.posicion,
           exercise_id: i.ejercicioId,
           prescription: i.prescripcion,

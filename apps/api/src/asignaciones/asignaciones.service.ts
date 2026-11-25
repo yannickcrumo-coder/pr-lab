@@ -34,6 +34,7 @@ import { Inject, Injectable } from '@nestjs/common';
 import { and, asc, between, eq, inArray, isNull, sql } from 'drizzle-orm';
 import { AccesoService } from '../acceso/acceso.service';
 import { Errores } from '../comun/errores';
+import { etiquetaDeItem, letraDeBloque } from '../comun/etiquetas';
 import { primeraFila } from '../comun/uno';
 import { catalogo } from '../db/catalogo';
 import { DB, type Db } from '../db/db.module';
@@ -331,16 +332,19 @@ export class AsignacionesService {
       cycle_id: asignacion.cicloId,
       published_at: asignacion.publicadaEn?.toISOString() ?? null,
       sync_seq: asignacion.syncSeq,
-      blocks: bloques.map((b) => ({
+      // `label` va calculado, no guardado: ver comun/etiquetas.ts.
+      blocks: bloques.map((b, bi) => ({
         id: b.id,
+        label: letraDeBloque(bi),
         position: b.posicion,
         block_type: b.tipoBloque,
         title: b.titulo,
         body_text: b.textoLibre,
         wod_format: b.formatoWod,
         config: b.config,
-        items: (porBloque.get(b.id) ?? []).map((i) => ({
+        items: (porBloque.get(b.id) ?? []).map((i, ii) => ({
           id: i.id,
+          label: etiquetaDeItem(bi, ii),
           position: i.posicion,
           exercise_id: i.ejercicioId,
           prescription: i.prescripcion,
