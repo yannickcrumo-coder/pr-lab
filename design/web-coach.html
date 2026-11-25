@@ -1002,36 +1002,95 @@ const ATHLETES = [
       notasAth:'', notasCoach:'', parq:'Aceptado el 8 de noviembre de 2026', contacto:''}},
 ];
 const TEMPLATES = [
-  {n:'Fuerza · Día A', d:'fuerza', m:'6 ejercicios · 55 min', mia:true,
-   pb:['Calentamiento · movilidad de cadera y activación',
-       'Fuerza · sentadilla trasera 5×5 al RPE 8',
-       'Fuerza · peso muerto rumano 3×8',
-       'Accesorio · zancada caminando y plancha',
-       'Enfriamiento · respiración y estiramiento']},
-  {n:'Fuerza · Día B', d:'fuerza', m:'5 ejercicios · 50 min', mia:true,
-   pb:['Calentamiento · hombro y escápula',
-       'Fuerza · press de banca 5×5',
-       'Fuerza · remo con barra 4×8',
-       'Accesorio · dominadas y curl',
-       'Enfriamiento · movilidad de pectoral']},
-  {n:'Metcon · AMRAP 20', d:'crossfit', m:'3 movimientos · 20 min', mia:false,
-   pb:['Calentamiento · 2 rondas ligeras del WOD',
-       'WOD · AMRAP 20: 10 thrusters, 15 wall balls, 20 double unders',
-       'Enfriamiento · caminata y movilidad']},
-  {n:'Test de Hyrox al 50 %', d:'hyrox', m:'16 tramos · 45 min', mia:false,
-   pb:['Calentamiento · 800 m progresivo',
-       'Estaciones Hyrox · 8 tramos de 500 m con las 8 estaciones al 50 % de carga',
-       'White Board · cómo anotar el parcial de cada estación',
-       'Enfriamiento · 400 m suave']},
-  {n:'Rodaje largo 14 km', d:'correr', m:'Zona 2 · 80 min', mia:true,
-   pb:['Calentamiento · 10 min caminata y movilidad',
-       'Cardio · 14 km en zona 2, ritmo conversado',
-       'Enfriamiento · 5 min caminata']},
-  {n:'Intervalos 6 × 800 m', d:'correr', m:'Zona 5 · 45 min', mia:true,
-   pb:['Calentamiento · 15 min y 3 progresiones',
-       'Cardio · 6 × 800 m en zona 5 con 2:30 de trote',
-       'Enfriamiento · 10 min suave']},
+  {n:'Fuerza · Día A', d:'fuerza', mia:true, alcance:'dia',
+   desc:'Fuerza máxima de tren inferior. Sentadilla pesada y cadena posterior.',
+   bl:[
+     ['Calentamiento', ['Movilidad de cadera 90/90','Sentadilla sin peso']],
+     ['Fuerza',        ['Sentadilla trasera','Peso muerto rumano']],
+     ['Accesorio',     ['Zancada caminando','Plancha']],
+     ['Enfriamiento',  ['Movilidad de cadera 90/90']],
+   ]},
+  {n:'Fuerza · Día B', d:'fuerza', mia:true, alcance:'dia',
+   desc:'Tren superior. Empuje y jalón horizontal con accesorios.',
+   bl:[
+     ['Calentamiento', ['Flexiones']],
+     ['Fuerza',        ['Press de banca','Remo con barra']],
+     ['Accesorio',     ['Dominada','Curl con barra']],
+   ]},
+  {n:'Metcon · AMRAP 20', d:'crossfit', mia:false, alcance:'dia',
+   desc:'AMRAP clásico de 20 minutos con tres movimientos.',
+   bl:[
+     ['Calentamiento', ['Burpee']],
+     ['WOD / Metcon',  ['Thruster','Wall ball','Double under'], 'amrap'],
+     ['Enfriamiento',  ['Plancha']],
+   ]},
+  {n:'Test de Hyrox al 50 %', d:'hyrox', mia:false, alcance:'dia',
+   desc:'Media carrera: las 8 estaciones con la mitad de la carga.',
+   bl:[
+     ['Calentamiento',    ['Correr']],
+     ['Estaciones Hyrox', ['SkiErg','Empuje de trineo','Jalón de trineo','Burpee broad jump',
+                           'Remo en ergómetro','Acarreo del granjero','Acarreo de sandbag','Wall ball']],
+     ['White Board',      'Anota el parcial de cada estación y el tiempo del tramo de carrera anterior. '
+                          + 'Si una estación te pasa de 5 min, bájale la carga y avísame.'],
+     ['Enfriamiento',     ['Correr']],
+   ]},
+  {n:'Rodaje largo 14 km', d:'correr', mia:true, alcance:'dia',
+   desc:'Base aeróbica. Zona 2, ritmo conversado.',
+   bl:[['Cardio', ['Rodaje largo'], null, 'resistencia']]},
+  {n:'Intervalos 6 × 800 m', d:'correr', mia:true, alcance:'dia',
+   desc:'Trabajo de VO2máx con trote de recuperación.',
+   bl:[['Cardio', ['Intervalos de VO2máx'], null, 'resistencia']]},
 ];
+
+/**
+ * Los bloques de una plantilla se arman desde el catálogo de verdad, no desde
+ * una cadena de texto. Era de ahí que venía el error: al editar una plantilla,
+ * el nombre del ejercicio no coincidía con ninguno del catálogo, así que no se
+ * sabía qué mide y caía al juego genérico de reps y carga — incluso en cardio.
+ */
+const TIPO_BLOQUE = {
+  'Calentamiento':    ['preparación','plain','ejercicios'],
+  'Fuerza':           ['fuerza','fuerza','ejercicios'],
+  'WOD / Metcon':     ['metcon','crossfit','ejercicios'],
+  'Cardio':           ['cardio','correr','ejercicios'],
+  'Estaciones Hyrox': ['hyrox','hyrox','ejercicios'],
+  'Técnica':          ['técnica','plain','ejercicios'],
+  'Accesorio':        ['accesorio','plain','ejercicios'],
+  'Enfriamiento':     ['cierre','plain','ejercicios'],
+  'White Board':      ['texto libre','acc','texto'],
+};
+
+/**
+ * Cómo se describe una plantilla. Vive en un solo lugar porque hay dos formas
+ * de plantilla —la de la semilla, declarada como pares [bloque, ejercicios], y
+ * la que el coach guarda, con los bloques ya hechos— y describir cada una por
+ * su lado es cómo se desincronizan.
+ */
+function lineasDe(t){
+  const bl = t?.bl || [];
+  if (!bl.length) return ['Todavía no tiene bloques'];
+  if (Array.isArray(bl[0])){
+    return bl.map(([nombre, contenido]) => typeof contenido === 'string'
+      ? `${nombre} · ${contenido.slice(0, 54)}`
+      : `${nombre} · ${contenido.join(', ')}`);
+  }
+  return bl.map(b => b.kind === 'texto'
+    ? `White Board · ${(b.body || 'texto libre').split('\n')[0].slice(0, 54)}`
+    : `${b.n} · ${b.ex.map(e => e.n).join(', ') || 'sin ejercicios'}`);
+}
+
+function resumenDe(t){
+  const bl = t?.bl || [];
+  if (!bl.length) return 'Sin bloques todavía';
+  const esDeclarada = Array.isArray(bl[0]);
+  const ejercicios = esDeclarada
+    ? bl.reduce((c, [, x]) => c + (Array.isArray(x) ? x.length : 0), 0)
+    : bl.reduce((c, b) => c + (b.kind === 'texto' ? 0 : b.ex.length), 0);
+  const prefijo = t.alcance === 'semana' ? 'Semana · '
+    : t.alcance === 'ciclo' ? 'Ciclo · ' : '';
+  return `${prefijo}${bl.length} bloque${bl.length === 1 ? '' : 's'}`
+    + (ejercicios ? ` · ${ejercicios} ejercicio${ejercicios === 1 ? '' : 's'}` : '');
+}
 /** Lo que el coach asignó últimamente: acceso rápido en el panel. */
 const RECENT = [
   {t:'Fuerza · Día A', c:'12 veces este mes'},
@@ -1558,7 +1617,7 @@ function renderTpl(){
         return `<div class="tpl ${t.d} ${selTpl === i ? 'sel' : ''}" draggable="true"
           ondragstart="dragTpl(${i})" onclick="pickTpl(${i})"
           onmouseenter="verPrevia(${i},this)" onmouseleave="ocultarPrevia()">
-          <b>${t.n}</b><span class="faint">${t.m}</span>
+          <b>${t.n}</b><span class="faint">${resumenDe(t)}</span>
           <span class="peek" style="display:flex;gap:4px">
             <button class="iconbtn" title="Ver la sesión completa"
               onclick="event.stopPropagation();ocultarPrevia();openBuilder('${q1(t.n)}',undefined,true)">👁</button>
@@ -1587,7 +1646,7 @@ function renderTpl(){
             ${t.mia ? '<span class="chip acc">Mía</span>' : ''}</div>
           <b style="font-size:14.5px;font-weight:650;display:block;margin-bottom:4px;
             padding-right:34px">${t.n}</b>
-          <div class="faint" style="margin-bottom:11px">${t.m}</div>
+          <div class="faint" style="margin-bottom:11px">${resumenDe(t)}</div>
           <button class="btn ghost sm" onclick="editarPlantilla(${i})">Editar</button>
         </div>`;
       }).join('')
@@ -1600,8 +1659,8 @@ function verPrevia(i, el){
   const v = document.getElementById('tpv');
   v.innerHTML = `<b>${t.n}</b>
     <span class="chip ${t.d}">${t.d}</span>
-    <span class="faint" style="margin-left:6px">${t.m}</span>
-    ${t.pb.map(b => {
+    <span class="faint" style="margin-left:6px">${resumenDe(t)}</span>
+    ${lineasDe(t).map(b => {
       const i = b.indexOf(' · ');
       return i < 0 ? `<div class="pb">${b}</div>`
         : `<div class="pb">${b.slice(0, i)} · <i>${b.slice(i + 3)}</i></div>`;
@@ -1920,35 +1979,32 @@ const BLOCK_TYPES = [
 const WB_PH = 'AMRAP 20 min&#10;10 thrusters 43 kg&#10;15 wall balls 9 kg&#10;20 double unders&#10;&#10;Rx+: thrusters 52 kg&#10;Escalado: wall ball 6 kg, single unders';
 let BLOCKS = [];
 
-/** Convierte el resumen de una plantilla en bloques editables del constructor. */
+/** Convierte la definición de una plantilla en bloques editables. */
 function bloquesDe(t){
-  const TIPO = {
-    'Calentamiento': ['Calentamiento','preparación','plain','ejercicios'],
-    'Fuerza': ['Fuerza','fuerza','fuerza','ejercicios'],
-    'WOD': ['WOD / Metcon','metcon','crossfit','ejercicios'],
-    'Cardio': ['Cardio','cardio','correr','ejercicios'],
-    'Estaciones Hyrox': ['Estaciones Hyrox','hyrox','hyrox','ejercicios'],
-    'Técnica': ['Técnica','técnica','plain','ejercicios'],
-    'Accesorio': ['Accesorio','accesorio','plain','ejercicios'],
-    'Enfriamiento': ['Enfriamiento','cierre','plain','ejercicios'],
-    'White Board': ['White Board','texto libre','acc','texto'],
-  };
-  return (t.bl || t.pb || []).map(linea => {
-    if (typeof linea === 'object') return JSON.parse(JSON.stringify(linea));
-    const corte = linea.indexOf(' · ');
-    const cabeza = corte < 0 ? linea : linea.slice(0, corte);
-    const detalle = corte < 0 ? '' : linea.slice(corte + 3);
-    const [nom, tag, color, kind] = TIPO[cabeza] || ['Bloque','bloque','plain','ejercicios'];
-    if (kind === 'texto') return {n:nom, tag, c:color, kind:'texto', body:detalle};
-    const bloque = {n:nom, tag, c:color, kind:'ejercicios', ex:[]};
-    if (detalle){
-      // Los campos salen de lo que mide el ejercicio, no de un juego fijo.
-      const exacto = EJERCICIOS.find(e => detalle.toLowerCase().includes(e.n.toLowerCase()));
-      bloque.ex = [{n: exacto ? exacto.n : detalle,
-        f: camposDeEjercicio(exacto ? exacto.n : detalle, bloque)}];
-    }
+  if (!t) return [];
+  // Una plantilla que el coach acaba de guardar ya trae sus bloques hechos.
+  if (t.bl && t.bl.length && !Array.isArray(t.bl[0])) {
+    return JSON.parse(JSON.stringify(t.bl));
+  }
+  return (t.bl || []).map(def => {
+    const [nombre, contenido, formato, clase] = def;
+    const [tag, color, kind] = TIPO_BLOQUE[nombre] || ['bloque','plain','ejercicios'];
+    if (kind === 'texto') return {n:nombre, tag, c:color, kind:'texto', body:String(contenido)};
+
+    const bloque = {n:nombre, tag, c:color, kind:'ejercicios', ex:[]};
+    if (formato) bloque.fmt = formato;
+    bloque.ex = (contenido || []).map(nom => ({
+      n: nom,
+      f: clase === 'resistencia' ? camposDeResistencia(nom) : camposDeEjercicio(nom, bloque),
+    }));
     return bloque;
   });
+}
+
+/** Una sesión de resistencia trae sus propios campos en la semilla. */
+function camposDeResistencia(nombre){
+  const r = RESISTENCIA.find(x => x.n === nombre);
+  return (r?.f || ['distance_m','duration_s','target_pace']).map(campo);
 }
 
 let tplEnEdicion = null;
@@ -2133,19 +2189,8 @@ function guardarPlantilla(){
 
   const alcance = document.getElementById('bAlcance').value;
   const desc = document.getElementById('bDesc').value.trim();
-  const cuenta = BLOCKS.reduce((t, b) => t + (b.kind === 'texto' ? 0 : b.ex.length), 0);
-  const prefijo = alcance === 'semana' ? 'Semana · ' : alcance === 'ciclo' ? 'Ciclo · ' : '';
-  const resumen = BLOCKS.length === 0 ? prefijo + 'Sin bloques todavía'
-    : `${prefijo}${BLOCKS.length} bloque${BLOCKS.length === 1 ? '' : 's'}`
-      + (cuenta ? ` · ${cuenta} ejercicio${cuenta === 1 ? '' : 's'}` : '');
-
-  const datos = {n:nombre, d:dis, mia:true, m:resumen, desc, alcance,
-    bl: JSON.parse(JSON.stringify(BLOCKS)),
-    pb: BLOCKS.length
-      ? BLOCKS.map(b => b.kind === 'texto'
-          ? `White Board · ${(b.body || 'texto libre').split('\n')[0].slice(0, 46)}`
-          : `${b.n} · ${b.ex.map(e => e.n).join(', ').slice(0, 52) || 'sin ejercicios'}`)
-      : ['Todavía no tiene bloques']};
+  const datos = {n:nombre, d:dis, mia:true, desc, alcance,
+    bl: JSON.parse(JSON.stringify(BLOCKS))};
 
   if (tplEnEdicion === null) TEMPLATES.unshift(datos);
   else TEMPLATES[tplEnEdicion] = datos;
