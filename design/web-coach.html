@@ -463,6 +463,20 @@ h3.sec:first-child{margin-top:0}
 .iaprev .pd b{font-weight:650}
 .iamuestra{font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
   color:var(--accent);margin-bottom:9px}
+
+.bidx{display:inline-flex;align-items:center;justify-content:center;min-width:22px;height:22px;
+  padding:0 5px;border-radius:5px;background:var(--accent);color:var(--accent-contrast);
+  font-size:11.5px;font-weight:800;margin-right:8px;flex:none}
+.eidx{display:inline-flex;align-items:center;justify-content:center;min-width:26px;height:19px;
+  padding:0 5px;border-radius:4px;background:var(--surface-3);border:1px solid var(--border-strong);
+  color:var(--text-muted);font-size:10.5px;font-weight:700;margin-right:8px;flex:none;
+  font-variant-numeric:tabular-nums}
+.resbox{margin:0 12px 12px;padding:10px 11px;background:var(--surface-2);
+  border:1px dashed var(--border-strong);border-radius:var(--r-sm)}
+.resbox label{display:flex;align-items:center;gap:7px;font-size:10.5px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.05em;color:var(--text-faint);margin-bottom:7px}
+.resbox textarea{width:100%;resize:vertical;font-family:inherit;font-size:13px;opacity:.65}
+.blk.wb .resbox{margin-top:12px}
 </style>
 </head>
 <body>
@@ -2127,7 +2141,11 @@ function renderBlocks(){
     return;
   }
   c.innerHTML = BLOCKS.map((b, bi) => {
-    const head = `<div class="bt"><b>${b.n}</b>
+    // La letra se calcula de la posición en cada dibujado: subir o bajar un
+    // bloque la reasigna sola. Guardarla sería tener que reescribirla en cada
+    // movimiento, y una sola vez que se olvide deja dos bloques B.
+    const letra = letraDeBloque(bi);
+    const head = `<div class="bt"><span class="bidx">${letra}</span><b>${b.n}</b>
       <span class="chip ${b.c}">${b.tag}</span>
       <span class="bmove">
         <button onclick="moveBlock(${bi},-1)" ${bi === 0 ? 'disabled' : ''} aria-label="Subir">↑</button>
@@ -2138,8 +2156,8 @@ function renderBlocks(){
       return `<div class="blk wb">${head}
         <textarea class="wbta" rows="8" placeholder="${WB_PH}"
           oninput="BLOCKS[${bi}].body=this.value">${b.body || ''}</textarea>
-        <div class="wbfoot">El atleta ve este texto tal cual, como un bloque más de su sesión,
-          y registra tiempo, notas y RPE.</div></div>`;
+        <div class="wbfoot">El atleta ve este texto tal cual, como un bloque más de su sesión.</div>
+        ${cajaResultado(letra, b.n)}</div>`;
     }
     const esWod = b.n === 'WOD / Metcon';
     const esCardio = b.n === 'Cardio';
@@ -2175,7 +2193,7 @@ function renderBlocks(){
 
     return `<div class="blk">${head}${cabezaFmt}${notaCardio}
       ${b.ex.map((e, ei) => `<div class="exrow">
-        <div class="en">${e.n}
+        <div class="en"><span class="eidx">${letra}${ei + 1}</span>${e.n}
           <a href="${LINKS[e.n] || buscarEn(e.n)}" target="_blank" rel="noopener"
              title="${LINKS[e.n] ? 'Ver la demostración' : 'Buscar una demostración'}"
              style="font-size:11.5px;color:var(--info);text-decoration:none;margin-left:8px;
@@ -2184,9 +2202,46 @@ function renderBlocks(){
         <div class="fields">${e.f.map(([k, v]) =>
           `<div class="fld"><label>${k}</label><input value="${v}"></div>`).join('')}</div></div>`).join('')}
       <div style="padding:9px 12px"><button class="addex" style="margin:0"
-        onclick="openSearch(${bi})">+ Agregar ejercicio</button></div></div>`;
+        onclick="openSearch(${bi})">+ Agregar ejercicio</button></div>
+      ${cajaResultado(letra, b.n)}</div>`;
   }).join('');
 }
+/**
+ * La letra del bloque. Igual que en el servidor (`comun/etiquetas.ts`): se
+ * calcula de la posición y nunca se guarda, así reordenar la reasigna sola.
+ * Pasada la Z sigue AA, para que 27 bloques no dejen una etiqueta vacía.
+ */
+function letraDeBloque(i){
+  let n = i, letra = '';
+  do { letra = String.fromCharCode(65 + (n % 26)) + letra; n = Math.floor(n / 26) - 1; }
+  while (n >= 0);
+  return letra;
+}
+
+/**
+ * El cuadro donde el atleta anota su resultado al terminar el bloque.
+ *
+ * Aquí se ve DESHABILITADO, como vista previa: el coach necesita saber que
+ * existe y qué le va a preguntar a su atleta, pero no lo llena él. Lo llena el
+ * atleta desde su teléfono, y vive en su app.
+ *
+ * En la base ya tiene su lugar: `block_logs.result_text` para el texto libre,
+ * más `duration_s`, `rounds`, `reps`, `rpe` y `splits` para la parte
+ * estructurada, que es la que se puede graficar.
+ */
+function cajaResultado(letra, tipo){
+  const pista = {
+    'WOD / Metcon':     'Tiempo o rondas + reps, y cómo se sintió',
+    'Estaciones Hyrox': 'El parcial de cada estación y el tramo de carrera',
+    'Cardio':           'Ritmo real, tiempo y cómo se sintió',
+    'Fuerza':           'Cargas que de verdad usó y si algo molestó',
+  }[tipo] || 'Cómo le fue en este bloque';
+  return `<div class="resbox">
+    <label>Resultado del bloque ${letra} <span class="src ath">lo llena el atleta</span></label>
+    <textarea rows="2" disabled placeholder="${pista}…"></textarea>
+  </div>`;
+}
+
 function ponerFormato(bi, slug){
   if (!BLOCKS[bi]) return;
   BLOCKS[bi].fmt = slug || undefined;

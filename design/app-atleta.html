@@ -275,6 +275,24 @@ h3.sec:first-child{margin-top:0}
 .tabs button[aria-selected="true"]{color:var(--accent)}
 .tabs svg{width:21px;height:21px}
 .hidden{display:none !important}
+
+.bidx{display:inline-flex;align-items:center;justify-content:center;min-width:24px;height:24px;
+  padding:0 6px;border-radius:6px;background:var(--accent);color:var(--accent-contrast);
+  font-size:12px;font-weight:800;margin-right:9px;flex:none}
+.eidx{display:inline-flex;align-items:center;justify-content:center;min-width:28px;height:20px;
+  padding:0 5px;border-radius:4px;background:var(--surface-2);border:1px solid var(--border);
+  color:var(--text-muted);font-size:11px;font-weight:700;margin-right:8px;
+  font-variant-numeric:tabular-nums;vertical-align:1px}
+.resbox{margin:12px 0 0;padding:12px;background:var(--surface-2);
+  border:1px solid var(--border);border-radius:12px}
+.resbox label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--text-muted);margin-bottom:8px}
+.resbox textarea{width:100%;min-height:52px;resize:vertical;font-family:inherit;font-size:15px;
+  padding:11px 12px;border-radius:10px;border:1px solid var(--border);
+  background:var(--surface);color:var(--text);line-height:1.5}
+.resbox textarea:focus{outline:none;border-color:var(--accent)}
+.reshint{font-size:12px;color:var(--text-faint);margin-top:7px;line-height:1.4}
+.reshint.ok{color:var(--success)}
 </style>
 </head>
 <body>
@@ -348,21 +366,41 @@ h3.sec:first-child{margin-top:0}
       <p class="sub">Coach Ana Rivera · ~55 min</p>
 
       <div class="block">
-        <div class="bhead"><span class="bname">Calentamiento</span><span class="bline"></span><span class="faint">10 min</span></div>
-        <div class="ex" onclick="video('Movilidad de cadera 90/90')"><div class="exn"><b>Movilidad de cadera 90/90</b><span>2 × 8 por lado</span></div><span class="play">▶</span></div>
-        <div class="ex" onclick="video('Remo en ergómetro')"><div class="exn"><b>Remo en ergómetro</b><span>500 m suave</span></div><span class="play">▶</span></div>
+        <div class="bhead"><span class="bidx">A</span><span class="bname">Calentamiento</span><span class="bline"></span><span class="faint">10 min</span></div>
+        <div class="ex" onclick="video('Movilidad de cadera 90/90')"><div class="exn"><b><span class="eidx">A1</span>Movilidad de cadera 90/90</b><span>2 × 8 por lado</span></div><span class="play">▶</span></div>
+        <div class="ex" onclick="video('Remo en ergómetro')"><div class="exn"><b><span class="eidx">A2</span>Remo en ergómetro</b><span>500 m suave</span></div><span class="play">▶</span></div>
+        <div class="resbox">
+          <label for="resA">Tu resultado del bloque A</label>
+          <textarea id="resA" rows="2" placeholder="Cómo te sintió el calentamiento"
+            oninput="guardarResultado('A', this.value)"></textarea>
+          <div class="reshint" id="hintA">Se guarda en tu teléfono aunque no haya señal.</div>
+        </div>
       </div>
 
       <div class="block">
-        <div class="bhead"><span class="bname">Fuerza</span><span class="bline"></span></div>
-        <div class="ex" onclick="video('Sentadilla trasera')"><div class="exn"><b>Sentadilla trasera</b><span>5 × 5 · 100 kg · RPE 8 · 2 min descanso</span></div><span class="play">▶</span></div>
-        <div class="ex" onclick="video('Peso muerto rumano')"><div class="exn"><b>Peso muerto rumano</b><span>3 × 8 · 70 kg · RPE 7</span></div><span class="play">▶</span></div>
+        <div class="bhead"><span class="bidx">B</span><span class="bname">Fuerza</span><span class="bline"></span></div>
+        <div class="ex" onclick="video('Sentadilla trasera')"><div class="exn"><b><span class="eidx">B1</span>Sentadilla trasera</b><span>5 × 5 · 100 kg · RPE 8 · 2 min descanso</span></div><span class="play">▶</span></div>
+        <div class="ex" onclick="video('Peso muerto rumano')"><div class="exn"><b><span class="eidx">B2</span>Peso muerto rumano</b><span>3 × 8 · 70 kg · RPE 7</span></div><span class="play">▶</span></div>
+        <div class="resbox">
+          <label for="resB">Tu resultado del bloque B</label>
+          <textarea id="resB" rows="2" placeholder="Cargas que de verdad usaste y si algo molestó"
+            oninput="guardarResultado('B', this.value)"></textarea>
+          <div class="reshint" id="hintB">Se guarda en tu teléfono aunque no haya señal.</div>
+        </div>
       </div>
 
       <div class="block">
-        <div class="bhead"><span class="bname">Accesorio</span><span class="bline"></span></div>
-        <div class="ex" onclick="video('Zancada caminando')"><div class="exn"><b>Zancada caminando</b><span>3 × 20 pasos · 2 × 16 kg</span></div><span class="play">▶</span></div>
-        <div class="ex" onclick="video('Plancha')"><div class="exn"><b>Plancha</b><span>3 × 45 s</span></div><span class="play">▶</span></div>
+        <div class="bhead"><span class="bidx">C</span><span class="bname">Accesorio</span><span class="bline"></span></div>
+        <div class="ex" onclick="video('Zancada caminando')"><div class="exn"><b><span class="eidx">C1</span>Zancada caminando</b><span>3 × 20 pasos · 2 × 16 kg</span></div><span class="play">▶</span></div>
+        <div class="ex" onclick="video('Plancha')"><div class="exn"><b><span class="eidx">C2</span>Plancha</b><span>3 × 45 s</span></div><span class="play">▶</span></div>
+      </div>
+
+        <div class="resbox">
+          <label for="resC">Tu resultado del bloque C</label>
+          <textarea id="resC" rows="2" placeholder="Cómo cerraste"
+            oninput="guardarResultado('C', this.value)"></textarea>
+          <div class="reshint" id="hintC">Se guarda en tu teléfono aunque no haya señal.</div>
+        </div>
       </div>
 
       <div class="card" style="background:var(--surface-2)">
@@ -884,6 +922,45 @@ function video(name){
   document.getElementById('videoSheet').classList.add('on');
 }
 function closeVideo(){ document.getElementById('videoSheet').classList.remove('on'); }
+
+/**
+ * El resultado del bloque se guarda EN EL TELÉFONO primero y se sincroniza
+ * después. Es la regla de la app: en un gimnasio sin señal el atleta escribe
+ * igual, y la cola de salida manda lo acumulado cuando vuelve la red.
+ *
+ * Cada anotación lleva su client_uuid generado aquí (regla 2), así reenviar la
+ * cola tras un corte nunca duplica. En la base va a `block_logs.result_text`.
+ */
+const RESULTADOS = {};
+let guardadoTimer = null;
+
+function guardarResultado(letra, texto){
+  RESULTADOS[letra] = {
+    texto,
+    client_uuid: RESULTADOS[letra]?.client_uuid || uuid(),
+    anotado: new Date().toISOString(),
+    enviado: false,
+  };
+  const pista = document.getElementById('hint' + letra);
+  pista.textContent = 'Guardado en tu teléfono…';
+  pista.classList.remove('ok');
+  clearTimeout(guardadoTimer);
+  guardadoTimer = setTimeout(() => {
+    pista.textContent = texto.trim()
+      ? '✓ Guardado. Se envía a tu coach cuando vuelva la señal.'
+      : 'Se guarda en tu teléfono aunque no haya señal.';
+    pista.classList.toggle('ok', !!texto.trim());
+  }, 600);
+}
+
+/** UUID v4 del lado del cliente, para la idempotencia de la cola. */
+function uuid(){
+  if (crypto.randomUUID) return crypto.randomUUID();
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = Math.random() * 16 | 0;
+    return (c === 'x' ? r : (r & 0x3 | 0x8)).toString(16);
+  });
+}
 </script>
 </body>
 </html>
