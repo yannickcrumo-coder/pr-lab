@@ -394,6 +394,43 @@ h3.sec:first-child{margin-top:0}
 .linkrow{display:flex;align-items:center;gap:7px;font-size:12.5px;margin-top:9px}
 .linkrow a{color:var(--info);text-decoration:none;font-weight:600}
 .linkrow a:hover{text-decoration:underline}
+
+/* ---------- menú de un día ---------- */
+.dhead{position:relative}
+.dmenu{width:22px;height:22px;border-radius:5px;display:none;align-items:center;
+  justify-content:center;background:var(--surface-2);border:1px solid var(--border);
+  color:var(--text-muted);font-size:12px;line-height:1;cursor:pointer;padding:0}
+.day:hover .dmenu{display:flex}
+.dmenu:hover{border-color:var(--border-strong);color:var(--text)}
+.pop{position:fixed;z-index:70;min-width:196px;background:var(--surface-3);
+  border:1px solid var(--border-strong);border-radius:var(--r-md);padding:5px;
+  box-shadow:0 14px 40px rgb(0 0 0/.5)}
+.pop button{display:flex;align-items:center;gap:9px;width:100%;text-align:left;
+  background:none;border:none;color:var(--text);font:inherit;font-size:13px;
+  padding:9px 10px;border-radius:var(--r-sm);cursor:pointer}
+.pop button:hover:not(:disabled){background:var(--surface-2)}
+.pop button:disabled{opacity:.4;cursor:not-allowed}
+.pop button.dang:hover{color:var(--danger)}
+.pop hr{border:none;border-top:1px solid var(--border);margin:4px 2px}
+.pop .k{margin-left:auto;font-size:10.5px;color:var(--text-faint)}
+
+/* ---------- programar para varios ---------- */
+.gbanner{display:flex;align-items:center;gap:12px;padding:12px 15px;margin-bottom:12px;
+  background:var(--accent-tint);border:1px solid var(--accent);border-radius:var(--r-md)}
+.gbanner b{font-size:13.5px}
+.gbanner .faint{font-size:12.5px}
+.sess .lote{display:inline-flex;align-items:center;gap:4px;font-size:10px;font-weight:700;
+  color:var(--accent);margin-top:3px}
+.chkwrap{max-height:320px;overflow:auto;border:1px solid var(--border);
+  border-radius:var(--r-sm);background:var(--surface-2)}
+.chk{display:flex;align-items:center;gap:10px;padding:10px 12px;cursor:pointer;
+  border-bottom:1px solid var(--border);font-size:13.5px}
+.chk:last-child{border-bottom:none}
+.chk:hover{background:var(--surface-3)}
+.chk input{width:auto;margin:0}
+.chk .nm{flex:1;min-width:0}
+.chk.off{opacity:.5}
+.cuenta{font-size:13px;font-weight:650;color:var(--accent)}
 </style>
 </head>
 <body>
@@ -517,7 +554,9 @@ h3.sec:first-child{margin-top:0}
         <div class="calcol">
           <div class="spread" style="margin-bottom:12px;flex-wrap:wrap">
             <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
-              <select id="athSel" onchange="renderWeek()"></select>
+              <select id="athSel" onchange="cambiarDestino()" style="max-width:260px"></select>
+              <button class="btn ghost sm" onclick="abrirGrupos()"
+                title="Armar o editar un grupo">Grupos</button>
               <button class="btn ghost sm" onclick="toast('Semana anterior')">←</button>
               <b style="font-size:14px">17 – 23 nov</b>
               <button class="btn ghost sm" onclick="toast('Semana siguiente')">→</button>
@@ -528,6 +567,7 @@ h3.sec:first-child{margin-top:0}
               <button class="btn sm" onclick="publishAll()">Publicar cambios</button>
             </div>
           </div>
+          <div id="gBanner"></div>
           <div class="week" id="week"></div>
           <p class="faint" style="margin-top:10px">Arrastra una plantilla al día, o tócala y luego toca el día. Arrastra una sesión para moverla de día.</p>
         </div>
@@ -836,6 +876,50 @@ h3.sec:first-child{margin-top:0}
   </div>
 </div>
 
+<!-- ===== MODAL · CONFIRMAR PUBLICACIÓN EN LOTE ===== -->
+<div class="modal" id="confModal">
+  <div class="mbox wide" style="max-height:88vh;display:flex;flex-direction:column">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px" id="confTitle"></b>
+      <button class="btn ghost sm" onclick="cerrar('confModal')">✕</button>
+    </div>
+    <div style="padding:16px;overflow:auto;flex:1" id="confBody"></div>
+    <div class="mf" id="confFoot"></div>
+  </div>
+</div>
+
+<!-- ===== MODAL · ARMAR UN GRUPO ===== -->
+<div class="modal" id="grpModal">
+  <div class="mbox wide" style="max-height:88vh;display:flex;flex-direction:column">
+    <div class="mh" style="display:flex;align-items:center;gap:10px">
+      <b style="flex:1;font-size:14.5px">Grupo de atletas</b>
+      <button class="btn ghost sm" onclick="cerrar('grpModal')">✕</button>
+    </div>
+    <div style="padding:16px;overflow:auto;flex:1">
+      <div class="note">Los grupos por disciplina ya están en el selector y se actualizan
+        solos. Esto es para los que no caen en una disciplina: los que entrenan a las 6,
+        los que van a una competencia, los que empezaron el mismo mes.</div>
+      <div style="margin:14px 0">
+        <label class="faint" style="display:block;margin-bottom:5px">NOMBRE DEL GRUPO</label>
+        <input type="text" id="grNombre" style="width:100%"
+          placeholder="Hyrox de abril, turno de las 6, principiantes…">
+      </div>
+      <div class="filters" id="grFiltro"></div>
+      <div class="chkwrap" id="grLista"></div>
+      <div class="spread" style="margin-top:10px">
+        <span class="cuenta" id="grCuenta"></span>
+        <span class="faint">Sin límite de atletas</span>
+      </div>
+    </div>
+    <div class="mf">
+      <button class="iconbtn dang" id="grBorrar" title="Eliminar este grupo"
+        onclick="borrarGrupo()" style="width:auto;padding:0 12px">Eliminar grupo</button>
+      <button class="btn ghost" style="flex:1" onclick="cerrar('grpModal')">Cancelar</button>
+      <button class="btn" style="flex:1" onclick="guardarGrupo()">Guardar grupo</button>
+    </div>
+  </div>
+</div>
+
 <div class="tpv" id="tpv" style="display:none"></div>
 
 <div class="toast" id="toast"></div>
@@ -884,6 +968,7 @@ const ATHLETES = [
       mail:'ivan.cruz@ejemplo.com', tel:'', enf:'', les:'', meds:'', notasAth:'',
       notasCoach:'', parq:'Aceptado el 10 de noviembre de 2026', contacto:''}},
   {n:'Carla Núñez', i:'CN', d:['correr'], c:'10 K · sem 6 de 10', cmp:88, last:'Hace 2 días',
+   est:'pausada',
    f:{nac:'1990-03-05', peso:55.8, pesoFecha:'hace 10 días', altura:158, sexo:'Femenino',
       mail:'carla.nunez@ejemplo.com', tel:'', enf:'Hipotiroidismo.', les:'', meds:'Levotiroxina.',
       notasAth:'', notasCoach:'', parq:'Aceptado el 8 de noviembre de 2026', contacto:''}},
@@ -1233,9 +1318,192 @@ function verFicha(i){
   document.getElementById('fichaModal').classList.add('on');
 }
 
+/**
+ * Grupos que el coach guardó. Los automáticos (todos y uno por disciplina) no
+ * se guardan: se calculan, porque si un atleta cambia de disciplina el grupo
+ * debe seguirlo sin que nadie lo edite a mano.
+ */
+let GRUPOS = [{nombre:'Hyrox de la mañana', m:[0, 3]}];
+
+/** A quién le estamos programando. Un atleta, o un grupo. */
+let destino = {tipo:'atleta', i:0};
+
+const NOMBRE_DIS = {fuerza:'Fuerza', crossfit:'CrossFit', hyrox:'Hyrox',
+  correr:'Correr', ciclismo:'Ciclismo', triatlon:'Triatlón'};
+
+/** Los índices de atletas a los que apunta el destino actual. */
+function miembros(){
+  if (destino.tipo === 'atleta') return [destino.i];
+  if (destino.id === 'todos') return ATHLETES.map((_, i) => i);
+  if (destino.id.startsWith('dis:')){
+    const d = destino.id.slice(4);
+    return ATHLETES.map((a, i) => a.d.includes(d) ? i : -1).filter(i => i >= 0);
+  }
+  return (GRUPOS[Number(destino.id.slice(2))]?.m || []).filter(i => i < ATHLETES.length);
+}
+
+function nombreDestino(){
+  if (destino.tipo === 'atleta') return ATHLETES[destino.i]?.n || '—';
+  if (destino.id === 'todos') return 'Todos mis atletas';
+  if (destino.id.startsWith('dis:')) return NOMBRE_DIS[destino.id.slice(4)];
+  return GRUPOS[Number(destino.id.slice(2))]?.nombre || 'Grupo';
+}
+
 function llenarSelector(){
+  const cuenta = {};
+  ATHLETES.forEach(a => a.d.forEach(d => cuenta[d] = (cuenta[d] || 0) + 1));
+
+  const grupos = [
+    `<option value="g:todos">Todos · ${ATHLETES.length} atletas</option>`,
+    ...DISCIPLINAS.filter(d => cuenta[d]).map(d =>
+      `<option value="g:dis:${d}">${NOMBRE_DIS[d]} · ${cuenta[d]}</option>`),
+    ...GRUPOS.map((g, k) =>
+      `<option value="g:c:${k}">${g.nombre} · ${g.m.length}</option>`),
+  ].join('');
+
+  const uno = ATHLETES.map((a, i) =>
+    `<option value="a:${i}">${a.n}</option>`).join('');
+
+  const valor = destino.tipo === 'atleta' ? `a:${destino.i}` : `g:${destino.id}`;
   document.getElementById('athSel').innerHTML =
-    ATHLETES.map(a => `<option>${a.n}</option>`).join('');
+    `<optgroup label="Un atleta">${uno}</optgroup>` +
+    `<optgroup label="Varios a la vez">${grupos}</optgroup>`;
+  document.getElementById('athSel').value = valor;
+}
+
+function cambiarDestino(){
+  const v = document.getElementById('athSel').value;
+  destino = v.startsWith('a:')
+    ? {tipo:'atleta', i:Number(v.slice(2))}
+    : {tipo:'grupo', id:v.slice(2)};
+  renderBanner(); renderWeek();
+}
+
+/**
+ * El aviso de que no estás programando para una persona. Tiene que ser
+ * imposible de pasar por alto: publicar sin darse cuenta a 24 atletas es el
+ * error más caro que esta pantalla permite.
+ */
+function renderBanner(){
+  const el = document.getElementById('gBanner');
+  if (destino.tipo === 'atleta'){ el.innerHTML = ''; return; }
+  const m = miembros();
+  const activos = m.filter(i => (ATHLETES[i].est || 'activa') === 'activa');
+  const pausados = m.length - activos.length;
+  el.innerHTML = `<div class="gbanner">
+    <span class="chip acc">Varios a la vez</span>
+    <div style="flex:1;min-width:0">
+      <b>Estás programando para ${activos.length} atleta${activos.length === 1 ? '' : 's'}
+        a la vez: ${nombreDestino()}</b>
+      <div class="faint">Lo que armes aquí se copia a cada uno al publicar. Cada quien
+        recibe SU copia, así que después puedes ajustarle la carga a uno sin tocar a los demás.
+        ${pausados ? `<b style="color:var(--warning)">Se omite ${pausados} con la relación
+          pausada.</b>` : ''}</div>
+    </div>
+    <button class="btn ghost sm" onclick="verMiembros()">Ver quiénes</button>
+  </div>`;
+}
+
+/**
+ * Armar un grupo a mano. Los automáticos por disciplina cubren el caso común;
+ * esto es para los que no caen en una disciplina — "los que entrenan a las 6",
+ * "los que van al Hyrox de abril".
+ */
+let grupoEditando = null;
+function abrirGrupos(){
+  grupoEditando = destino.tipo === 'grupo' && destino.id.startsWith('c:')
+    ? Number(destino.id.slice(2)) : null;
+  const previos = grupoEditando !== null ? GRUPOS[grupoEditando].m : miembros();
+  document.getElementById('grNombre').value =
+    grupoEditando !== null ? GRUPOS[grupoEditando].nombre : '';
+  document.getElementById('grFiltro').innerHTML =
+    `<button class="fchip on" onclick="marcarPorDisciplina('todos',this)">Marcar todos</button>` +
+    DISCIPLINAS.filter(d => ATHLETES.some(a => a.d.includes(d))).map(d =>
+      `<button class="fchip" onclick="marcarPorDisciplina('${d}',this)">+ ${NOMBRE_DIS[d]}</button>`
+    ).join('') +
+    `<button class="fchip" onclick="marcarPorDisciplina('ninguno',this)">Desmarcar todos</button>`;
+
+  document.getElementById('grLista').innerHTML = ATHLETES.map((a, i) => {
+    const pausado = (a.est || 'activa') !== 'activa';
+    return `<label class="chk ${pausado ? 'off' : ''}">
+      <input type="checkbox" value="${i}" ${previos.includes(i) ? 'checked' : ''}
+        onchange="contarGrupo()">
+      <span class="av">${a.i}</span>
+      <div class="nm"><b style="font-weight:600">${a.n}</b>
+        <div class="faint">${a.d.map(d => NOMBRE_DIS[d]).join(' · ')}${
+          pausado ? ' · relación pausada' : ''}</div></div>
+      </label>`;
+  }).join('');
+
+  document.getElementById('grBorrar').style.display = grupoEditando !== null ? '' : 'none';
+  contarGrupo();
+  document.getElementById('grpModal').classList.add('on');
+  setTimeout(() => document.getElementById('grNombre').focus(), 60);
+}
+
+function marcarPorDisciplina(d, boton){
+  document.querySelectorAll('#grLista input').forEach(c => {
+    const a = ATHLETES[Number(c.value)];
+    if (d === 'todos') c.checked = true;
+    else if (d === 'ninguno') c.checked = false;
+    else if (a.d.includes(d)) c.checked = true;
+  });
+  contarGrupo();
+}
+
+const marcados = () => [...document.querySelectorAll('#grLista input:checked')]
+  .map(c => Number(c.value));
+
+function contarGrupo(){
+  const m = marcados();
+  const activos = m.filter(i => (ATHLETES[i].est || 'activa') === 'activa').length;
+  document.getElementById('grCuenta').textContent = m.length
+    ? `${m.length} marcado${m.length === 1 ? '' : 's'}`
+      + (activos !== m.length ? ` · ${m.length - activos} con relación pausada` : '')
+    : 'Nadie marcado todavía';
+}
+
+function guardarGrupo(){
+  const nombre = document.getElementById('grNombre').value.trim();
+  const m = marcados();
+  if (!nombre) return toast('Ponle nombre al grupo');
+  if (!m.length) return toast('Marca al menos un atleta');
+
+  if (grupoEditando !== null) GRUPOS[grupoEditando] = {nombre, m};
+  else { GRUPOS.push({nombre, m}); grupoEditando = GRUPOS.length - 1; }
+
+  destino = {tipo:'grupo', id:`c:${grupoEditando}`};
+  cerrar('grpModal'); llenarSelector(); renderBanner(); renderWeek();
+  toast(`Grupo "${nombre}" con ${m.length} atleta${m.length === 1 ? '' : 's'}`);
+}
+
+function borrarGrupo(){
+  if (grupoEditando === null) return;
+  const g = GRUPOS[grupoEditando];
+  if (!confirm(`¿Eliminar el grupo "${g.nombre}"?\n\n`
+    + `Solo se borra la agrupación. Los atletas y sus sesiones no se tocan.`)) return;
+  GRUPOS.splice(grupoEditando, 1);
+  destino = {tipo:'atleta', i:0};
+  cerrar('grpModal'); llenarSelector(); renderBanner(); renderWeek();
+  toast(`Grupo "${g.nombre}" eliminado`);
+}
+
+function verMiembros(){
+  const m = miembros();
+  abrirDetalle(`${nombreDestino()} · ${m.length}`,
+    `<div class="dlist">${m.map(i => {
+      const a = ATHLETES[i];
+      const pausado = (a.est || 'activa') !== 'activa';
+      return `<div class="dr ${pausado ? '' : ''}" style="${pausado ? 'opacity:.55' : ''}">
+        <div class="who"><span class="av">${a.i}</span>
+          <div><b style="font-weight:600;text-align:left;display:block">${a.n}</b>
+            <span class="faint">${a.d.map(d => NOMBRE_DIS[d]).join(' · ')}</span></div></div>
+        <span>${pausado ? '<span class="chip warn">Pausada</span>'
+                        : '<span class="chip ok">Activa</span>'}</span>
+        <b>${a.cmp}%</b></div>`;
+    }).join('')}</div>
+    <p class="faint" style="margin:13px 0 0">A los de relación pausada no se les programa:
+      el servidor lo rechaza, no es solo la pantalla.</p>`);
 }
 
 // ---------- plantillas ----------
@@ -1367,13 +1635,16 @@ function renderWeek(){
       ondragover="event.preventDefault();this.classList.add('over')"
       ondragleave="this.classList.remove('over')"
       ondrop="dropOn(${di},this)" onclick="tapDay(${di})">
-      <div class="dhead"><b>${d.d}</b><span>${d.n}</span></div>
+      <div class="dhead"><b>${d.d}</b><span>${d.n}</span>
+        <button class="dmenu" title="Acciones de este día"
+          onclick="event.stopPropagation();menuDia(${di},this)">⋯</button></div>
       ${d.s.map((s, si) => `<div class="sess ${s.dis}" draggable="true"
           ondragstart="event.stopPropagation();dragSess(${di},${si})"
-          onclick="event.stopPropagation();openBuilder('${q1(s.t)}',${di},false,${si})">
+          onclick="event.stopPropagation();alcanceDelCambio(${di},${si});openBuilder('${q1(s.t)}',${di},false,${si})">
           <b>${s.t}</b>
           <span class="st ${s.st}">${s.st === 'hecha' ? '✓ Completada'
             : s.st === 'pub' ? 'Publicada' : 'Borrador'}</span>
+          ${s.lote ? `<div class="lote">⇶ ${s.lote} atletas</div>` : ''}
           <button class="sx" title="Quitar esta sesión del día"
             onclick="event.stopPropagation();borrarSesion(${di},${si})">✕</button></div>`).join('')}
       <button class="addday" onclick="event.stopPropagation();openBuilder('Nueva sesión',${di})">+</button>
@@ -1404,6 +1675,26 @@ function borrarSesion(di, si, cerrarDespues){
 
 /** El mismo borrado, desde el botón del encabezado del constructor. */
 let enEdicion = null;
+/**
+ * Una sesión que salió de un lote ya son N sesiones distintas, una por atleta.
+ * Hay que preguntar el alcance del cambio antes de editar, y decir la verdad:
+ * "para todos" solo puede alcanzar las copias que nadie ajustó a mano. La que
+ * ya tocaste para un atleta se respeta, porque la tocaste por una razón.
+ */
+function alcanceDelCambio(di, si){
+  const ses = WEEK[di].s[si];
+  if (!ses?.lote) return true;
+  const r = confirm(
+    `"${ses.t}" se asignó a ${ses.lote} atletas y cada uno tiene su copia.\n\n`
+    + `Aceptar: cambiar para TODOS. Se respetan las copias que ya ajustaste a mano `
+    + `para alguien en particular.\n`
+    + `Cancelar: cambiar solo para ${document.getElementById('athSel')
+        .selectedOptions[0]?.textContent || 'este atleta'}.`);
+  toast(r ? `Los cambios irán a los ${ses.lote} atletas del lote`
+          : 'Los cambios irán solo a este atleta');
+  return true;
+}
+
 function borrarDesdeConstructor(){
   if (!enEdicion) return toast('Esta sesión todavía no está en ningún día');
   borrarSesion(enEdicion.di, enEdicion.si, true);
@@ -1430,6 +1721,91 @@ function tapDay(di){
   selTpl = null; renderTpl(); renderWeek();
   document.getElementById('hint').textContent = 'Toca una plantilla para seleccionarla';
 }
+let portaDia = null;
+
+/**
+ * Acciones de un día. Va en el encabezado y aparece al pasar el cursor, con
+ * tres puntos en lugar de las dos líneas: el icono de dos líneas se lee como
+ * navegación, y esto son acciones sobre el día.
+ */
+function menuDia(di, boton){
+  const d = WEEK[di];
+  const hay = d.s.length;
+  const items = [
+    ['Copiar este día', `copiarDia(${di})`, !hay, '⧉'],
+    ['Pegar en este día', `pegarDia(${di})`, !portaDia, '⤵'],
+    ['Duplicar al día siguiente', `duplicarDia(${di})`, !hay || di === WEEK.length - 1, '→'],
+    null,
+    ['Agregar una sesión', `openBuilder('Nueva sesión',${di})`, false, '+'],
+    ['Vaciar el día', `vaciarDia(${di})`, !hay, '🗑', true],
+  ];
+  abrirPop(boton, items);
+}
+
+function copiarDia(di){
+  portaDia = JSON.parse(JSON.stringify(WEEK[di].s));
+  cerrarPop();
+  toast(`${WEEK[di].d} ${WEEK[di].n} copiado · ${portaDia.length} sesión${portaDia.length === 1 ? '' : 'es'}`);
+}
+
+function pegarDia(di){
+  if (!portaDia) return toast('Primero copia un día');
+  cerrarPop();
+  const d = WEEK[di];
+  // Lo pegado entra siempre como borrador: se revisa y luego se publica.
+  const nuevas = JSON.parse(JSON.stringify(portaDia)).map(x => ({...x, st:'bor', lote:undefined}));
+  if (d.s.length && !confirm(
+      `${d.d} ${d.n} ya tiene ${d.s.length} sesión${d.s.length === 1 ? '' : 'es'}.\n\n`
+      + `Aceptar: se agregan las ${nuevas.length} pegadas a las que ya hay.\n`
+      + `Cancelar: no se pega nada.`)) return;
+  d.s.push(...nuevas);
+  renderWeek();
+  toast(`Pegado en ${d.d} ${d.n} como borrador · revisa y publica`);
+}
+
+function duplicarDia(di){
+  cerrarPop();
+  const origen = WEEK[di], destino = WEEK[di + 1];
+  if (!destino) return;
+  destino.s.push(...JSON.parse(JSON.stringify(origen.s)).map(x => ({...x, st:'bor', lote:undefined})));
+  renderWeek();
+  toast(`${origen.d} duplicado al ${destino.d} ${destino.n} como borrador`);
+}
+
+function vaciarDia(di){
+  cerrarPop();
+  const d = WEEK[di];
+  const hechas = d.s.filter(x => x.st === 'hecha').length;
+  if (!confirm(`¿Vaciar ${d.d} ${d.n}?\n\n`
+    + (hechas ? `Ojo: ${hechas} de esas sesiones ya las entrenó. Se archivan y lo que `
+                + `registró se conserva en su histórico.\n\n` : '')
+    + `Se quitan ${d.s.length} sesión${d.s.length === 1 ? '' : 'es'}.`)) return;
+  d.s = [];
+  renderWeek();
+  toast(`${d.d} ${d.n} vacío`);
+}
+
+// ---------- menú flotante reusable ----------
+function abrirPop(ancla, items){
+  cerrarPop();
+  const pop = document.createElement('div');
+  pop.className = 'pop';
+  pop.id = 'pop';
+  pop.innerHTML = items.map(it => {
+    if (!it) return '<hr>';
+    const [texto, accion, desactivado, icono, peligro] = it;
+    return `<button ${desactivado ? 'disabled' : ''} class="${peligro ? 'dang' : ''}"
+      onclick="${desactivado ? '' : accion}"><span class="k"
+      style="margin:0 2px 0 0;width:14px;text-align:center">${icono}</span>${texto}</button>`;
+  }).join('');
+  document.body.appendChild(pop);
+  const r = ancla.getBoundingClientRect();
+  pop.style.left = Math.min(r.left, window.innerWidth - pop.offsetWidth - 12) + 'px';
+  pop.style.top = Math.min(r.bottom + 6, window.innerHeight - pop.offsetHeight - 12) + 'px';
+  setTimeout(() => document.addEventListener('click', cerrarPop, {once:true}), 0);
+}
+function cerrarPop(){ document.getElementById('pop')?.remove(); }
+
 function copyWeek(){ clipboard = JSON.parse(JSON.stringify(WEEK.map(d => d.s)));
   toast('Semana copiada · elige otro atleta y pega'); }
 function pasteWeek(){
@@ -1439,10 +1815,63 @@ function pasteWeek(){
   renderWeek(); toast('Semana pegada como borrador · revisa y publica');
 }
 function publishAll(){
+  const borradores = WEEK.reduce((t, d) => t + d.s.filter(x => x.st === 'bor').length, 0);
+  if (!borradores) return toast('No hay borradores');
+
+  // Para un solo atleta se publica directo; para varios hay que mostrar a
+  // quiénes antes, porque es la acción que más daño hace si se va sin ver.
+  if (destino.tipo === 'atleta') return publicarAhora();
+
+  const m = miembros();
+  const activos = m.filter(i => (ATHLETES[i].est || 'activa') === 'activa');
+  const pausados = m.filter(i => (ATHLETES[i].est || 'activa') !== 'activa');
+
+  document.getElementById('confTitle').textContent =
+    `Publicar ${borradores} sesión${borradores === 1 ? '' : 'es'} a ${activos.length} atleta${activos.length === 1 ? '' : 's'}`;
+  document.getElementById('confBody').innerHTML = `
+    <div class="note acc">Cada atleta recibe <b style="color:var(--text)">su propia copia</b>
+      de estas ${borradores} sesión${borradores === 1 ? '' : 'es'}. Son
+      ${borradores * activos.length} sesiones en total.
+      <div style="margin-top:7px">Después puedes bajarle la carga a uno sin que a los demás
+      les cambie nada: por eso son copias y no una sesión compartida.</div></div>
+
+    <div class="chkwrap" style="margin-top:13px">
+      ${activos.map(i => {
+        const a = ATHLETES[i];
+        return `<div class="chk"><span class="av">${a.i}</span>
+          <div class="nm"><b style="font-weight:600">${a.n}</b>
+            <div class="faint">${a.d.map(d => NOMBRE_DIS[d]).join(' · ')}</div></div>
+          <span class="chip ok">Recibe ${borradores}</span></div>`;
+      }).join('')}
+      ${pausados.map(i => {
+        const a = ATHLETES[i];
+        return `<div class="chk off"><span class="av">${a.i}</span>
+          <div class="nm"><b style="font-weight:600">${a.n}</b>
+            <div class="faint">Relación pausada</div></div>
+          <span class="chip warn">Se omite</span></div>`;
+      }).join('')}
+    </div>`;
+  document.getElementById('confFoot').innerHTML = `
+    <button class="btn ghost" style="flex:1" onclick="cerrar('confModal')">Cancelar</button>
+    <button class="btn" style="flex:1" onclick="confirmarLote(${activos.length})">
+      Publicar a ${activos.length}</button>`;
+  document.getElementById('confModal').classList.add('on');
+}
+
+function publicarAhora(){
   let n = 0;
-  WEEK.forEach(d => d.s.forEach(s => { if (s.st === 'bor') { s.st = 'pub'; n++; } }));
+  WEEK.forEach(d => d.s.forEach(s => { if (s.st === 'bor'){ s.st = 'pub'; n++; } }));
   renderWeek();
-  toast(n ? `${n} sesión${n > 1 ? 'es' : ''} publicada${n > 1 ? 's' : ''} · el atleta ya la ve` : 'No hay borradores');
+  toast(`${n} sesión${n > 1 ? 'es' : ''} publicada${n > 1 ? 's' : ''} · el atleta ya la ve`);
+}
+
+function confirmarLote(cuantos){
+  let n = 0;
+  WEEK.forEach(d => d.s.forEach(s => {
+    if (s.st === 'bor'){ s.st = 'pub'; s.lote = cuantos; n++; }
+  }));
+  cerrar('confModal'); renderWeek();
+  toast(`${n * cuantos} sesiones publicadas · ${n} a cada uno de ${cuantos} atletas`);
 }
 
 // ---------- constructor ----------
@@ -1766,7 +2195,7 @@ function borrarEjercicio(nombre){
 
 // ---------- formularios: alta de atleta, plantilla y ejercicio ----------
 function cerrar(id){ document.getElementById(id).classList.remove('on'); }
-['athModal','codeModal','newExModal','detModal','fichaModal'].forEach(id => {
+['athModal','codeModal','newExModal','detModal','fichaModal','confModal','grpModal'].forEach(id => {
   document.getElementById(id).onclick = e => { if (e.target.id === id) cerrar(id); };
 });
 
@@ -1889,7 +2318,7 @@ function renderThread(){
 }
 
 // ---------- arranque ----------
-renderAth(); llenarSelector(); renderCharts(); renderMsgAlerts();
+renderAth(); llenarSelector(); renderBanner(); renderCharts(); renderMsgAlerts();
 renderTpl(); renderWeek(); renderLib(); renderThread();
 document.getElementById('hactions').innerHTML = '';
 </script>
