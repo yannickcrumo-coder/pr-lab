@@ -38,6 +38,7 @@ def construir():
     benchmarks = leer("benchmarks")
     resistencia = leer("endurance_sessions")
     carrera = leer("hyrox_race")
+    formatos = leer("wod_formats")
 
     # Solo lo que el prototipo necesita para buscar y pintar: el resto vive en
     # la base y lo trae la API.
@@ -47,6 +48,9 @@ def construir():
             "d": e.get("disciplines") or [],
             "p": e.get("pattern") or "",
             "q": e.get("equipment") or [],
+            # Lo que MIDE este ejercicio. De aquí salen los campos que el
+            # coach llena, en lugar de un juego fijo de series y carga: correr
+            # no lleva carga y una sentadilla no lleva ritmo.
             "m": e.get("metrics") or ["reps"],
             "a": e.get("aliases_es") or [],
         }
@@ -72,8 +76,22 @@ def construir():
             "d": r.get("discipline", ""),
             "i": r.get("intensity", ""),
             "x": r.get("description_es", ""),
+            # Cada sesión de resistencia ya dice qué campos necesita.
+            "f": r.get("fields") or [],
         }
         for r in resistencia
+    ]
+
+    fmt = [
+        {
+            "s": f["slug"],
+            "n": f["name_es"],
+            "x": f.get("description_es", ""),
+            "f": [c for c in f.get("fields", []) if c not in ("movements", "notes")],
+            "e": f.get("example_scheme", ""),
+            "p": f.get("score_type", ""),
+        }
+        for f in formatos
     ]
 
     # Las estaciones salen de la secuencia oficial de la carrera: ahí están en
@@ -97,6 +115,7 @@ def construir():
             f"const BENCHMARKS = {js(bms)};",
             f"const RESISTENCIA = {js(res)};",
             f"const ESTACIONES = {js(est)};",
+            f"const FORMATOS = {js(fmt)};",
             f"const HYROX_KM = {js(carrera.get('total_run_km', 8))};",
             FIN,
         ]

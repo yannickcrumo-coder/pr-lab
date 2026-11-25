@@ -436,6 +436,12 @@ h3.sec:first-child{margin-top:0}
   color:var(--text-faint);padding:12px 14px 6px;background:var(--surface);
   position:sticky;top:0;border-bottom:1px solid var(--border)}
 .mitem .faint{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+.bcfg{display:flex;gap:10px;flex-wrap:wrap;padding:11px 12px;background:var(--surface-2);
+  border-bottom:1px solid var(--border)}
+.bcfg .fld{min-width:110px}
+.bcfgnota{padding:9px 12px;font-size:11.5px;color:var(--text-faint);line-height:1.45;
+  background:var(--surface-2);border-bottom:1px solid var(--border)}
 </style>
 </head>
 <body>
@@ -943,8 +949,9 @@ h3.sec:first-child{margin-top:0}
 // Se regenera con: python3 db/build/make_proto_catalog.py
 const EJERCICIOS = [{"n":"Abdominal","d":["fuerza","crossfit"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Abducción de cadera","d":["fuerza"],"p":"accesorio","q":["maquina","banda"],"m":["reps","load","rpe"],"a":[]},{"n":"Acarreo con yugo","d":["fuerza"],"p":"acarreo","q":["yoke"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo de sandbag","d":["fuerza","hyrox"],"p":"acarreo","q":["sandbag"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo del granjero","d":["fuerza","crossfit","hyrox"],"p":"acarreo","q":["kettlebell","mancuernas","agarres_granjero"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo en rack frontal","d":["fuerza"],"p":"acarreo","q":["kettlebell","mancuernas"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo maleta","d":["fuerza"],"p":"acarreo","q":["kettlebell","mancuernas"],"m":["load","distance","time"],"a":[]},{"n":"Acarreo por encima de la cabeza","d":["fuerza"],"p":"acarreo","q":["kettlebell","mancuernas"],"m":["load","distance","time"],"a":[]},{"n":"Aducción de cadera","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Aperturas con mancuernas","d":["fuerza"],"p":"accesorio","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Aperturas en polea","d":["fuerza"],"p":"accesorio","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Arranque","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":["snatch"]},{"n":"Arranque colgado","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Arranque de potencia","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Arrastre de trineo","d":["fuerza","hyrox"],"p":"acarreo","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Assault bike","d":["crossfit","hyrox"],"p":"monoestructural","q":["assault_bike"],"m":["distance","time","calories","power"],"a":[]},{"n":"Bicicleta ergómetro","d":["crossfit","ciclismo"],"p":"monoestructural","q":["bike_erg"],"m":["distance","time","calories","power"],"a":[]},{"n":"Bird dog","d":["fuerza"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Box jump over","d":["crossfit"],"p":"pliometrico","q":["cajon"],"m":["reps","time"],"a":[]},{"n":"Buenos días","d":["fuerza"],"p":"bisagra","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Burpee","d":["fuerza","crossfit","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Burpee box jump over","d":["crossfit"],"p":"pliometrico","q":["cajon"],"m":["reps","time"],"a":[]},{"n":"Burpee broad jump","d":["crossfit","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","distance","time"],"a":[]},{"n":"Burpee con paso atrás","d":["crossfit","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Caminata en manos","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["distance","time"],"a":[]},{"n":"Cargada","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":["clean"]},{"n":"Cargada colgada","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Cargada de potencia","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Cargada y envión","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":["clean and jerk"]},{"n":"Carrera con fatiga previa","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["distance","time","pace"],"a":[]},{"n":"Correr","d":["correr","crossfit","hyrox","triatlon"],"p":"monoestructural","q":["ninguno"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Correr en caminadora","d":["correr","hyrox"],"p":"monoestructural","q":["caminadora"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Correr en cuesta","d":["correr","hyrox"],"p":"monoestructural","q":["ninguno"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Crunch en polea","d":["fuerza"],"p":"core","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl con barra","d":["fuerza"],"p":"accesorio","q":["barra","barra_z"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl con mancuernas","d":["fuerza"],"p":"accesorio","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl en polea","d":["fuerza"],"p":"accesorio","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl femoral","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl martillo","d":["fuerza"],"p":"accesorio","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Curl nórdico","d":["fuerza"],"p":"bisagra","q":["ninguno"],"m":["reps","tempo"],"a":[]},{"n":"Curl predicador","d":["fuerza"],"p":"accesorio","q":["barra_z","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Dead bug","d":["fuerza"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Dislocaciones de hombro con palo","d":["fuerza"],"p":"movilidad","q":["banda"],"m":["reps"],"a":[]},{"n":"Dominada","d":["fuerza","crossfit","hyrox"],"p":"jalon_vertical","q":["barra_dominadas"],"m":["reps","load","time"],"a":[]},{"n":"Dominada asistida con banda","d":["fuerza","crossfit"],"p":"jalon_vertical","q":["barra_dominadas","banda"],"m":["reps"],"a":[]},{"n":"Dominada butterfly","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"Dominada estricta","d":["fuerza","crossfit"],"p":"jalon_vertical","q":["barra_dominadas"],"m":["reps","load"],"a":[]},{"n":"Dominada kipping","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"Dominada pecho a barra","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":["C2B"]},{"n":"Dominada supina","d":["fuerza"],"p":"jalon_vertical","q":["barra_dominadas"],"m":["reps","load"],"a":[]},{"n":"Double under","d":["crossfit","hyrox"],"p":"monoestructural","q":["cuerda_saltar"],"m":["reps","time"],"a":[]},{"n":"Elevación de piernas colgado","d":["fuerza"],"p":"core","q":["barra_dominadas"],"m":["reps"],"a":[]},{"n":"Elevación de talones de pie","d":["fuerza"],"p":"accesorio","q":["maquina","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Elevación de talones sentado","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Elevación frontal","d":["fuerza"],"p":"accesorio","q":["mancuernas","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Elevación lateral","d":["fuerza"],"p":"accesorio","q":["mancuernas","polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Empuje de trineo","d":["fuerza","crossfit","hyrox"],"p":"acarreo","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Encogimiento de hombros","d":["fuerza"],"p":"accesorio","q":["barra","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Estiramiento activo de isquiotibiales","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Extensión de cuádriceps","d":["fuerza"],"p":"accesorio","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Extensión de espalda","d":["fuerza","crossfit"],"p":"bisagra","q":["ghd"],"m":["reps","time"],"a":[]},{"n":"Extensión de tríceps en polea","d":["fuerza"],"p":"accesorio","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Extensión de tríceps sobre la cabeza","d":["fuerza"],"p":"accesorio","q":["mancuernas","polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Face pull","d":["fuerza"],"p":"accesorio","q":["polea","banda"],"m":["reps","load","rpe"],"a":[]},{"n":"Flexiones","d":["fuerza","crossfit","hyrox"],"p":"empuje_horizontal","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Flexiones con déficit","d":["fuerza"],"p":"empuje_horizontal","q":["discos"],"m":["reps"],"a":[]},{"n":"Flexiones con rodillas","d":["fuerza"],"p":"empuje_horizontal","q":["ninguno"],"m":["reps"],"a":[]},{"n":"Flexiones en anillas","d":["fuerza","crossfit"],"p":"empuje_horizontal","q":["anillas"],"m":["reps"],"a":[]},{"n":"Flexión pike","d":["fuerza","crossfit"],"p":"empuje_vertical","q":["ninguno"],"m":["reps"],"a":[]},{"n":"Fondos de tríceps","d":["fuerza","crossfit"],"p":"accesorio","q":["paralelas","banco"],"m":["reps","load"],"a":[]},{"n":"Fondos en anillas","d":["crossfit"],"p":"gimnasticos","q":["anillas"],"m":["reps","time"],"a":[]},{"n":"Fondos en paralelas","d":["fuerza","crossfit"],"p":"empuje_horizontal","q":["paralelas"],"m":["reps","load"],"a":[]},{"n":"GHD sit-up","d":["crossfit"],"p":"core","q":["ghd"],"m":["reps","time"],"a":[]},{"n":"Gato y camello","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Giro ruso","d":["fuerza"],"p":"core","q":["balon_medicinal","discos"],"m":["reps","time"],"a":[]},{"n":"Handstand push-up","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["reps","time"],"a":["HSPU"]},{"n":"Handstand push-up con déficit","d":["crossfit"],"p":"gimnasticos","q":["discos"],"m":["reps"],"a":[]},{"n":"Handstand push-up estricto","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["reps"],"a":[]},{"n":"Hip thrust","d":["fuerza"],"p":"bisagra","q":["barra","banco","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Hollow hold","d":["crossfit"],"p":"core","q":["ninguno"],"m":["time"],"a":[]},{"n":"Hollow rock","d":["crossfit"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Hyrox: 1 km de carrera","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Hyrox: 100 wall balls","d":["hyrox"],"p":"estacion_hyrox","q":["wall_ball"],"m":["load","reps","time","height"],"a":[]},{"n":"Hyrox: Roxzone","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["time"],"a":[]},{"n":"Hyrox: SkiErg 1000 m","d":["hyrox"],"p":"estacion_hyrox","q":["ski_erg"],"m":["distance","time","pace"],"a":[]},{"n":"Hyrox: burpee broad jump 80 m","d":["hyrox"],"p":"estacion_hyrox","q":["ninguno"],"m":["distance","time","reps"],"a":[]},{"n":"Hyrox: empuje de trineo 50 m","d":["hyrox"],"p":"estacion_hyrox","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Hyrox: farmers carry 200 m","d":["hyrox"],"p":"estacion_hyrox","q":["kettlebell"],"m":["load","distance","time"],"a":[]},{"n":"Hyrox: jalón de trineo 50 m","d":["hyrox"],"p":"estacion_hyrox","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Hyrox: remo 1000 m","d":["hyrox"],"p":"estacion_hyrox","q":["remo_erg"],"m":["distance","time","pace"],"a":[]},{"n":"Hyrox: zancadas con sandbag 100 m","d":["hyrox"],"p":"estacion_hyrox","q":["sandbag"],"m":["load","distance","time"],"a":[]},{"n":"Jalón al pecho","d":["fuerza"],"p":"jalon_vertical","q":["polea","maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Jalón de arranque","d":["fuerza"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Jalón de cargada","d":["fuerza"],"p":"halterofilia","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Jalón de trineo","d":["fuerza","crossfit","hyrox"],"p":"acarreo","q":["trineo"],"m":["load","distance","time"],"a":[]},{"n":"Knees to elbow","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"L-sit","d":["crossfit"],"p":"gimnasticos","q":["paralelas","anillas"],"m":["time"],"a":[]},{"n":"Movilidad de cadera 90/90","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Muscle-up en anillas","d":["crossfit"],"p":"gimnasticos","q":["anillas"],"m":["reps","time"],"a":[]},{"n":"Muscle-up en barra","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":[]},{"n":"Nadar","d":["triatlon"],"p":"monoestructural","q":["alberca"],"m":["distance","time","pace","heart_rate"],"a":[]},{"n":"Pallof press","d":["fuerza"],"p":"core","q":["polea","banda"],"m":["reps","time"],"a":[]},{"n":"Parada de manos","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["time"],"a":[]},{"n":"Paseo lateral con banda","d":["fuerza"],"p":"accesorio","q":["banda"],"m":["reps","distance","time"],"a":[]},{"n":"Peso muerto","d":["fuerza","crossfit","hyrox"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":["deadlift"]},{"n":"Peso muerto a una pierna","d":["fuerza"],"p":"bisagra","q":["mancuernas","kettlebell"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto con barra hexagonal","d":["fuerza"],"p":"bisagra","q":["barra_hexagonal"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto con déficit","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto piernas rígidas","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Peso muerto rumano","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":["RDL"]},{"n":"Peso muerto sumo","d":["fuerza"],"p":"bisagra","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Pistol","d":["fuerza","crossfit"],"p":"sentadilla","q":["ninguno"],"m":["reps","load","rpe"],"a":[]},{"n":"Pistol asistido","d":["fuerza","crossfit"],"p":"sentadilla","q":["banda","anillas"],"m":["reps","load","rpe"],"a":[]},{"n":"Plancha","d":["fuerza","crossfit","hyrox"],"p":"core","q":["ninguno"],"m":["time"],"a":[]},{"n":"Plancha lateral","d":["fuerza"],"p":"core","q":["ninguno"],"m":["time"],"a":[]},{"n":"Prensa de piernas","d":["fuerza"],"p":"sentadilla","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Press Arnold","d":["fuerza"],"p":"empuje_vertical","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Press Z sentado","d":["fuerza"],"p":"empuje_vertical","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca","d":["fuerza","crossfit"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca agarre cerrado","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca con mancuernas","d":["fuerza"],"p":"empuje_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de banca con pausa","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe","tempo"],"a":[]},{"n":"Press de hombros con mancuernas","d":["fuerza","crossfit","hyrox"],"p":"empuje_vertical","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Press de pecho en máquina","d":["fuerza"],"p":"empuje_horizontal","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Press declinado","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press en el piso","d":["fuerza"],"p":"empuje_horizontal","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Press francés","d":["fuerza"],"p":"accesorio","q":["barra_z","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press inclinado","d":["fuerza"],"p":"empuje_horizontal","q":["barra","banco","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Press inclinado con mancuernas","d":["fuerza"],"p":"empuje_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Press landmine","d":["fuerza"],"p":"empuje_vertical","q":["landmine","barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Press militar","d":["fuerza","crossfit","hyrox"],"p":"empuje_vertical","q":["barra","rack"],"m":["reps","load","rpe"],"a":["press estricto","press de hombros"]},{"n":"Puente de glúteo","d":["fuerza"],"p":"bisagra","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Pull through en polea","d":["fuerza"],"p":"bisagra","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Push jerk","d":["fuerza","crossfit"],"p":"empuje_vertical","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Push press","d":["fuerza","crossfit"],"p":"empuje_vertical","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Pájaro","d":["fuerza"],"p":"accesorio","q":["mancuernas","polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Rack pull","d":["fuerza"],"p":"bisagra","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo Pendlay","d":["fuerza"],"p":"jalon_horizontal","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo al mentón","d":["fuerza"],"p":"accesorio","q":["barra","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo con barra","d":["fuerza"],"p":"jalon_horizontal","q":["barra","discos"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo con mancuerna","d":["fuerza"],"p":"jalon_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo con pecho apoyado","d":["fuerza"],"p":"jalon_horizontal","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo en T","d":["fuerza"],"p":"jalon_horizontal","q":["landmine","barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Remo en anillas","d":["fuerza","crossfit"],"p":"jalon_horizontal","q":["anillas"],"m":["reps"],"a":[]},{"n":"Remo en ergómetro","d":["crossfit","hyrox"],"p":"monoestructural","q":["remo_erg"],"m":["distance","time","calories","pace","power"],"a":[]},{"n":"Remo invertido","d":["fuerza","crossfit"],"p":"jalon_horizontal","q":["barra_dominadas"],"m":["reps"],"a":[]},{"n":"Remo sentado en polea","d":["fuerza"],"p":"jalon_horizontal","q":["polea"],"m":["reps","load","rpe"],"a":[]},{"n":"Rodar en bicicleta","d":["ciclismo","triatlon"],"p":"monoestructural","q":["bicicleta"],"m":["distance","time","power","heart_rate"],"a":[]},{"n":"Rodillas altas","d":["correr","hyrox"],"p":"monoestructural","q":["ninguno"],"m":["time","distance"],"a":[]},{"n":"Rueda abdominal","d":["fuerza"],"p":"core","q":["rueda_abdominal"],"m":["reps"],"a":[]},{"n":"Salto al cajón","d":["fuerza","crossfit","hyrox"],"p":"pliometrico","q":["cajon"],"m":["reps","height","time"],"a":[]},{"n":"Salto de patinador","d":["fuerza"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Salto en profundidad","d":["fuerza"],"p":"pliometrico","q":["cajon"],"m":["reps","height"],"a":[]},{"n":"Salto en sentadilla","d":["fuerza","crossfit"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Salto largo","d":["fuerza","hyrox"],"p":"pliometrico","q":["ninguno"],"m":["reps","distance"],"a":[]},{"n":"Salto simple de cuerda","d":["crossfit","hyrox"],"p":"monoestructural","q":["cuerda_saltar"],"m":["reps","time"],"a":[]},{"n":"Sentadilla Zercher","d":["fuerza"],"p":"sentadilla","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla al cajón","d":["fuerza"],"p":"sentadilla","q":["barra","rack","cajon"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla búlgara","d":["fuerza"],"p":"zancada","q":["mancuernas","banco"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla con pausa","d":["fuerza"],"p":"sentadilla","q":["barra","rack"],"m":["reps","load","rpe","tempo"],"a":[]},{"n":"Sentadilla frontal","d":["fuerza","crossfit"],"p":"sentadilla","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla goblet","d":["fuerza"],"p":"sentadilla","q":["kettlebell","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla hack","d":["fuerza"],"p":"sentadilla","q":["maquina"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla isométrica en pared","d":["fuerza"],"p":"sentadilla","q":["ninguno"],"m":["time"],"a":[]},{"n":"Sentadilla overhead","d":["fuerza","crossfit"],"p":"sentadilla","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Sentadilla profunda sostenida","d":["fuerza"],"p":"movilidad","q":["ninguno"],"m":["time"],"a":[]},{"n":"Sentadilla sin peso","d":["fuerza","crossfit","hyrox"],"p":"sentadilla","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Sentadilla trasera","d":["fuerza","crossfit","hyrox"],"p":"sentadilla","q":["barra","rack"],"m":["reps","load","rpe"],"a":["sentadilla con barra","back squat"]},{"n":"Shuttle run","d":["crossfit","hyrox"],"p":"monoestructural","q":["ninguno"],"m":["distance","time","reps"],"a":[]},{"n":"SkiErg","d":["crossfit","hyrox"],"p":"monoestructural","q":["ski_erg"],"m":["distance","time","calories","pace","power"],"a":[]},{"n":"Slam ball","d":["crossfit"],"p":"pliometrico","q":["slam_ball"],"m":["reps","load","time"],"a":[]},{"n":"Snatch balance","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Soporte en anillas","d":["crossfit"],"p":"gimnasticos","q":["anillas"],"m":["time"],"a":[]},{"n":"Split jerk","d":["fuerza","crossfit"],"p":"halterofilia","q":["barra","rack"],"m":["reps","load","rpe"],"a":[]},{"n":"Step over al cajón","d":["crossfit","hyrox"],"p":"zancada","q":["cajon","mancuernas"],"m":["reps","load","time"],"a":[]},{"n":"Step up al cajón","d":["fuerza","crossfit","hyrox"],"p":"zancada","q":["cajon","mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Swing americano","d":["fuerza","crossfit"],"p":"bisagra","q":["kettlebell"],"m":["reps","load","time"],"a":[]},{"n":"Swing ruso","d":["fuerza","crossfit","hyrox"],"p":"bisagra","q":["kettlebell"],"m":["reps","load","time"],"a":[]},{"n":"Thruster","d":["fuerza","crossfit","hyrox"],"p":"halterofilia","q":["barra","mancuernas"],"m":["reps","load","time"],"a":[]},{"n":"Toes to bar","d":["crossfit"],"p":"gimnasticos","q":["barra_dominadas"],"m":["reps","time"],"a":["T2B"]},{"n":"Trepar la cuerda","d":["crossfit"],"p":"gimnasticos","q":["cuerda_trepar"],"m":["reps","time"],"a":[]},{"n":"Trepar la cuerda sin piernas","d":["crossfit"],"p":"gimnasticos","q":["cuerda_trepar"],"m":["reps","time"],"a":[]},{"n":"V-up","d":["fuerza"],"p":"core","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Wall ball","d":["crossfit","hyrox"],"p":"pliometrico","q":["wall_ball"],"m":["reps","load","time","height"],"a":[]},{"n":"Wall walk","d":["crossfit"],"p":"gimnasticos","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Zancada caminando","d":["fuerza","crossfit","hyrox"],"p":"zancada","q":["mancuernas","barra"],"m":["reps","load","distance"],"a":[]},{"n":"Zancada con barra al frente","d":["fuerza","crossfit"],"p":"zancada","q":["barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Zancada con salto","d":["fuerza","crossfit"],"p":"pliometrico","q":["ninguno"],"m":["reps","time"],"a":[]},{"n":"Zancada hacia adelante","d":["fuerza"],"p":"zancada","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]},{"n":"Zancada hacia atrás","d":["fuerza"],"p":"zancada","q":["mancuernas","barra"],"m":["reps","load","rpe"],"a":[]},{"n":"Zancada lateral","d":["fuerza"],"p":"zancada","q":["mancuernas"],"m":["reps","load","rpe"],"a":[]}];
 const BENCHMARKS = [{"n":"Fran","f":"for_time","e":"21-15-9","t":900,"mv":["thruster","dominada"]},{"n":"Grace","f":"for_time","e":"30 reps","t":900,"mv":["cargada-envion"]},{"n":"Isabel","f":"for_time","e":"30 reps","t":900,"mv":["arranque-potencia"]},{"n":"Diane","f":"for_time","e":"21-15-9","t":900,"mv":["peso-muerto","handstand-push-up"]},{"n":"Elizabeth","f":"for_time","e":"21-15-9","t":900,"mv":["cargada-potencia","fondos-anillas"]},{"n":"Karen","f":"for_time","e":"150 reps","t":1200,"mv":["wall-ball"]},{"n":"Annie","f":"for_time","e":"50-40-30-20-10","t":900,"mv":["double-under","abdominal"]},{"n":"Cindy","f":"amrap","e":"","t":0,"mv":["dominada","flexiones","sentadilla-aire"]},{"n":"Mary","f":"amrap","e":"","t":0,"mv":["handstand-push-up","sentadilla-pistol","dominada"]},{"n":"Angie","f":"chipper","e":"","t":1800,"mv":["dominada","flexiones","abdominal","sentadilla-aire"]},{"n":"Barbara","f":"rft","e":"","t":0,"mv":["dominada","flexiones","abdominal","sentadilla-aire"]},{"n":"Chelsea","f":"emom","e":"","t":0,"mv":["dominada","flexiones","sentadilla-aire"]},{"n":"Helen","f":"rft","e":"","t":0,"mv":["correr","swing-ruso","dominada"]},{"n":"Jackie","f":"for_time","e":"","t":1200,"mv":["remo-ergometro","thruster","dominada"]},{"n":"Nancy","f":"rft","e":"","t":0,"mv":["correr","sentadilla-overhead"]},{"n":"Nicole","f":"amrap","e":"","t":0,"mv":["correr","dominada"]},{"n":"DT","f":"rft","e":"","t":0,"mv":["peso-muerto","cargada-colgada","push-jerk"]},{"n":"Murph","f":"chipper","e":"","t":4200,"mv":["correr","dominada","flexiones","sentadilla-aire","correr"]},{"n":"Kalsu","f":"for_time","e":"","t":2400,"mv":["thruster","burpee"]},{"n":"Fight Gone Bad","f":"intervalos","e":"","t":0,"mv":["wall-ball","remo-al-menton","salto-cajon","push-press","remo-ergometro"]}];
-const RESISTENCIA = [{"n":"Rodaje fácil","d":"correr","i":"zona 2","x":"Ritmo conversacional; base aeróbica."},{"n":"Rodaje largo","d":"correr","i":"zona 2","x":"La sesión más larga de la semana."},{"n":"Trote de recuperación","d":"correr","i":"zona 1","x":"Muy suave, para el día después de una sesión dura."},{"n":"Tempo","d":"correr","i":"zona 3-4","x":"Esfuerzo sostenido cómodo-duro de 20 a 40 minutos."},{"n":"Intervalos de umbral","d":"correr","i":"zona 4","x":"Series largas al ritmo que podrías sostener una hora."},{"n":"Intervalos de VO2máx","d":"correr","i":"zona 5","x":"Series de 3 a 5 minutos muy exigentes."},{"n":"Repeticiones en cuesta","d":"correr","i":"zona 4-5","x":"Fuerza específica de carrera."},{"n":"Fartlek","d":"correr","i":"variable","x":"Cambios de ritmo libres dentro de un rodaje."},{"n":"Rodaje progresivo","d":"correr","i":"zona 2-4","x":"Empieza suave y termina fuerte."},{"n":"Rectas","d":"correr","i":"zona 5","x":"Aceleraciones cortas de 80 a 150 m para técnica."},{"n":"Series de 400 m","d":"correr","i":"zona 5","x":"Clásico de pista para velocidad sostenida."},{"n":"Series de 800 m","d":"correr","i":"zona 4-5","x":""},{"n":"Series de 1000 m","d":"correr","i":"zona 4","x":""},{"n":"Test de 5 km","d":"correr","i":"máximo","x":"Sirve para recalcular zonas y ritmos."},{"n":"Carrera + estación","d":"hyrox","i":"zona 4","x":"El bloque base del entrenamiento de Hyrox."},{"n":"Rodada de fondo","d":"ciclismo","i":"zona 2","x":""},{"n":"Sweet spot","d":"ciclismo","i":"88-94 % FTP","x":""},{"n":"Intervalos de FTP","d":"ciclismo","i":"95-105 % FTP","x":""},{"n":"Intervalos de VO2máx","d":"ciclismo","i":"110-120 % FTP","x":""},{"n":"Sprints","d":"ciclismo","i":"máximo","x":""},{"n":"Trabajo de cadencia","d":"ciclismo","i":"zona 2","x":""},{"n":"Test de FTP de 20 minutos","d":"ciclismo","i":"máximo","x":"El FTP se estima como el 95 % de la potencia media."},{"n":"Técnica de natación","d":"triatlon","i":"zona 1-2","x":""},{"n":"Series de umbral","d":"triatlon","i":"zona 4","x":""},{"n":"Aguas abiertas","d":"triatlon","i":"zona 2-3","x":""},{"n":"Sesión combinada (brick)","d":"triatlon","i":"zona 3-4","x":"Bici seguida de carrera, sin pausa."}];
+const RESISTENCIA = [{"n":"Rodaje fácil","d":"correr","i":"zona 2","x":"Ritmo conversacional; base aeróbica.","f":["distance_m","duration_s","target_pace","target_hr"]},{"n":"Rodaje largo","d":"correr","i":"zona 2","x":"La sesión más larga de la semana.","f":["distance_m","duration_s","target_pace"]},{"n":"Trote de recuperación","d":"correr","i":"zona 1","x":"Muy suave, para el día después de una sesión dura.","f":["duration_s","target_hr"]},{"n":"Tempo","d":"correr","i":"zona 3-4","x":"Esfuerzo sostenido cómodo-duro de 20 a 40 minutos.","f":["warmup","duration_s","target_pace","cooldown"]},{"n":"Intervalos de umbral","d":"correr","i":"zona 4","x":"Series largas al ritmo que podrías sostener una hora.","f":["sets","work","rest_s","target_pace"]},{"n":"Intervalos de VO2máx","d":"correr","i":"zona 5","x":"Series de 3 a 5 minutos muy exigentes.","f":["sets","work","rest_s","target_pace"]},{"n":"Repeticiones en cuesta","d":"correr","i":"zona 4-5","x":"Fuerza específica de carrera.","f":["sets","duration_s","grade_pct","rest_s"]},{"n":"Fartlek","d":"correr","i":"variable","x":"Cambios de ritmo libres dentro de un rodaje.","f":["duration_s","pattern","notes"]},{"n":"Rodaje progresivo","d":"correr","i":"zona 2-4","x":"Empieza suave y termina fuerte.","f":["distance_m","segments","target_pace"]},{"n":"Rectas","d":"correr","i":"zona 5","x":"Aceleraciones cortas de 80 a 150 m para técnica.","f":["sets","distance_m","rest_s"]},{"n":"Series de 400 m","d":"correr","i":"zona 5","x":"Clásico de pista para velocidad sostenida.","f":["sets","target_pace","rest_s"]},{"n":"Series de 800 m","d":"correr","i":"zona 4-5","x":"","f":["sets","target_pace","rest_s"]},{"n":"Series de 1000 m","d":"correr","i":"zona 4","x":"","f":["sets","target_pace","rest_s"]},{"n":"Test de 5 km","d":"correr","i":"máximo","x":"Sirve para recalcular zonas y ritmos.","f":["distance_m","target_time_s"]},{"n":"Carrera + estación","d":"hyrox","i":"zona 4","x":"El bloque base del entrenamiento de Hyrox.","f":["sets","run_m","station","target_time_s"]},{"n":"Rodada de fondo","d":"ciclismo","i":"zona 2","x":"","f":["duration_s","distance_m","target_power","target_hr"]},{"n":"Sweet spot","d":"ciclismo","i":"88-94 % FTP","x":"","f":["sets","duration_s","rest_s","target_power"]},{"n":"Intervalos de FTP","d":"ciclismo","i":"95-105 % FTP","x":"","f":["sets","duration_s","rest_s","target_power"]},{"n":"Intervalos de VO2máx","d":"ciclismo","i":"110-120 % FTP","x":"","f":["sets","duration_s","rest_s","target_power"]},{"n":"Sprints","d":"ciclismo","i":"máximo","x":"","f":["sets","duration_s","rest_s"]},{"n":"Trabajo de cadencia","d":"ciclismo","i":"zona 2","x":"","f":["sets","duration_s","target_cadence"]},{"n":"Test de FTP de 20 minutos","d":"ciclismo","i":"máximo","x":"El FTP se estima como el 95 % de la potencia media.","f":["duration_s","target_power"]},{"n":"Técnica de natación","d":"triatlon","i":"zona 1-2","x":"","f":["sets","distance_m","drill","rest_s"]},{"n":"Series de umbral","d":"triatlon","i":"zona 4","x":"","f":["sets","distance_m","target_pace","rest_s"]},{"n":"Aguas abiertas","d":"triatlon","i":"zona 2-3","x":"","f":["distance_m","duration_s","notes"]},{"n":"Sesión combinada (brick)","d":"triatlon","i":"zona 3-4","x":"Bici seguida de carrera, sin pausa.","f":["bike_duration_s","run_duration_s","transition_s"]}];
 const ESTACIONES = [{"o":1,"n":"1000 m de SkiErg","run":1000,"slug":"hyrox-ski-1000"},{"o":2,"n":"4 x 12.5 m de empuje de trineo","run":1000,"slug":"hyrox-sled-push"},{"o":3,"n":"4 x 12.5 m de jalón de trineo","run":1000,"slug":"hyrox-sled-pull"},{"o":4,"n":"80 m de burpee broad jump","run":1000,"slug":"hyrox-burpee-broad-jump"},{"o":5,"n":"1000 m de remo","run":1000,"slug":"hyrox-row-1000"},{"o":6,"n":"200 m de farmers carry","run":1000,"slug":"hyrox-farmers-carry"},{"o":7,"n":"100 m de zancadas con sandbag","run":1000,"slug":"hyrox-sandbag-lunges"},{"o":8,"n":"100 wall balls","run":1000,"slug":"hyrox-wall-balls"}];
+const FORMATOS = [{"s":"for_time","n":"For Time","x":"Completar el trabajo prescrito lo más rápido posible.","f":["rounds","time_cap_s"],"e":"21-15-9","p":"time"},{"s":"amrap","n":"AMRAP","x":"Máximo de rondas y repeticiones en un tiempo fijo.","f":["duration_s"],"e":"AMRAP 20 min","p":"rounds_reps"},{"s":"emom","n":"EMOM","x":"Un bloque de trabajo al inicio de cada minuto.","f":["duration_s","interval_s","slots"],"e":"EMOM 12 min, alternando 2 movimientos","p":"completion"},{"s":"tabata","n":"Tabata","x":"Ocho intervalos de 20 s de trabajo por 10 s de descanso.","f":["work_s","rest_s","intervals"],"e":"8 x 20/10","p":"reps"},{"s":"rft","n":"Rondas por tiempo","x":"Un número fijo de rondas lo más rápido posible.","f":["rounds","time_cap_s"],"e":"5 rondas por tiempo","p":"time"},{"s":"chipper","n":"Chipper","x":"Una lista larga de movimientos que se hace una sola vez.","f":["time_cap_s"],"e":"50 reps de cada movimiento","p":"time"},{"s":"ladder","n":"Escalera","x":"Las repeticiones suben o bajan en cada ronda.","f":["scheme","time_cap_s"],"e":"1-2-3-4-5-6-7-8-9-10","p":"time"},{"s":"death_by","n":"Death by","x":"Una repetición más cada minuto hasta fallar.","f":["interval_s"],"e":"Death by burpees","p":"rounds"},{"s":"intervalos","n":"Intervalos","x":"Series de trabajo y descanso definidos por el coach.","f":["sets","work","rest_s","target"],"e":"6 x 800 m con 2 min de descanso","p":"splits"},{"s":"carga_maxima","n":"Carga máxima","x":"Encontrar la carga máxima en un número de repeticiones.","f":["rep_target","attempts"],"e":"Encontrar 1RM de sentadilla trasera","p":"load"},{"s":"simulacion_hyrox","n":"Simulación Hyrox","x":"Carreras y estaciones encadenadas con parciales por tramo.","f":["division","stations","partial_race"],"e":"Media simulación: 4 carreras y 4 estaciones","p":"time"},{"s":"libre","n":"Formato libre","x":"Texto libre para lo que no entre en los formatos anteriores.","f":["body"],"e":null,"p":"free"}];
 const HYROX_KM = 8;
 // CATALOGO GENERADO >>>
 /**
@@ -1933,8 +1940,14 @@ function bloquesDe(t){
     const detalle = corte < 0 ? '' : linea.slice(corte + 3);
     const [nom, tag, color, kind] = TIPO[cabeza] || ['Bloque','bloque','plain','ejercicios'];
     if (kind === 'texto') return {n:nom, tag, c:color, kind:'texto', body:detalle};
-    return {n:nom, tag, c:color, kind:'ejercicios',
-      ex: detalle ? [{n:detalle, f:[['Series','3'],['Reps','10'],['Carga','—'],['RPE','7']]}] : []};
+    const bloque = {n:nom, tag, c:color, kind:'ejercicios', ex:[]};
+    if (detalle){
+      // Los campos salen de lo que mide el ejercicio, no de un juego fijo.
+      const exacto = EJERCICIOS.find(e => detalle.toLowerCase().includes(e.n.toLowerCase()));
+      bloque.ex = [{n: exacto ? exacto.n : detalle,
+        f: camposDeEjercicio(exacto ? exacto.n : detalle, bloque)}];
+    }
+    return bloque;
   });
 }
 
@@ -1987,13 +2000,16 @@ function openBuilder(name, di, esPlantilla, si, tplIndex){
     BLOCKS = [];
   } else {
     const dePlantilla = TEMPLATES.find(t => t.n === name);
-    BLOCKS = dePlantilla ? bloquesDe(dePlantilla) : [
-      {n:'Calentamiento', tag:'preparación', c:'plain', kind:'ejercicios',
-       ex:[{n:'Movilidad de cadera 90/90', f:[['Series','2'],['Reps','8']]}]},
-      {n:'Fuerza', tag:'fuerza', c:'fuerza', kind:'ejercicios', ex:[
-        {n:'Sentadilla trasera', f:[['Series','5'],['Reps','5'],['Carga','100 kg'],['RPE','8'],['Descanso','2:00']]},
-        {n:'Peso muerto rumano', f:[['Series','3'],['Reps','8'],['Carga','70 kg'],['RPE','7']]}]},
-    ];
+    BLOCKS = dePlantilla ? bloquesDe(dePlantilla) : (() => {
+      const cal = {n:'Calentamiento', tag:'preparación', c:'plain', kind:'ejercicios', ex:[]};
+      cal.ex = [{n:'Abdominal', f:camposDeEjercicio('Abdominal', cal)}];
+      const fza = {n:'Fuerza', tag:'fuerza', c:'fuerza', kind:'ejercicios', ex:[]};
+      fza.ex = [
+        {n:'Sentadilla trasera', f:camposDeEjercicio('Sentadilla trasera', fza)},
+        {n:'Peso muerto rumano', f:camposDeEjercicio('Peso muerto rumano', fza)},
+      ];
+      return [cal, fza];
+    })();
   }
   renderBlocks();
   document.getElementById('builder').classList.add('on');
@@ -2023,7 +2039,39 @@ function renderBlocks(){
         <div class="wbfoot">El atleta ve este texto tal cual, como un bloque más de su sesión,
           y registra tiempo, notas y RPE.</div></div>`;
     }
-    return `<div class="blk">${head}
+    const esWod = b.n === 'WOD / Metcon';
+    const esCardio = b.n === 'Cardio';
+    const fmt = esWod ? (FORMATOS.find(f => f.s === b.fmt) || null) : null;
+
+    // En un WOD la prescripción la manda el FORMATO, no las series de cada
+    // movimiento: un AMRAP pide minutos, un For Time pide límite, un EMOM pide
+    // cada cuánto. Por eso el formato se elige en el bloque y sus campos viven
+    // aquí arriba, una sola vez, en lugar de repetirse por ejercicio.
+    const cabezaFmt = esWod ? `<div class="bcfg">
+      <div class="fld" style="min-width:190px">
+        <label>Formato</label>
+        <select onchange="ponerFormato(${bi}, this.value)">
+          <option value="">— elige el formato —</option>
+          ${FORMATOS.map(f => `<option value="${f.s}" ${b.fmt === f.s ? 'selected' : ''}
+            >${f.n}</option>`).join('')}
+        </select>
+      </div>
+      ${fmt ? fmt.f.map(c => { const [etq, val] = campo(c);
+        return `<div class="fld"><label>${etq}</label>
+          <input value="${(b.cfg && b.cfg[c]) || val}"
+            oninput="guardarCfg(${bi},'${c}',this.value)"></div>`; }).join('') : ''}
+      ${fmt ? `<div class="fld" style="flex:1;min-width:150px"><label>Ejemplo</label>
+        <input value="${fmt.e}" disabled style="opacity:.6"></div>` : ''}
+    </div>
+    ${fmt ? `<div class="bcfgnota">${fmt.x} El atleta registra
+      ${fmt.p === 'time' ? 'su tiempo' : fmt.p === 'rounds_reps' ? 'rondas y repeticiones'
+        : fmt.p === 'reps' ? 'repeticiones' : 'si lo completó'}.</div>` : ''}` : '';
+
+    const notaCardio = esCardio && b.ex.length === 0 ? `<div class="bcfgnota">
+      Agrega una sesión de resistencia —rodaje, tempo, intervalos— y trae sus propios
+      campos: distancia, tiempo, ritmo y zona. No lleva series ni carga.</div>` : '';
+
+    return `<div class="blk">${head}${cabezaFmt}${notaCardio}
       ${b.ex.map((e, ei) => `<div class="exrow">
         <div class="en">${e.n}
           <a href="${LINKS[e.n] || buscarEn(e.n)}" target="_blank" rel="noopener"
@@ -2037,6 +2085,20 @@ function renderBlocks(){
         onclick="openSearch(${bi})">+ Agregar ejercicio</button></div></div>`;
   }).join('');
 }
+function ponerFormato(bi, slug){
+  if (!BLOCKS[bi]) return;
+  BLOCKS[bi].fmt = slug || undefined;
+  BLOCKS[bi].cfg = {};
+  renderBlocks();
+  const f = FORMATOS.find(x => x.s === slug);
+  if (f) toast(`${f.n} · ${f.e}`);
+}
+function guardarCfg(bi, clave, valor){
+  if (!BLOCKS[bi]) return;
+  BLOCKS[bi].cfg = BLOCKS[bi].cfg || {};
+  BLOCKS[bi].cfg[clave] = valor;
+}
+
 function moveBlock(bi, dir){
   const j = bi + dir;
   if (j < 0 || j >= BLOCKS.length) return;
@@ -2216,23 +2278,108 @@ function renderSearch(){
     '<div class="mitem muted">Nada coincide. Escribe otra cosa o crea el tuyo.</div>';
 }
 
-/** Lo que se agrega al bloque, con los campos que le tocan a cada tipo. */
+/**
+ * LOS CAMPOS NO SON FIJOS, Y NO DEPENDEN DEL BLOQUE: SALEN DEL EJERCICIO.
+ *
+ * La regla, que es lo que hace que esto no se vuelva un desastre de casos
+ * especiales:
+ *
+ *   El EJERCICIO dice QUÉ se mide.  (viene en `metrics`, de la semilla)
+ *   El BLOQUE dice CÓMO se prescribe. (series y descanso, o el formato del WOD)
+ *
+ * Por eso correr no pide carga ni RPE por serie —mide distancia, tiempo, ritmo
+ * y frecuencia cardiaca— y una sentadilla no pide ritmo. Nada de esto se
+ * adivina: `metrics` ya está en `db/seed/exercises.json` y es la misma columna
+ * `exercises.metrics` que valida la API.
+ *
+ * Las sesiones de resistencia y los formatos de WOD traen además su propia
+ * lista de campos en la semilla, así que esos se respetan tal cual.
+ */
+const ETIQUETA = {
+  // --- lo que mide un ejercicio
+  reps:['Reps','10'], load:['Carga (kg)','—'], rpe:['RPE 1-10','7'],
+  time:['Tiempo','—'], distance:['Distancia (m)','—'], calories:['Calorías','—'],
+  height:['Altura (cm)','—'], pace:['Ritmo (min/km)','—'], heart_rate:['FC objetivo','—'],
+  power:['Potencia (W)','—'], tempo:['Tempo','30x1'],
+  // --- campos de una sesión de resistencia
+  distance_m:['Distancia (m)','—'], duration_s:['Tiempo','—'],
+  target_pace:['Ritmo objetivo','—'], target_hr:['FC objetivo','—'],
+  target_power:['Potencia (W)','—'], target_cadence:['Cadencia','—'],
+  target_time_s:['Tiempo objetivo','—'], sets:['Repeticiones','6'],
+  rest_s:['Descanso','2:00'], work:['Trabajo','—'], grade_pct:['Pendiente (%)','—'],
+  warmup:['Calentamiento','—'], cooldown:['Enfriamiento','—'], segments:['Tramos','—'],
+  pattern:['Patrón','—'], drill:['Técnica','—'], run_m:['Carrera (m)','—'],
+  station:['Estación','—'], bike_duration_s:['Bici','—'], run_duration_s:['Carrera','—'],
+  transition_s:['Transición','—'],
+  // --- campos de un formato de WOD
+  rounds:['Rondas','3'], time_cap_s:['Límite','15:00'], interval_s:['Cada','1:00'],
+  slots:['Espacios','2'], work_s:['Trabajo (s)','20'], intervals:['Intervalos','8'],
+};
+
+const campo = clave => {
+  const [etq, val] = ETIQUETA[clave] || [clave, '—'];
+  return [etq, val];
+};
+
+/** Lo que el BLOQUE agrega a la prescripción, encima de lo que mide el ejercicio. */
+function prescripcionDelBloque(bloque){
+  switch (bloque?.n){
+    case 'Fuerza':
+    case 'Accesorio':
+      return [campo('sets').map((v, i) => i ? '3' : 'Series'), campo('rest_s')];
+    case 'Calentamiento':
+    case 'Técnica':
+    case 'Enfriamiento':
+      return [['Series','2']];
+    default:
+      // En un WOD, Hyrox o cardio la prescripción la manda el formato o la
+      // sesión, no un número de series por ejercicio.
+      return [];
+  }
+}
+
+/** Los campos de un ejercicio del catálogo dentro de este bloque. */
+function camposDeEjercicio(nombre, bloque){
+  const e = EJERCICIOS.find(x => x.n === nombre);
+  const metricas = e ? e.m : ['reps','load'];
+  const base = prescripcionDelBloque(bloque);
+  const propios = metricas.map(campo);
+  // Series primero, luego lo que mide el ejercicio, y el descanso al final.
+  const series = base.filter(c => c[0] === 'Series');
+  const resto = base.filter(c => c[0] !== 'Series');
+  return [...series, ...propios, ...resto];
+}
+
+/** Lo que se agrega al bloque, con los campos que le tocan a cada cosa. */
 function addDelCatalogo(nombre, tipo, nuevo){
-  const CAMPOS = {
-    estacion:    [['Distancia','1000 m'],['Carga','—'],['Tiempo objetivo','—']],
-    benchmark:   [['Rondas','3'],['Tiempo límite','15:00'],['Escalado','Rx']],
-    resistencia: [['Distancia','10 km'],['Tiempo','50:00'],['Zona','2'],['Ritmo','5:00/km']],
-    ejercicio:   [['Series','3'],['Reps','10'],['Carga','—'],['RPE','7']],
-  };
+  const bloque = BLOCKS[targetBlock];
+  let campos;
+
+  if (tipo === 'estacion'){
+    const est = ESTACIONES.find(x => x.n === nombre);
+    campos = [campo('distance_m'), campo('load'), campo('target_time_s')];
+    if (est) campos[0] = ['Distancia (m)', String(est.run || '—')];
+  } else if (tipo === 'benchmark'){
+    const b = BENCHMARKS.find(x => x.n === nombre);
+    const f = FORMATOS.find(x => x.s === b?.f);
+    campos = (f?.f || ['rounds','time_cap_s']).map(campo);
+    if (b?.e) campos.unshift(['Esquema', b.e]);
+    campos.push(['Escalado','Rx']);
+  } else if (tipo === 'resistencia'){
+    const r = RESISTENCIA.find(x => x.n === nombre);
+    campos = (r?.f || ['distance_m','duration_s','target_pace']).map(campo);
+  } else {
+    campos = camposDeEjercicio(nombre, bloque);
+  }
+
   // El bloque puede haber desaparecido con el buscador abierto, y un bloque de
   // texto no lleva ejercicios: en los dos casos se cierra en lugar de reventar.
-  const bloque = BLOCKS[targetBlock];
   if (!bloque || bloque.kind === 'texto'){
     document.getElementById('exModal').classList.remove('on');
     return toast('Ese bloque ya no está en la sesión');
   }
   bloque.ex.push({n: nuevo ? nombre + ' (mío)' : nombre,
-    f: JSON.parse(JSON.stringify(CAMPOS[tipo] || CAMPOS.ejercicio))});
+    f: JSON.parse(JSON.stringify(campos))});
   document.getElementById('exModal').classList.remove('on');
   renderBlocks();
   if (nuevo){ MINE.push(nombre + ' (mío)'); toast(`"${nombre}" creado como ejercicio tuyo`); }
