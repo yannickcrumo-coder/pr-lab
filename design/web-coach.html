@@ -529,6 +529,12 @@ h3.sec:first-child{margin-top:0}
   color:var(--text)}
 .sxp{color:var(--text-faint);font-size:9.5px;flex:none;font-variant-numeric:tabular-nums}
 .sess{align-items:stretch}
+
+.indbox{padding:11px 12px;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.indbox label{display:block;font-size:10.5px;font-weight:700;text-transform:uppercase;
+  letter-spacing:.05em;color:var(--text-faint);margin-bottom:7px}
+.indbox textarea{width:100%;resize:vertical;font-family:inherit;font-size:13.5px;
+  line-height:1.55;min-height:62px}
 </style>
 </head>
 <body>
@@ -1082,7 +1088,7 @@ const EJERCICIOS = [{"n":"Abdominal","d":["fuerza","crossfit"],"p":"core","q":["
 const BENCHMARKS = [{"n":"Fran","f":"for_time","e":"21-15-9","t":900,"mv":["thruster","dominada"]},{"n":"Grace","f":"for_time","e":"30 reps","t":900,"mv":["cargada-envion"]},{"n":"Isabel","f":"for_time","e":"30 reps","t":900,"mv":["arranque-potencia"]},{"n":"Diane","f":"for_time","e":"21-15-9","t":900,"mv":["peso-muerto","handstand-push-up"]},{"n":"Elizabeth","f":"for_time","e":"21-15-9","t":900,"mv":["cargada-potencia","fondos-anillas"]},{"n":"Karen","f":"for_time","e":"150 reps","t":1200,"mv":["wall-ball"]},{"n":"Annie","f":"for_time","e":"50-40-30-20-10","t":900,"mv":["double-under","abdominal"]},{"n":"Cindy","f":"amrap","e":"","t":0,"mv":["dominada","flexiones","sentadilla-aire"]},{"n":"Mary","f":"amrap","e":"","t":0,"mv":["handstand-push-up","sentadilla-pistol","dominada"]},{"n":"Angie","f":"chipper","e":"","t":1800,"mv":["dominada","flexiones","abdominal","sentadilla-aire"]},{"n":"Barbara","f":"rft","e":"","t":0,"mv":["dominada","flexiones","abdominal","sentadilla-aire"]},{"n":"Chelsea","f":"emom","e":"","t":0,"mv":["dominada","flexiones","sentadilla-aire"]},{"n":"Helen","f":"rft","e":"","t":0,"mv":["correr","swing-ruso","dominada"]},{"n":"Jackie","f":"for_time","e":"","t":1200,"mv":["remo-ergometro","thruster","dominada"]},{"n":"Nancy","f":"rft","e":"","t":0,"mv":["correr","sentadilla-overhead"]},{"n":"Nicole","f":"amrap","e":"","t":0,"mv":["correr","dominada"]},{"n":"DT","f":"rft","e":"","t":0,"mv":["peso-muerto","cargada-colgada","push-jerk"]},{"n":"Murph","f":"chipper","e":"","t":4200,"mv":["correr","dominada","flexiones","sentadilla-aire","correr"]},{"n":"Kalsu","f":"for_time","e":"","t":2400,"mv":["thruster","burpee"]},{"n":"Fight Gone Bad","f":"intervalos","e":"","t":0,"mv":["wall-ball","remo-al-menton","salto-cajon","push-press","remo-ergometro"]}];
 const RESISTENCIA = [{"n":"Rodaje fácil","d":"correr","i":"zona 2","x":"Ritmo conversacional; base aeróbica.","f":["distance_m","duration_s","target_pace","target_hr"]},{"n":"Rodaje largo","d":"correr","i":"zona 2","x":"La sesión más larga de la semana.","f":["distance_m","duration_s","target_pace"]},{"n":"Trote de recuperación","d":"correr","i":"zona 1","x":"Muy suave, para el día después de una sesión dura.","f":["duration_s","target_hr"]},{"n":"Tempo","d":"correr","i":"zona 3-4","x":"Esfuerzo sostenido cómodo-duro de 20 a 40 minutos.","f":["warmup","duration_s","target_pace","cooldown"]},{"n":"Intervalos de umbral","d":"correr","i":"zona 4","x":"Series largas al ritmo que podrías sostener una hora.","f":["sets","work","rest_s","target_pace"]},{"n":"Intervalos de VO2máx","d":"correr","i":"zona 5","x":"Series de 3 a 5 minutos muy exigentes.","f":["sets","work","rest_s","target_pace"]},{"n":"Repeticiones en cuesta","d":"correr","i":"zona 4-5","x":"Fuerza específica de carrera.","f":["sets","duration_s","grade_pct","rest_s"]},{"n":"Fartlek","d":"correr","i":"variable","x":"Cambios de ritmo libres dentro de un rodaje.","f":["duration_s","pattern","notes"]},{"n":"Rodaje progresivo","d":"correr","i":"zona 2-4","x":"Empieza suave y termina fuerte.","f":["distance_m","segments","target_pace"]},{"n":"Rectas","d":"correr","i":"zona 5","x":"Aceleraciones cortas de 80 a 150 m para técnica.","f":["sets","distance_m","rest_s"]},{"n":"Series de 400 m","d":"correr","i":"zona 5","x":"Clásico de pista para velocidad sostenida.","f":["sets","target_pace","rest_s"]},{"n":"Series de 800 m","d":"correr","i":"zona 4-5","x":"","f":["sets","target_pace","rest_s"]},{"n":"Series de 1000 m","d":"correr","i":"zona 4","x":"","f":["sets","target_pace","rest_s"]},{"n":"Test de 5 km","d":"correr","i":"máximo","x":"Sirve para recalcular zonas y ritmos.","f":["distance_m","target_time_s"]},{"n":"Carrera + estación","d":"hyrox","i":"zona 4","x":"El bloque base del entrenamiento de Hyrox.","f":["sets","run_m","station","target_time_s"]},{"n":"Rodada de fondo","d":"ciclismo","i":"zona 2","x":"","f":["duration_s","distance_m","target_power","target_hr"]},{"n":"Sweet spot","d":"ciclismo","i":"88-94 % FTP","x":"","f":["sets","duration_s","rest_s","target_power"]},{"n":"Intervalos de FTP","d":"ciclismo","i":"95-105 % FTP","x":"","f":["sets","duration_s","rest_s","target_power"]},{"n":"Intervalos de VO2máx","d":"ciclismo","i":"110-120 % FTP","x":"","f":["sets","duration_s","rest_s","target_power"]},{"n":"Sprints","d":"ciclismo","i":"máximo","x":"","f":["sets","duration_s","rest_s"]},{"n":"Trabajo de cadencia","d":"ciclismo","i":"zona 2","x":"","f":["sets","duration_s","target_cadence"]},{"n":"Test de FTP de 20 minutos","d":"ciclismo","i":"máximo","x":"El FTP se estima como el 95 % de la potencia media.","f":["duration_s","target_power"]},{"n":"Técnica de natación","d":"triatlon","i":"zona 1-2","x":"","f":["sets","distance_m","drill","rest_s"]},{"n":"Series de umbral","d":"triatlon","i":"zona 4","x":"","f":["sets","distance_m","target_pace","rest_s"]},{"n":"Aguas abiertas","d":"triatlon","i":"zona 2-3","x":"","f":["distance_m","duration_s","notes"]},{"n":"Sesión combinada (brick)","d":"triatlon","i":"zona 3-4","x":"Bici seguida de carrera, sin pausa.","f":["bike_duration_s","run_duration_s","transition_s"]}];
 const ESTACIONES = [{"o":1,"n":"1000 m de SkiErg","run":1000,"slug":"hyrox-ski-1000"},{"o":2,"n":"4 x 12.5 m de empuje de trineo","run":1000,"slug":"hyrox-sled-push"},{"o":3,"n":"4 x 12.5 m de jalón de trineo","run":1000,"slug":"hyrox-sled-pull"},{"o":4,"n":"80 m de burpee broad jump","run":1000,"slug":"hyrox-burpee-broad-jump"},{"o":5,"n":"1000 m de remo","run":1000,"slug":"hyrox-row-1000"},{"o":6,"n":"200 m de farmers carry","run":1000,"slug":"hyrox-farmers-carry"},{"o":7,"n":"100 m de zancadas con sandbag","run":1000,"slug":"hyrox-sandbag-lunges"},{"o":8,"n":"100 wall balls","run":1000,"slug":"hyrox-wall-balls"}];
-const FORMATOS = [{"s":"for_time","n":"For Time","x":"Completar el trabajo prescrito lo más rápido posible.","f":["rounds","time_cap_s"],"e":"21-15-9","p":"time"},{"s":"amrap","n":"AMRAP","x":"Máximo de rondas y repeticiones en un tiempo fijo.","f":["duration_s"],"e":"AMRAP 20 min","p":"rounds_reps"},{"s":"emom","n":"EMOM","x":"Un bloque de trabajo al inicio de cada minuto.","f":["duration_s","interval_s","slots"],"e":"EMOM 12 min, alternando 2 movimientos","p":"completion"},{"s":"tabata","n":"Tabata","x":"Ocho intervalos de 20 s de trabajo por 10 s de descanso.","f":["work_s","rest_s","intervals"],"e":"8 x 20/10","p":"reps"},{"s":"rft","n":"Rondas por tiempo","x":"Un número fijo de rondas lo más rápido posible.","f":["rounds","time_cap_s"],"e":"5 rondas por tiempo","p":"time"},{"s":"chipper","n":"Chipper","x":"Una lista larga de movimientos que se hace una sola vez.","f":["time_cap_s"],"e":"50 reps de cada movimiento","p":"time"},{"s":"ladder","n":"Escalera","x":"Las repeticiones suben o bajan en cada ronda.","f":["scheme","time_cap_s"],"e":"1-2-3-4-5-6-7-8-9-10","p":"time"},{"s":"death_by","n":"Death by","x":"Una repetición más cada minuto hasta fallar.","f":["interval_s"],"e":"Death by burpees","p":"rounds"},{"s":"intervalos","n":"Intervalos","x":"Series de trabajo y descanso definidos por el coach.","f":["sets","work","rest_s","target"],"e":"6 x 800 m con 2 min de descanso","p":"splits"},{"s":"carga_maxima","n":"Carga máxima","x":"Encontrar la carga máxima en un número de repeticiones.","f":["rep_target","attempts"],"e":"Encontrar 1RM de sentadilla trasera","p":"load"},{"s":"simulacion_hyrox","n":"Simulación Hyrox","x":"Carreras y estaciones encadenadas con parciales por tramo.","f":["division","stations","partial_race"],"e":"Media simulación: 4 carreras y 4 estaciones","p":"time"},{"s":"libre","n":"Formato libre","x":"Texto libre para lo que no entre en los formatos anteriores.","f":["body"],"e":null,"p":"free"}];
+const FORMATOS = [{"s":"for_time","n":"For Time","x":"Completar el trabajo prescrito lo más rápido posible.","f":["rounds","time_cap_s"],"e":"21-15-9","p":"time"},{"s":"amrap","n":"AMRAP","x":"Máximo de rondas y repeticiones en un tiempo fijo.","f":["duration_s"],"e":"AMRAP 20 min","p":"rounds_reps"},{"s":"emom","n":"EMOM","x":"Un bloque de trabajo al inicio de cada minuto.","f":["duration_s","interval_s","slots"],"e":"EMOM 12 min, alternando 2 movimientos","p":"completion"},{"s":"tabata","n":"Tabata","x":"Ocho intervalos de 20 s de trabajo por 10 s de descanso.","f":["work_s","rest_s","intervals"],"e":"8 x 20/10","p":"reps"},{"s":"rft","n":"Rondas por tiempo","x":"Un número fijo de rondas lo más rápido posible.","f":["rounds","time_cap_s"],"e":"5 rondas por tiempo","p":"time"},{"s":"chipper","n":"Chipper","x":"Una lista larga de movimientos que se hace una sola vez.","f":["time_cap_s"],"e":"50 reps de cada movimiento","p":"time"},{"s":"ladder","n":"Escalera","x":"Las repeticiones suben o bajan en cada ronda.","f":["scheme","time_cap_s"],"e":"1-2-3-4-5-6-7-8-9-10","p":"time"},{"s":"death_by","n":"Death by","x":"Una repetición más cada minuto hasta fallar.","f":["interval_s"],"e":"Death by burpees","p":"rounds"},{"s":"intervalos","n":"Intervalos","x":"Series de trabajo y descanso definidos por el coach.","f":["sets","work","rest_s","target"],"e":"6 x 800 m con 2 min de descanso","p":"splits"},{"s":"carga_maxima","n":"Carga máxima","x":"Encontrar la carga máxima en un número de repeticiones.","f":["rep_target","attempts"],"e":"Encontrar 1RM de sentadilla trasera","p":"load"},{"s":"simulacion_hyrox","n":"Simulación Hyrox","x":"Carreras y estaciones encadenadas con parciales por tramo.","f":["division","stations","partial_race"],"e":"Media simulación: 4 carreras y 4 estaciones","p":"time"},{"s":"libre","n":"Formato libre","x":"Texto libre para lo que no entre en los formatos anteriores.","f":[],"e":"","p":"free"}];
 const HYROX_KM = 8;
 // CATALOGO GENERADO >>>
 /**
@@ -2383,18 +2389,42 @@ function renderBlocks(){
         return `<div class="fld"><label>${etq}</label>
           <input value="${(b.cfg && b.cfg[c]) || val}"
             oninput="guardarCfg(${bi},'${c}',this.value)"></div>`; }).join('') : ''}
-      ${fmt ? `<div class="fld" style="flex:1;min-width:150px"><label>Ejemplo</label>
-        <input value="${fmt.e}" disabled style="opacity:.6"></div>` : ''}
     </div>
     ${fmt ? `<div class="bcfgnota">${fmt.x} El atleta registra
       ${fmt.p === 'time' ? 'su tiempo' : fmt.p === 'rounds_reps' ? 'rondas y repeticiones'
         : fmt.p === 'reps' ? 'repeticiones' : 'si lo completó'}.</div>` : ''}` : '';
 
+    // Las indicaciones del bloque: lo que el atleta tiene que hacer. Los
+    // campos del formato dan la FORMA —doce minutos, cada minuto— pero no
+    // dicen qué se hace dentro, y eso no se expresa con filas de ejercicio.
+    // Es el mismo campo que usa el White Board (`body_text`), así que se
+    // guarda como parte del bloque.
+    //
+    // El ejemplo del formato pasó de campo de solo lectura a PISTA de este
+    // campo: ocupaba el lugar donde había que escribir y no se podía usar.
+    const pistaInd = fmt && fmt.e ? `p. ej. ${fmt.e}`
+      : fmt ? 'Escribe el WOD como lo pondrías en el pizarrón…'
+      : b.n === 'Estaciones Hyrox'
+        ? 'p. ej. 8 tramos de 500 m alternando con cada estación. Si una estación te pasa de 5 min, baja la carga.'
+      : b.n === 'Cardio'
+        ? 'p. ej. 15 min de calentamiento, 6 × 800 m a ritmo de 5 km con 2:30 de trote, 10 min suaves.'
+      : b.n === 'Fuerza' || b.n === 'Accesorio'
+        ? 'p. ej. Sube 2.5 kg si las primeras dos series salen al RPE 7 o menos.'
+        : 'Qué tiene que hacer el atleta en este bloque…';
+
+    const indicaciones = `<div class="indbox">
+      <label>Indicaciones del bloque ${letra}
+        <span class="faint" style="text-transform:none;letter-spacing:0;font-weight:400">
+          · el atleta las ve tal cual</span></label>
+      <textarea rows="3" placeholder="${pistaInd}"
+        oninput="guardarIndicacion(${bi}, this.value)">${b.body || ''}</textarea>
+    </div>`;
+
     const notaCardio = esCardio && b.ex.length === 0 ? `<div class="bcfgnota">
       Agrega una sesión de resistencia —rodaje, tempo, intervalos— y trae sus propios
       campos: distancia, tiempo, ritmo y zona. No lleva series ni carga.</div>` : '';
 
-    return `<div class="blk">${head}${cabezaFmt}${notaCardio}
+    return `<div class="blk">${head}${cabezaFmt}${notaCardio}${indicaciones}
       ${b.ex.map((e, ei) => `<div class="exrow">
         <div class="en"><span class="eidx">${letra}${ei + 1}</span>${e.n}
           <a href="${LINKS[e.n] || buscarEn(e.n)}" target="_blank" rel="noopener"
@@ -2453,6 +2483,11 @@ function ponerFormato(bi, slug){
   const f = FORMATOS.find(x => x.s === slug);
   if (f) toast(`${f.n} · ${f.e}`);
 }
+function guardarIndicacion(bi, texto){
+  if (!BLOCKS[bi]) return;
+  BLOCKS[bi].body = texto;
+}
+
 function guardarCfg(bi, clave, valor){
   if (!BLOCKS[bi]) return;
   BLOCKS[bi].cfg = BLOCKS[bi].cfg || {};
@@ -2680,6 +2715,10 @@ const ETIQUETA = {
   // --- campos de un formato de WOD
   rounds:['Rondas','3'], time_cap_s:['Límite','15:00'], interval_s:['Cada','1:00'],
   slots:['Espacios','2'], work_s:['Trabajo (s)','20'], intervals:['Intervalos','8'],
+  scheme:['Esquema','21-15-9'], target:['Objetivo','—'],
+  rep_target:['Repeticiones objetivo','1'], attempts:['Intentos','3'],
+  division:['División','Open'], stations:['Estaciones','8'],
+  partial_race:['Carrera parcial','Media'],
 };
 
 const campo = clave => {

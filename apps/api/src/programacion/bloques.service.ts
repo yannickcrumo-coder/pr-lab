@@ -103,9 +103,15 @@ export class BloquesService {
           fallas.push({ field: `blocks[${b.position}].body_text`, code: 'requerido' });
         }
       } else {
-        if (b.body_text && b.body_text.trim().length > 0) {
-          fallas.push({ field: `blocks[${b.position}].body_text`, code: 'solo_white_board' });
-        }
+        // `body_text` SÍ va en un bloque de ejercicios: son sus indicaciones,
+        // lo que el atleta tiene que hacer. Esta regla antes lo rechazaba y
+        // estaba mal: un EMOM con «cada minuto: 5 wall balls, 5 burpees, 3
+        // double unders» no se expresa con los campos del formato ni con las
+        // filas de ejercicio, y es la forma en que un coach escribe un WOD.
+        //
+        // Las dos cosas conviven a propósito. Las filas dan seguimiento de
+        // progreso y enlace al video; el texto dice cómo se ejecuta —minutos
+        // alternos, en pareja, el cierre— que las filas no pueden expresar.
         if (!b.items || b.items.length === 0) {
           fallas.push({ field: `blocks[${b.position}].items`, code: 'requerido' });
         }

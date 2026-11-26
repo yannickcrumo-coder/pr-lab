@@ -326,6 +326,79 @@ describe('Flujos del coach', () => {
     expect(invertida.body.blocks[1].label).toBe('B');
   });
 
+  // ===================================================================
+  // Las indicaciones de un bloque
+  // ===================================================================
+
+  it('un WOD guarda sus indicaciones además de sus movimientos', async () => {
+    const ana = await crearCoach(ctx, 'Ana');
+    const diego = await crearAtletaDe(ctx, ana, 'Diego');
+
+    const indicaciones =
+      'EMOM 12. Minutos impares: 5 wall balls y 5 burpees. Minutos pares: 3 double unders. ' +
+      'Si no alcanzas a terminar dentro del minuto, descansa el siguiente y retoma.';
+
+    const a = await ctx
+      .http()
+      .post('/v1/assignments')
+      .set(auth(ana))
+      .send({
+        athlete_id: diego.id,
+        scheduled_date: '2026-12-15',
+        title: 'EMOM 12',
+        blocks: [
+          {
+            position: 0,
+            block_type: 'wod',
+            title: 'EMOM 12',
+            wod_format: 'emom',
+            body_text: indicaciones,
+            config: { duration_s: 720, interval_s: 60 },
+            items: [{ position: 0, exercise_id: sentadilla, prescription: { reps: 5 } }],
+          },
+        ],
+      })
+      .expect(201);
+
+    // Las indicaciones y los movimientos conviven: ni una cosa ni la otra.
+    const leida = await ctx
+      .http()
+      .get(`/v1/assignments/${a.body.id}`)
+      .set(auth(ana))
+      .expect(200);
+
+    expect(leida.body.blocks[0].body_text).toBe(indicaciones);
+    expect(leida.body.blocks[0].items).toHaveLength(1);
+    expect(leida.body.blocks[0].wod_format).toBe('emom');
+    expect(leida.body.blocks[0].config).toEqual({ duration_s: 720, interval_s: 60 });
+  });
+
+  it('un bloque de texto sigue sin aceptar ejercicios', async () => {
+    const ana = await crearCoach(ctx, 'Ana');
+    const diego = await crearAtletaDe(ctx, ana, 'Diego');
+
+    // Permitir texto en los bloques de ejercicio no debe haber aflojado esto:
+    // un White Board con ejercicios no tiene forma de dibujarse.
+    await ctx
+      .http()
+      .post('/v1/assignments')
+      .set(auth(ana))
+      .send({
+        athlete_id: diego.id,
+        scheduled_date: '2026-12-16',
+        title: 'Mal armado',
+        blocks: [
+          {
+            position: 0,
+            block_type: 'white_board',
+            body_text: 'texto',
+            items: [{ position: 0, exercise_id: sentadilla }],
+          },
+        ],
+      })
+      .expect(422);
+  });
+
   it('las plantillas también traen el índice', async () => {
     const ana = await crearCoach(ctx, 'Ana');
     const t = await ctx

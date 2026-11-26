@@ -87,8 +87,14 @@ def construir():
             "s": f["slug"],
             "n": f["name_es"],
             "x": f.get("description_es", ""),
-            "f": [c for c in f.get("fields", []) if c not in ("movements", "notes")],
-            "e": f.get("example_scheme", ""),
+            # `body` fuera: es la indicación del bloque y ya tiene su propio
+            # cuadro. Dejarlo aquí lo convertiría en una casilla de una línea.
+            "f": [
+                c
+                for c in f.get("fields", [])
+                if c not in ("movements", "notes", "body")
+            ],
+            "e": f.get("example_scheme") or "",
             "p": f.get("score_type", ""),
         }
         for f in formatos
