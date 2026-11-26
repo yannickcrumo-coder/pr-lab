@@ -54,6 +54,35 @@ dentro de la app: las políticas para desarrolladores de YouTube, por si el
 punto 1 se aclara, y los términos de Vimeo, que tiene planes de paga donde
 incrustar en un producto comercial sí está contemplado.
 
+## Librerías de animación de la web
+
+Revisado el **25 de noviembre de 2026**.
+
+| Pieza | Licencia | Qué significa para PR-LAB |
+| --- | --- | --- |
+| GSAP 3 y **todos** sus plugins | GSAP Standard "No Charge" | Gratis, uso comercial incluido, sin llave ni asientos |
+| Lenis | MIT | Sin condiciones relevantes |
+| React Bits | MIT **+ Commons Clause** | Usar en el producto sí; vender o redistribuir los componentes, no |
+
+**GSAP ya no cuesta.** Webflow compró GreenSock en octubre de 2024 y el 30 de
+abril de 2025 liberó la biblioteca completa, incluidos los plugins que estaban
+detrás del Club GreenSock: ScrollTrigger, ScrollSmoother, SplitText, MorphSVG,
+DrawSVG, MotionPath y Flip. Es relevante porque ScrollTrigger, que es el que
+usamos, era de paga. La única restricción de la licencia es no construir con
+ella una herramienta visual de animación que compita con Webflow, que no es lo
+nuestro.
+
+**React Bits no es MIT a secas.** Es MIT más Commons Clause, y la diferencia
+importa: se pueden usar los componentes dentro de un producto de paga como el
+nuestro, pero no venderlos, sublicenciarlos ni redistribuirlos como
+componentes. Como se copian al repositorio en lugar de instalarse como
+dependencia, hay que **leer su LICENSE.md antes de copiar cada uno** y no dar
+por hecho que todos están igual. Su catálogo de paga —bloques de página,
+plantillas— es aparte y sí cuesta.
+
+**Qué volver a revisar:** la licencia de GSAP si Webflow cambia de dueño o de
+política, y el LICENSE.md de React Bits antes de copiar componentes nuevos.
+
 ## Tiendas
 
 Pendiente de revisar: Apple App Store y Google Play. Hay que hacerlo antes de

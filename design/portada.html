@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang="es-MX" data-theme="oscuro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PR-LAB · Portada</title>
+<meta name="description" content="La plataforma donde los coaches programan y sus atletas entrenan.">
+
+<!--
+  PR-LAB · portada pública
+  ────────────────────────
+  GSAP 3 + ScrollTrigger para la animación, Lenis para el scroll suave,
+  conectados entre sí. Las piezas vienen de un CDN porque este prototipo es
+  un archivo que se abre solo; en apps/web van como dependencias reales
+  (ya están en su package.json).
+
+  TRES REGLAS QUE ESTE ARCHIVO RESPETA, Y QUE VALE LEER ANTES DE COPIARLO:
+
+  1 · EL CONTENIDO NO DEPENDE DE LA ANIMACIÓN.
+      El CSS deja todo visible. El script añade la clase `anima` al <html> y
+      solo entonces oculta para revelar. Si el CDN está bloqueado, si el
+      script falla o si no hay JavaScript, la página se lee completa. Al
+      revés —opacidad 0 en el CSS y confiar en que el script la suba— una
+      falla deja la página en blanco, que es el error más común de este
+      estilo de página.
+
+  2 · REDUCIR MOVIMIENTO MANDA.
+      Con `prefers-reduced-motion: reduce` no se enciende Lenis, no hay
+      revelados ni paralaje, y todo queda en su estado final. Lo único que
+      sobrevive son las transiciones de estado de menos de 150 ms —un botón
+      que responde al toque—, porque quitar eso no ayuda a nadie.
+
+  3 · NADA DE MOVIMIENTO DECORATIVO EN LA HERRAMIENTA.
+      Esto es la portada: se lee una vez, de corrido. La web del coach se usa
+      veinte veces al día y ahí el scroll suave estorba. El detalle está en
+      apps/web/src/lib/scroll-suave.ts.
+-->
+
+<style>
+/* ===================================================================
+   TOKENS · los mismos de design/tokens.css
+   =================================================================== */
+:root{
+  --bg:#0B0D0C; --surface:#14181A; --surface-2:#1C2124; --surface-3:#242A2E;
+  --text:#F2F5F3; --text-muted:#99A3A0; --text-faint:#6B7472;
+  --border:#2B3235; --border-strong:#3A4246;
+  --accent:#C8FF2E; --accent-dim:#9ACC1F; --accent-contrast:#0B0D0C;
+  --accent-tint:rgb(200 255 46 / .12);
+  --d-fuerza:#FF8A3D; --d-crossfit:#FF4D6D; --d-hyrox:#FFD166;
+  --d-correr:#4DA3FF; --d-ciclismo:#35D0BA; --d-triatlon:#A78BFA;
+  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
+  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --ancho:1180px;
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:auto}
+body{
+  margin:0; background:var(--bg); color:var(--text); font-family:var(--font);
+  font-size:16px; line-height:1.6; -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{margin:0; line-height:1.05; letter-spacing:-.025em; font-weight:700}
+p{margin:0}
+a{color:inherit}
+
+.envoltura{max-width:var(--ancho); margin:0 auto; padding:0 24px}
+section{position:relative}
+
+/* ===================================================================
+   TIPOGRAFÍA FLUIDA · sin saltos entre celular y escritorio
+   =================================================================== */
+.titular{font-size:clamp(2.6rem, 7.2vw, 6rem); letter-spacing:-.04em}
+.titular-2{font-size:clamp(1.9rem, 4.2vw, 3.3rem)}
+.entrada{font-size:clamp(1.02rem, 1.6vw, 1.22rem); color:var(--text-muted); max-width:62ch}
+.etiqueta{
+  font-size:11px; font-weight:800; text-transform:uppercase; letter-spacing:.16em;
+  color:var(--accent);
+}
+
+/* ===================================================================
+   BOTONES
+   =================================================================== */
+.btn{
+  display:inline-flex; align-items:center; gap:9px; padding:15px 26px;
+  border-radius:var(--r-pill); border:1px solid transparent; cursor:pointer;
+  font:inherit; font-size:15px; font-weight:650; text-decoration:none;
+  background:var(--accent); color:var(--accent-contrast);
+  transition:transform .14s ease, box-shadow .14s ease, background .14s ease;
+  position:relative; overflow:hidden;
+}
+.btn:hover{transform:translateY(-2px); box-shadow:0 10px 30px rgb(200 255 46 / .26)}
+.btn:active{transform:translateY(0)}
+.btn.fantasma{background:transparent; color:var(--text); border-color:var(--border-strong)}
+.btn.fantasma:hover{border-color:var(--accent); color:var(--accent); box-shadow:none}
+.btn .brillo{
+  position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(110deg, transparent 32%, rgb(255 255 255 / .42) 50%, transparent 68%);
+  transform:translateX(-120%);
+}
+
+/* ===================================================================
+   FONDO ANIMADO · una malla que respira, dibujada en canvas
+   =================================================================== */
+#malla{
+  position:absolute; inset:0; width:100%; height:100%;
+  pointer-events:none; opacity:.5;
+}
+.velo{
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(90rem 50rem at 50% -14%, rgb(200 255 46 / .11), transparent 62%),
+    radial-gradient(60rem 40rem at 88% 8%, rgb(77 163 255 / .07), transparent 60%);
+}
+
+/* ===================================================================
+   PORTADA
+   =================================================================== */
+.hero{
+  min-height:100svh; display:flex; align-items:center;
+  padding:120px 0 90px; overflow:hidden;
+}
+.hero .envoltura{position:relative; z-index:2}
+.hero .etiqueta{display:block; margin-bottom:22px}
+.hero h1{margin-bottom:26px; max-width:17ch}
+.hero h1 .tenue{color:var(--text-faint)}
+.hero .entrada{margin-bottom:38px}
+.acciones{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+.bajo{margin-top:30px; font-size:13.5px; color:var(--text-faint)}
+
+/* Cada palabra del titular es su propia caja, para revelarla por debajo. */
+.pal{display:inline-block; overflow:hidden; vertical-align:bottom}
+.pal > span{display:inline-block; will-change:transform}
+
+.marca{
+  position:fixed; top:0; left:0; right:0; z-index:40;
+  display:flex; align-items:center; gap:14px;
+  padding:18px 24px; backdrop-filter:blur(14px);
+  background:rgb(11 13 12 / .66); border-bottom:1px solid transparent;
+  transition:border-color .25s ease;
+}
+.marca.pegada{border-bottom-color:var(--border)}
+.marca b{font-size:17px; letter-spacing:-.02em}
+.marca .punto{
+  width:9px; height:9px; border-radius:50%; background:var(--accent);
+  box-shadow:0 0 0 4px var(--accent-tint);
+}
+.marca .sep{flex:1}
+.marca a{
+  font-size:14px; color:var(--text-muted); text-decoration:none;
+  transition:color .15s ease;
+}
+.marca a:hover{color:var(--text)}
+@media(max-width:700px){ .marca .oculta-cel{display:none} }
+
+/* ===================================================================
+   CIFRAS
+   =================================================================== */
+.cifras{
+  display:grid; grid-template-columns:repeat(4, 1fr); gap:1px;
+  background:var(--border); border:1px solid var(--border);
+  border-radius:var(--r-lg); overflow:hidden; margin:0 0 110px;
+}
+.cifra{background:var(--bg); padding:30px 26px}
+.cifra b{
+  display:block; font-size:clamp(2rem, 3.4vw, 2.9rem); font-weight:700;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums; margin-bottom:7px;
+}
+.cifra span{font-size:13.5px; color:var(--text-muted); line-height:1.45; display:block}
+@media(max-width:860px){ .cifras{grid-template-columns:repeat(2,1fr)} }
+
+/* ===================================================================
+   SECCIONES
+   =================================================================== */
+.tramo{padding:110px 0}
+.tramo > .envoltura > .etiqueta{display:block; margin-bottom:16px}
+.tramo h2{margin-bottom:20px; max-width:22ch}
+.tramo .entrada{margin-bottom:54px}
+
+/* --- las cinco reglas --- */
+.reglas{display:grid; grid-template-columns:repeat(2,1fr); gap:16px}
+@media(max-width:820px){ .reglas{grid-template-columns:1fr} }
+.regla{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:28px;
+  transition:border-color .2s ease, transform .2s ease;
+}
+.regla:hover{border-color:var(--border-strong); transform:translateY(-3px)}
+.regla .num{
+  font-size:12px; font-weight:800; color:var(--accent); letter-spacing:.1em;
+  display:block; margin-bottom:14px;
+}
+.regla h3{font-size:19px; margin-bottom:10px; letter-spacing:-.015em}
+.regla p{font-size:14.5px; color:var(--text-muted)}
+.regla.ancha{grid-column:1/-1}
+
+/* --- el calendario que se arma al bajar --- */
+.demo{
+  background:var(--surface); border:1px solid var(--border);
+  border-radius:var(--r-lg); padding:20px; overflow:hidden;
+}
+.semana{display:grid; grid-template-columns:repeat(7,1fr); gap:9px}
+@media(max-width:820px){ .semana{grid-template-columns:repeat(3,1fr)} }
+.dia{
+  background:var(--surface-2); border:1px solid var(--border);
+  border-radius:var(--r-md); padding:11px; min-height:138px;
+}
+.dia .d{
+  font-size:10.5px; font-weight:800; text-transform:uppercase;
+  letter-spacing:.07em; color:var(--text-faint); margin-bottom:9px;
+}
+.ses{
+  border-radius:var(--r-sm); padding:8px 9px; margin-bottom:7px;
+  border-left:3px solid var(--accent); background:var(--surface-3);
+  font-size:11.5px; line-height:1.35;
+}
+.ses b{display:block; font-weight:650; margin-bottom:3px; font-size:11.5px}
+.ses i{font-style:normal; color:var(--text-faint); font-size:10.5px}
+.ses.f{border-left-color:var(--d-fuerza)}
+.ses.c{border-left-color:var(--d-crossfit)}
+.ses.h{border-left-color:var(--d-hyrox)}
+.ses.r{border-left-color:var(--d-correr)}
+
+/* --- disciplinas en cinta --- */
+.cinta{
+  overflow:hidden; border-block:1px solid var(--border);
+  padding:26px 0; margin:0;
+}
+.cinta .fila{display:flex; gap:48px; width:max-content; will-change:transform}
+.cinta span{
+  font-size:clamp(1.5rem,3vw,2.3rem); font-weight:700; letter-spacing:-.03em;
+  color:var(--text-faint); white-space:nowrap; display:flex; align-items:center; gap:18px;
+}
+.cinta span::after{
+  content:''; width:8px; height:8px; border-radius:50%;
+  background:currentColor; opacity:.55;
+}
+.cinta .on{color:var(--text)}
+
+/* --- app del atleta --- */
+.dos{display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center}
+@media(max-width:900px){ .dos{grid-template-columns:1fr; gap:40px} }
+.tel{
+  width:300px; max-width:100%; margin:0 auto; border-radius:34px; padding:12px;
+  background:var(--surface-2); border:1px solid var(--border-strong);
+  box-shadow:0 30px 80px rgb(0 0 0 / .55);
+}
+.tel .pantalla{
+  background:var(--bg); border-radius:24px; padding:18px 15px; min-height:460px;
+}
+.tel .hoy{font-size:11px; font-weight:800; letter-spacing:.12em;
+  text-transform:uppercase; color:var(--accent); margin-bottom:6px}
+.tel h4{margin:0 0 16px; font-size:21px; letter-spacing:-.02em}
+.blq{margin-bottom:13px}
+.blq .bt{display:flex; align-items:center; gap:8px; margin-bottom:7px}
+.blq .bl{
+  width:19px; height:19px; border-radius:5px; background:var(--accent);
+  color:var(--accent-contrast); font-size:10px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+}
+.blq .bn{font-size:10.5px; font-weight:800; letter-spacing:.06em;
+  text-transform:uppercase; color:var(--text-muted)}
+.blq .ej{
+  display:flex; gap:8px; align-items:baseline; font-size:13px;
+  padding:6px 0 6px 2px; border-top:1px solid var(--border);
+}
+.blq .ej em{font-style:normal; color:var(--text-faint); font-size:10.5px; min-width:20px}
+.lista-check{list-style:none; padding:0; margin:0}
+.lista-check li{
+  display:flex; gap:13px; padding:15px 0; border-top:1px solid var(--border);
+  font-size:15px; color:var(--text-muted);
+}
+.lista-check li b{color:var(--text); font-weight:650}
+.lista-check .tic{
+  flex:none; width:21px; height:21px; border-radius:50%; margin-top:1px;
+  background:var(--accent-tint); color:var(--accent); font-size:12px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+}
+
+/* ===================================================================
+   CIERRE Y PIE
+   =================================================================== */
+.cierre{padding:130px 0; text-align:center; position:relative; overflow:hidden}
+.cierre h2{margin:0 auto 22px; max-width:20ch}
+.cierre .entrada{margin:0 auto 36px}
+.cierre .acciones{justify-content:center}
+.pie{
+  border-top:1px solid var(--border); padding:34px 0;
+  display:flex; gap:16px; flex-wrap:wrap; align-items:center;
+  font-size:13px; color:var(--text-faint);
+}
+.pie .sep{flex:1}
+
+/* ===================================================================
+   PANEL DE MOVIMIENTO · para poder VER la diferencia sin tocar el sistema
+   =================================================================== */
+.panel-mov{
+  position:fixed; right:16px; bottom:16px; z-index:50;
+  background:var(--surface-3); border:1px solid var(--border-strong);
+  border-radius:var(--r-md); padding:12px 14px; font-size:12.5px;
+  box-shadow:0 14px 40px rgb(0 0 0 / .5); max-width:280px;
+}
+.panel-mov b{display:block; font-size:12px; margin-bottom:8px}
+.panel-mov .fila{display:flex; align-items:center; gap:9px; margin-bottom:8px}
+.panel-mov button{
+  font:inherit; font-size:12px; font-weight:650; cursor:pointer;
+  padding:7px 11px; border-radius:var(--r-pill);
+  border:1px solid var(--border-strong); background:var(--surface-2); color:var(--text);
+}
+.panel-mov button.on{background:var(--accent); color:var(--accent-contrast); border-color:var(--accent)}
+.panel-mov .nota{color:var(--text-faint); font-size:11.5px; line-height:1.45}
+.aviso{
+  margin-top:9px; padding-top:9px; border-top:1px solid var(--border);
+  color:var(--warning); font-size:11.5px; line-height:1.45; display:none;
+}
+
+/* ===================================================================
+   LO QUE SOLO SE APLICA CON ANIMACIÓN ENCENDIDA
+   La clase `anima` la pone el script. Sin ella, todo se ve. Es la regla 1.
+   =================================================================== */
+html.anima .revela{opacity:0}
+html.anima .pal > span{transform:translateY(102%)}
+html.anima .cifra b{opacity:0}
+html.anima .dia{opacity:0}
+html.anima .ses{opacity:0}
+html.anima .regla{opacity:0}
+
+/* El sistema pide menos movimiento: ninguna transición larga sobrevive. */
+@media (prefers-reduced-motion: reduce){
+  *, *::before, *::after{
+    animation-duration:.01ms !important; animation-iteration-count:1 !important;
+    transition-duration:.12s !important; scroll-behavior:auto !important;
+  }
+  .btn:hover{transform:none}
+  .regla:hover{transform:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===================== BARRA ===================== -->
+<header class="marca" id="marca">
+  <span class="punto"></span>
+  <b>PR-LAB</b>
+  <span class="sep"></span>
+  <a href="#programar" class="oculta-cel">Programar</a>
+  <a href="#reglas" class="oculta-cel">Cómo funciona</a>
+  <a href="#atleta" class="oculta-cel">Para el atleta</a>
+  <a href="#empezar" class="btn fantasma" style="padding:9px 16px;font-size:13.5px">Entrar</a>
+</header>
+
+<!-- ===================== PORTADA ===================== -->
+<section class="hero" id="inicio">
+  <canvas id="malla" aria-hidden="true"></canvas>
+  <div class="velo" aria-hidden="true"></div>
+  <div class="envoltura">
+    <span class="etiqueta revela">Plataforma de coaching</span>
+    <h1 class="titular" id="titular">
+      Programa la semana. <span class="tenue">Ellos solo entrenan.</span>
+    </h1>
+    <p class="entrada revela">
+      La web donde el coach arma el plan y la app donde el atleta lo ejecuta,
+      incluso sin señal en el gimnasio. Fuerza, CrossFit, Hyrox, correr,
+      ciclismo y triatlón.
+    </p>
+    <div class="acciones revela">
+      <a href="#empezar" class="btn" id="btnPrincipal">
+        Pruébalo con tus atletas<span class="brillo" aria-hidden="true"></span>
+      </a>
+      <a href="#programar" class="btn fantasma">Ver cómo se programa</a>
+    </div>
+    <p class="bajo revela">Sin tarjeta. Tus atletas no pagan nunca.</p>
+  </div>
+</section>
+
+<!-- ===================== CIFRAS ===================== -->
+<section>
+  <div class="envoltura">
+    <div class="cifras">
+      <div class="cifra"><b data-cuenta="191">0</b><span>ejercicios listos, con sus métricas</span></div>
+      <div class="cifra"><b data-cuenta="20">0</b><span>benchmarks de CrossFit</span></div>
+      <div class="cifra"><b data-cuenta="8">0</b><span>estaciones de Hyrox en orden</span></div>
+      <div class="cifra"><b data-cuenta="26">0</b><span>sesiones de resistencia</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROGRAMAR ===================== -->
+<section class="tramo" id="programar">
+  <div class="envoltura">
+    <span class="etiqueta revela">La semana</span>
+    <h2 class="titular-2 revela">Arrastras una plantilla y la semana queda armada.</h2>
+    <p class="entrada revela">
+      Cada sesión muestra sus bloques y sus ejercicios en el día, con el índice
+      A1, A2, B1. Copias un día, copias la semana, o se la asignas a veinte
+      atletas de un golpe.
+    </p>
+    <div class="demo revela">
+      <div class="semana" id="semana">
+        <div class="dia"><div class="d">Lun 1</div>
+          <div class="ses f"><b>Fuerza · Día A</b><i>A1 Sentadilla · B1 Peso muerto</i></div></div>
+        <div class="dia"><div class="d">Mar 2</div>
+          <div class="ses r"><b>Rodaje 10 km</b><i>Zona 2</i></div></div>
+        <div class="dia"><div class="d">Mié 3</div>
+          <div class="ses c"><b>AMRAP 20</b><i>A1 Thruster · A2 Wall ball</i></div></div>
+        <div class="dia"><div class="d">Jue 4</div></div>
+        <div class="dia"><div class="d">Vie 5</div>
+          <div class="ses f"><b>Fuerza · Día B</b><i>A1 Press · B1 Remo</i></div></div>
+        <div class="dia"><div class="d">Sáb 6</div>
+          <div class="ses h"><b>Hyrox al 50 %</b><i>8 estaciones</i></div></div>
+        <div class="dia"><div class="d">Dom 7</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CINTA ===================== -->
+<div class="cinta" aria-hidden="true">
+  <div class="fila" id="cinta1"></div>
+</div>
+
+<!-- ===================== REGLAS ===================== -->
+<section class="tramo" id="reglas">
+  <div class="envoltura">
+    <span class="etiqueta revela">Cómo funciona por dentro</span>
+    <h2 class="titular-2 revela">Cinco decisiones que no se rompen.</h2>
+    <p class="entrada revela">
+      No son detalles técnicos: son las que hacen que el histórico de tu atleta
+      siga siendo verdad dentro de dos años.
+    </p>
+    <div class="reglas">
+      <article class="regla"><span class="num">01</span>
+        <h3>Asignar es copiar</h3>
+        <p>Cada sesión guarda su propia copia de la prescripción. Cambias la
+          plantilla en marzo y lo que tu atleta entrenó en enero no se mueve.</p></article>
+      <article class="regla"><span class="num">02</span>
+        <h3>Funciona sin señal</h3>
+        <p>El registro se guarda en el teléfono y sube cuando vuelve la red.
+          Reenviar la cola nunca duplica una serie.</p></article>
+      <article class="regla"><span class="num">03</span>
+        <h3>Cada quien ve lo suyo</h3>
+        <p>Un atleta puede tener varios coaches y no se ven entre sí. El
+          servidor lo valida en cada consulta, no la pantalla.</p></article>
+      <article class="regla"><span class="num">04</span>
+        <h3>Nada se borra</h3>
+        <p>Si cuelga histórico, se archiva. Quitar a un atleta de tu lista no
+          borra lo que él registró con su esfuerzo.</p></article>
+      <article class="regla ancha"><span class="num">05</span>
+        <h3>Sus datos son suyos</h3>
+        <p>Lo que el atleta conecta de Strava es solo para él: el coach no lo ve
+          y ninguna IA lo usa. Lo exigen sus términos y está en el modelo de
+          datos, no en una promesa.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ATLETA ===================== -->
+<section class="tramo" id="atleta">
+  <div class="envoltura dos">
+    <div>
+      <span class="etiqueta revela">En el gimnasio</span>
+      <h2 class="titular-2 revela">Abre la app y ya sabe qué hacer.</h2>
+      <p class="entrada revela" style="margin-bottom:26px">
+        Un toque para empezar. Registrar una serie son dos toques, con los
+        valores que tú prescribiste ya puestos.
+      </p>
+      <ul class="lista-check revela">
+        <li><span class="tic">✓</span><div><b>Hoy</b> es la pantalla de inicio, no un menú.</div></li>
+        <li><span class="tic">✓</span><div><b>El video</b> de cada ejercicio, guardado para verse sin red.</div></li>
+        <li><span class="tic">✓</span><div><b>Su resultado</b> por bloque, escrito con las manos sudadas.</div></li>
+        <li><span class="tic">✓</span><div><b>Su reloj</b> conectado, con los datos que él decida compartir.</div></li>
+      </ul>
+    </div>
+    <div class="revela" id="telefono">
+      <div class="tel">
+        <div class="pantalla">
+          <div class="hoy">Hoy · martes</div>
+          <h4>Fuerza · Día A</h4>
+          <div class="blq">
+            <div class="bt"><span class="bl">A</span><span class="bn">Calentamiento</span></div>
+            <div class="ej"><em>A1</em><span>Movilidad de cadera 90/90</span></div>
+            <div class="ej"><em>A2</em><span>Sentadilla sin peso</span></div>
+          </div>
+          <div class="blq">
+            <div class="bt"><span class="bl">B</span><span class="bn">Fuerza</span></div>
+            <div class="ej"><em>B1</em><span>Sentadilla trasera · 5×5</span></div>
+            <div class="ej"><em>B2</em><span>Peso muerto rumano · 3×8</span></div>
+          </div>
+          <div class="blq">
+            <div class="bt"><span class="bl">C</span><span class="bn">Accesorio</span></div>
+            <div class="ej"><em>C1</em><span>Zancada caminando</span></div>
+            <div class="ej"><em>C2</em><span>Plancha · 45 s</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CIERRE ===================== -->
+<section class="cierre" id="empezar">
+  <div class="velo" aria-hidden="true"></div>
+  <div class="envoltura">
+    <span class="etiqueta revela">Empezar</span>
+    <h2 class="titular-2 revela">Tus primeros veinte atletas, incluidos.</h2>
+    <p class="entrada revela">
+      Una mensualidad para ti. Tus atletas no pagan nunca y no necesitan tarjeta
+      para entrar.
+    </p>
+    <div class="acciones revela">
+      <a href="#inicio" class="btn">Crear mi cuenta de coach<span class="brillo" aria-hidden="true"></span></a>
+      <a href="#programar" class="btn fantasma">Hablar con alguien</a>
+    </div>
+  </div>
+</section>
+
+<footer class="pie">
+  <div class="envoltura" style="display:flex;gap:16px;flex-wrap:wrap;align-items:center;width:100%">
+    <span class="punto" style="width:8px;height:8px;border-radius:50%;background:var(--accent);display:inline-block"></span>
+    <b style="color:var(--text)">PR-LAB</b>
+    <span class="sep"></span>
+    <span>Prototipo de portada · el nombre y la marca están por definir</span>
+  </div>
+</footer>
+
+<!-- ===================== PANEL DE MOVIMIENTO ===================== -->
+<div class="panel-mov" id="panelMov">
+  <b>Movimiento</b>
+  <div class="fila">
+    <button id="movCompleto">Completo</button>
+    <button id="movReducido">Reducido</button>
+  </div>
+  <div class="nota" id="movNota"></div>
+  <div class="aviso" id="avisoCDN"></div>
+</div>
+
+<!-- GSAP y Lenis. `defer` para no bloquear el dibujado, y si no llegan la
+     página se lee igual: es la regla 1 de arriba. -->
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/lenis@1.3.11/dist/lenis.min.js"></script>
+
+<script>
+/* =====================================================================
+   PR-LAB · portada
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  const html = document.documentElement;
+  const CONSULTA = '(prefers-reduced-motion: reduce)';
+
+  /** Qué pide el sistema, y qué eligió la persona en el panel. */
+  const sistemaPideMenos = () =>
+    window.matchMedia && window.matchMedia(CONSULTA).matches;
+  let eleccion = null;              // null = manda el sistema
+  const reducido = () => (eleccion === null ? sistemaPideMenos() : eleccion === 'reducido');
+
+  let scrollSuave = null;           // la instancia de Lenis
+  let contexto = null;              // el gsap.context() con todo lo animado
+  let cintaTween = null;
+
+  // ------------------------------------------------------- utilidades
+
+  /**
+   * Parte el titular en palabras, cada una en su caja con desborde oculto,
+   * para poder revelarlas deslizando desde abajo.
+   *
+   * Hecho a mano y no con SplitText a propósito: así la portada no depende de
+   * que un plugin más llegue del CDN, y el titular lleva texto real en el HTML
+   * para los buscadores y los lectores de pantalla.
+   */
+  function partirEnPalabras(el) {
+    if (!el || el.dataset.partido) return;
+    const trozos = [];
+    el.childNodes.forEach((nodo) => {
+      const tenue = nodo.nodeType === 1 && nodo.classList.contains('tenue');
+      const texto = nodo.textContent || '';
+      texto.split(/\s+/).filter(Boolean).forEach((p) => trozos.push({ p, tenue }));
+    });
+    el.innerHTML = trozos
+      .map(({ p, tenue }) =>
+        `<span class="pal"><span${tenue ? ' class="tenue"' : ''}>${p}</span></span>`)
+      .join(' ');
+    el.dataset.partido = '1';
+  }
+
+  function texto(nota, aviso) {
+    document.getElementById('movNota').textContent = nota;
+    const el = document.getElementById('avisoCDN');
+    el.textContent = aviso || '';
+    el.style.display = aviso ? 'block' : 'none';
+  }
+
+  function pintarBotones() {
+    const r = reducido();
+    document.getElementById('movCompleto').classList.toggle('on', !r);
+    document.getElementById('movReducido').classList.toggle('on', r);
+  }
+
+  // ------------------------------------------------- la malla del fondo
+
+  /**
+   * Una malla de puntos que respira. Dibujada en canvas y NO animada cuando se
+   * pide menos movimiento: entonces se dibuja un solo cuadro y se detiene.
+   * Un fondo que late es exactamente lo que molesta a quien pide esa opción.
+   */
+  function malla() {
+    const lienzo = document.getElementById('malla');
+    if (!lienzo) return () => {};
+    const ctx = lienzo.getContext('2d');
+    let ancho = 0, alto = 0, cuadro = 0, t = 0;
+    const PASO = 34;
+
+    function medir() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const caja = lienzo.parentElement.getBoundingClientRect();
+      ancho = caja.width; alto = caja.height;
+      lienzo.width = ancho * dpr; lienzo.height = alto * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function dibujar() {
+      ctx.clearRect(0, 0, ancho, alto);
+      for (let x = PASO / 2; x < ancho; x += PASO) {
+        for (let y = PASO / 2; y < alto; y += PASO) {
+          const onda = Math.sin((x + y) * 0.009 + t) * 0.5 + 0.5;
+          const cerca = 1 - Math.min(1, Math.hypot(x - ancho * 0.5, y - alto * 0.3) / (ancho * 0.72));
+          const a = 0.05 + onda * 0.2 * cerca;
+          const r = 0.9 + onda * 1.25 * cerca;
+          ctx.beginPath();
+          ctx.arc(x, y, r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(200,255,46,' + a.toFixed(3) + ')';
+          ctx.fill();
+        }
+      }
+    }
+
+    function latir() { t += 0.0105; dibujar(); cuadro = requestAnimationFrame(latir); }
+
+    medir();
+    window.addEventListener('resize', medir, { passive: true });
+
+    if (reducido()) { dibujar(); return () => cancelAnimationFrame(cuadro); }
+    latir();
+    return () => cancelAnimationFrame(cuadro);
+  }
+  let pararMalla = () => {};
+
+  // ----------------------------------------------------------- la cinta
+
+  function armarCinta() {
+    const fila = document.getElementById('cinta1');
+    if (!fila) return;
+    const d = [
+      ['Fuerza', 'f'], ['CrossFit', 'c'], ['Hyrox', 'h'],
+      ['Correr', 'r'], ['Ciclismo', 'b'], ['Triatlón', 't'],
+    ];
+    // Dos vueltas: la segunda entra justo cuando la primera sale.
+    fila.innerHTML = [...d, ...d]
+      .map(([n], i) => `<span class="${i % 6 === 0 ? 'on' : ''}">${n}</span>`)
+      .join('');
+  }
+
+  // ------------------------------------------------- toda la animación
+
+  function animar() {
+    const gsap = window.gsap;
+    const ST = window.ScrollTrigger;
+    if (!gsap) return false;
+    if (ST) gsap.registerPlugin(ST);
+
+    html.classList.add('anima');
+
+    contexto = gsap.context(() => {
+      // --- titular: las palabras suben a su lugar
+      const t = gsap.timeline({ defaults: { ease: 'power3.out' } });
+      t.to('#titular .pal > span', { y: '0%', duration: 1.05, stagger: 0.055 })
+       .to('.hero .etiqueta', { opacity: 1, duration: .6 }, 0.1)
+       .fromTo('.hero .entrada', { y: 16 }, { opacity: 1, y: 0, duration: .8 }, 0.45)
+       .fromTo('.hero .acciones', { y: 16 }, { opacity: 1, y: 0, duration: .8 }, 0.58)
+       .to('.hero .bajo', { opacity: 1, duration: .7 }, 0.72);
+
+      // --- el brillo del botón, cada tanto
+      gsap.to('#btnPrincipal .brillo', {
+        x: '120%', duration: 1.1, ease: 'power2.inOut',
+        repeat: -1, repeatDelay: 4.2, delay: 1.8,
+      });
+
+      if (!ST) return;   // sin ScrollTrigger, el resto se queda visible
+
+      // --- la barra se separa del fondo al bajar
+      ST.create({
+        start: 'top -8', end: 99999,
+        onUpdate: (s) => document.getElementById('marca')
+          .classList.toggle('pegada', s.scroll() > 8),
+      });
+
+      // --- las cifras cuentan hacia su número
+      gsap.utils.toArray('[data-cuenta]').forEach((el) => {
+        const fin = Number(el.dataset.cuenta);
+        const obj = { v: 0 };
+        gsap.timeline({ scrollTrigger: { trigger: el, start: 'top 88%' } })
+          .to(el, { opacity: 1, duration: .3 })
+          .to(obj, {
+            v: fin, duration: 1.3, ease: 'power2.out',
+            onUpdate: () => { el.textContent = Math.round(obj.v); },
+          }, 0);
+      });
+
+      // --- los días del calendario entran uno por uno, y luego las sesiones
+      gsap.timeline({ scrollTrigger: { trigger: '#semana', start: 'top 78%' } })
+        .fromTo('#semana .dia', { y: 18 },
+          { opacity: 1, y: 0, duration: .5, stagger: .05 })
+        .fromTo('#semana .ses', { x: -12 },
+          { opacity: 1, x: 0, duration: .45, stagger: .07 }, '-=.2');
+
+      // --- las reglas, de dos en dos
+      gsap.fromTo('.regla', { y: 24 }, {
+        opacity: 1, y: 0, duration: .65, stagger: .09, ease: 'power2.out',
+        scrollTrigger: { trigger: '.reglas', start: 'top 80%' },
+      });
+
+      // --- lo demás que lleva .revela
+      gsap.utils.toArray('.revela').forEach((el) => {
+        if (el.closest('.hero')) return;   // la portada ya tiene su línea de tiempo
+        gsap.fromTo(el, { y: 18 }, {
+          opacity: 1, y: 0, duration: .7, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+        });
+      });
+
+      // --- el teléfono se inclina apenas al pasar
+      gsap.fromTo('#telefono .tel',
+        { rotateX: 7, rotateY: -7, y: 26 },
+        {
+          rotateX: 0, rotateY: 0, y: -26, ease: 'none',
+          scrollTrigger: { trigger: '#atleta', start: 'top bottom', end: 'bottom top', scrub: 1 },
+        });
+
+      // --- la cinta corre, y el scroll le da empujones
+      const fila = document.getElementById('cinta1');
+      if (fila) {
+        cintaTween = gsap.to(fila, {
+          xPercent: -50, duration: 24, ease: 'none', repeat: -1,
+        });
+        ST.create({
+          trigger: '.cinta', start: 'top bottom', end: 'bottom top',
+          onUpdate: (s) => { cintaTween.timeScale(1 + Math.abs(s.getVelocity() / 2600)); },
+        });
+      }
+    });
+
+    return true;
+  }
+
+  // ------------------------------------------------- scroll suave
+
+  function encenderLenis() {
+    const Lenis = window.Lenis;
+    const gsap = window.gsap;
+    if (!Lenis || !gsap) return null;
+
+    const lenis = new Lenis({ duration: 1.05, smoothWheel: true });
+
+    // Lo que amarra las dos piezas. Sin esto, ScrollTrigger escucha el scroll
+    // nativo que Lenis ya dejó de usar, y las animaciones se disparan donde no.
+    if (window.ScrollTrigger) lenis.on('scroll', window.ScrollTrigger.update);
+    const avanzar = (t) => lenis.raf(t * 1000);
+    gsap.ticker.add(avanzar);
+    gsap.ticker.lagSmoothing(0);   // ante un tirón, perder un cuadro antes que brincar
+
+    // Los enlaces del menú pasan por Lenis, o saltarían de golpe.
+    document.querySelectorAll('a[href^="#"]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const destino = document.querySelector(a.getAttribute('href'));
+        if (!destino) return;
+        e.preventDefault();
+        lenis.scrollTo(destino, { offset: -70 });
+      });
+    });
+
+    lenis._avanzar = avanzar;
+    return lenis;
+  }
+
+  function apagarLenis() {
+    if (!scrollSuave) return;
+    if (window.ScrollTrigger) scrollSuave.off('scroll', window.ScrollTrigger.update);
+    if (window.gsap && scrollSuave._avanzar) {
+      window.gsap.ticker.remove(scrollSuave._avanzar);
+      window.gsap.ticker.lagSmoothing(500, 33);
+    }
+    scrollSuave.destroy();
+    scrollSuave = null;
+  }
+
+  // ------------------------------------------------- montar y desmontar
+
+  function desmontar() {
+    apagarLenis();
+    if (contexto) { contexto.revert(); contexto = null; }
+    if (window.ScrollTrigger) window.ScrollTrigger.getAll().forEach((t) => t.kill());
+    if (cintaTween) { cintaTween.kill(); cintaTween = null; }
+    html.classList.remove('anima');
+    pararMalla();
+  }
+
+  function montar() {
+    desmontar();
+    pintarBotones();
+    pararMalla = malla();
+
+    const hayGsap = !!window.gsap;
+    const hayLenis = !!window.Lenis;
+
+    if (reducido()) {
+      texto(
+        eleccion === 'reducido'
+          ? 'Reducido, elegido aquí. Sin revelados, sin paralaje y sin scroll suave: todo en su estado final.'
+          : 'Reducido, porque tu sistema lo pide. La página obedece sola, sin que nadie lo configure.',
+        hayGsap ? '' : null
+      );
+      return;
+    }
+
+    const ok = animar();
+    if (ok) scrollSuave = encenderLenis();
+
+    texto(
+      ok
+        ? 'Completo. GSAP revela y mueve; Lenis suaviza el scroll y le avisa a ScrollTrigger en cada cuadro.'
+        : 'La página se lee completa, pero sin animación.',
+      ok
+        ? (hayLenis ? '' : 'Lenis no cargó del CDN: hay animación pero el scroll es el del navegador.')
+        : 'GSAP no cargó del CDN, probablemente bloqueado en esta vista. El contenido se ve igual porque nada depende de la animación. En apps/web va como dependencia y esto no pasa.'
+    );
+  }
+
+  // ------------------------------------------------- arranque
+
+  function arrancar() {
+    partirEnPalabras(document.getElementById('titular'));
+    armarCinta();
+    montar();
+
+    document.getElementById('movCompleto').onclick = () => { eleccion = 'completo'; montar(); };
+    document.getElementById('movReducido').onclick = () => { eleccion = 'reducido'; montar(); };
+
+    // Si alguien cambia la preferencia del sistema en caliente, se obedece.
+    if (window.matchMedia) {
+      window.matchMedia(CONSULTA).addEventListener('change', () => {
+        if (eleccion === null) montar();
+      });
+    }
+  }
+
+  // Los script con defer corren antes de DOMContentLoaded, así que para cuando
+  // esto dispara, gsap y Lenis ya están si iban a estar.
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', arrancar);
+  } else {
+    arrancar();
+  }
+})();
+</script>
+</body>
+</html>
