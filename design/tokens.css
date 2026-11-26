@@ -1,96 +1,206 @@
-/* PR-LAB · tokens de diseño
- * Única fuente de verdad del color, la tipografía y el espaciado.
- * La marca se cambia aquí y se propaga a toda la app.
- * Modo oscuro por defecto; el claro se activa con [data-theme="claro"].
- */
+/* ============================================================================
+   PR-LAB · sistema de diseño
+   Única fuente de verdad del color, la tipografía y el espaciado.
+   Modo oscuro por omisión; el claro con [data-theme="claro"].
+
+   LAS CINCO DECISIONES QUE HACEN QUE ESTO SE VEA CARO Y NO SOLO OSCURO
+   ───────────────────────────────────────────────────────────────────
+
+   1 · EL ACENTO SE GASTA, NO SE REPARTE.
+       El lima es carísimo en atención: puesto en seis lugares de una pantalla
+       deja de significar nada y empieza a verse barato. La regla es UNA cosa
+       acentuada por pantalla —la acción principal— más los indicadores de dato
+       que de verdad lo necesitan. Para lo demás están `--accent-soft` y
+       `--accent-line`, que lo insinúan sin gritar.
+
+   2 · LOS BORDES SON LUZ, NO PINTURA.
+       Un borde gris sólido sobre fondo oscuro se ve como una línea dibujada.
+       Un borde de blanco a baja opacidad se ve como el canto de una superficie
+       iluminada. Es la misma diferencia que entre una maqueta y un objeto. De
+       ahí que `--line` sea `rgb(255 255 255 / .07)` y no un hexadecimal.
+
+   3 · LAS SUPERFICIES SE LEVANTAN CON UN FILO, NO CON UNA SOMBRA.
+       `--lift` es un reflejo interior de un píxel en el borde superior. Imita
+       cómo la luz pega en el canto de algo físico. Cuesta nada y es la mitad
+       de la sensación de calidad.
+
+   4 · LA JERARQUÍA ESTÁ EN EL PESO Y EL INTERLETRAJE, NO EN EL TAMAÑO.
+       Un titular de 38 px a peso 800 con -0.035em de interletraje manda más
+       que uno de 48 px a peso 600. Y las etiquetas en mayúsculas a 10.5 px con
+       +0.12em de interletraje son la señal más barata de diseño cuidado que
+       existe.
+
+   5 · EL AIRE NO ES ESPACIO DESPERDICIADO.
+       Las tarjetas pasan de 14 a 24 px de relleno y las filas de tabla de 10 a
+       14. En una herramienta que se mira ocho horas, el aire es lo que separa
+       «denso» de «agobiante».
+   ========================================================================= */
+
+/* La tipografía: Inter para la interfaz, Archivo para lo que se lee de un
+   golpe. Inter está hecha para pantallas densas de datos; Archivo tiene el
+   peso y la anchura que le dan el aire deportivo. Con `swap` y una pila de
+   respaldo del sistema: si no llega la fuente, la jerarquía se conserva. */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@600;700;800&display=swap');
 
 :root {
-  /* --- Superficies y texto (oscuro, predeterminado) --- */
-  --bg: #0B0D0C;
-  --surface: #14181A;
-  --surface-2: #1C2124;
-  --surface-3: #242A2E;
-  --text: #F2F5F3;
-  --text-muted: #99A3A0;
-  --text-faint: #6B7472;
-  --border: #2B3235;
-  --border-strong: #3A4246;
+  /* ---------- Superficies (oscuro) ----------
+     Fondo más profundo que antes para que las superficies de verdad se
+     levanten. Con --bg a #0B0D0C y --surface a #14181A la diferencia era de
+     un paso; ahora hay rango para cuatro niveles. */
+  --bg: #070908;
+  --surface: #0F1312;
+  --surface-2: #161B1A;
+  --surface-3: #1D2322;
+  --surface-4: #262D2C;        /* ventanas, menús flotantes */
 
-  /* --- Acento de marca --- */
+  /* ---------- Texto ---------- */
+  --text: #F3F6F4;
+  --text-muted: #A4AEAA;
+  --text-faint: #6F7A77;
+  --text-ghost: #4C5553;       /* marcas de agua, deshabilitado */
+
+  /* ---------- Líneas: luz, no pintura (decisión 2) ---------- */
+  --line: rgb(255 255 255 / .07);
+  --line-soft: rgb(255 255 255 / .04);
+  --line-strong: rgb(255 255 255 / .13);
+
+  /* ---------- Acento de marca (decisión 1) ---------- */
   --accent: #C8FF2E;
-  --accent-dim: #9ACC1F;
-  --accent-contrast: #0B0D0C;
-  --accent-tint: rgb(200 255 46 / 0.12);
+  --accent-bright: #D8FF66;    /* al pasar el cursor */
+  --accent-dim: #A3CF28;       /* texto de acento sobre oscuro */
+  --accent-ink: #080A06;       /* texto encima del acento */
+  --accent-soft: rgb(200 255 46 / .09);
+  --accent-line: rgb(200 255 46 / .26);
+  --accent-glow: rgb(200 255 46 / .18);
 
-  /* --- Estado --- */
-  --success: #3ED598;
-  --warning: #FFB020;
-  --danger: #FF5A5F;
-  --info: #4DA3FF;
-  --success-tint: rgb(62 213 152 / 0.14);
-  --warning-tint: rgb(255 176 32 / 0.14);
-  --danger-tint: rgb(255 90 95 / 0.14);
-  --info-tint: rgb(77 163 255 / 0.14);
+  /* ---------- Estado ---------- */
+  --success: #4ADE9B;
+  --warning: #FFC14D;
+  --danger: #FF6B70;
+  --info: #67AEFF;
+  --success-soft: rgb(74 222 155 / .11);
+  --warning-soft: rgb(255 193 77 / .11);
+  --danger-soft: rgb(255 107 112 / .11);
+  --info-soft: rgb(103 174 255 / .11);
 
-  /* --- Disciplinas (acento secundario, nunca única señal) --- */
-  --d-fuerza: #FF8A3D;
-  --d-crossfit: #FF4D6D;
-  --d-hyrox: #FFD166;
-  --d-correr: #4DA3FF;
-  --d-ciclismo: #35D0BA;
-  --d-triatlon: #A78BFA;
+  /* ---------- Disciplinas ----------
+     Bajadas de saturación respecto a la primera versión: seis colores muy
+     saturados juntos se ven a caramelo. Siguen distinguiéndose, y nunca son
+     la única señal: siempre llevan su etiqueta al lado. */
+  --d-fuerza: #FF9D5C;
+  --d-crossfit: #FF6F86;
+  --d-hyrox: #FFD572;
+  --d-correr: #6FB6FF;
+  --d-ciclismo: #4FDAC7;
+  --d-triatlon: #B7A2FF;
 
-  /* --- Tipografía --- */
-  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+  /* ---------- Tipografía (decisión 4) ---------- */
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
           Helvetica, Arial, sans-serif;
-  --fs-11: 11px;   /* etiquetas en mayúsculas */
-  --fs-12: 12.5px; /* metadatos */
-  --fs-14: 14px;   /* texto secundario */
-  --fs-15: 15px;   /* cuerpo */
-  --fs-17: 17px;   /* título de tarjeta */
-  --fs-20: 20px;   /* título de pantalla */
-  --fs-26: 26px;   /* número destacado */
-  --fs-40: 40px;   /* número de la serie en curso */
-  --fw-regular: 400;
-  --fw-semi: 600;
-  --fw-bold: 700;
-  --fw-black: 800;
-  --tracking-label: 0.07em;
+  --font-display: 'Archivo', 'Inter', -apple-system, BlinkMacSystemFont,
+          'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-num: 'Inter', ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* --- Espaciado: cuadrícula de 4 --- */
-  --s-1: 4px;  --s-2: 8px;  --s-3: 12px; --s-4: 16px;
-  --s-5: 20px; --s-6: 24px; --s-8: 32px; --s-10: 40px;
+  --fs-10: 10.5px;  /* etiquetas en mayúsculas */
+  --fs-12: 12px;
+  --fs-13: 13px;
+  --fs-14: 14px;    /* cuerpo de la interfaz */
+  --fs-16: 15.5px;
+  --fs-19: 19px;
+  --fs-24: 24px;
+  --fs-30: 30px;
+  --fs-38: 38px;
 
-  /* --- Radios y sombras --- */
-  --r-sm: 8px; --r-md: 12px; --r-lg: 16px; --r-pill: 999px;
-  --shadow: 0 2px 12px rgb(0 0 0 / 0.35);
+  --lh-tight: 1.15;
+  --lh: 1.5;
+  --lh-prose: 1.62;
 
-  /* --- Objetivos táctiles --- */
-  --touch-min: 48px;
-  --touch-stepper: 56px;
+  /* El interletraje negativo en lo grande y positivo en las mayúsculas chicas
+     es la mitad del trabajo. */
+  --tr-display: -.035em;
+  --tr-title: -.022em;
+  --tr-body: -.006em;
+  --tr-caps: .12em;
 
-  /* --- Movimiento: breve y funcional --- */
-  --t-fast: 120ms;
-  --t-base: 200ms;
+  /* ---------- Espaciado: 4 pt, con pasos de verdad (decisión 5) ---------- */
+  --e-1: 4px;  --e-2: 8px;  --e-3: 12px; --e-4: 16px;
+  --e-5: 20px; --e-6: 24px; --e-8: 32px; --e-10: 40px;
+  --e-14: 56px; --e-18: 72px;
+
+  /* ---------- Radios ---------- */
+  --r-xs: 6px; --r-sm: 10px; --r-md: 14px; --r-lg: 20px; --r-xl: 28px;
+  --r-pill: 999px;
+
+  /* ---------- Relieve y sombra (decisión 3) ---------- */
+  --lift: inset 0 1px 0 rgb(255 255 255 / .045);
+  --lift-strong: inset 0 1px 0 rgb(255 255 255 / .08);
+  --sh-1: 0 1px 2px rgb(0 0 0 / .35);
+  --sh-2: 0 6px 20px -6px rgb(0 0 0 / .5);
+  --sh-3: 0 20px 56px -14px rgb(0 0 0 / .66);
+  --sh-accent: 0 8px 28px -8px var(--accent-glow);
+
+  /* ---------- Movimiento ---------- */
+  --t-rapido: 120ms cubic-bezier(.3, 0, .2, 1);
+  --t: 180ms cubic-bezier(.3, 0, .2, 1);
+  --t-lento: 280ms cubic-bezier(.3, 0, .2, 1);
+
+  --side: 236px;
 }
 
+/* ===========================================================================
+   Modo claro. No es el oscuro invertido: el acento lima sobre blanco no tiene
+   contraste suficiente para texto, así que se oscurece a oliva y se usa
+   relleno sólido donde antes había tinte.
+   ======================================================================== */
 [data-theme="claro"] {
-  --bg: #F7F9F8;
+  --bg: #FAFBFA;
   --surface: #FFFFFF;
-  --surface-2: #F0F3F1;
-  --surface-3: #E6EAE8;
-  --text: #11150F;
-  --text-muted: #5B6360;
-  --text-faint: #8A918E;
-  --border: #DDE3E0;
-  --border-strong: #C4CCC8;
-  --accent: #6B9E00;
-  --accent-dim: #567F00;
-  --accent-contrast: #FFFFFF;
-  --accent-tint: rgb(107 158 0 / 0.12);
-  --d-hyrox: #B07F00;
+  --surface-2: #F3F5F3;
+  --surface-3: #E9ECEA;
+  --surface-4: #FFFFFF;
+
+  --text: #0D110F;
+  --text-muted: #555E5A;
+  --text-faint: #828B87;
+  --text-ghost: #A8B0AC;
+
+  --line: rgb(0 0 0 / .08);
+  --line-soft: rgb(0 0 0 / .05);
+  --line-strong: rgb(0 0 0 / .16);
+
+  --accent: #5F8F00;
+  --accent-bright: #4E7600;
+  --accent-dim: #4E7600;
+  --accent-ink: #FFFFFF;
+  --accent-soft: rgb(95 143 0 / .10);
+  --accent-line: rgb(95 143 0 / .30);
+  --accent-glow: rgb(95 143 0 / .20);
+
+  --d-hyrox: #A97E00;
+  --d-correr: #2D7FD6;
+  --d-ciclismo: #0E9E8C;
+
+  --lift: inset 0 1px 0 rgb(255 255 255 / .9);
+  --lift-strong: inset 0 1px 0 rgb(255 255 255 / 1);
+  --sh-1: 0 1px 2px rgb(16 24 20 / .06);
+  --sh-2: 0 6px 20px -6px rgb(16 24 20 / .12);
+  --sh-3: 0 20px 56px -14px rgb(16 24 20 / .18);
 }
 
+/* ===========================================================================
+   Reducir movimiento. Lo que se queda son las transiciones de estado de menos
+   de 120 ms —un botón que responde al toque—: quitar eso no ayuda a nadie.
+   Lo que se va es el movimiento grande y no solicitado.
+   ======================================================================== */
 @media (prefers-reduced-motion: reduce) {
-  :root { --t-fast: 0ms; --t-base: 0ms; }
+  :root {
+    --t-rapido: 1ms;
+    --t: 100ms linear;
+    --t-lento: 100ms linear;
+  }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
 }

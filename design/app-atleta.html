@@ -5,27 +5,43 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>PR-LAB · App del atleta</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@600;700;800&display=swap');
+
+/* Los mismos tokens de design/tokens.css. En línea porque el prototipo es un
+   archivo solo; el documento explica las cinco decisiones detrás de ellos. */
 :root{
-  --bg:#0B0D0C; --surface:#14181A; --surface-2:#1C2124; --surface-3:#242A2E;
-  --text:#F2F5F3; --text-muted:#99A3A0; --text-faint:#6B7472;
-  --border:#2B3235; --border-strong:#3A4246;
-  --accent:#C8FF2E; --accent-dim:#9ACC1F; --accent-contrast:#0B0D0C;
-  --accent-tint:rgb(200 255 46/.12);
-  --success:#3ED598; --warning:#FFB020; --danger:#FF5A5F; --info:#4DA3FF;
-  --success-tint:rgb(62 213 152/.14); --warning-tint:rgb(255 176 32/.14);
-  --danger-tint:rgb(255 90 95/.14); --info-tint:rgb(77 163 255/.14);
-  --d-fuerza:#FF8A3D; --d-crossfit:#FF4D6D; --d-hyrox:#FFD166;
-  --d-correr:#4DA3FF; --d-ciclismo:#35D0BA; --d-triatlon:#A78BFA;
-  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
-  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
+  --bg:#070908; --surface:#0F1312; --surface-2:#161B1A; --surface-3:#1D2322; --surface-4:#262D2C;
+  --text:#F3F6F4; --text-muted:#A4AEAA; --text-faint:#6F7A77; --text-ghost:#4C5553;
+  --line:rgb(255 255 255/.07); --line-soft:rgb(255 255 255/.04); --line-strong:rgb(255 255 255/.13);
+  --border:var(--line); --border-strong:var(--line-strong);
+  --accent:#C8FF2E; --accent-bright:#D8FF66; --accent-dim:#A3CF28; --accent-ink:#080A06;
+  --accent-contrast:var(--accent-ink);
+  --accent-soft:rgb(200 255 46/.09); --accent-line:rgb(200 255 46/.26);
+  --accent-glow:rgb(200 255 46/.18); --accent-tint:var(--accent-soft);
+  --success:#4ADE9B; --warning:#FFC14D; --danger:#FF6B70; --info:#67AEFF;
+  --success-tint:rgb(74 222 155/.11); --warning-tint:rgb(255 193 77/.11);
+  --danger-tint:rgb(255 107 112/.11); --info-tint:rgb(103 174 255/.11);
+  --d-fuerza:#FF9D5C; --d-crossfit:#FF6F86; --d-hyrox:#FFD572;
+  --d-correr:#6FB6FF; --d-ciclismo:#4FDAC7; --d-triatlon:#B7A2FF;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-display:'Archivo','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --tr-display:-.035em; --tr-title:-.022em; --tr-body:-.006em; --tr-caps:.12em;
+  --r-xs:8px; --r-sm:12px; --r-md:16px; --r-lg:22px; --r-xl:28px; --r-pill:999px;
+  --lift:inset 0 1px 0 rgb(255 255 255/.045); --lift-strong:inset 0 1px 0 rgb(255 255 255/.08);
+  --sh-1:0 1px 2px rgb(0 0 0/.35); --sh-2:0 6px 20px -6px rgb(0 0 0/.5);
+  --sh-3:0 20px 56px -14px rgb(0 0 0/.66); --sh-accent:0 10px 32px -10px var(--accent-glow);
   --t-fast:120ms; --t-base:200ms;
 }
 [data-theme="claro"]{
-  --bg:#F7F9F8; --surface:#fff; --surface-2:#F0F3F1; --surface-3:#E6EAE8;
-  --text:#11150F; --text-muted:#5B6360; --text-faint:#8A918E;
-  --border:#DDE3E0; --border-strong:#C4CCC8;
-  --accent:#6B9E00; --accent-dim:#567F00; --accent-contrast:#fff;
-  --accent-tint:rgb(107 158 0/.12); --d-hyrox:#B07F00;
+  --bg:#FAFBFA; --surface:#fff; --surface-2:#F3F5F3; --surface-3:#E9ECEA; --surface-4:#fff;
+  --text:#0D110F; --text-muted:#555E5A; --text-faint:#828B87; --text-ghost:#A8B0AC;
+  --line:rgb(0 0 0/.08); --line-soft:rgb(0 0 0/.05); --line-strong:rgb(0 0 0/.16);
+  --accent:#5F8F00; --accent-bright:#4E7600; --accent-dim:#4E7600; --accent-ink:#fff;
+  --accent-soft:rgb(95 143 0/.10); --accent-line:rgb(95 143 0/.30);
+  --d-hyrox:#A97E00; --d-correr:#2D7FD6; --d-ciclismo:#0E9E8C;
+  --lift:inset 0 1px 0 rgb(255 255 255/.9); --lift-strong:inset 0 1px 0 rgb(255 255 255/1);
+  --sh-1:0 1px 2px rgb(16 24 20/.06); --sh-2:0 6px 20px -6px rgb(16 24 20/.12);
+  --sh-3:0 20px 56px -14px rgb(16 24 20/.18);
 }
 @media(prefers-reduced-motion:reduce){:root{--t-fast:0ms;--t-base:0ms}}
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -293,6 +309,139 @@ h3.sec:first-child{margin-top:0}
 .resbox textarea:focus{outline:none;border-color:var(--accent)}
 .reshint{font-size:12px;color:var(--text-faint);margin-top:7px;line-height:1.4}
 .reshint.ok{color:var(--success)}
+
+/* ===========================================================================
+   CAPA DE ACABADO · app del atleta
+   El mismo sistema que la web del coach, pero las decisiones de un celular no
+   son las de un escritorio:
+
+   · TODO MÁS GRANDE. El atleta lee esto de pie, sudando, con el brazo
+     estirado. El cuerpo sube a 15.5 px y los objetivos táctiles a 48.
+   · MÁS AIRE AÚN. En una pantalla de 390 px el aire no es lujo: es lo que
+     evita tocar el botón equivocado con el pulgar.
+   · EL ACENTO MARCA UNA SOLA COSA: la acción de ahora. En modo sesión, el
+     botón de completar serie. Nada más compite con él.
+   · NADA DE SOMBRAS PROFUNDAS. En un celular al sol no se ven; lo que sí se
+     ve es el filo de luz y el contraste de superficie.
+   ======================================================================== */
+
+body{
+  font-family:var(--font); font-size:15.5px; line-height:1.5;
+  letter-spacing:var(--tr-body);
+  font-feature-settings:'tnum' 1, 'cv05' 1, 'ss03' 1;
+}
+
+/* --- Tipografía: la display para lo que se lee de un golpe --- */
+.top h1{font-family:var(--font-display); font-weight:700; font-size:18px;
+  letter-spacing:var(--tr-title)}
+.top .logo{font-family:var(--font-display); font-weight:800; border-radius:11px;
+  box-shadow:var(--sh-accent), var(--lift-strong)}
+h2,h3,h4{font-family:var(--font-display); letter-spacing:var(--tr-title)}
+
+/* Las mayúsculas chicas, con su interletraje. */
+.block .bname,.sec,.resbox label,.lbl,.slabel,.shead,.ohead{
+  font-size:11px !important; font-weight:700 !important;
+  text-transform:uppercase; letter-spacing:var(--tr-caps) !important;
+}
+
+/* Los números de la sesión son el contenido, no un adorno: van grandes,
+   pesados y de ancho fijo para que no bailen al subir la carga. */
+.val,.num,.bigclock,.clock,.exbig,.ring b,.lv,.pv,.stepper b{
+  font-family:var(--font-display); font-weight:700; letter-spacing:-.035em;
+  font-variant-numeric:tabular-nums;
+}
+
+/* --- Aire y superficie --- */
+.card{padding:18px; border-radius:var(--r-md); box-shadow:var(--lift), var(--sh-1)}
+.ex{padding:15px 16px; border-radius:var(--r-sm); box-shadow:var(--lift)}
+.ex .exn b{font-size:15.5px; font-weight:600; letter-spacing:var(--tr-body)}
+.block{margin-bottom:24px}
+.block .bline{background:var(--line)}
+.screen{padding-left:18px; padding-right:18px}
+
+/* --- Botones: 48 de alto y el acento con relieve --- */
+.btn{
+  min-height:52px; border-radius:var(--r-sm); font-size:16px; font-weight:650;
+  letter-spacing:var(--tr-body);
+  background:linear-gradient(180deg, var(--accent-bright), var(--accent));
+  color:var(--accent-ink); box-shadow:var(--sh-accent), var(--lift-strong);
+  transition:transform var(--t-fast), filter var(--t-fast);
+}
+.btn:active{transform:scale(.985); filter:brightness(.95)}
+.btn.ghost{
+  background:var(--surface-2); color:var(--text); border:1px solid var(--line);
+  box-shadow:var(--lift);
+}
+.btn.sm{min-height:46px; font-size:15px}
+
+/* --- Campos: grandes, porque se llenan con los dedos --- */
+input,textarea,select{
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-sm);
+  color:var(--text); font-family:inherit; font-size:16px; padding:13px 14px;
+  box-shadow:var(--lift); transition:border-color var(--t-fast), box-shadow var(--t-fast);
+}
+input:focus,textarea:focus,select:focus{
+  outline:none; border-color:var(--accent-line);
+  box-shadow:var(--lift), 0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--text-ghost)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:var(--r-xs)}
+
+/* --- Chips --- */
+.chip{
+  font-size:11px; font-weight:700; letter-spacing:.04em; padding:5px 10px;
+  border-radius:var(--r-pill); border:1px solid currentColor;
+}
+.chip.plain{color:var(--text-muted); border-color:var(--line-strong); background:var(--surface-2)}
+
+/* --- Índice de bloque y ejercicio: en la display, como en la web --- */
+.bidx{font-family:var(--font-display); font-weight:800; border-radius:7px;
+  box-shadow:var(--lift-strong)}
+.eidx{font-family:var(--font-display); font-weight:700; border-color:var(--line)}
+
+/* --- El cuadro de resultado: donde el atleta escribe de verdad --- */
+.resbox{
+  padding:16px; border-radius:var(--r-md); background:var(--surface);
+  border:1px solid var(--line); box-shadow:var(--lift), var(--sh-1);
+}
+.resbox textarea{min-height:60px}
+
+/* --- El teléfono de la vista previa --- */
+.screen,.sheet{border-radius:var(--r-lg); box-shadow:var(--sh-3), var(--lift-strong)}
+
+/* --- Barra inferior de navegación --- */
+.tabs{
+  border-top:1px solid var(--line);
+  background:var(--surface);
+  backdrop-filter:blur(16px);
+}
+.tabs button.on{color:var(--accent)}
+.tabs button.on .ico{filter:drop-shadow(0 0 7px var(--accent-glow))}
+
+/* --- Medidores, anillos y barras de progreso --- */
+.bars,.donebar,.seg{border-radius:var(--r-pill); background:var(--surface-3); overflow:hidden}
+.bars i,.donebar i,.seg i{border-radius:var(--r-pill); box-shadow:0 0 10px -3px currentColor}
+.ring{filter:drop-shadow(0 0 12px var(--accent-glow))}
+
+/* --- Avatares --- */
+.avatar{
+  background:var(--surface-3); border:1px solid var(--line);
+  font-family:var(--font-display); font-weight:700; box-shadow:var(--lift);
+}
+
+/* --- Barra de desplazamiento --- */
+*{scrollbar-width:thin; scrollbar-color:var(--surface-3) transparent}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:var(--surface-3); border-radius:var(--r-pill);
+  border:2px solid transparent; background-clip:content-box;
+}
+
+@media (prefers-reduced-motion: reduce){
+  :root{--t-fast:1ms; --t-base:100ms}
+  .btn:active{transform:none}
+}
 </style>
 </head>
 <body>

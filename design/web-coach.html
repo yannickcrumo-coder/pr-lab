@@ -5,27 +5,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PR-LAB · Web del coach (prototipo)</title>
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Archivo:wght@600;700;800&display=swap');
+
+/* Los tokens son los de design/tokens.css, que explica las cinco decisiones
+   detrás de ellos. Aquí van en línea porque el prototipo es un archivo solo. */
 :root{
-  --bg:#0B0D0C; --surface:#14181A; --surface-2:#1C2124; --surface-3:#242A2E;
-  --text:#F2F5F3; --text-muted:#99A3A0; --text-faint:#6B7472;
-  --border:#2B3235; --border-strong:#3A4246;
-  --accent:#C8FF2E; --accent-dim:#9ACC1F; --accent-contrast:#0B0D0C;
-  --accent-tint:rgb(200 255 46/.12);
-  --success:#3ED598; --warning:#FFB020; --danger:#FF5A5F; --info:#4DA3FF;
-  --success-tint:rgb(62 213 152/.14); --warning-tint:rgb(255 176 32/.14);
-  --danger-tint:rgb(255 90 95/.14); --info-tint:rgb(77 163 255/.14);
-  --d-fuerza:#FF8A3D; --d-crossfit:#FF4D6D; --d-hyrox:#FFD166;
-  --d-correr:#4DA3FF; --d-ciclismo:#35D0BA; --d-triatlon:#A78BFA;
-  --font:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif;
-  --r-sm:8px; --r-md:12px; --r-lg:16px; --r-pill:999px;
-  --side:224px;
+  --bg:#070908; --surface:#0F1312; --surface-2:#161B1A; --surface-3:#1D2322; --surface-4:#262D2C;
+  --text:#F3F6F4; --text-muted:#A4AEAA; --text-faint:#6F7A77; --text-ghost:#4C5553;
+  --line:rgb(255 255 255/.07); --line-soft:rgb(255 255 255/.04); --line-strong:rgb(255 255 255/.13);
+  --border:var(--line); --border-strong:var(--line-strong);
+  --accent:#C8FF2E; --accent-bright:#D8FF66; --accent-dim:#A3CF28; --accent-ink:#080A06;
+  --accent-contrast:var(--accent-ink);
+  --accent-soft:rgb(200 255 46/.09); --accent-line:rgb(200 255 46/.26);
+  --accent-glow:rgb(200 255 46/.18); --accent-tint:var(--accent-soft);
+  --success:#4ADE9B; --warning:#FFC14D; --danger:#FF6B70; --info:#67AEFF;
+  --success-tint:rgb(74 222 155/.11); --warning-tint:rgb(255 193 77/.11);
+  --danger-tint:rgb(255 107 112/.11); --info-tint:rgb(103 174 255/.11);
+  --d-fuerza:#FF9D5C; --d-crossfit:#FF6F86; --d-hyrox:#FFD572;
+  --d-correr:#6FB6FF; --d-ciclismo:#4FDAC7; --d-triatlon:#B7A2FF;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+  --font-display:'Archivo','Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --tr-display:-.035em; --tr-title:-.022em; --tr-body:-.006em; --tr-caps:.12em;
+  --r-xs:6px; --r-sm:10px; --r-md:14px; --r-lg:20px; --r-xl:28px; --r-pill:999px;
+  --lift:inset 0 1px 0 rgb(255 255 255/.045); --lift-strong:inset 0 1px 0 rgb(255 255 255/.08);
+  --sh-1:0 1px 2px rgb(0 0 0/.35); --sh-2:0 6px 20px -6px rgb(0 0 0/.5);
+  --sh-3:0 20px 56px -14px rgb(0 0 0/.66); --sh-accent:0 8px 28px -8px var(--accent-glow);
+  --t-rapido:120ms cubic-bezier(.3,0,.2,1); --t:180ms cubic-bezier(.3,0,.2,1);
+  --side:236px;
 }
 [data-theme="claro"]{
-  --bg:#F7F9F8; --surface:#fff; --surface-2:#F0F3F1; --surface-3:#E6EAE8;
-  --text:#11150F; --text-muted:#5B6360; --text-faint:#8A918E;
-  --border:#DDE3E0; --border-strong:#C4CCC8;
-  --accent:#6B9E00; --accent-dim:#567F00; --accent-contrast:#fff;
-  --accent-tint:rgb(107 158 0/.12); --d-hyrox:#B07F00;
+  --bg:#FAFBFA; --surface:#fff; --surface-2:#F3F5F3; --surface-3:#E9ECEA; --surface-4:#fff;
+  --text:#0D110F; --text-muted:#555E5A; --text-faint:#828B87; --text-ghost:#A8B0AC;
+  --line:rgb(0 0 0/.08); --line-soft:rgb(0 0 0/.05); --line-strong:rgb(0 0 0/.16);
+  --accent:#5F8F00; --accent-bright:#4E7600; --accent-dim:#4E7600; --accent-ink:#fff;
+  --accent-soft:rgb(95 143 0/.10); --accent-line:rgb(95 143 0/.30);
+  --d-hyrox:#A97E00; --d-correr:#2D7FD6; --d-ciclismo:#0E9E8C;
+  --lift:inset 0 1px 0 rgb(255 255 255/.9); --lift-strong:inset 0 1px 0 rgb(255 255 255/1);
+  --sh-1:0 1px 2px rgb(16 24 20/.06); --sh-2:0 6px 20px -6px rgb(16 24 20/.12);
+  --sh-3:0 20px 56px -14px rgb(16 24 20/.18);
 }
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 html,body{height:100%}
@@ -535,6 +552,207 @@ h3.sec:first-child{margin-top:0}
   letter-spacing:.05em;color:var(--text-faint);margin-bottom:7px}
 .indbox textarea{width:100%;resize:vertical;font-family:inherit;font-size:13.5px;
   line-height:1.55;min-height:62px}
+
+/* ===========================================================================
+   CAPA DE ACABADO
+   Va al final a propósito: sube tipografía, aire y detalle sin tener que
+   reescribir cada regla de arriba. Lo que hace, en orden de cuánto se nota:
+   tipografía, aire, filos de luz, y el acento usado con cuentagotas.
+   ======================================================================== */
+
+/* --- 1 · TIPOGRAFÍA. Lo que más cambia la percepción, y lo más barato. --- */
+body{
+  font-family:var(--font); font-size:14px; line-height:1.5;
+  letter-spacing:var(--tr-body);
+  font-feature-settings:'tnum' 1, 'cv05' 1, 'ss03' 1;
+}
+header h1{
+  font-family:var(--font-display); font-size:21px; font-weight:700;
+  letter-spacing:var(--tr-title);
+}
+.brand b{font-family:var(--font-display); font-weight:800; font-size:16px; letter-spacing:-.03em}
+
+/* Las etiquetas en mayúsculas: la señal de diseño cuidado más económica que hay. */
+.sec,.fgrid label,.indbox label,.resbox label,.dl>dt,
+.msec,.bcfg label,.fld label,.dhead>span{
+  font-size:10.5px !important; font-weight:700 !important;
+  text-transform:uppercase; letter-spacing:var(--tr-caps) !important;
+  color:var(--text-faint);
+}
+.sec{margin:0 0 14px}
+
+/* Los números de un panel se leen de un golpe: van en la display, pesados y
+   apretados, con cifras de ancho fijo para que no bailen al cambiar. */
+.num,.stats .num,.bar>b,.dlist b,.cuenta,.delta,.meter+b{
+  font-family:var(--font-display); font-weight:700;
+  letter-spacing:-.03em; font-variant-numeric:tabular-nums;
+}
+
+/* --- 2 · AIRE. De 14 a 24 de relleno; de 10 a 14 en las filas. --- */
+#content{padding:var(--e-6) var(--e-6) var(--e-10)}
+header{padding:var(--e-4) var(--e-6); gap:var(--e-3)}
+.card{padding:22px; border-radius:var(--r-md)}
+.panel{padding:18px; border-radius:var(--r-md)}
+.tbl th{padding:11px 14px; font-size:10.5px; font-weight:700;
+  text-transform:uppercase; letter-spacing:var(--tr-caps); color:var(--text-faint)}
+.tbl td{padding:14px}
+.grid{gap:var(--e-4)}
+.charts{gap:var(--e-4); margin-bottom:var(--e-8)}
+.alert{padding:16px 18px; border-radius:var(--r-md)}
+.filters{gap:var(--e-2)}
+
+/* --- 3 · FILOS DE LUZ. Lo que separa una maqueta de un objeto. --- */
+.card,.panel,.alert,.mbox,.tpv,#builder .caja,.day,.blk,
+.chkwrap,.codebox,.gbanner{
+  box-shadow:var(--lift), var(--sh-1);
+}
+.mbox,.tpv,#builder .caja{
+  background:var(--surface-4); box-shadow:var(--lift-strong), var(--sh-3);
+  border-radius:var(--r-lg);
+}
+.tbl{border-radius:var(--r-md); overflow:hidden; box-shadow:var(--lift), var(--sh-1)}
+.tbl tbody tr{transition:background var(--t-rapido)}
+.tbl tbody tr:hover{background:var(--surface-2)}
+
+/* --- 4 · EL ACENTO, CON CUENTAGOTAS. --- */
+.btn{
+  min-height:40px; padding:0 18px; border-radius:var(--r-sm);
+  font-size:13.5px; font-weight:650; letter-spacing:var(--tr-body);
+  background:linear-gradient(180deg, var(--accent-bright), var(--accent));
+  color:var(--accent-ink); box-shadow:var(--sh-1);
+  transition:transform var(--t-rapido), box-shadow var(--t), filter var(--t-rapido);
+}
+.btn:hover{transform:translateY(-1px); box-shadow:var(--sh-accent)}
+.btn:active{transform:translateY(0); filter:brightness(.96)}
+.btn.ghost{
+  background:var(--surface-2); color:var(--text);
+  border:1px solid var(--line); box-shadow:var(--lift);
+}
+.btn.ghost:hover{border-color:var(--line-strong); background:var(--surface-3);
+  transform:none; box-shadow:var(--lift)}
+.btn.sm{min-height:34px; padding:0 13px; font-size:12.5px}
+
+/* El elemento activo del menú: una barra de acento a la izquierda en lugar de
+   un bloque teñido. Dice lo mismo gastando una décima parte del color. */
+#side nav button{
+  padding:10px 12px; border-radius:var(--r-sm); font-weight:500;
+  position:relative; transition:background var(--t-rapido), color var(--t-rapido);
+}
+#side nav button.on{background:var(--surface-2); color:var(--text); font-weight:600}
+#side nav button.on::before{
+  content:''; position:absolute; left:-8px; top:50%; transform:translateY(-50%);
+  width:3px; height:18px; border-radius:0 3px 3px 0; background:var(--accent);
+}
+#side{border-right:1px solid var(--line); padding-right:0}
+#side nav{padding:var(--e-2) var(--e-3)}
+.brand{padding:var(--e-5) var(--e-4) var(--e-4)}
+.logo{
+  width:34px; height:34px; border-radius:11px; font-family:var(--font-display);
+  font-weight:800; box-shadow:var(--sh-accent), var(--lift-strong);
+}
+
+/* --- 5 · CONTROLES. Un campo de formulario delata más que un botón. --- */
+select,input[type=text],input[type=search],input[type=number],input[type=email],
+input[type=url],textarea{
+  background:var(--surface-2); border:1px solid var(--line); border-radius:var(--r-sm);
+  color:var(--text); font-family:inherit; font-size:13.5px; padding:10px 13px;
+  letter-spacing:var(--tr-body);
+  box-shadow:var(--lift);
+  transition:border-color var(--t-rapido), box-shadow var(--t-rapido);
+}
+select:hover,input:hover,textarea:hover{border-color:var(--line-strong)}
+select:focus,input:focus,textarea:focus{
+  outline:none; border-color:var(--accent-line);
+  box-shadow:var(--lift), 0 0 0 3px var(--accent-soft);
+}
+::placeholder{color:var(--text-ghost)}
+:focus-visible{outline:2px solid var(--accent); outline-offset:2px; border-radius:var(--r-xs)}
+
+/* --- 6 · CHIPS. Contorno fino y relleno a baja opacidad, no bloques. --- */
+.chip{
+  font-size:10.5px; font-weight:700; letter-spacing:.04em;
+  padding:4px 9px; border-radius:var(--r-pill); border:1px solid currentColor;
+  text-transform:capitalize;
+}
+.chip.plain{color:var(--text-muted); border-color:var(--line-strong); background:var(--surface-2)}
+.fchip{
+  font-size:11.5px; font-weight:600; padding:6px 11px; border-radius:var(--r-pill);
+  border:1px solid var(--line); background:var(--surface-2); color:var(--text-muted);
+  box-shadow:var(--lift); transition:all var(--t-rapido);
+}
+.fchip:hover{border-color:var(--line-strong); color:var(--text)}
+.fchip.on{
+  border-color:var(--accent-line); color:var(--accent); background:var(--accent-soft);
+  box-shadow:var(--lift), 0 0 0 1px var(--accent-soft);
+}
+
+/* --- 7 · DATOS. El medidor y las barras son donde se ve el oficio. --- */
+.meter{height:5px; border-radius:var(--r-pill); background:var(--surface-3); overflow:hidden}
+.meter i{border-radius:var(--r-pill); box-shadow:0 0 8px -2px currentColor}
+.bar .track{height:7px; background:var(--surface-3)}
+.bar .track i{box-shadow:0 0 10px -3px currentColor}
+.cols .cb{border-radius:5px 5px 2px 2px; box-shadow:var(--lift-strong)}
+
+/* --- 8 · CALENDARIO. Es la pantalla que más se mira. --- */
+.day{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md);
+  padding:12px; transition:border-color var(--t-rapido), background var(--t-rapido);
+}
+.day:hover{border-color:var(--line-strong)}
+.day.today{border-color:var(--accent-line)}
+.day.over{border-color:var(--accent-line); background:var(--accent-soft)}
+.dhead b{font-family:var(--font-display); font-weight:700; letter-spacing:-.02em}
+.sess{
+  border-radius:var(--r-sm); padding:10px 11px;
+  background:var(--surface-2); box-shadow:var(--lift), var(--sh-1);
+  border-left-width:3px; border-left-style:solid;
+  transition:transform var(--t-rapido), box-shadow var(--t);
+}
+.sess:hover{transform:translateY(-1px); box-shadow:var(--lift), var(--sh-2)}
+.sess>b{font-weight:650; letter-spacing:var(--tr-body)}
+.sb{letter-spacing:.09em}
+.sbl,.bidx{font-family:var(--font-display); font-weight:800}
+.eidx,.sxl{font-family:var(--font-display); font-weight:700}
+
+/* --- 9 · BLOQUES DEL CONSTRUCTOR. --- */
+.blk{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--r-md);
+  overflow:hidden; margin-bottom:var(--e-3);
+}
+.bt{padding:13px 14px; background:var(--surface-2); border-bottom:1px solid var(--line)}
+.bt>b{font-family:var(--font-display); font-weight:700; letter-spacing:-.015em; font-size:14.5px}
+.exrow{padding:12px 14px; border-top:1px solid var(--line-soft)}
+.en{font-weight:600; letter-spacing:var(--tr-body)}
+
+/* --- 10 · AVATARES Y DETALLE FINO. --- */
+.av{
+  background:var(--surface-3); border:1px solid var(--line);
+  font-family:var(--font-display); font-weight:700; font-size:11px;
+  box-shadow:var(--lift);
+}
+.toast{
+  border-radius:var(--r-md); padding:13px 17px; font-size:13.5px; font-weight:550;
+  background:var(--surface-4); border:1px solid var(--line-strong);
+  box-shadow:var(--lift-strong), var(--sh-3);
+}
+hr,.mh,.mf,.bf,.bh{border-color:var(--line)}
+.note{border-radius:var(--r-sm); padding:13px 15px; line-height:1.6}
+.help{line-height:1.55}
+
+/* La barra de desplazamiento también se diseña. */
+*{scrollbar-width:thin; scrollbar-color:var(--surface-3) transparent}
+::-webkit-scrollbar{width:10px; height:10px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{
+  background:var(--surface-3); border-radius:var(--r-pill);
+  border:3px solid transparent; background-clip:content-box;
+}
+::-webkit-scrollbar-thumb:hover{background:var(--surface-4); background-clip:content-box}
+
+@media (prefers-reduced-motion: reduce){
+  :root{--t-rapido:1ms; --t:100ms linear}
+  .btn:hover,.sess:hover{transform:none}
+}
 </style>
 </head>
 <body>
