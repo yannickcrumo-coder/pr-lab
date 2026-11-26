@@ -256,11 +256,21 @@ h3.sec:first-child{margin-top:0}
 
 /* ---------- modal buscar ejercicio ---------- */
 .modal{position:fixed;inset:0;background:rgb(0 0 0/.6);z-index:80;display:none;
-  align-items:flex-start;justify-content:center;padding:60px 16px}
+  align-items:center;justify-content:center;padding:24px 16px}
 .modal.on{display:flex}
 .mbox{background:var(--surface);border:1px solid var(--border-strong);
-  border-radius:var(--r-lg);width:100%;max-width:460px;max-height:70vh;display:flex;
-  flex-direction:column;overflow:hidden}
+  border-radius:var(--r-lg);width:100%;max-width:460px;max-height:min(90vh,920px);
+  display:flex;flex-direction:column;overflow:hidden}
+
+/* El cuerpo de un formulario largo se desplaza y el pie se queda fijo abajo.
+   Sin esto el modal recortaba los últimos campos y el botón de guardar
+   quedaba fuera de la pantalla, sin forma de llegar a él. */
+.mbody{flex:1;min-height:0;overflow-y:auto}
+.mf{flex:none}
+@media(max-width:640px){
+  .modal{padding:0}
+  .mbox{max-width:none;max-height:100vh;height:100vh;border-radius:0;border:none}
+}
 .mbox .mh{padding:14px;border-bottom:1px solid var(--border)}
 .mbox .mh input{width:100%}
 .mbox .ml{flex:1;overflow-y:auto;padding:6px}
@@ -836,6 +846,7 @@ h3.sec:first-child{margin-top:0}
       <b style="flex:1;font-size:14.5px">Dar de alta un atleta</b>
       <button class="btn ghost sm" onclick="cerrar('athModal')">✕</button>
     </div>
+    <div class="mbody">
     <div style="padding:16px 16px 0">
       <div class="note">No se crea la cuenta desde aquí: se genera un código y el atleta
         se registra con él desde su teléfono. Así la contraseña nunca pasa por tus manos.</div>
@@ -874,6 +885,7 @@ h3.sec:first-child{margin-top:0}
         </div>
       </div>
     </div>
+    </div>
     <div class="mf">
       <button class="btn ghost" style="flex:1" onclick="cerrar('athModal')">Cancelar</button>
       <button class="btn" style="flex:1" onclick="crearInvitacion()">Generar invitación</button>
@@ -908,6 +920,7 @@ h3.sec:first-child{margin-top:0}
       <b style="flex:1;font-size:14.5px" id="neTitle">Nuevo ejercicio</b>
       <button class="btn ghost sm" onclick="cerrar('newExModal')">✕</button>
     </div>
+    <div class="mbody">
     <div style="padding:16px 16px 0">
       <div class="note" id="neNota">Queda privado de tu cuenta. Tus atletas lo ven y lo
         registran igual que uno del catálogo, pero ningún otro coach lo encuentra.</div>
@@ -937,6 +950,12 @@ h3.sec:first-child{margin-top:0}
       <div class="full">
         <label>Disciplinas</label>
         <div class="pickers" id="neDis"></div>
+      </div>
+      <div class="full">
+        <label>Músculos principales</label>
+        <div class="pickers" id="neMusculos"></div>
+        <div class="help">Es lo que permite al atleta y a ti filtrar por grupo muscular,
+          y más adelante ver el volumen por zona.</div>
       </div>
       <div>
         <label>Equipo</label>
@@ -970,9 +989,11 @@ h3.sec:first-child{margin-top:0}
           que subas tú sí se guarda en su teléfono.</div>
       </div>
     </div>
+    </div>
     <div class="mf">
       <button class="btn ghost" style="flex:1" onclick="cerrar('newExModal')">Cancelar</button>
-      <button class="btn" style="flex:1" onclick="crearEjercicio()">Guardar ejercicio</button>
+      <button class="btn" style="flex:1" id="neGuardar"
+        onclick="crearEjercicio()">Guardar ejercicio</button>
     </div>
   </div>
 </div>
@@ -1243,7 +1264,28 @@ const EQUIPO = ['barra','disco','mancuerna','kettlebell','anillas','cajón','cue
   'trineo','remo','bici','ninguno'];
 /** Cumplimiento promedio de las últimas 8 semanas. */
 const CMP_SEMANAS = [68, 72, 70, 76, 74, 79, 77, 81];
-const MINE = ['Sentadilla con cadena (mío)','Remo en banco inclinado 30° (mío)'];
+/**
+ * Los ejercicios que el coach creó. Antes era una lista de nombres, así que
+ * todo lo que el formulario pedía —métricas, disciplinas, músculos, equipo—
+ * se tiraba al guardar: el formulario preguntaba y nadie guardaba la
+ * respuesta. Ahora cada uno es un registro con la misma forma que los del
+ * catálogo, y por eso los campos de la sesión le salen bien.
+ */
+const MIOS = [
+  {n:'Sentadilla con cadena', d:['fuerza'], p:'Sentadilla', q:['barra','cadena'],
+   m:['reps','load','rpe'], mus:['cuadriceps','gluteos'], nivel:'Avanzado',
+   cue:'La cadena suma carga arriba. Baja controlado.', uni:false, rm:true},
+  {n:'Remo en banco inclinado 30°', d:['fuerza'], p:'Jalón horizontal', q:['mancuerna'],
+   m:['reps','load','rpe'], mus:['dorsales','romboides'], nivel:'Intermedio',
+   cue:'Pecho apoyado, codo pegado al cuerpo.', uni:true, rm:false},
+];
+const nombresMios = () => MIOS.map(e => e.n);
+const esMio = nombre => MIOS.some(e => e.n === nombre);
+const MUSCULOS = ['gluteos','cuadriceps','isquiotibiales','aductores','gemelos','erectores',
+  'abdominales','oblicuos','dorsales','romboides','trapecios','pectorales',
+  'deltoide_anterior','deltoide_lateral','biceps','triceps','antebrazos',
+  'flexores_cadera','cuerpo_completo','cardiovascular'];
+const bonito = t => t.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
 
 /**
  * Enlaces de demostración que guarda ESTE coach, por nombre de ejercicio.
@@ -2574,10 +2616,11 @@ function renderSearch(){
   }
 
   // --- los míos
-  const mios = MINE.filter(coincide);
+  const mios = MIOS.filter(e => coincide(e.n));
   if (mios.length) secciones.push(['Míos',
-    mios.map(x => `<div class="mitem" onclick="addDelCatalogo('${q1(x)}','ejercicio')">
-      <b>${x}</b><span class="chip acc">Mío</span></div>`).join('')]);
+    mios.map(e => `<div class="mitem" onclick="addDelCatalogo('${q1(e.n)}','ejercicio')">
+      <b>${e.n}</b><span class="faint">${e.p || e.q.join(', ')}</span>
+      <span class="chip acc">Mío</span></div>`).join('')]);
 
   const filtros = [
     ['sugeridos', `Para ${bloque?.n || 'este bloque'}`],
@@ -2663,7 +2706,7 @@ function prescripcionDelBloque(bloque){
 
 /** Los campos de un ejercicio del catálogo dentro de este bloque. */
 function camposDeEjercicio(nombre, bloque){
-  const e = EJERCICIOS.find(x => x.n === nombre);
+  const e = EJERCICIOS.find(x => x.n === nombre) || MIOS.find(x => x.n === nombre);
   const metricas = e ? e.m : ['reps','load'];
   const base = prescripcionDelBloque(bloque);
   const propios = metricas.map(campo);
@@ -2705,7 +2748,11 @@ function addDelCatalogo(nombre, tipo, nuevo){
     f: JSON.parse(JSON.stringify(campos))});
   document.getElementById('exModal').classList.remove('on');
   renderBlocks();
-  if (nuevo){ MINE.push(nombre + ' (mío)'); toast(`"${nombre}" creado como ejercicio tuyo`); }
+  if (nuevo){
+    MIOS.push({n:nombre + ' (mío)', d:[], p:'', q:[], m:['reps','load'], mus:[],
+      nivel:'', cue:'', uni:false, rm:false});
+    toast(`"${nombre}" creado como ejercicio tuyo`);
+  }
 }
 document.getElementById('exModal').onclick = e => {
   if (e.target.id === 'exModal') e.target.classList.remove('on');
@@ -2732,7 +2779,7 @@ function renderLib(){
   EJERCICIOS.forEach(e => e.d.forEach(d => cuentaDis[d] = (cuentaDis[d] || 0) + 1));
   document.getElementById('libFiltros').innerHTML = [
     ['todos', `Todos · ${EJERCICIOS.length}`],
-    ['mios', `Míos · ${MINE.length}`],
+    ['mios', `Míos · ${MIOS.length}`],
     ...DISCIPLINAS.filter(d => cuentaDis[d]).map(d => [d, `${NOMBRE_DIS[d]} · ${cuentaDis[d]}`]),
     ['benchmarks', `Benchmarks · ${BENCHMARKS.length}`],
     ['estaciones', `Estaciones · ${ESTACIONES.length}`],
@@ -2790,8 +2837,12 @@ function renderLib(){
          ${e.d.slice(0, 3).map(d => `<span class="chip ${d}">${NOMBRE_DIS[d] || d}</span>`).join('')}`,
         [e.p, e.q.join(', ')].filter(Boolean).join(' · '), false)).join('');
     }
-    html += MINE.filter(coincide).map(x =>
-      tarjeta(x, '<span class="chip acc">Mío</span>', '', true)).join('');
+    html += MIOS.filter(e => coincide(e.n)).map(e => tarjeta(e.n,
+      `<span class="chip acc">Mío</span>
+       ${e.d.map(d => `<span class="chip ${d}">${NOMBRE_DIS[d] || d}</span>`).join('')}
+       ${e.nivel ? `<span class="chip plain">${e.nivel}</span>` : ''}`,
+      [e.p, e.q.join(', '), e.mus.map(bonito).join(', ')].filter(Boolean).join(' · '),
+      true)).join('');
   }
 
   document.getElementById('libGrid').innerHTML = html ||
@@ -2822,10 +2873,25 @@ function ponerEnlace(nombre){
   toast(`Enlace guardado · se abrirá fuera de la app`);
 }
 
+/**
+ * Duplicar se lleva TODO lo del original, no solo el nombre: métricas,
+ * disciplinas, patrón, músculos y equipo. Es el punto de duplicar — el coach
+ * quiere ajustar una cosa, no volver a capturar nueve campos.
+ */
 function duplicar(nombre){
+  const origen = EJERCICIOS.find(e => e.n === nombre) || MIOS.find(e => e.n === nombre);
   const copia = nombre + ' (mi versión)';
-  MINE.push(copia); renderLib();
-  toast(`Copia creada · edítala sin tocar el catálogo`);
+  MIOS.push({
+    n: copia,
+    d: [...(origen?.d || [])],
+    p: origen?.p || '',
+    q: [...(origen?.q || [])],
+    m: [...(origen?.m || ['reps','load'])],
+    mus: [...(origen?.mus || [])],
+    nivel: '', cue: '', uni: false, rm: false,
+  });
+  renderLib();
+  toast('Copia creada con sus datos · ajusta lo que quieras');
   openAltaEjercicio(copia);
 }
 
@@ -2833,7 +2899,8 @@ function borrarEjercicio(nombre){
   if (!confirm(`¿Eliminar "${nombre}"?\n\n`
     + `Si ya lo usaste en alguna sesión, esa sesión lo sigue mostrando: se archiva en `
     + `lugar de borrarse para no dejar huecos en el histórico del atleta.`)) return;
-  MINE.splice(MINE.indexOf(nombre), 1);
+  const k = MIOS.findIndex(e => e.n === nombre);
+  if (k >= 0) MIOS.splice(k, 1);
   renderLib();
   toast(`"${nombre}" eliminado de tu biblioteca`);
 }
@@ -2845,11 +2912,12 @@ function cerrar(id){ document.getElementById(id).classList.remove('on'); }
 });
 
 /** Chips que se prenden y apagan. Devuelve los elegidos al leerlos. */
-function pickers(contenedor, opciones, multi = true){
+function pickers(contenedor, opciones, multi = true, prendidos){
   const el = document.getElementById(contenedor);
+  const ya = new Set(prendidos || []);
   el.innerHTML = opciones.map(o => {
     const [v, n] = Array.isArray(o) ? o : [o, o];
-    return `<button class="fchip" data-v="${v}">${n}</button>`;
+    return `<button class="fchip ${ya.has(v) ? 'on' : ''}" data-v="${v}">${n}</button>`;
   }).join('');
   el.querySelectorAll('.fchip').forEach(b => b.onclick = () => {
     if (!multi) el.querySelectorAll('.fchip').forEach(x => x.classList.remove('on'));
@@ -2902,38 +2970,92 @@ function openAltaPlantilla(){
 // --- 4d: alta y edición de ejercicio
 function openAltaEjercicio(nombreExistente){
   const editando = typeof nombreExistente === 'string';
+  const e = editando ? MIOS.find(x => x.n === nombreExistente) : null;
+
   document.getElementById('neTitle').textContent = editando
     ? 'Editar mi ejercicio' : 'Nuevo ejercicio';
   document.getElementById('neNota').textContent = editando
     ? 'Este ejercicio es tuyo, así que lo puedes cambiar o eliminar. Los del catálogo de PR-LAB no.'
     : 'Queda privado de tu cuenta. Tus atletas lo ven y lo registran igual que uno del catálogo, pero ningún otro coach lo encuentra.';
-  document.getElementById('neNombre').value = editando ? nombreExistente : '';
-  document.getElementById('neCue').value = '';
-  document.getElementById('neVideo').value = editando ? (LINKS[nombreExistente] || '') : '';
-  document.getElementById('neUni').checked = false;
-  document.getElementById('neRM').checked = false;
-  pickers('neMetricas', METRICAS);
-  pickers('neDis', DISCIPLINAS.map(d => [d, d[0].toUpperCase() + d.slice(1)]));
-  pickers('neEquipo', EQUIPO);
+  document.getElementById('neGuardar').textContent = editando
+    ? 'Guardar cambios' : 'Guardar ejercicio';
+
+  document.getElementById('neNombre').value = e?.n || '';
+  document.getElementById('nePatron').value = e?.p || '';
+  document.getElementById('neNivel').value = e?.nivel || '';
+  document.getElementById('neCue').value = e?.cue || '';
+  document.getElementById('neVideo').value = (editando && LINKS[nombreExistente]) || '';
+  document.getElementById('neUni').checked = !!e?.uni;
+  document.getElementById('neRM').checked = !!e?.rm;
+
+  // Los chips se arman y se prenden con lo que el ejercicio ya traía, para que
+  // editar no sea volver a capturarlo todo.
+  pickers('neMetricas', METRICAS, true, e?.m);
+  pickers('neDis', DISCIPLINAS.map(d => [d, NOMBRE_DIS[d]]), true, e?.d);
+  pickers('neMusculos', MUSCULOS.map(x => [x, bonito(x)]), true, e?.mus);
+  pickers('neEquipo', EQUIPO, true, e?.q);
+
+  editandoEjercicio = editando ? nombreExistente : null;
   document.getElementById('newExModal').classList.add('on');
   setTimeout(() => document.getElementById('neNombre').focus(), 60);
 }
+let editandoEjercicio = null;
+
 function crearEjercicio(){
   const nombre = document.getElementById('neNombre').value.trim();
   if (!nombre) return toast('Falta el nombre del ejercicio');
+
   const met = elegidos('neMetricas');
   if (!met.length) return toast('Marca al menos una cosa que el atleta registre');
 
   const url = document.getElementById('neVideo').value.trim();
-  if (url && !/^https:\/\/(www\.|m\.|player\.)?(youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com|instagram\.com)\//.test(url)) {
+  if (url && !/^https:\/\/(www\.|m\.|player\.)?(youtube\.com|youtu\.be|vimeo\.com|drive\.google\.com|instagram\.com)\//.test(url)){
     return toast('El enlace debe ser https de YouTube, Vimeo, Drive o Instagram');
   }
 
-  if (!MINE.includes(nombre)) MINE.push(nombre);
-  if (url) LINKS[nombre] = url;
-  cerrar('newExModal'); renderLib();
-  toast(url ? `"${nombre}" guardado · el video se abrirá fuera de la app`
-            : `"${nombre}" guardado en tu biblioteca`);
+  // Un nombre que ya existe en el catálogo confundiría al atleta en su sesión.
+  const choca = EJERCICIOS.some(e => e.n.toLowerCase() === nombre.toLowerCase())
+    || MIOS.some(e => e.n.toLowerCase() === nombre.toLowerCase() && e.n !== editandoEjercicio);
+  if (choca) return toast(`Ya existe un ejercicio llamado "${nombre}"`);
+
+  const datos = {
+    n: nombre,
+    d: elegidos('neDis'),
+    p: document.getElementById('nePatron').value,
+    q: elegidos('neEquipo'),
+    m: met,
+    mus: elegidos('neMusculos'),
+    nivel: document.getElementById('neNivel').value,
+    cue: document.getElementById('neCue').value.trim(),
+    uni: document.getElementById('neUni').checked,
+    rm: document.getElementById('neRM').checked,
+  };
+
+  if (editandoEjercicio){
+    const k = MIOS.findIndex(e => e.n === editandoEjercicio);
+    if (k >= 0) MIOS[k] = datos;
+    // El enlace está indexado por nombre: si el nombre cambió, se muda.
+    if (editandoEjercicio !== nombre && LINKS[editandoEjercicio]){
+      LINKS[nombre] = LINKS[editandoEjercicio];
+      delete LINKS[editandoEjercicio];
+    }
+  } else {
+    MIOS.push(datos);
+  }
+
+  if (url) LINKS[nombre] = url; else delete LINKS[nombre];
+
+  const editado = !!editandoEjercicio;
+  editandoEjercicio = null;
+  cerrar('newExModal');
+  renderLib(); renderBlocks();
+
+  const resumen = [
+    met.map(x => (ETIQUETA[x] || [x])[0]).join(', '),
+    datos.d.map(d => NOMBRE_DIS[d]).join(', '),
+  ].filter(Boolean).join(' · ');
+  toast(editado ? `"${nombre}" actualizado · ${resumen}`
+                : `"${nombre}" guardado · registra ${resumen}`);
 }
 
 // ---------- espacio del asistente ----------
