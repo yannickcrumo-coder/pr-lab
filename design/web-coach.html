@@ -163,6 +163,18 @@ h3.sec:first-child{margin-top:0}
 /* ---------- panel derecho ---------- */
 .panel{width:300px;flex:0 0 auto;background:var(--surface);border:1px solid var(--border);
   border-radius:var(--r-md);padding:14px;max-height:calc(100vh - 150px);overflow-y:auto}
+.progwrap.cerrado .panel{display:none}
+
+/* La pestaña que queda cuando el panel está plegado. */
+.pestana{flex:0 0 auto;align-self:stretch;width:38px;background:var(--surface);
+  border:1px solid var(--border);border-radius:var(--r-md);cursor:pointer;
+  display:none;align-items:center;justify-content:center;padding:14px 0;
+  color:var(--text-muted);font-size:12px;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;writing-mode:vertical-rl;text-orientation:mixed;
+  min-height:220px}
+.pestana:hover{border-color:var(--accent);color:var(--accent)}
+.progwrap.cerrado .pestana{display:flex}
+.panel .cerrar{float:right;margin:-4px -4px 0 0}
 .tpl{background:var(--surface-2);border:1px solid var(--border);border-left:3px solid var(--border);
   border-radius:var(--r-sm);padding:10px;margin-bottom:8px;cursor:grab;font-size:13px}
 .tpl.fuerza{border-left-color:var(--d-fuerza)}
@@ -175,10 +187,20 @@ h3.sec:first-child{margin-top:0}
   padding:9px 11px;font-size:12px;color:var(--accent);margin-bottom:10px}
 
 /* ---------- constructor ---------- */
-#builder{position:fixed;top:0;right:0;bottom:0;width:470px;max-width:100%;
-  background:var(--surface);border-left:1px solid var(--border-strong);z-index:60;
-  display:none;flex-direction:column;box-shadow:-10px 0 40px rgb(0 0 0/.4)}
+/* El constructor va centrado: el calendario es lo que el coach mira mientras
+   programa, y un panel pegado a un costado le comía el ancho justo cuando más
+   lo necesita. Alto casi completo, ancho solo el necesario. */
+#builder{position:fixed;inset:0;z-index:60;display:none;align-items:center;
+  justify-content:center;padding:24px 16px;background:rgb(0 0 0/.55)}
 #builder.on{display:flex}
+#builder .caja{width:100%;max-width:700px;height:min(92vh, 980px);
+  background:var(--surface);border:1px solid var(--border-strong);
+  border-radius:var(--r-lg);display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 24px 70px rgb(0 0 0/.6)}
+@media(max-width:760px){
+  #builder{padding:0}
+  #builder .caja{height:100vh;max-width:none;border-radius:0;border:none}
+}
 #builder .bh{padding:14px 16px;border-bottom:1px solid var(--border);display:flex;
   align-items:center;gap:10px}
 #builder .bh .t{flex:1;min-width:0}
@@ -289,6 +311,8 @@ h3.sec:first-child{margin-top:0}
   #side nav button span.lbl{display:none}
   #main{height:auto}#content{padding:14px}
   .progwrap{flex-direction:column}.panel{width:100%;max-height:none}
+  .pestana,.progwrap.cerrado .pestana{display:none}
+  .progwrap.cerrado .panel{display:block}
   #builder{width:100%;border-left:none}
   .ilist{width:100%}.inbox{flex-direction:column}
 }
@@ -614,7 +638,7 @@ h3.sec:first-child{margin-top:0}
 
     <!-- ===== PROGRAMACIÓN ===== -->
     <section class="view" id="v-prog">
-      <div class="progwrap">
+      <div class="progwrap" id="progwrap">
         <div class="calcol">
           <div class="spread" style="margin-bottom:12px;flex-wrap:wrap">
             <div class="row" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap">
@@ -661,7 +685,12 @@ h3.sec:first-child{margin-top:0}
             <div id="iaPrev"></div>
           </div>
         </div>
+        <button class="pestana" onclick="alternarPanel()"
+          title="Mostrar las plantillas">Plantillas ◂</button>
+
         <aside class="panel">
+          <button class="iconbtn cerrar" onclick="alternarPanel()"
+            title="Esconder el panel">▸</button>
           <h3 class="sec">Plantillas</h3>
           <input type="search" id="tplq" placeholder="Buscar plantilla…"
             style="width:100%;margin-bottom:9px" oninput="renderTpl()">
@@ -722,7 +751,8 @@ h3.sec:first-child{margin-top:0}
 </div>
 
 <!-- ===== CONSTRUCTOR ===== -->
-<div id="builder">
+<div id="builder" onclick="if(event.target===this) closeBuilder()">
+  <div class="caja">
   <div class="bh">
     <div class="t"><b id="bTitle">Nueva sesión</b><span id="bSub">Diego Salas · miércoles 19</span></div>
     <span class="chip plain" id="bState">Borrador</span>
@@ -772,6 +802,7 @@ h3.sec:first-child{margin-top:0}
     </div>
   </div>
   <div class="bf" id="bFoot"></div>
+  </div>
 </div>
 
 <!-- ===== MODAL TIPO DE BLOQUE ===== -->
@@ -1825,6 +1856,30 @@ function dragTpl(i){ dragging = {kind:'tpl', i}; }
  * Arranca en detalle, que es para lo que se pidió.
  */
 let detalleEnCalendario = true;
+/**
+ * Plegar el panel de plantillas y devolverle el ancho al calendario.
+ *
+ * Entre las dos opciones —plegar con el calendario reacomodándose, o dejarlo
+ * todo a lo largo con una barra horizontal— va la primera, y no por gusto:
+ * una vista de semana sirve para comparar los siete días de un vistazo, y una
+ * barra horizontal rompe justo eso. Para ver el domingo habría que dejar de
+ * ver el lunes. La barra horizontal es de las vistas de línea de tiempo, donde
+ * el eje es continuo, no de una cuadrícula de siete días.
+ *
+ * Es también lo que hacen Google Calendar, Notion, Linear y Figma con sus
+ * paneles laterales: se pliegan y el contenido se reacomoda.
+ */
+let panelAbierto = true;
+function alternarPanel(){
+  panelAbierto = !panelAbierto;
+  document.getElementById('progwrap').classList.toggle('cerrado', !panelAbierto);
+  if (!panelAbierto && selTpl !== null){
+    // Si tenía una plantilla seleccionada, sigue seleccionada: el coach pliega
+    // el panel justo para tener espacio y tocar el día.
+    toast('Plantilla seleccionada · toca el día donde la quieres');
+  }
+}
+
 function alternarDetalle(){
   detalleEnCalendario = !detalleEnCalendario;
   renderWeek();
@@ -1841,15 +1896,6 @@ function bloquesDeSesion(s){
   return t ? bloquesDe(t) : [];
 }
 
-/** El resumen corto de una prescripción, para que quepa en la columna. */
-function prescripcionCorta(campos){
-  return (campos || [])
-    .filter(([, v]) => v && v !== '—')
-    .slice(0, 2)
-    .map(([k, v]) => k === 'Series' ? `${v} ser.` : v)
-    .join(' · ');
-}
-
 function detalleDeSesion(s){
   if (!detalleEnCalendario) return '';
   const bloques = bloquesDeSesion(s);
@@ -1862,10 +1908,12 @@ function detalleDeSesion(s){
         <div class="sx1"><i>${(b.body || '').split('\n')[0].slice(0, 40)}…</i></div>`;
     }
     return `<div class="sb"><span class="sbl">${letra}</span>${b.n}</div>`
+      // Solo etiqueta y nombre. La prescripción se ve al abrir la sesión: en
+      // la columna del día encimaba y el calendario dejaba de leerse de un
+      // vistazo, que es para lo único que sirve una vista de semana.
       + b.ex.map((e, ei) => `<div class="sx1">
           <span class="sxl">${letra}${ei + 1}</span>
-          <span class="sxn">${e.n}</span>
-          <span class="sxp">${prescripcionCorta(e.f)}</span></div>`).join('');
+          <span class="sxn">${e.n}</span></div>`).join('');
   }).join('')}</div>`;
 }
 
